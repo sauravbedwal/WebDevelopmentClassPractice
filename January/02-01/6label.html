@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Basic Form</title>
+    </head>
+    <body>
+        <form>
+            <label>
+                <input type="radio" name="gender" value="Male"/>Male
+            </label>
+            <label>
+                <input type="radio" name="gender" value="Female"/>Female
+            </label>
+            <br>
+            <br>
+            Preferred City:          
+            <br>
+            <br>
+            <label for="bangalore">          <!--different way of using label tag & for & id has to be same-->
+                Bangalore
+            </label>                                               
+            <input type="radio" id="bangalore" name="city" value="Bangalore"/>
+            <br>
+            <br>
+            <label for="chennai">
+                Chennai
+            </label>
+            <input type="radio" id="chennai" name="city" value="Chennai"/>
+            <br>
+            <br>
+            <label for="hyderabad">
+                Hyderabad
+            </label>
+            <input type="radio" id="hyderabad" name="city" value="Hyderabad"/>
+            <br>
+            <br>
+            Email:<input type="email" name="email"/>
+            <br>
+            <br>
+            <input type="submit" value="Register"/>      
+        </form>
+    </body>
+</html>
