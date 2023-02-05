@@ -1,0 +1,1 @@
+as we r using grid in bootstrap so kya hum flex use nhi krenge coz it work same and grid use nhi krenge yaa grid use krenge ornuske ander ye bootsrtao usw krenge but flexuse nhi krenge confused 
