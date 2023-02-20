@@ -1,0 +1,46 @@
+<script>
+    var string = ""
+    var number = 40
+    var boolean = true
+
+
+    var result = 40 + true;
+    console.log(result);
+    //number + boolean --> number
+
+
+    result = false + ""
+    console.log(result);
+    //boolean + string --->string
+
+    //here false, in console output on browser is string not boolean. 
+    //example: result = false + "abc"
+    //console.log(result);
+
+
+    result = 40 + ""
+    console.log(result);
+    //number + string --->string
+
+    //here 40, in console output on browser is string not number.
+    //example: result = 40 + "abc"
+    //console.log(result);
+</script>
+
+
+<script>
+    var result = 34;
+    result = String(result);
+    console.log(typeof result);
+
+    var resultOne = "33";
+    resultOne = Number(resultOne);
+    console.log(typeof resultOne)
+
+    var resultTwo = 0;
+    //any number is considered as true
+    //0 is considered as false
+    resultTwo = Boolean(resultTwo);
+    console.log(typeof resultTwo);
+    console.log(resultTwo);
+</script>
