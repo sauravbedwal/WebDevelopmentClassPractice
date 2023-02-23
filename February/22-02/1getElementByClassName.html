@@ -1,0 +1,64 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <ul>
+        <li class="heading" id="listOne">pen</li>
+        <li class="heading" id="listTwo">pencil</li>
+        <li class="heading" id="listThree">eraser</li>
+    </ul>   
+    <script>
+        var input = document.getElementsByClassName("heading");
+        console.log(typeof input);
+        for (var obj of input) {
+            obj.innerHTML = obj.innerHTML.toUpperCase();
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- <html>
+
+<head>
+
+    <style>
+        .box {
+
+            color: green;
+
+        }
+
+        .boxTwo {
+
+            font-size: 13px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <p id="demo">Hello world</p>
+
+    <script>
+
+        var input = document.getElementById("demo");
+
+        input.classList.add('box');
+
+        input.classList.add('boxTwo');
+
+    </script>
+
+</body>
+
+</html> -->
+
+
+<!-- input.classList.add('box');
+
+input.classList.add('boxTwo');==>why this? -->

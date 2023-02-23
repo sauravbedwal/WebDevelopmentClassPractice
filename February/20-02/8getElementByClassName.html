@@ -1,0 +1,111 @@
+<!-- <html>
+
+<head>
+</head>
+
+<body>
+    <ul>
+        <li class="heading">Pen</li>
+        <li class="heading">Pencil</li>
+        <li class="heading" id="list">Eraser</li>
+    </ul>
+    <script>
+        var input = document.getElementsByClassName("heading");
+        for (var obj of input) {
+            console.log(obj.innerHTML);
+            obj.innerHTML = "details " + obj.innerHTML;
+        }
+    </script>
+</body>
+
+</html> -->
+
+
+
+<!-- <html>
+
+<head>
+    <style>
+        .box{
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="heading">Pen</li>
+        <li class="heading">Pencil</li>
+        <li class="heading" id="list">Eraser</li>
+    </ul>
+    <script>
+        var input = document.getElementsByClassName("heading");
+        for (var obj of input) {
+            console.log(obj.innerHTML);
+            obj.innerHTML = "details " + obj.innerHTML;
+            obj.classList.add('box');
+        }
+    </script>
+</body>
+
+</html> -->
+
+
+
+<html>
+
+<head>
+    <style>
+        .boxRed {
+            color: red;
+        }
+
+        .boxGreen {
+            color: green;
+        }
+
+        .boxYellow {
+            color: yellow;
+        }
+    </style>
+
+</head>
+
+<body>
+    <ul>
+        <li class="heading">Pen</li>
+        <li class="heading">Pencil</li>
+        <li class="heading" id="list">Eraser</li>
+    </ul>
+    <script>
+        var input = document.getElementsByClassName("heading");
+        for (var obj of input) {   
+            if (obj.innerHTML == "Pen") { 
+                obj.classList.add("boxGreen");
+            }
+            else if (obj.innerHTML == "Pencil") {
+                obj.classList.add("boxYellow");
+            }
+            else {
+                obj.classList.add('boxRed');
+            }
+
+
+        }
+    </script>
+
+</body>
+
+</html>
+
+
+
+<!-- we used for loop here bcoz whenever we use className it wll return array & obj will take entire data means
+whole line 76 inside that entire data we have inner.HTML we ca see whethter it is a pen, pencil oe etc and if 
+matches the particular if condtion, we have class list  bcoz we need to add dynamic class and we added the 
+different class i.e. boxGreen etc. -->
+
+
+<!-- when use dynamically CSS two ways r there style.property, style.color i.e. inline style dont use that one 
+ex: 5settingColor dont prefer that. if uh want to add css dynamically write the code above like we did in line
+27  write the class dynamically and then add the class dynamically below line 45. -->

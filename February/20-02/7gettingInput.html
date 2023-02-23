@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <style>
+        .box {
+            border: 5px solid black;
+            text-align: center;
+            font-size: 14px;
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+
+</head>
+
+<body>
+    Description: <input type="text" id="descriptionProps"/>
+    Color:<input type="text" id="colorProps"/>
+    <button onClick="onSubmit()">click here</button>
+    <div class="box" id="demo">
+
+    </div>
+    <script>
+        function onSubmit() {
+            var description = document.getElementById("descriptionProps").value;
+            var colorDetails = document.getElementById("colorProps").value;
+            var demo = document.getElementById("demo");
+            demo.innerHTML = description;
+            demo.style.backgroundColor = colorDetails;
+        }
+    </script>
+
+</body>
+
+</html>
+
+<!-- so here we used two input tags for Description and Color and gave them the unique id and below
+that created button and used click event method i.e. onClick and then we created one div tag gave the id and 
+gave css so that we can get a box thats the plain html code written then fir css what we did is after typing
+two data of input tag we will click on event function and after clicking on the event function 
+document.getElementById("descriptionProps").value means id = "descriptionProps" whatever we type will store 
+in this description variable (means we giving it value) and whatever color we type will store in colorDetails 
+variable after storing these two variable we access the id which means the entire div tag and inside this div 
+tag we know we can access inner.HTML so by using the inner.HTML we binded the description(line 25) and next by 
+same demo variable style property we have and inside the style proeprty background color and then we set the
+colorDetails(line 26) and bcoz of this the color changing. -->
