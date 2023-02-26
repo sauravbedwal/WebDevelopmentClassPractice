@@ -1,0 +1,21 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    FullName:<input type="text" name="fullName" onChange="onSubmitHandler(event)"/>
+    <div id="box"></div>
+    <script>
+        function onSubmitHandler(event) {       //onSubmitHandler is user define name and can be anything. but sir told whenevr use events use handler for understanding
+            console.log(event);
+            console.log(event.target.value);
+            console.log(event.target.name);
+            var input = document.getElementById('box');
+            input.innerHTML = event.target.value;
+            input.style.color = event.target.value;
+        }
+    </script>
+</body>
+
+</html>
