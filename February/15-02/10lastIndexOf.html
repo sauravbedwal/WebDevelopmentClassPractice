@@ -5,3 +5,16 @@
     var result = list.lastIndexOf(22);
     console.log(result);
 </script>
+
+
+<!-- for the understanding took an example in which include both indexOf and lastIndexOf  -->
+
+<script>
+    var list = [11, 22, 33, 44, 22, 252, 484, 67];
+    //indexOf --> it will return the index value of that particular element from last position.
+    //indexOf --> if element is not found it will return -1
+    var result =  list.indexOf(22);  //by indexOf it will tell the index of the first element (as there are two same elements)
+    console.log(result);            
+    var result2 = list.lastIndexOf(22); //by lastIndexOf it will tell the index of the last element (as there are two same elements) 
+    console.log(result2);
+</script>

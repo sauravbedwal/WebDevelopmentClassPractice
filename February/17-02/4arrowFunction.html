@@ -3,6 +3,8 @@
         return a+b;
     }
     addition(44,55);
+    // console.log(addition(44,55));
+    
 </script>
 
 
@@ -11,7 +13,7 @@
     //we need to declare in variable
     //always use const variable because function should be unique throughout the page.
     //()=>{}
-    const subtraction=(a,b)=>{
+    const subtraction=(a,b)=>{    //here subtraction is function name (user define)and arrow function in this is ()=>{} 
        return a-b;
     }
     console.log(subtraction(10,5));
@@ -20,13 +22,14 @@
 
 <script>
     //if you have only one parameter () is optional
-    //if you have only one statement return keyword is optional
+    //if you have only one statement return keyword and {} is optional 
     const display=name=>name;
     console.log(display("rajesh"));
 </script>
 
 
 <script>
+    //arrowFunction in map (callback) function
     var list = [
         {
             fullName: "rajesh",

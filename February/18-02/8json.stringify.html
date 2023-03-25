@@ -3,9 +3,9 @@
         fullName:"details",
         age:22
     };
-    //JSON.stringigy() -it will convert javascript object to json
+    //JSON.stringify() -it will convert javascript object to json
     var listTwo = JSON.stringify(list);
-    console.log(typeof listTwo,listTwo.age);
+    console.log(typeof listTwo,listTwo.age);   //it will not show listTwo.age coz now it converted into String
     //JSON.parse() it will convert json to javascript object
     listTwo = JSON.parse(listTwo);
     console.log(typeof listTwo,listTwo.age);
@@ -13,6 +13,7 @@
 
 
 <script>
+    // example of structure of json
     var list= {
          "fullName":"details",
          "age":22

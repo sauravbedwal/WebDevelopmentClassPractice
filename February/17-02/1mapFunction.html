@@ -2,6 +2,7 @@
     //map function is array method
     //it will return new array
     //it will help to manipulate or do changes in your code.
+    //return is mandatory keyword
     var list = [
         {
             fullName: "rajesh",
@@ -20,7 +21,7 @@
             phone: 2222
         }
     ];
-    var result = list.map(function (input) {
+    var result = list.map(function (input) {  //input is user defiend parameter as we can write any name instaed of input.
         return input;
     });
     console.log(result);
@@ -33,7 +34,7 @@
 
     
     var result = list.map(function (input) {
-        return { name: input.fullName, criteria: input.age };
+        return { name: input.fullName, criteria: input.age };  //we can change the key also. 
     });
     console.log(result);
 
