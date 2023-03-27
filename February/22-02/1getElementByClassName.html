@@ -14,51 +14,12 @@
         console.log(typeof input);
         for (var obj of input) {
             obj.innerHTML = obj.innerHTML.toUpperCase();
+            //if we write in console then it will show that thing in browser and console also but if we dont 
+            //write in console then console will be empty but whaterver prop. we applied will show on browser.  
+            
+            // console.log(obj.innerHTML);
         }
     </script>
 </body>
 
 </html>
-
-<!-- <html>
-
-<head>
-
-    <style>
-        .box {
-
-            color: green;
-
-        }
-
-        .boxTwo {
-
-            font-size: 13px;
-
-        }
-    </style>
-
-</head>
-
-<body>
-
-    <p id="demo">Hello world</p>
-
-    <script>
-
-        var input = document.getElementById("demo");
-
-        input.classList.add('box');
-
-        input.classList.add('boxTwo');
-
-    </script>
-
-</body>
-
-</html> -->
-
-
-<!-- input.classList.add('box');
-
-input.classList.add('boxTwo');==>why this? -->

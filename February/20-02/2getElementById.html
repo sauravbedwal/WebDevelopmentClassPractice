@@ -1,27 +1,28 @@
+<!-- here we learned how to take tags by id and how to show it. -->
+
 <!-- <html>
 
 <head>
-
 </head>
 
 <body>
     <p id="demo">Hello world</p>
     <script>
         var input = document.getElementById("demo");
-        console.log(input);
-        console.log(input.innerHTML);
+        console.log(input);  //by this we wll get the whole tag 
+        console.log(input.innerHTML);   //by this w will get only the text nad it will exclude the tags
     </script>
-
 </body>
 
 </html> -->
 
 
 
+<!-- here we learned how to take calss by id and how to show it and change the text. -->
+
 <html>
 
 <head>
-
 </head>
 
 <body>
@@ -29,11 +30,10 @@
     <script>
         var input = document.getElementById("demo");
         console.log(input);
-        console.log(input.innerHTML);
-        document.getElementById("demo").innerHTML = "welcome";
-        // input.innerHTML = "welcome";
+        console.log(input.innerHTML);  
+        document.getElementById("demo").innerHTML = "welcome"; //by innerHTML we can also change the value(data)
+        // input.innerHTML = "welcome";  //meaning of above line as we can write input also instead of document.getElementById("demo") 
     </script>
-
 </body>
 
 </html>

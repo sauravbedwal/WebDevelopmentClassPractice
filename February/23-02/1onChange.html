@@ -1,10 +1,34 @@
+<!-- onChange we can use with input tag ex- type="text". type= "number" in any textbox we can use this.-->
+
+<!-- <html>
+
+<head>
+</head>
+
+<body>
+    FullName:<input type="text" name="fullName" onChange="onSubmitHandler()"/>
+    <div id="box"></div>
+    <script>
+        function onSubmitHandler() {       //onSubmitHandler is user define name and can be anything. but sir told whenevr use events use handler for understanding
+            alert("hello");
+        }
+    </script>
+</body>
+
+</html> -->
+
+
+
+
 <html>
 
 <head>
 </head>
 
 <body>
-    FullName:<input type="text" name="fullName" onChange="onSubmitHandler(event)"/>
+    <!--in js they will give one by default event object and there is target one property inside that 
+        there is value, name id property and anything we can access-->
+    FullName:<input type="text" name="fullName" onChange="onSubmitHandler(event)"/>  
     <div id="box"></div>
     <script>
         function onSubmitHandler(event) {       //onSubmitHandler is user define name and can be anything. but sir told whenevr use events use handler for understanding

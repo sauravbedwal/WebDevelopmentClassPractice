@@ -1,3 +1,5 @@
+<!-- here we learned how to get className without Loop -->
+
 <html>
     <head>
         <style>
@@ -22,7 +24,7 @@
         <script>
             var input = document.getElementsByClassName("heading");
             console.log(input);
-            input[0].innerHTML = "first value";
+            input[0].innerHTML = "first value";  //i.e. hardcoded value that we cant do in real time so we use loop.
             input[1].innerHTML = "second value";
         </script>
     </body>
@@ -30,7 +32,11 @@
 
 
 
-<!-- <html>
+
+<!-- here we learned that If class is empty it will return empty array 
+    If id is empty it will return null empty value/object -->
+
+<html>
 
 <head>
     <style>
@@ -64,31 +70,5 @@
 
 </body>
 
-</html> -->
+</html>
 
-
-
-<!-- If class is empty it will return empty array
-If id is empty it will return null empty value/object -->
-
-
-
-Elements: p,h1,a,img,li,nav
-Attributes: id,name,class,readonly,disable.
-Style and Class : css
-Events:click,change,mouse..
-====================================
-Types of DOM Selectors:
-//Use to access existing element.
-1.getElementById:
-//it will access the element using id attribute.
-//innerHTML property will help you to add dynmic content inside the html.
-style attribute:
-//you can attach css properties
-//inside this propery hypen is not allowed. Instead we need to add capital letter after hyphen and remove the hyphen symbol.
-======================================
-1.we can add the content
-2.we can set the attribute dynamically.example src
-3.we can write the inline style dynamically example  style.color
-4.we can write css class dynamically using classList.add()
-=========================================

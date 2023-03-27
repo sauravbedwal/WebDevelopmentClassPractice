@@ -22,10 +22,10 @@
     </div>
     <script>
         function onSubmit() {
-            var description = document.getElementById("descriptionProps").value;
+            var descriptionDetails = document.getElementById("descriptionProps").value;
             var colorDetails = document.getElementById("colorProps").value;
             var demo = document.getElementById("demo");
-            demo.innerHTML = description;
+            demo.innerHTML = descriptionDetails;
             demo.style.backgroundColor = colorDetails;
         }
     </script>
@@ -36,7 +36,7 @@
 
 <!-- so here we used two input tags for Description and Color and gave them the unique id and below
 that created button and used click event method i.e. onClick and then we created one div tag gave the id and 
-gave css so that we can get a box thats the plain html code written then fir css what we did is after typing
+gave css so that we can get a box thats the plain html code written then for css what we did is after typing
 two data of input tag we will click on event function and after clicking on the event function 
 document.getElementById("descriptionProps").value means id = "descriptionProps" whatever we type will store 
 in this description variable (means we giving it value) and whatever color we type will store in colorDetails 

@@ -1,3 +1,5 @@
+<!-- here we learned how to take tags by class and how to show it by forOF loop and also change values. -->
+
 <!-- <html>
 
 <head>
@@ -12,7 +14,8 @@
     <script>
         var input = document.getElementsByClassName("heading");
         for (var obj of input) {
-            console.log(obj.innerHTML);
+            console.log(obj);    //obj will show the whole li tag 
+            console.log(obj.innerHTML);  //obj.innerHTML will show the text(content) present between the tags 
             obj.innerHTML = "details " + obj.innerHTML;
         }
     </script>
@@ -21,6 +24,8 @@
 </html> -->
 
 
+
+<!-- here we learned how to add class -->
 
 <!-- <html>
 
@@ -52,6 +57,8 @@
 
 
 
+<!-- here we learned how to add differnet classes and make it dynamic as per user input in list-->
+
 <html>
 
 <head>
@@ -73,13 +80,18 @@
 
 <body>
     <ul>
-        <li class="heading">Pen</li>
+        <li class="heading">Pen</li> 
         <li class="heading">Pencil</li>
         <li class="heading" id="list">Eraser</li>
     </ul>
     <script>
+        // by using the className we can able to access the entire code inside ul tag bcoz classname is not unique
+        // like id as it is common set of data which will return array and once it is an array we can use loop.
+        //not exact array as when we check by the property Array.isarray it shows false but it is very similar 
+        //to array thast why we are able to use loops. 
+        
         var input = document.getElementsByClassName("heading");
-        for (var obj of input) {   
+        for (var obj of input) {    //return each object that is single whole li tag each time
             if (obj.innerHTML == "Pen") { 
                 obj.classList.add("boxGreen");
             }
@@ -89,9 +101,8 @@
             else {
                 obj.classList.add('boxRed');
             }
-
-
         }
+        // console.log(Array.isArray(input));   
     </script>
 
 </body>

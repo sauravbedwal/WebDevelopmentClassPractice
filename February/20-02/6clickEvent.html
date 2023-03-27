@@ -1,10 +1,13 @@
-<!-- <html>
+<!-- one student asked why doing by js we can do all that css so sir gave an example of events i.e. click event  -->
+<!-- here we understood abt onClick event -->
+
+<html>
 
 <head>
 </head>
 
 <body>
-    <button onClick="onSubmit()">click here</button>
+    <button onClick="onSubmit()">click here</button>  <!-- whenever we click on button it will call the onSubmit function bcoz of click event   -->
     <script>
         function onSubmit() {  //onSubmit is user define function uh can name anything to it
             alert("input");
@@ -12,25 +15,26 @@
     </script>
 </body>
 
-</html> -->
+</html>
 
+
+
+<!-- here we understood abt onClick event and took the input also by user-->
 
 <html>
 
 <head>
-
 </head>
 
 <body>
-    <input type="text" id="demo" value="suresh"/>
+    <input type="text" id="demo"/>
     <button onClick="onSubmit()">click here</button>
     <script>
         function onSubmit() {
-            var input = document.getElementById("demo").value;
+            var input = document.getElementById("demo").value; //for input tag we dont use innerHTML as there is value property for input tag 
             alert(input);
         }
     </script>
-
 </body>
 
 </html>
