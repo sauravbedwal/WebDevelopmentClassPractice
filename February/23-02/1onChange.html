@@ -26,13 +26,14 @@
 </head>
 
 <body>
-    <!--in js they will give one by default event object and there is target one property inside that 
-        there is value, name id property and anything we can access-->
+    <!--in js they will give one bydefault event object and there is target one property inside that 
+        there is value, name id property and anything we can access and we can say target is an attribute of event obj-->
     FullName:<input type="text" name="fullName" onChange="onSubmitHandler(event)"/>  
     <div id="box"></div>
     <script>
         function onSubmitHandler(event) {       //onSubmitHandler is user define name and can be anything. but sir told whenevr use events use handler for understanding
             console.log(event);
+            console.log(event.target);
             console.log(event.target.value);
             console.log(event.target.name);
             var input = document.getElementById('box');
@@ -43,3 +44,9 @@
 </body>
 
 </html>
+
+
+
+<!-- inner text - will give content in every situation in single tag or nested(multiple) tags also 
+
+inner html - will give content in single tag but if we have nested(multiple) tags then it will give tags and content both. -->

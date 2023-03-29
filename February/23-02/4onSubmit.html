@@ -15,13 +15,16 @@
     </form>
 
     <script>
-        function onSubmitHandler(event) {
-            //it will stop further event of form tag.going to action attribute and finding the next page
+        function onSubmitHandler(event) {      //event obj is optional as we used bcoz we want to use event.preventDefault();
+            //it will stop further event of form tag.going to action attribute and finding the next page as 
+            //without that when click on submit it nevigate it to the next page without filling the details which is 
+            //not correct as it is needed to validate the data first & it is for every event but mainly used in onSubmit  
+            //whenerver we submit the form it nevigate us to the next page and by that we stopping the futher event
             event.preventDefault();
-            var list = document.forms[0];
-            for (var i = 0; i < list.length; i++) {
-                console.log(list.elements[i].value);
-                    
+            var list = document.forms[0];                 //to fetch form we used form[0] as thier can be multiple forms. and returning entire form which is array of obj. (obj- fullname, age, button)
+            for (var i = 0; i < list.length; i++) {      //forof loop:- for(var obj of list){console.log(obj.value);} 
+                console.log(list.elements[i].value);    //inside list there is elements prop. & inside elements there is value prop. where as [i] represents fullname[0], age[1].
+                      
                 if (list.elements[i].value === '' || list.elements[i].value === undefined || list.elements[i].value === null) {
                     list.elements[i].style.border = "10px solid red";
                 }
@@ -51,7 +54,7 @@
 
 
 
-events:
+<!-- events:
 
 onclick
 
@@ -73,4 +76,11 @@ onmouseover
 
 onmousein
 
-onmouseout
+onmouseout -->
+
+NEED TO LEAR ALSO REGEX PATTERN not in syllabus but salman sir said we can learnit 
+doubt
+
+in events when sue event in bracket and when not ? 
+ad why he put onsubmit in form tag why not in button tag as in onclick he put that in button and as its a submission so it has to be n button>?
+in age he used list.elements[i].value but oin value there will be name also na then its only storing age in wrror age var.
