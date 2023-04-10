@@ -1,0 +1,19 @@
+<!-- both r same code its just first one is the way i understand better with return keyword and {} and second one is 
+in the way of aditya keri wihtout return keyword and {} as there is only one statment so we can do that with
+arrow function but i dont feel it right as it confuses me. -->
+
+<!-- <script>
+    fetch("https://jsonplaceholder.typicode.com/todos/1").then((response) =>{
+      return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+    });
+</script> -->
+
+<script>
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then((response) => response.json())                    //didnt wrote retrun as it is single statement 
+    .then((data) => console.log(data));
+</script>
+

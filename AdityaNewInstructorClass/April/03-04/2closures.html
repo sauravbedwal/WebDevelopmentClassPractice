@@ -1,0 +1,65 @@
+<!-- Closures  - when a function access its variables defined outside of it.  -->
+<!-- // Function has a closure over a variable
+// or
+// A function closes over a variable -->
+<script>
+    const users = ["Alice", "Dan", "Jessica"];
+    const query = "A";
+
+    const user = users.filter((input)=> {  //input is the element of array which it take one by one.
+        return input.startsWith(query);            //user.startsWith('A'); it will return true if the input(string) starts with the query.
+    });                                          //const user = users.filter((input)=> input.startsWith(query));
+       //"Alice".startsWith('A') -> true
+       //"Dan".startsWith('A') -> false
+       //"Jessica".startsWith('A') -> false
+
+    console.log(user);
+</script>
+
+
+
+
+
+<!-- <script>
+    function liveAday() {
+        const food = "cheese";
+        function eat() {
+            console.log(food + " is good");
+        }
+        eat();         //calling the function and in console it showing the result.
+    }
+
+    liveAday();
+</script> -->
+
+
+<!-- <script>
+    function liveAday() {
+        const food = "cheese";
+        function eat() {
+            console.log(food + " is good");
+        }
+        return eat();              //running the eat() and after that return the eat value   
+    }
+
+    liveAday();
+</script> -->
+
+
+
+<script>
+    function liveAday() {
+        const food = "cheese";
+        function eat() {
+            console.log(food + " is good");
+        }
+        return eat;                //returning eat function
+    }
+
+    const innerFunction = liveAday();
+    innerFunction();
+</script>
+
+doubt
+ didnt understood why he created innerFunction variable and wihtout creating it, it was mot showing the output in console
+ but after creatng this variable nad calling function by that showing the output in console how?

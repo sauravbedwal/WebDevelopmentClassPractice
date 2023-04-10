@@ -1,0 +1,368 @@
+from frontend we make an request ot the backednd and
+
+evrything comes one by one in call stack egnine
+
+architecture of browser contains majorly three things Js engine which contains which contains the call stack.
+there is a web api section where whatever is not understood, or handeled or managed by the js engine will be managed
+rught here.
+bcoz web API section is handled by browser itself.
+
+then we have a callback queue and event loop as well
+
+<script>
+    console.log("Start");
+
+    setTimeout(() => {
+        console.log("Inside setTimeout");
+    }, 5000);
+
+    console.log("First");
+
+    console.log("Second");
+
+    console.log("End");
+</script>
+
+
+first
+
+console.log("Start");
+
+will add in call stack and then excute and remove from CS.
+
+then we took
+
+
+setTimeout(()=>{
+console.log("Inside setTimeout");
+}, 5000);
+
+and add that in CS but js engine does not understand setTimeout WHY bcoz setTimeout is not part of ECMA that is why JS
+engine dont know what to do with
+setTimeout and hence it passed that to the web api and web api ompletley indertsands what to do with it but meanwhile
+once it moves from CS to Web Api the CS is empty and as its empty we can move on
+
+console.log("First");
+
+will add in CS execute and remoce from cs
+
+and same goes for them also.
+
+console.log("Second");
+
+console.log("End");
+
+meanwhile setTimeout is in web api once the 5 sec is complete and till than all of the other parts will commited
+first, second and End as it competes in milli sec. and after 5 sec passed the web api will transfer the call stack
+
+()=>{
+console.log("Inside setTimeout");
+}
+
+in the callback queue
+and now as in callback there is only one cs so now the event loop will look upto the Call back queue and checn if
+anything is there
+and then pushed this call back to the call stack only if the call stack is empty.
+
+if the CS has something going on then event loop will not push this yet. eventloop will only push in cs if CS is empty.
+and once this is pushed whatevre code is there that wll simply execute .
+
+
+<!-- let say same thing but now 0 mili sec -->
+<script>
+    console.log("Start");
+
+    setTimeout(() => {
+        console.log("Inside setTimeout");
+    }, 0);
+
+    console.log("First");
+
+    console.log("Second");
+
+    console.log("End");
+</script>
+
+
+first
+
+console.log("Start");
+
+will add in call stack and then excute and remove from CS.
+
+then we took
+
+
+setTimeout(()=>{
+console.log("Inside setTimeout");
+}, 0);
+
+
+and add that in CS but js engine does not understand setTimeout WHY bcoz setTimeout is not part of ECMA that is why JS
+engine dont know what to do with
+setTimeout and hence it passed that to the web api and web api ompletley indertsands what to do with it but meanwhile
+once it moves from CS to Web Api the CS is empty and as its empty we can move on
+
+console.log("First");
+
+will add in CS execute and remoce from cs but hrer also now the timing is 0 ms so web api will pushed the call back
+functon
+in callback queue immediately bcoz there is notjing to wait.
+
+but then the main job of event loops come as event loop will look at to callback queue and call syack as well and event
+loop
+will add this to the cs only when cs is empty.
+
+so right now cs is not empty as it has
+
+console.log("First")
+
+and once it excute and remove from CS then immediately
+
+console.log("Second");
+
+console.log("End");
+
+will add these twp second and end and when it done then event loop look at teh CS and Call back queue and if cs is emoty
+it pushed to the CS and as everything is print it will execute this funciton also.
+
+setTimeout(()=>{
+console.log("Inside setTimeout");
+}, 0);
+
+
+
+<script>
+    console.log("Start");
+
+    setTimeout(() => {
+        console.log("Inside setTimeout - 2 sec");
+    }, 2000);
+
+    setTimeout(() => {
+        console.log("Inside setTimeout - 1 sec");
+    }, 1000);
+
+    console.log("End");
+</script>
+
+
+first
+
+console.log("Start");
+
+will add in call stack and then excute and remove from CS.
+
+then we took
+
+setTimeout(()=>{
+console.log("Inside setTimeout");
+}, 2000);
+
+and add that in CS but js engine does not understand setTimeout WHY bcoz setTimeout is not part of ECMA that is why JS
+engine dont know what to do with
+setTimeout and hence it passed that to the web api and web api ompletley indertsands what to do with it
+bt meanwhile we have one more setTimeout which will come in CS and as js engine does not understand setTimeout WHY bcoz
+setTimeout is not part of ECMA that is why JS engine dont know what to do with
+setTimeout and hence it passed that to the web api.
+
+setTimeout(()=>{
+console.log("Inside setTimeout");
+}, 1000);
+
+meanwhile
+
+console.log("End");
+
+comes in CS and execute and remove form CS.
+
+as in web api we have
+
+setTimeout(()=>{
+console.log("Inside setTimeout");
+}, 2000);
+
+setTimeout(()=>{
+console.log("Inside setTimeout");
+}, 1000);
+
+as setTimeout with 1 sec will complete first and add to the call back queue and at taht point of time CS is empty
+so the event loop will add this to the CS and we done with it and till that time setTimeout with 2 sec also comlete
+its time and add to callback queue and then adds to CS AND EXECUTE IT ALSO.
+
+order of running it is :
+
+console.log("Start");
+then,
+
+console.log("End");
+then,
+
+setTimeout(()=>{
+console.log("Inside setTimeout");
+}, 1000);
+then,
+
+setTimeout(()=>{
+console.log("Inside setTimeout");
+}, 2000);
+
+
+<script>
+    console.log("Start");
+
+    setTimeout(() => {
+        console.log("Inside setTimeout - first");
+    }, 1000);
+
+    setTimeout(() => {
+        console.log("Inside setTimeout - second");
+    }, 1000);
+
+    console.log("End");
+</script>
+
+
+first
+
+console.log("Start");
+
+will add in call stack and then excute and remove from CS.
+
+then we took
+
+setTimeout(()=>{
+console.log("Inside setTimeout - first");
+}, 1000);
+
+and add that in CS but js engine does not understand setTimeout WHY bcoz setTimeout is not part of ECMA that is why JS
+engine dont know what to do with
+setTimeout and hence it passed that to the web api and web api ompletley indertsands what to do with it and then it
+comes to other setTimeout
+
+setTimeout(()=>{
+console.log("Inside setTimeout - second");
+}, 1000);
+
+and add that in CS but js engine does not understand setTimeout WHY bcoz setTimeout is not part of ECMA that is why JS
+engine dont know what to do with
+setTimeout and hence it passed that to the web api and web api ompletley indertsands what to do with it
+
+now both of the have same time and bith of them will added to the callBack queue but bcoz setTimeout (first one on line
+226)
+added first will go to the callBack queue first AND then the other setTimeout also and
+
+meanwhile
+
+console.log("End");
+
+will add in call stack and then excute and remove from CS.
+
+and finally CS is empty and we have the callback queue and in calback queue whatever is added first wll add to the CS
+frst
+and once that is done the other setTimeout will come first in the que in callback queue and till the time callback
+FUNCTION In CS
+will execute and removed from CS and again CS is empty NOW THE event loop will look into the CS nand callbach queue and
+as CS is emoty and now the other setTimeout will added to CS
+
+
+order:
+
+
+
+console.log("Start");
+then,
+
+console.log("End");
+then,
+
+setTimeout(()=>{
+console.log("Inside setTimeout - first");
+}, 1000);
+then,
+
+setTimeout(()=>{
+console.log("Inside setTimeout - second");
+}, 1000);
+
+
+<script>
+    console.log("Start");
+
+    setTimeout(() => {
+        console.log("Inside setTimeout");
+    }, 0);
+
+    console.log("End");
+</script>
+
+asked the order:
+
+console.log("Start");
+then,
+
+console.log("End");
+then,
+
+setTimeout(()=>{
+console.log("Inside setTimeout");
+}, 0);
+
+
+<script>
+    console.log("Start");
+
+    setTimeout(() => {
+        console.log("Inside setTimeout");
+    }, 0);
+
+    for(let i=0; i<10000000000000; i++){
+
+    }
+
+    console.log("End");
+</script> 
+
+
+first
+
+console.log("Start");
+
+will add in call stack and then excute and remove from CS.
+
+then we took
+
+setTimeout(() => {
+    console.log("Inside setTimeout");
+}, 0);
+
+
+and add that in CS but js engine does not understand setTimeout WHY bcoz setTimeout is not part of ECMA that is why JS
+engine dont know what to do with
+setTimeout and hence it passed that to the web api and web api ompletley indertsands what to do with it..
+but as it has delay of 0 so this thing will added to the callback queue immediately.
+
+and meanwhile for loop starts in CS 
+
+<!-- for(let i=0; i<10000000000000; i++){
+
+} -->
+
+and this is  a very long for loop so the event loop cant push the callback function from callback queue unless 
+for loop is completed and cs is empty as it will take lot of time to cs to get emptas it has lot more iiterations to done
+and once it dones then it will add 
+
+console.log("End");
+
+and once it dones finally the cs is emoty then we add the callback function to the cs and it eill execute 
+
+
+EVENTS LOOPS:
+
+asked 
+
+setTimeout
+setInterval
+Promises 
+
+DOM, NAVIGATOR and LOCAL STORAGE (not asked)

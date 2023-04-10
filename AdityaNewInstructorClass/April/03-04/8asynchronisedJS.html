@@ -1,0 +1,17 @@
+
+JS is Asynchronised language as it does the thing one by one as it is single threaded.
+bur bcoz of Event loop we can continue doing things by other things to be done simataneously.
+
+here we will not wait for 50000ms(50 sec) that doesnt make any sense and that why we need web api which can handle these things
+whIle js engine will contninue to run the other line of codes. AND THIS possible bcoz of Web Api, the call backk queue and eventLOOP.
+ 
+
+<script>
+    console.log("First");
+
+    setTimeout(()=> {
+        console.log("JavaScript");
+    }, 50000);
+
+    console.log("Last");
+</script>

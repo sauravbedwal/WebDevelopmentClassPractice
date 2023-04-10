@@ -1,0 +1,25 @@
+<!-- create a promise -->
+<!-- we dont create promises in realtie instead we only use the promises -->
+<script>
+    const promise = new Promise((resolve, reject) => { //we can write any other thing also instead of resolved and reject but it is standard to write resolved and reject
+        //asynchronous code
+        setTimeout(() => {
+
+            let foodAvailable = true;
+            if (foodAvailable) {
+                // Operation Successful! 🎊
+                resolve(); // PENDING -> FULFILLED
+            } else {
+                // Operation Unsuccessful 😭
+                reject(); // PENDING -> REJECTED
+            }
+        }, 3000);
+    });
+
+    console.log(promise);
+
+    setTimeout(() => {
+        console.log(promise);
+    }, 4000);
+
+</script>

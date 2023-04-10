@@ -1,0 +1,28 @@
+<!-- /* ---------- Shortcut for creating Fulfilled and Rejected promises --------- */ -->
+
+
+<!-- in this code if we just want to use resolve then we can do that in shorter way -->
+<!-- <script>
+    // const promise =  new Promise((resolve) =>{    //instead of this we can use below code 
+    //     resolve("Hello");
+    // })
+
+    const promise = Promise.resolve("Hello");
+    promise.then((data) => {
+        console.log(data);          //this data will be Hello
+    })
+</script> -->
+
+
+
+<!-- if we just want to use reject then we can do that in shorter way as its not any rule but a simple standard -->
+<script>
+    // const promise =  new Promise((_, reject) =>{     //instead of this we can use below code 
+    //     reject("Failed!");
+    // })
+
+    const promise = Promise.reject("Failed!");
+    promise.catch((data) =>{
+        console.log(data);           //this data will be Failed!
+    }) 
+</script>

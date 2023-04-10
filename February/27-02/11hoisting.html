@@ -1,0 +1,31 @@
+<!-- what is hoisting? -->
+<!--when we declare a function and calling a funciton before declarartion is called hoisting. -->
+
+<!-- how hoisting is working? -->
+<!--inside the js compiler they r using call stack for all the code as it will first push inside the call stack 
+then execution will happen and then it will pops but inside the call stack the first thing going to happen is
+Golbal execution context will be created and before executing anh code whatever the variable and function are there will going to declare (registered)
+inside the Golbal execution context and from there it will start working. (everything will store here)-->
+
+<script> 
+    //this concept is called hoisting concept
+    //if we declare the function which is not stored in any vairable and call it before the declaration then 
+    //still it will run and show the output
+    console.log(addition(3,3));                 //as this stored in Golbal execution context so when run the code compiler will  
+    function addition(a,b){                    //understand that addition is already registered so it will find the code(function (additon)) it will execute. 
+        return a+b;
+    }
+    // console.log(addition(3,3));
+</script>
+
+
+
+<script>
+    //if we declare the function which is stored in the vairable and call it before the declaration then 
+    //it will not run and show the error.
+    
+    //console.log(subtraction(3,4));
+    const subtraction = (a, b) => {
+        return a - b;
+    }
+</script>

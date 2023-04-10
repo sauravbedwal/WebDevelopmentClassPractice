@@ -1,0 +1,55 @@
+<!-- Memory efficiency -->
+
+<!-- .fill will add the elemenent of length that we gave while creating the array wih every single element with hey. -->
+
+<!-- <script>
+    function heavyDuty(index) {
+        const bigArray = new Array(5).fill("hey");
+        console.log("Array Created");
+        return bigArray;
+    }
+    console.log(heavyDuty());
+</script> -->
+
+
+<!-- created a big array and filling it with an fire emoji 🔥 -->
+
+<!-- <script>
+    function heavyDuty(index) {
+        const bigArray = new Array(7000).fill("🔥");
+        console.log("Array Created");
+        return bigArray[index];
+    }
+
+    console.log(heavyDuty(700));
+    console.log(heavyDuty(100));      // we creating a new array and returning the element and if we called the same function again and again which
+    console.log(heavyDuty(100));      //means again creating a new array and returning the element(value), every single time we call the same function
+    console.log(heavyDuty(100));     //we create the entirely new bigArray then console.log("Array Created"); and return the item and once return the function
+    console.log(heavyDuty(100));    //and destory the array. so here we saving and destroying it everysingle time.
+    console.log(heavyDuty(100));
+</script> -->
+
+
+
+<script>
+    function heavyDuty2(){
+        const bigArray = new Array(7000).fill("🔥");
+        console.log('Created Array');
+        return function(index){
+            return bigArray[index];
+        }
+    }
+
+    const getHeavyDuty = heavyDuty2();  //here we call the funciton once and it created the array and then return the function and function(index) has a closure over the bigArray which means the variable bigArray will be inside the fucntion(index) closure memory.
+    console.log(getHeavyDuty(1));
+    console.log(getHeavyDuty(87));
+    console.log(getHeavyDuty(99));
+    console.log(getHeavyDuty(700));
+    console.log(getHeavyDuty(100));
+</script>
+
+'
+doubt 
+
+how by getHeavyDuty we are accesing the array and he said getHeavyDuty is nothing just the return function(index) how?
+also he said getHeavyDuty will have the access through bigArray variable how?

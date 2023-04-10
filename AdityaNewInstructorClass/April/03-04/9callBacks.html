@@ -1,0 +1,147 @@
+<script>
+    //these callback function called immidiatly
+    const newArray = [1,2,3].map((value) =>{
+        return value*2;
+    });
+
+    const newArray2 = [1,2,3].filter((value) =>{
+        return value*2;
+    });
+
+
+    //it is not in ECMA so when it comes to the JS engine then it will transfer to the Web Api and will wait in
+    //Web Api unless we click on the button adn this kind of callback is differnet from above call backs as the above
+    //callbacks run immdeiately but here this call back mentjoned belwo doens run immediatly as we wait untill the button 
+    //has been clicked. so which means we cna use the calbacks to run after soetime not immediatly.
+    const button = document.querySelector("button");
+
+    button.addEventListener("click", function() {
+        console.log("clicked!");
+    });
+</script>
+
+<!-- 
+//reason why we moved to promsies or why promised are better than  callbacks
+not much important as per projects or interviews  -->
+
+<!-- <script>
+    function loginUser(email, password) {
+        //Network call to the backend with email and password (dummy network call coz we dont know how to do it actually)
+        setTimeout(()=> {
+            return {username: email};
+        },1500);
+    }
+
+    const user = loginUser("david@gmail.com", 12345);
+
+    console.log(user);  //that setTimeout sent to web API and there is nothing left in loginUser function thats why it shows undefined. 
+</script> -->
+
+
+
+<!-- <script>
+    function loginUser(email, password, callback) {
+       callback("Success!");
+        //Network call to the backend with email and password (dummy network call coz we dont know how to do it actually)
+        setTimeout(()=> {
+            return {username: email};
+        },1500);
+    }
+
+
+    const cb = (message) => {
+        console.log("Cb called", message);
+    };
+
+    const user = loginUser("david@gmail.com", 12345, cb);
+
+    console.log(user); 
+</script> -->
+
+
+<!-- <script>
+    function loginUser(email, password, callback) {
+        //Network call to the backend with email and password (dummy network call coz we dont know how to do it actually)
+        setTimeout(()=> {
+            callback({username: email});
+        },1500);
+    }
+
+
+    const cb = (userObject) => {
+        console.log("called after 1.5 seconds", userObject);
+    };
+
+    const user = loginUser("david@gmail.com", 12345, cb);
+
+    console.log(user); 
+</script> -->
+
+
+
+<!-- solution for above thing -->
+<!-- <script>
+    function loginUser(email, password, callback) {
+        //Network call to the backend with email and password (dummy network call coz we dont know how to do it actually)
+        setTimeout(()=> {
+            callback({username: email});
+        },1500);
+    }
+
+    const user = loginUser("david@gmail.com", 12345, ()=>{});
+
+    console.log(user);  //that setTimeout sent to web API and there is nothing left in loginUser function thats why it shows undefined. 
+</script> -->
+
+
+
+<script>
+    function getVideoDetails(videos, callback) {
+  // Network Call to the backend with videos
+  setTimeout(() => {
+    callback({ id: 1, title: "Hey Jack!", duration: 10 });
+  }, 1500);
+}
+
+function getUserVideos(email, callback, errorCallback) {
+  // Network Call to the backend with email
+  setTimeout(() => {
+    callback(["video1", "video2", "video3"]);
+  }, 1500);
+}
+
+function loginUser(email, password, successCallback, errorCallback) {
+  // Network Call to the backend with email and password
+  setTimeout(() => {
+    let error = true;
+    if (error) {
+      errorCallback("Network call Unsuccessful!");
+    } else {
+      success({ userEmail: email });
+    }
+  }, 1500);
+}
+
+
+loginUser("david@gmail.com", 12345, (userObject) => {
+    getUserVideos(userObject.email, (videos) => {
+        getVideoDetails(
+          videos,
+          () => {
+            console.log(videos);
+          },
+          () => {
+            console.log("Error");
+          }
+        );
+      },
+      (error) => {
+        console.log("Error");
+      }
+    );
+  },
+  (error) => {
+    console.log("Error");
+  }
+);
+</script>

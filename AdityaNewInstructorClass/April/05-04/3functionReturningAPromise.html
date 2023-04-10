@@ -1,0 +1,50 @@
+<!-- /* ---------------------- Function returning a Promise ---------------------- */ -->
+
+<!-- in this code learned how to return promise from function -->
+<script>
+    function getAPromise() {
+        const promise = new Promise((resolve, reject) =>{
+            resolve("Hello");
+        });
+
+        return promise;
+    }
+
+    getAPromise().then((data) =>{   //this data will be hello as return promise above will be returned that to getpromise and as it returned the promise we used .then() which will be hello.
+        console.log(data);  
+    })
+
+</script>
+
+
+
+<!-- same code as above but we can simply retrun the promise at the beginning also instead of returning it later as it is little shorter-->
+<script>
+    function getAPromise() {
+        return new Promise((resolve, reject) =>{
+            resolve("Hello");
+        });
+    }
+
+    getAPromise().then((data) =>{ 
+        console.log(data);  
+    })
+
+</script>
+
+
+
+<!-- same code as above but by arrow fuction then it will be more short and final by sir -->
+<script>
+    const getAPromise = () =>
+        // new Promise((resolve, reject) =>{  //as we r not using reject argument in this case then we can aslo remove it.
+        new promise((resolve) =>{   
+            resolve("Hello");
+        });
+    
+
+    getAPromise().then((data) =>{ 
+        console.log(data);  
+    })
+
+</script>

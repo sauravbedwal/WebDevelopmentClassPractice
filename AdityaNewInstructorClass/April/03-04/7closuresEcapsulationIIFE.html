@@ -1,0 +1,40 @@
+<!-- //Closures
+useCaseOfClosures
+Encapsulation and Abstraction -->
+
+<!-- all the methods/function have the closure over salaray variable and salary variable is not directly accesible
+outside the world. nobody can change the rahulSalary direclty as noone can access the variable as it can only 
+be done by the three methods of return and that waht we call is Encapsulation.
+
+abstraction - we are hiding the implementation details from the outside world. Outside world does not know what is the calcualtion happening inside the raise function or lower function. -->
+
+<script>
+    const rahulSalary = (function check() {
+        let salary = 60000;
+
+        function changeBy(amount){
+            salary += amount;
+        }
+
+        return {
+            raise: function(){
+                changeBy(5000);
+            },
+
+            lower: function(){
+                changeBy(-10000);
+            },
+
+            currentAmount: function(){
+                return salary;
+            }
+        };
+    })();
+
+    console.log(rahulSalary);
+    console.log(rahulSalary.currentAmount());
+    rahulSalary.raise();
+    console.log(rahulSalary.currentAmount());
+    rahulSalary.lower();
+    console.log(rahulSalary.currentAmount());
+</script>

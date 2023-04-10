@@ -1,0 +1,35 @@
+<script>
+    let list=[{
+        fullName:"akash",
+        age:22,
+        developer:"FE",
+        amount:2000
+    },{
+        fullName:"suresh",
+        age:44,
+        developer:"FE",
+        amount:4000
+    },
+    {
+        fullName:"mokesh",
+        age:8,
+        developer:"BE",
+        amount:1000
+    },
+    {
+        fullName:"ajay",
+        age:19,
+        developer:"Full Stack",
+        amount:2000
+    }];
+    let result = list.filter((obj)=>{
+           return obj.developer === 'FE';
+    }).map((obj)=>{                     //if we dont use map then we have to use reduce as mentioned below bcoz by filter we got        
+        return obj.amount;             //first two objects and if we do a+b then it is not mentioned that what is a and b thats 
+    }).reduce((a,b)=>{                //why we mentioned a.amount and b.amount which means in a and b object we want amount.
+        return a+b;                  //.reduce((a,b){return a.amount + b.amount;})
+
+    })
+          
+    console.log(result);
+</script>

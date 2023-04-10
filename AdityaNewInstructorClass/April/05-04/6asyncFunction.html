@@ -1,0 +1,62 @@
+<!-- <script>
+    function stuff(){
+        return 2;
+    }
+
+    const result = stuff();
+    console.log(result);
+</script> -->
+
+
+
+<!-- if normal function returns value of 2 nothing special but if its a async function and it return value of 2 then 
+firstly it will create a promise with a resolved value of 2..which means async function will not simply return a
+value of 2 as it will return to us a new promise which is resolved with a value of 2.  -->
+
+<!-- <script>
+    async function stuff(){
+        return 2;
+    }
+
+    const promise = stuff();
+    // console.log(promise);  //this will return(print) the promise object with a resolved (fullfiled) value of 2
+    promise.then((data) =>{   //async funciton will always returns a promise and in .then() value whatever the data we get back is what was return in async function as the return value will become part of the promise and promise is a resolved promise thast why the data in .then() is the value i.e 2. 
+        console.log(data);    //simply async funciton will always return promise and promise.then((data)) will give the return value of aynsc function
+    })
+</script> -->
+
+
+
+<!-- another example of async function -->
+<!-- <script>
+    async function stuff(){
+        return [1, 2, 3];  //whenever we return a simple value then it wil always be a resolved value i.e. a fullfiled promise
+    }
+
+    const promise = stuff();
+    promise.then((data) =>{
+        console.log(data);
+    })
+</script> -->
+
+
+<!-- async function example for resolved and reject -->
+<script>
+    async function stuff() {
+
+        // return [1, 2, 3];                            // returning a simple value (array,string,no.)(which will show the fulfilled promise)
+
+
+        return Promise.resolve("Success!");         // return a fulfilled promise
+
+
+        return Promise.reject("Failed");               //return a rejected promise
+    }
+
+    const promise = stuff();
+    promise.then((data) => {
+        console.log(data);
+    }).catch((error) => {
+        console.log(error);
+    })
+</script>

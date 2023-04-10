@@ -1,0 +1,12 @@
+<!-- user variable can be access by inner() and innerMost() function as per lexical scope but score variable cant 
+be access by inner() amd outermost() as we can access the varaiable from parent scope not from child scope. -->
+<script>
+    function outermost() {
+  const user = "Deadpool"; 
+  function inner() {
+    function innerMost() {
+      const score = 100;
+    }
+  }
+}
+</script>

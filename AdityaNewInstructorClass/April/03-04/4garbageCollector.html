@@ -1,0 +1,52 @@
+<!-- as here when we call liveAday there is no use of food variable so now by the time we return eat function,
+food variable will remove from the memory as there is no use of it by the help of GarbageCollector.   -->
+
+<!-- <script>
+    function liveAday() {
+        const food = "cheese";
+        function eat() {
+            console.log("Eating...");
+        }
+        return eat;                //returning eat function
+    }
+
+    const innerFunction = liveAday();
+    innerFunction();
+</script> -->
+
+
+
+<!-- but if we add the variable to the function and its closure also depends on the variable in this case the variable
+will not be removed from memory and will not be garbage collected but it wont remain in global memory as only be accisible
+by this eat function only -->
+
+<!-- <script>
+    function liveAday() {
+        const food = "cheese";
+        function eat() {
+            console.log("Eating...", food);
+        }
+        return eat;                //returning eat function
+    }
+
+    const innerFunction = liveAday();
+    innerFunction();
+</script> -->
+
+
+<!-- here we have an use of food varaiable but one and two varaible are not in use in eat() so here they both 
+    will be removed from the memory as garbage collector will collect them -->
+<script>
+    function liveAday() {
+        const food = "cheese";
+        const one = 1;
+        const two = 2;
+        function eat() {
+            console.log("Eating...", food);
+        }
+        return eat;                //returning eat function
+    }
+
+    const innerFunction = liveAday();
+    innerFunction();
+</script>

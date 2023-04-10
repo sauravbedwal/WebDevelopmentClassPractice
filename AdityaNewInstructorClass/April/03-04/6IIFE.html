@@ -1,0 +1,43 @@
+<!-- IIFE - Immediately Invoked Function Expression -->
+
+
+<!-- we can call the function Multiple times and call it anywhere in the code -->
+
+<!-- <script>
+    function greet(){
+        console.log("Hello!!");
+    }
+
+    greet();
+    // greet();
+    // greet();
+</script> -->
+
+
+<!-- we want to call the function once and immediately.. this is IIFE-->
+
+<script>
+    (function greet(){                   //as we want to call it once only so it can be also annonymous function  (function (){   console.log("Hello!!");  })();  or an arrow functon  (() => {   console.log("Hello!!");  })(); also.   
+        console.log("Hello!!");                      
+    })();
+</script>
+
+
+<!-- we want to call the function once and immediately.. this is IIFE and functon requires the arguments-->
+
+<script>
+    ((name) => {                      
+        console.log("Hello!! "+ name);                      
+    })("Saurav");
+</script>
+
+
+<!-- exampe of closuers as age variable is outside the function and funcetion closing over this variable and as thsi fucnton called only once and will not be used further so this function will go the garbage collector   -->
+
+<script>
+    const age = 100;
+    
+    (() => {                      
+        console.log("Hello!! ", age);                      
+    })();
+</script>

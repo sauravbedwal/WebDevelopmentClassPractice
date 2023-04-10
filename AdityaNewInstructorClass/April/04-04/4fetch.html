@@ -1,0 +1,100 @@
+<!-- FETCH used for Network/API calls -->
+<!-- Api have a fixed prefix but at the end there is Api endpoint which calls that particular thing/table.  -->
+<!-- fetch is part of web Api and fetch is a promised based Api -->
+
+
+<!-- in this code we got to know how to see objects of an API -->
+
+<!-- <script>
+    fetch("https://jsonplaceholder.typicode.com/todos/1").then((response) => {
+        const fulfilledPromise = response.json();
+        fulfilledPromise.then((data) => {
+            console.log(data);
+        });
+    });
+</script>
+ -->
+
+<!-- <script>
+    const promise = new Promise((resolve, reject) => {
+        if(true){
+            resolve("Success!");
+        }
+        else{
+            reject("Failure");
+        }
+    });
+
+    // promise.then();  //this will return a promsie bcoz .then() always return a promise
+    
+    // promise.then((value) => {  //this will print Success and Failuers.
+    //     console.log(value);
+    // });
+
+
+    // const returnedValue = promise.then();
+    // console.log(returnedValue);   //this also will return a promise bcoz .then() will always returned us a new promise.
+
+    
+    const newPromise = promise.then((value) => {
+        return "Final Success";
+    });
+
+    newPromise.then((data) => {
+        console.log(data);           //this will print Final Success
+    })
+</script> -->
+
+
+<!-- <script>
+       const promise = new Promise((resolve, reject) => {
+        if(true){
+            resolve("Success!");
+        }
+        else{
+            reject("Failure");
+        }
+    });
+
+    promise.then().then();
+
+    //example given by loweing the case of a String as we can use as many as lowerCase we want which is same as .then()
+    const school = "Newton";
+    
+    const newSchool = school.toLowerCase().toLowerCase().toLowerCase().toLowerCase().toLowerCase().toLowerCase();
+    console.log(newSchool);
+</script> -->
+
+
+<!-- <script>
+       const promise = new Promise((resolve, reject) => {
+        if(true){
+            resolve("Success!");
+        }
+        else{
+            reject("Failure");
+        }
+    });
+
+    promise.then((data) => {
+        console.log(data);   //will print Success.
+        return "1";          //will get 1 in data of next .then() (the below one)
+    }).then((data) => {  //this data will print whatever we return from above(.then()) that will become the data of next .then() (this one)
+        console.log(data);   //it is the same thing if we do "Aditya".toLowerCase().toLowerCase() as this last .toLowerCase will perform on whatever the result we got from previous toLowerCase()
+        return "20";
+    }).then((data) => {       //here whatever return in previous .then() i.e. 20 will be the data of next .then()
+        console.log(data);
+    })
+</script> -->
+
+
+
+<script>
+    fetch("https://jsonplaceholder.typicode.com/todos/1").then((response) => {
+    const newPromise = response.json();
+    return newPromise;       //returning a promise is same as return "20" like we did above its just if we reurn a promsie then it returns the resolved value of that promise which will be a data for next .then()
+  })
+  .then((data) => {   //response.json() will return us new promise so whatever will be the value of this resolved promise that will be the data here.  
+    console.log(data);
+  });
+</script>

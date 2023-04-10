@@ -1,0 +1,18 @@
+<!-- Spread Operator (ES6 - ES2015)  -->
+
+<!-- Use Case 1. Copying Arrays -->
+
+<script>
+    const originalArray = [1, 2, 3, 4];
+
+    //in this case it shows true bcoz it shares the same refernce(memory location).
+    //const copyArray = originalArray; 
+
+    //in this case it shows false bcoz it shares the differnt refernce(memory location) as a new array is created(returns the Brand new array)
+    const copyArray = originalArray.slice(1,3);   //if we input anything in splice() like splice(1,3) the it will add only [2, 3] in copyArray and in original array only [1, 4] will left and if we dont give any argument(empty) or zero(0) to it then it will simply copies the whhole array as it will start from the beginning of array and go till the end of array
+                                               
+    console.log("original Array", originalArray);
+    console.log("copy Array", copyArray);
+
+    console.log(originalArray === copyArray);
+</script>

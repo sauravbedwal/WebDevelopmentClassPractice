@@ -1,0 +1,42 @@
+<!-- try and catch will help us to show error without breaking the code as without try and catch also it shows the 
+same error but code breaks there and if rest of the code is correct then also it won't work as it will stop 
+there v=bcoz of error but by the help of try and catch it show the error and rest of the code will also work -->
+
+<script>
+    function reverseArray(input){
+        try{
+          let result = input.reverse();
+          return result;
+        }
+        catch(e){
+            console.log("error",e);
+        }
+    }
+    console.log(reverseArray([33,45]));
+    console.log(reverseArray(344));
+    console.log(reverseArray([33,45,5454]));
+    console.log(reverseArray([33,45,343,66,5656]));
+</script>
+
+
+<script>
+    function sumOfNumber(input){
+        try{
+          let result = input.reduce((a,b)=>{
+            return a+b;
+          })
+          if(result<=0){
+            throw new Error("zero is not allowed");
+            return;
+          }
+          return result;
+        }
+        catch(e){
+            console.log("error",e);
+        }
+    }
+    console.log(sumOfNumber([33,45]));
+    console.log(sumOfNumber(344));
+    console.log(sumOfNumber([0]));
+    console.log(sumOfNumber([33,45,343,66,5656]));
+</script>
