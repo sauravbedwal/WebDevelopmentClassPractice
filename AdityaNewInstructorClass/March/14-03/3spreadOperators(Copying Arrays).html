@@ -1,0 +1,67 @@
+<!-- Spread Operator (ES6 - ES2015)  -->
+
+<!-- Use Case 1. Copying Arrays -->
+
+<!-- <script>
+    const originalArray = [1, 2, 3, 4];
+
+    //in this case it shows true bcoz it shares the same refernce(memory location).
+    //const copyArray = originalArray; 
+
+    //in this case it shows false bcoz it shares the differnt refernce(memory location) as a new array is created(returns the Brand new array) but this is an old method.
+    // const copyArray = originalArray.slice();                         //if we input anything in slice() like slice(1,3) the it will add only [2, 3] in copyArray and in original array only [1, 4] will left and if we dont give any argument(empty) or zero(0) to it then it will simply copies the whole array as it will start from the beginning of array and go till the end of array
+
+    //in this caswe we want elemnts of originalArray to be spread inside this copyArray so by spread operator it will go inside the originalArray pluck the elements out and spread them inside copyArray. and wont modify the originalArray
+    const copyArray = [...originalArray];
+
+    console.log("original Array", originalArray);
+    console.log("copy Array", copyArray);
+
+    console.log(originalArray === copyArray);
+</script> -->
+
+
+
+<!-- another example of same code as we can also add something in the beginning before spreading and int the end also after spreading. -->
+<!-- <script>
+    const originalArray = [1, 2, 3, 4];
+
+    const copyArray = ["Starting", "Other", "Other again", 1200, undefined, true, null, ...originalArray, "Ending"];
+
+    console.log("Copied Array", copyArray);
+</script> -->
+
+
+<!-- another example of same code with array of objects -->
+<!-- <script>
+    const originalArray = [{ id: 1 }, { id: 2 }, { id: 3 }];
+
+    const copyArray = [...originalArray];
+
+    console.log("Copied Array", copyArray);
+</script> -->
+
+
+<!-- another example of same code in which we spreading two arrays -->
+<!-- <script>
+    const first = ["A", "B", "C"];
+    const second = ["D", "E", "F"];
+
+    const copyArray = [...first, ...second];
+    //[...first, ...second]
+    //["A", "B", "C", ...second]
+    //["A", "B", "C", D", "E", "F]
+
+    console.log("Copied Array", copyArray);
+</script> -->
+
+
+<!-- another example of same code in which we spreading same array two times -->
+<script>
+    const first = ["A", "B"];
+    const second = ["D", "E"];
+
+    const copyArray = [...second, "F", "G", 1, ...second];
+
+    console.log("Copied Array", copyArray);
+</script>

@@ -1,0 +1,65 @@
+<!-- in this code we r understanding what happens when we dont pass both arguments -->
+<!-- <script>
+    function multiply(a, b) {
+        console.log(b);                  //but if we dont pass b argument then while consoling b it will print undefined
+        return a * b;                    //and whenevr we do any mathematical operation and not passing all arguments then it will always retrun NAN.
+    }
+
+    // const result = multiply(10, 20);   //if we pass both the arguments then it simply retun the product and we can see in console 
+    
+    const result = multiply(10);           
+
+    console.log(result);
+</script> -->
+
+
+<!-- in this code we r understanding there are multiple ways to add default values when we dont pass both arguments but if we have more parameter than 2 let say 
+    (a, b, c, d) then it wont work and if we do same docnitions for all variable then it wont look ood and become very lengthy and looks ugly too and not appropriate way to solve it-->
+<!-- <script>
+    function multiply(a, b) {
+        //if b -> undefined, b -> 1
+        if(b === undefined){
+            b = 1;
+        }
+        
+        //!undefined = true
+        // if(!b){
+        //     b = 1;
+        // }
+        // return a * b;      
+        
+        // b = typeof b !== 'undefined' ? b : 1;
+        // return a * b;
+
+        // b = typeof b === 'undefined' ? 1 : b;
+        // return a * b;
+    }
+    
+    const result = multiply(10);           
+
+    console.log(result);
+</script> -->
+
+
+<!-- //in this code we learned abt default parameters as we added default values with in a Parameters -->
+<!-- <script>
+function multiply(a, b = 1, c = 2, d = 3) {
+    return a * b * c * d;                    
+} 
+
+const result = multiply(10, 20);           //if we have passed the arguments then it will take only the argument value if not then the default values of parameters
+
+console.log(result);
+</script> -->
+
+
+
+<!-- //another ex of above code-->
+<script>
+    const stuff = (name, array, object, number = ["1", "B", "Whatever"]) => {
+        console.log(name, array, object, number);
+    }
+
+    stuff('Aditya', [1, 2, 3], { id: 1 });
+
+</script> -->

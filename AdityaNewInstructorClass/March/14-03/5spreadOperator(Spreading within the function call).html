@@ -1,0 +1,46 @@
+<!-- Use Case 3 : Spreading within the function call -->
+
+<!-- <script>
+    // 2 power 3 
+    // const answer = Math.pow(2, 3);   //we have lot of properties like Math.pow, Math.max() and many others.
+
+    // const answer = Math.max(10, 19, 5, 199, 200);    // we will get the max number out of these no's 
+
+    const array = [10, 19, 5, 199, 200];
+    // const answer = Math.max(array);         // we can't give an array like this in Math.max() to find the max no. as it will not work bcoz Math.max only expects indivual arguments like (10, 19, 5, 199, 200)
+
+    const answer = Math.max(...array);          //but if we want to pass all the elements of an array with in a function call then we can use spread operator in Math.max() and in function call we can only spread an array, we can't spread any other thing like object etc. 
+    console.log(answer);
+</script> -->
+
+
+
+<!-- in this code we learend we can pass an array elements in a function using spread opeartor  -->
+<!-- <script>
+    function sum(a, b, c, d) {
+        return a + b + c + d;
+    }
+
+    const array = [1, 2, 3, 4];
+    // looks UGLY!!!
+
+    // const result = sum(array[0], array[1], array[2], array[3]);  //if we have a function sum and we want to pass array elements as the arguments of sum then we can simply do that by this method but that looks ugly and if no. of elemnts are more than it becomes very lengthy and not appropriate. 
+
+    const result = sum(...array);     //better way to do this as we spreading the elemnts of array by using spread operator and thats approiate also 
+
+    console.log(result);
+</script> -->
+
+
+<!-- another ex of above code just hae two parameters and more elemnts in array -->
+
+<script>
+    function sum(a, b) {
+        return a + b;
+    }
+
+    const array = [1, 2, 3, 4];
+
+    const result = sum(...array);         //it will take only 2 elemnts of array as arguments bcpz there are only two parameters in sum() 
+    console.log(result);
+</script>

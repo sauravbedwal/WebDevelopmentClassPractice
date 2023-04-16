@@ -1,0 +1,52 @@
+<!-- spread and rest operator looks same but have dfferent work to do as spread operator used in function call but rest operator used in function definition-->
+
+
+<!-- <script>
+    function sum(a, b, ...rest) {   //instead of rest we can name anything to array like aditya, newton etc but we use rest bcoz its a standard not a rule
+        console.log(a, b);   //so we have a function sum(a, b) with two paramenters and if we calling the function and passing some extra values then we know first two arguments will be used in the functin but we want rest of the other extra arguments will be collected and stored in an array and stores in array bcz we dont know how many extra arguments we will get as if we stoer it as one no. then it wont work as it has to be list
+
+        console.log(rest);            //it will print an array of extra arguments.  
+
+    }
+
+    // const result1 = sum(1, 2);
+    // const result2 = sum(1, 2, 3);
+    const result3 = sum(1, 2, 3, 4);
+</script> -->
+
+
+
+<!-- in this code if we want sum of array of different argument size then we can use rest operator as parameter in function sum(...rest) so it will store every argument in an array and then by usingn for loop we can get the sum of all arguments   -->
+<!-- <script>
+    function sum(...rest) {
+        let sum = 0;
+        for (const num of rest) {
+            sum += num;
+        }
+        return sum;
+    }
+
+    const result3 = sum(1, 2, 3, 4);
+    console.log(result3);
+</script> -->
+
+
+
+<!-- in this code we used combination of spread and rest opearator -->
+<script>
+    function sum(a, b, ...rest) {         //here ...rest work as a rest opearator 
+        // a -> 1
+        // b -> 2
+        // rest -> [3, 4]
+        const nums = [a, b, ...rest];   //here ...rest work as a spread operator 
+        // [1, 2, 3, 4]
+        let sum = 0;
+        for (const num of rest) {
+            sum += num;
+        }
+        return sum;
+    }
+
+    const result3 = sum(1, 2, 3, 4);
+    console.log(result3);
+</script>

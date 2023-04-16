@@ -1,0 +1,75 @@
+<!-- Use Case 2. Copying Objects -->
+
+<!-- in this code we copying object -->
+<!-- <script>
+    const parent = {
+        id: 1,
+        city: "Hyderabad",
+        score: 100,
+    };
+
+    const child = {
+        ...parent,           //...parent will be replaced by the whole parent object so child is an brand new object which means they both are two differnt objects and (memory location)reference of child and parent will be different. 
+    };
+
+    console.log(child);
+</script> -->
+
+
+<!-- another example of same code as we can also add something in the beginning before spreading and in the end also after spreading. -->
+<!-- <script>
+    const parent = {
+        id: 1,
+        city: "Hyderabad",
+        score: 100,
+    };
+
+    //order while spreading it does not matter in objects bcoz an object is not an order collection of items as we dont create an object for maintaining order as we create an array for it so when we want an order collection 
+    //of items we create an array and in array where uh spread it make lot of importance bcoz if we spreading in the beginning then the elements will be added in the beginning but with in the object it doesnt matter. 
+    const child = {               
+        continent: "Asia",
+        ...parent,
+        country: "India",
+    };
+
+    console.log(child);
+</script> -->
+
+
+<!-- in this code we understand order doesnt matter but if we add something after spreading it then it will overwrite the value -->
+<!-- <script>
+    const parent = {
+        id: 1,
+        city: "Hyderabad",
+        score: 100,
+    };
+
+    const child = {
+        ...parent,
+        id: 2,          //but if we spreadng the parent and after that we added an id of 2 then the value of id in child will be 2 instead of 1 bcoz whatever comes later that will overwrite the previous one.
+    };
+
+    console.log(child);
+</script> -->
+
+
+
+<!-- in this code we understand if we add muliple values then it will overwrite the value and consider the last one -->
+<script>
+    const parent = {
+        id: 1,
+        city: "Hyderabad",
+        score: 100,
+    };
+
+    const child = {
+        id: 1,
+        id: 2,
+        id: 3,
+        id: 4,
+        id: 5,
+        id: 6,          //its legal in js to create so many keys of same name by different values (id: 1to6) but when we have the same key multiple times whatever is there at the end that will be added/considered which means will have only one property right now which will have key of id with the value of 6. 
+    };
+
+    console.log(child);
+</script>

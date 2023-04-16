@@ -72,125 +72,119 @@
 
 
 async function getTodoItem() {
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/incorrect/1"
-      );
-  
-      // response.ok -> true -> successful
-      // response.ok -> false -> unsuccessful
-  
-      // If an error occurred
-      if (!response.ok) {
-        throw new Error(`An error occured with status code : ${response.status}`);
-      }
-  
-      const data = await response.json();
-    } catch (error) {
-      console.log(error.message);
+  try {
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/incorrect/1"
+    );
+
+    // response.ok -> true -> successful
+    // response.ok -> false -> unsuccessful
+
+    // If an error occurred
+    if (!response.ok) {
+      throw new Error(`An error occured with status code : ${response.status}`);
     }
+
+    const data = await response.json();
+  } catch (error) {
+    console.log(error.message);
   }
-  
-  getTodoItem();
+}
+
+getTodoItem();
 
 
-  // ====================================================================================================== //
+// ====================================================================================================== //
 
-abdur
+// assignment que- https://my.newtonschool.co/playground/code/qgfwo7ngwlpu/  
 
-  const promise = new Promise((resolve, reject) =>{
+function checkCanIVote(delay, age) {
 
-    setTimeout(()=>{
-    
-    if(age>=18){
-    
-    resolve("You can vote");
-    
-    }
-    
-    else
-    
-    reject("You can not vote");
-    
-    },time)
-    
-    })
-    
-    return promise;
+  const promise = new Promise((resolve, reject) => {
 
-  // ====================================================================================================== //
+    //one way to do it but here its lengthy and as we using setTimeout in bothcases so we take it in common in secnd method
 
+    // If age is >= 18 -> resolve
 
-    function checkCanIVote(delay, age) {
+    // DRY -> Don't repeat yourself
 
-      const promise = new Promise((resolve, reject) => {
-      
-      // If age is >= 18 -> resolve
-      
-      // DRY -> Don't repeat yourself
-      
-      // if (age >= 18) {
-      
-      // setTimeout(() => {
-      
-      // resolve("You can vote");
-      
-      // }, delay);
-      
-      // } else {
-      
-      // setTimeout(() => {
-      
-      // reject("You can not vote");
-      
-      // }, delay);
-      
-      // }
-      
-      setTimeout(() => {
-      
+    // if (age >= 18) {
+
+    // setTimeout(() => {
+
+    // resolve("You can vote");
+
+    // }, delay);
+
+    // } else {
+
+    // setTimeout(() => {
+
+    // reject("You can not vote");
+
+    // }, delay);
+
+    // }
+
+    setTimeout(() => {
+
       if (age >= 18) {
-      
-      resolve("You can vote");
-      
+
+        resolve("You can vote");
+
       } else {
-      
-      reject("You can not vote");
-      
+
+        reject("You can not vote");
+
       }
-      
-      }, delay);
-      
-      });
-      
-      return promise;
-      
-      }
-      
-      checkCanIVote(200, 70)
-      
-      .then((data) => {
-      
-      console.log(data); // prints 'You can vote'
-      
-      })
-      
-      .catch((err) => {
-      
-      console.log(err); // does not do anything
-      
-      });
-      
-      checkCanIVote(200, 16)
-      
-      .then((data) => {
-      
-      console.log(data); // does not do anything
-      
-      })
-      
-      .catch((err) => {
-      
-      console.log(err); // prints 'You can not vote'
-      
-      });
+
+    }, delay);
+
+  });
+
+  return promise;
+
+}
+
+
+// ====================================================================================================== //
+
+// assignment que - https://my.newtonschool.co/playground/code/wx1764ttwsau
+
+// class Account {
+//   /*
+//     Write the remaining part of the class
+//   */
+//   static accounts = 0;
+//   static totalBalance = 0;
+
+//  constructor(accountNum, balance) {
+//   this.accountNum = accountNum;
+//   this.balance = balance;
+
+//   //Increment the number of accounts
+//   Account.accounts++;
+
+//   //Add the current balance to the existing balance
+//   Account.totalBalance += balance;
+//   }
+
+//   static returnTotalAccounts(){
+//   return Account.accounts;
+//   }
+
+//   static returnTotalBalance(){
+//   return Account.totalBalance;
+//   }
+
+
+// //creates a new bank account
+// const newAccount1 = new Account("a112", 1000); //0 -> 1
+
+// //creates a new bank account
+// const newAccount1 = new Account("a113", 2000); //1 -> 2
+
+// console.log(Account.returnTotalAccounts());
+// console.log(Account.returnTotalBalance());
+
+// }

@@ -1,0 +1,102 @@
+<script>
+    // Spread Operator (ES6 - ES2015)
+
+// Use Case 1. Copying Arrays
+
+// const first = ["A", "B"];
+// const second = ["D", "E"];
+
+// const copyArray = [...second, "F", "G", 1, ...second];
+
+// console.log("Copied Array", copyArray);
+
+// Use Case 2. Copying Objects
+
+// const parent = {
+//   id: 1,
+//   city: "Hyderabad",
+//   score: 100,
+// };
+
+// const child = {
+//   id: 6,
+//   ...parent,
+// };
+
+// console.log(child);
+
+// Use Case 3 : Spreading within the function call
+
+// const array = [10, 19, 5, 199, 200];
+// const answer = Math.max(...array);
+
+// console.log(answer);
+
+// function sum(a, b) {
+//   return a + b;
+// }
+
+// const array = [1, 2, 3, 4];
+
+// const result = sum(...array);
+
+// Rest Operator
+
+// function sum(...rest) {
+//   console.log(rest);
+// }
+
+// const numbers = [1, 2, 3, 4];
+// const result3 = sum(...numbers);
+
+// Destructuring
+// Object Destructuring
+// const object = {
+//   state: "Telangana",
+//   country: "India",
+//   president: 560,
+// };
+
+// let city = object.city;
+// if (!city) {
+//   city = "Hyderabad";
+// }
+
+// const city = object.city ? object.city : "Hyderabad";
+
+// const city = object.city || "Hyderabad";
+
+// const { city = "Hyderabad" } = object;
+
+// Array Destructuring
+
+// const student = ["Aditya", 0, "Dancing"];
+// userName
+// score
+// hobby
+
+// const {} = object; -> Object Destructuring
+
+// const [userName, score, hobby] = student;
+
+// console.log(userName, score, hobby);
+
+// const userName = student[0];
+// const score = student[1];
+// const hobby = student[2];
+
+// const emojis = ["🔥", "😈", "🚀"];
+
+// fire
+// devil
+// rocket
+
+// OLD WAY! :(
+// const fire = emojis[0];
+// const devil = emojis[1];
+// const rocket = emojis[2];
+
+// NEW WAY!! :D
+// const [fire, , rocket] = emojis;
+// console.log(fire, rocket);
+</script>

@@ -1,0 +1,85 @@
+<!-- // for installation any libraray - npm i lodash / npm install lodash and press enter
+// can read how to use it by documentation either on website or if there is no wesbite then on github. 
+//whenever we do npm init -y it creates a package.json file whihc is very imp file as by this file npm will keep a track of which packagaes are there currently.
+//as whenever npm will install a libraray it will add an entry in the packagae.json and in dependencies it is 
+// //presnt on whcih are project is dependent.
+// and once we do npm i lodash so it foes the entry in depedency and shows us the bersion of that library also and 
+// also creates a folder named node modules within which whatever librarires we have in our project will appear here.
+// as there is lodash which is a code packageof a lodash library this will be added in a node modules folder as any 
+// point of time we need to check waht are the librarries this project depends on? alwasy go to the node modules 
+// and we can checkout 
+//npm mean two things firstly the website npm wehere we can search the librabries and all or thecommand aso where we can install the lobrarries
+//but it depends on what we saying in what context for ex if we say go and search for a library on npm so here we 
+// talking abt a website or we saying install a libraray in ur project  using npm here we talkng abt npm tool in terminal
+// the main job is to manage the installation of the packages. 
+//node index.js it will run the js file in node envirnonmwnt
+
+// react tools are - npm , babel , webpack and ohters too but we will not use babel or webpack as they r behind the scenes which we will learn much later but most important and used is npm
+// react is framework or library? react is js library for building user interfaces.
+// by react we can make websites and web apps  but we can also make mobile apps by using react native which is based on react.
+// as we usually hear some says react is framework and some says its library on official site of react its written it is 
+// library which creaets User Interfaces which means it doesnt provide alot of other things by default like routing
+//so if we want routing then we have to use with react + routing library and if we want animation then we have to add
+// react + routing library + animation library.
+// and there is state management like if we want to manage alot of data with in our app then react doesnt provide t 
+// default then we havew to again download nad use other libraries   
+//When react  is combined with multiple other libraries then it becomes a framework. as only react is not a framework
+// its a library. 
+// as angular is a framework as if we install that then it will by default give us routing library animation library and lot more other things
+// as advanyage  of angular is we dont need to add any other library evything is there wherea as in react first need to learn react then abt library also that we gonna use already but in react we can choose
+// what tye of routing we want as there are multiple type of routing that we can choose is  simple one complex one but in angular we cant in  angular need to learn eveything and compartively react is smaller than angular
+// Vue.js is also a frameework 
+//as react is a huge community so if we stuck while bukding sokthing we can aske for hlo and get resouton very quick.
+//and its in demand  Skillset anad if we learn react then we can learn react native and build mobile apps also.  
+// react is declarative we have to just tell waht we want and dont focus on how as its not imperactive.
+//while creating new project we wont create it from scratch if we do then we have to deal with npm, babel and webpack also which is not needed 
+//as we will use Existing tools i.e. Vite (veet) which help us create new react application in one line of code and creates a new react application.
+//as there are many tools like create react before used to do it. as Vite is better than create react and its fast also.
+//React used for both web apps and mobile apps but to make it more speciallised react DOm used for web apps with react 
+and react native used for mobile apps with react.
+//devDependencies are those whuch r required in only local system while developing it but when it will be deployed for internet 
+then only dependencies will matter.        -->
+
+
+
+
+ 
+<!-- //importef done libraray and used the method driectly  -->
+
+<script>
+import _ from "lodash";
+<!-- //default as we can write anythin _ instead it will redrirect to this only. -->
+
+const duplicateArray = [2, 1, 2];
+
+const uniqueArray = _.uniq(duplicateArray);
+
+console.log(uniqueArray);
+</script>
+
+
+
+
+
+
+// ---------------------------------------------
+
+<script>
+const array = [1,2,3];
+
+// [1,2,3] -> [2,4,6]
+//Imperative Approach -> How to reach to a solution
+// const newArray = [];
+
+// for(let i=0; i<array.length; i++){
+//     newArray.push(array[i] * 2);
+// }
+// console.log(newArray); 
+
+
+//Declarative Approach -> waht uh want 
+const newArray = array.map((element) => {
+    return element * 2;
+});
+console.log(newArray);
+</script>

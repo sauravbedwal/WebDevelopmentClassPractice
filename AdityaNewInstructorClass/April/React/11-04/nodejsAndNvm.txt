@@ -1,0 +1,74 @@
+node.js
+
+- open source -> the source code is publically available for everybody as they can use, share, modify and look at it AND by open source doesnt mean that evreybody can change it.
+as react also open soource and in that we cna request for some change that we cant to make some chnage but direcelty cant change anf the main team of react will see the request   
+amd have authority to approve those chnages , means anyone can purpose a change to the source code but only the react team can approve it.
+and same goes for node JS.
+
+
+- cross-platform -> its available for windows, mac book and online as well.
+
+
+node js used to build backend applicatipon. netflix linkdin moved to node js .
+huge community supprt as bigg community if stuck somewhere we can ask teh   question and easily get answer.
+
+
+
+- JS runtime environment -> in Chrome browser there is Js engine (V8) which has call stack and memoery, THEN Web Api, Call back queue and Event loop 
+then whtaever is not Part of ECMA script will br passed on WEb api like fetch, DOM, setTimeOut/setInterval and that entire thing is called 
+browser runtime envirnonment or js runtime envirnonment . so the envirnonmentwhich use to run the enitre js thats called
+js runtime envirnonment. in this specifuc case we cann call it browser runtime envirnonment. 
+
+
+
+js engine as JS CODE we write its not understood by the computer as computer only understand the machine code (0 and 1)
+so here js engine converts js code into machine code so computer can undertsand it.
+
+js engines : V8 used in chrome, spidermonkey in morzillaFirefox, javascript Core by apple for saffari, Chakra in edge,
+but lates one is V8 in edge.
+V8 is written in C++ and V8 can run standalone or can run in C++ application as it doesnt need chrome.
+
+like we created a C++ app and we can use V8 engine inside it means use with in our app which means that whatwever c++ code we write is excuted when
+user write any js code  as V8 executes whatever js code we write and as V8 is in C++ applicaton then there must be some code written in c++ also
+and bcoz this V8 engine is inside the C++ code this js code can run the c++ code.
+and all this is possible bco V8 engine can be ebbed inside any c++ code.
+
+by js we can not crete or access the files in our system as these are low level operations and js only work in chrome but that can be done by C++ as 
+it low level language as we can write in C++ that can change or modify our files in our system.
+but here let say we have two functions readFile and writeFile so htat we can use to envoked the c++ code which actually reads the files
+basically js is saying i want to read the file but js cant do that as its low level operation but as js inside c++ so c++ can read the file.
+and thats entire setup here is node js.
+
+
+node also have node js envirnonment ain which there is V8 js engine and other C/C++ fatures and whatever is not 
+understood by Ecma script or not part of it then it will be handle by rest of the runtime environment.
+
+
+npm - node package manager
+let say a book library it contains multiple books and every book is written by particular author just like that 
+npm is a very big software library that conatins multiple code packages  written by multiple developers.
+let say there 1k developers in the country and each one of them write theri own small code package and they can 
+use npm to store their code packages there.
+its really a large public database of js code that developers all over teh world can share or borrow the code.
+like if i have a small code pacakage i can also publish htat on npm so that other can use that.
+
+
+let say there are multiple web apps and company wantrs to build an app which has certain features as its not possible to build every featrue eveyrhting from scratch 
+evreytime aS IT WILL take lot more time than normal. which means somebody already created that code package for that particular
+work and we just need to write aline to envoked taht codeto fulfill our work.
+
+npm is hiuge librbary which let us to use other people codes.   and a libraray is nothing but basically some code
+that ohter people have written that we can use in our porject.  
+
+wihtput np we cant use librabries in react and without librabries is notn possible to build such big applications or peojects 
+
+librbary/package - ex- isempty.
+
+component librbary is like button component, dropdown, slider for voluvme max min.
+
+npm is also called Command Line Utility. ex -  git also a command line utility in git we dont interact by UI
+there is no button, no colors  , no page bubt basivally some commands that we add to the terminal to use git and like git
+npm also command line utility whichh we run here in terminal and using npm we can download the librbaries/
+packages.
+if we r in react project and if we want to install any librabray in our project here we will use npm  in pur terminalto download or install 
+other librbaries. and by using npm we can also update from old version to new version.
