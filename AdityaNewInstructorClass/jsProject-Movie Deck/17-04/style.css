@@ -1,0 +1,128 @@
+body{
+    font-family: Arial;
+} 
+
+header{
+    text-align: center;
+    background-color: grey;
+    padding: 1em;
+}
+
+h1{
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 1em;
+}
+
+section{
+    background-color: lightblue;
+    padding: 0 20%;
+}
+
+footer{
+    color: white;
+    background: slategray;
+    text-align: center;
+    padding: 0.25em;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+
+.card-grid {
+    /* for flex */
+    /* display: flex;
+    justify-content: center; */
+    
+    /* for grid */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);         /*grid-template-columns means it will arrange in columns wise(format) and  grid-template-areas means it will arrange in row wise(format) and width of cards is not fixed as it automatically arranging itself as per the sixe that why we used repeat() */ 
+    column-gap: 10px;
+    padding: 10px;
+}
+
+.card{
+    /* for flex */
+    /* width: 33%; */
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 1em;
+    margin-bottom: 1em;
+} 
+
+.card > img {
+
+    width: 60%;
+}
+
+
+
+/* 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial;
+}
+
+header {
+    text-align: center;
+    background: slategray;
+    padding: 1em;
+}
+
+h1 {
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 1em;
+}
+
+section {
+    background: lightblue;
+}
+
+.card-grid {
+    /* display: flex;
+    justify-content: center; //
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+    padding: 10px 0;
+}
+
+.card {
+    /* width: 33%; //
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.card>img {
+    width: 60%;
+}
+
+footer {
+    font-size: 20px;
+    color: white;
+    background: slategray;
+    text-align: center;
+    padding: 0.25em;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+@media (max-width: 620px) {
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+} 
+
+*/

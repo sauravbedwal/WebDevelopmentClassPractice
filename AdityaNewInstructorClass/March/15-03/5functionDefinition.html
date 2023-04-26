@@ -1,0 +1,104 @@
+<!-- when we create a variable with in a funciton then the variable has a boundary of the function as it is limited to the scope of this function and in this case const is block scope means inside the function (code inside the { }) so we cannot access the variables outside the function -->
+<!-- <script>
+    function fullName(item) {
+        // console.log(item.firstName);             //normal way to console
+        // console.log(item.lastName);
+
+        const { firstName, lastName } = item;           //destructure the object
+        console.log(firstName, lastName);
+    }
+
+    const userName = {
+        firstName: "Aditya",
+        lastName: "Keri",
+    }
+
+    fullName(userName);
+</script> -->
+
+
+
+<!-- in this code Destructuring object which is inside an another object  -->
+<!-- <script>
+    function fullName(item) {
+        //Old way
+        // const city = item.location.city;
+        // console.log(city);
+
+        //New way (Destructuring)
+        const { location: { city } } = item;
+        console.log(city);
+    }
+
+    const userName = {
+        firstName: "Aditya",
+        lastName: "Keri",
+        location: {
+            city: "Hyderabad",
+        }
+    }
+
+    fullName(userName);
+</script> -->
+
+
+<!-- in this code understood how to destrcutre if object is insid mulitple objects -->
+<!-- <script>
+    const parent = {
+        a: {
+            b: {
+                c: {
+                    d: 1,
+                },
+            },
+        },
+    };
+
+    // const a = parent.a;
+    const { a } = parent;
+    console.log(a);
+
+    // const b = parent.a.b;
+    const { a: { b } } = parent;
+    console.log(b);
+
+    // const c = parent.a.b.c;
+    const { a: { b: { c } } } = parent;
+    console.log(c);
+
+    // const d = parent.a.b.c.d;
+    const { a: { b: { c: { d } } } } = parent;    //here if we look we used 4 variables but we only creating 1 variable out of these 4 variables i.e d  
+    console.log(d);
+</script> -->
+
+
+
+<!-- in this code destructuig the object in function paramter -->
+<!-- <script>
+    // function stuff(obj) {                      //one way to destructure in this funciton
+    //     const { id } = obj;
+    //     console.log(id);
+    // }
+
+    function stuff({ id }) {                     //another way as destrucuting in the function paramter
+        console.log(id);
+    }
+
+    stuff({ id: 1 });
+</script> -->
+
+
+
+<!-- in this code destructuring the array in function paramter -->
+<script>
+    // function stuff(arr) {                          //one way to destructure in this funciton
+    //     const [one, two, three] = arr;
+    //     console.log(one, two, three);
+    // }
+
+    function stuff([one, two, three]) {           //another way as destrucuting in the function paramter
+        console.log(one, two, three);
+    }
+
+    stuff([10, 20, 30]);
+</script>

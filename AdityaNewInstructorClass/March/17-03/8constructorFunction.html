@@ -1,0 +1,32 @@
+<!-- if we see Person funciton taht is a very common pattern as if we vane common pattern that we do multiple times there is
+always a better way to do the same thing like js provde us better way to do same thing and i.e. by using new Keyword 
+if we use new keyword no need to use Object.create method and retun person and replace person.name to this.name -->
+<!-- Constructor Function - it automatically create a link between this keyword and the prototype and it wll also retun the
+this keyword automatically and thats how its work as the new keyword does both the things behind the scenes -->
+<script>
+    function Person(name, age) {
+        // behind the scenes autotomatically due to which we gt the same outpput as last code of 7 file we can compare
+        // const this = Object.create(Person.prototype);             //we creating a new object here which ahve alinkn to Person.protoype whihc means if we acccess something which does not exist on this object it will go and lookup taht in Person.prototype  
+
+        this.name = name;
+        this.age = age;
+
+        //behind the scenes 
+        // return this;
+    }
+
+    Person.prototype.work = function () {
+        console.log(`${this.name} is working`);
+    };
+
+    Person.prototype.sleep = function () {
+        console.log(`${this.name} is sleeping`);
+    };
+
+    Person.prototype.eat = function () {
+        console.log(`${this.name} is eating`);
+    };
+
+    const personOne = new Person("Levi", 28);
+    personOne.name;                                        //this keyword will point to personOne
+</script>

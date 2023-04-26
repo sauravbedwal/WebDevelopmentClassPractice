@@ -1,0 +1,87 @@
+<!-- another ex of prototypes And Constructor Function as revision -->
+<script>
+    function Person(name, age) {
+        // this = Object.create(Person.prototype);                  //BTS bcoz of the new keyword and as we know prorotype is a property on the fucntion which itself is an object and Prototype object stores a collection of multiple methods which can be avaibale for all the instances of the function Person. and erin here is one instance for this Person function and we can creaeat multiple instances also like erin, mikasa, jjoe and etc.               
+        this.name = name;
+        this.age = age;
+        // return this;
+    }
+
+    Person.prototype.work = function () {                        //instead creating a different object like sharedMethods for creating differnet methods inside it we can now add all the methods on the prorotype proeprty of the Person function. 
+        console.log(`${this.name} is working`);
+    };
+
+    Person.prototype.sleep = function () {                    //we didnt createa an explicit connection between the erin object and these methods (woerk, sleep) but bcox we are using new keyword here whichc basically does this thing BTS (this = Object.create(Person.prototype);) WHICH means erin object it has a connection to the Person.prototype object of the Person function. ehich means whatever methods are there on the prorotype proeprty of Person function is all of them will be avaialble to this erin object right here.    
+        console.log(`${this.name} is sleeping`);
+    };
+
+    const erin = new Person("Erin", 25);          //each of these are instance of the Person function as inastance is an object taht is created out of the constructor function i.e. Perosn. and we call this as constructor function bcoz it constructs an object and return us default BTS i.e. 
+    const mikasa = new Person("Mikasa", 25);
+    const joe = new Person("Joe", 25);
+</script>
+
+
+
+<!-- sir asked a question if we want to access two methods work and resign then where will be these methods created on ? as tey will be create on prortype of empployee i.e. Employee.prototype-->
+<!-- that is the entire code for constructor function -->
+<script>
+    function Employee(name, empNum) {
+        this.name = name;                          //as always here BTS happens in the function start- (this = Object.create(Person.prototype);) and aso at last- (return this;)
+        this.empNum = empNum;
+    }
+
+    Employee.prototype.work = function () {
+        console.log(`${this.name} is working`);
+    };
+
+    Employee.prototype.resign = function () {
+        console.log(`${this.name} is resigning`);
+    };
+
+    const employee = new Employee("Aditya", "17RA");
+
+    employee.work();
+    employee.resign();
+</script>
+
+
+<!-- Array constructor function is a top level constructor function from which all the arrays are actaully created.
+as whenevr we do,
+
+const numbers = [1, 2, 3];
+const alphabets = ['A', 'B', 'C'];
+
+these arrays are actaulled created from Array constructor function. which means the Array constructor function it has a
+property called prorotype and this prototype porerty is itrslef an object again and it has multiple methods with in it
+and basically all the methpds that we know and use is come from here. -->
+
+
+
+<!-- in this code understanding prorotype  -->
+<script>
+    const array = [1, 2, 3];
+    //there is a link between array: ->Array.prototype and it is bcoz when we create a new array it by default is set to be like
+    // array -> Object.crate(Array.prototype) as it means if we try to access any proeprty on the array and if it doesnt exist on the array then it finds it on Array.prorotype.
+
+    // we have 3 top level constructor functions
+    //Function Constructor Function
+    //Object Constructor Function
+    //Array Constructor Function
+
+    // and if create an object and tried to access something on the object which does not exist on the object
+    const object = {};
+    // object -> Object.prototype in this object we have a link to Object.prototype which means whever we create an object we basically created like this
+    //object -> Object.create(Object.prototype)
+    // and if we try to access somehting on the object and if it doesnt exist on the object then it will go and find on the Object.prototype
+
+    //push, map, pop, filter etc these methods we didnt add in the array but when we do array.map it still works as where it is finding the map method from where we getting all the methods of the array from.
+    // as all of these methods exist on the Array.prototype and if we want to make a method avaialble for all teh arrays LIKE push, pop etc
+
+    // and we creating a new method i.e printAll which will work for all the arrays like array.printAll()
+    // only if this function must exist on the Array.prototype only then this function will be avaialble for all the arrays that will be created 
+
+    Array.prototype.printAll = function () {
+        console.log("Hello, inside print all function");
+    };
+    //as we know whenever we create any array that array will have access to all the methods on the Array.prototype here we added new fucntion to Array.prototype
+</script>

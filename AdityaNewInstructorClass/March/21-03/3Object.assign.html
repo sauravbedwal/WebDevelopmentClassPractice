@@ -1,0 +1,34 @@
+<!-- in this code we learned abt Object.assign() method  -->
+<!-- <script>
+    const UserPrototype = {};
+
+    const sayHiMixin = {
+        sayHi() {
+            console.log("Hi");
+        },
+        sayBye() {
+            console.log("Byee");
+        },
+    };
+
+    Object.assign(UserPrototype, sayHiMixin);       //we want the properties of sayHiMixin object in UserPrototype object
+
+    console.log('UserPrototype', UserPrototype);           //now we sayHi() and sayBye() in UserPrototype also
+</script> -->
+
+
+
+<!-- another example of above code -->
+<script>
+    const first = {
+        city: "Bengaluru",
+    };
+
+    const second = {
+        state: "Karnataka",
+    };
+
+    Object.assign(first, second);
+
+    console.log('first ->', first);                 //in first object we got proeprty of second object also  
+</script>

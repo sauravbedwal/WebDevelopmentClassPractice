@@ -1,0 +1,78 @@
+<!-- in this code we want to loop over this array and for every element here we want to call this cb() function  and here 
+myMap is almost ready but its working for only the array that we created but we want this myMap to work for any array for that we check below code -->
+<!-- <script>
+    const array = [1, 2, 3];
+
+    function myMap(cb) {
+        const result = [];
+
+        //Loop over array
+        for (let i = 0; i < array.length; i++) {
+            // cb(array[i]);
+            const returnedValue = cb(array[i]);
+            result.push(returnedValue);                         //pushing the returnedValue in result array that is retruning by callback() 
+        };
+
+        // console.log(result);                                    //we get an array as a new result
+
+        // we can also return the result
+        return result;
+    };
+
+    function callback(num) {
+        // console.log(num);
+        // return num;                        //cb(1) -> 1                    
+        return num * 2;
+    };
+
+    // myMap(callback);
+
+    const newArray = myMap(callback);                 //as we returning return so it will come to mymap and hence we consoled myMap
+    console.log(newArray);
+</script> -->
+
+
+
+<!-- as befoere this code we have to go through just above code for understaing better as in this code we wrote our own map function as we have our own custom implementation of map function and we can add whatever callback we want in myMap -->
+<script>
+    Array.prototype.myMap = function (cb) {
+        const result = [];
+
+        //Loop over array
+        for (let i = 0; i < this.length; i++) {
+            const returnedValue = cb(this[i]);
+            result.push(returnedValue);
+        };
+
+        return result;
+    };
+
+    function callback(num) {
+        return num * 2;
+    };
+
+    const array = [1, 2, 3];
+
+    // const newArray = array.myMap(callback);                          //here in myMap this object(keyword) is array as per Implicit Binding.
+    // console.log(newArray);
+
+    //as we can add whatever callback we want in myMap so we did elemnet*3 here
+    const newArray = array.myMap((element) => {
+        return element * 3;
+    });
+    console.log(newArray);
+
+
+    // another array as now myMap can be used by multiple array
+    const names = ["A", "B", "C"];
+    const newNames = names.myMap((element) => {
+        return element.toLowerCase();
+    });
+    console.log(newNames);
+</script>
+
+<!-- doubt herer it has to be 2, 4 ,6 and then miltipled by 3 at last so 6. 12, 18 as i feel it happend bcox 
+earlier we passing callaback function in myMap and now we passing dietctly eleement and aboce i guess its cb(array[i])
+i.e. 1(1) then 2(2) but i guess its wrong its not lketbat very confused as it showing 3,6,9 so now so menas its dreiclty
+
+dpoing eleement * 3 but then what abt .map fucntoin as element is passed in ,map then it has to go above and follow map function-->

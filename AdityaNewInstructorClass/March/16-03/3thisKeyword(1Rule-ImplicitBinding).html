@@ -1,0 +1,54 @@
+<!-- First rule, Implicit Binding to find out what is the this keyword with in a function -->
+<!-- 1. Implicit Binding - means something happenning automatically as we r not doing it manually. -->
+<!-- Implicit means automatic and Binding means we binding this keyword to a function but below we didnt binded the this keyword to the fucntion myself as it happened automatically just becoz we called the function so this keyword bound to the greet() function looking at the mother object -->
+
+<!-- <script>
+    const user = {
+        name: "Agastha",
+        age: 27,
+        greet(){
+            console.log(this);            //this is a keyword which contains some value which we get to know when we envoked this function
+        },
+    };
+
+    user.greet();                      //we can't call greet() directly as it defeined inside an object so here we did user.greet() bcz this greet is a method/function of the user object and whenever we want to findout what this keyword is always check that where it is envoked and as here it is user.greet() and whatever object is on the left side of the .(dot) that will be the this keyword with in the function. mwans this keyword here pointing to user object.           
+</script> -->
+
+
+
+
+<!-- another example of above code in which we want to console Age -->
+<!-- <script>
+    const user = {
+        name: "Agastha",
+        age: 27,
+        greet(){
+            console.log(this.age);                            //as if we want age of an object we do user.age but here this keyword is pointing to user already so wecan use this.age 
+        },
+    };
+
+    user.greet();           
+</script> -->
+
+
+
+
+<!-- another example of above code as here we have function inside an key -->
+<script>
+    const user = {
+        name: "Agastha",
+        age: 27,
+        greet(){
+            console.log(this.age);                             
+        },
+        mother: {
+            name: "Stacey",
+            greet() {
+                console.log(this);         //as if we want to find out what is the this keyword of a function we have to check where we envoked this function
+            },
+        }
+    };
+
+    // user.greet()            //this will call the first greet() method
+    user.mother.greet();           //this will call the second greet() method and as on left of .(dot) there is mother that means this keyword in this functon is mother here mwans it will print the mother object and if we do this.name it will print "Stacey". 
+</script>

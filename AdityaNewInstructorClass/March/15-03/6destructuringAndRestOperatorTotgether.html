@@ -1,0 +1,61 @@
+<!-- Destructuring and Rest Operator Totgether -->
+
+<!-- in this code using rest operator and destructuring together in an array -->
+<!-- <script>
+    const numbers = [1, 2, 3];
+
+    // const [a, b, c] = numbers;          //thats array destructuring
+    // console.log(a, b, c);
+
+    // but what if we dont know how many elements are there in an Array as we r sure we will get a and b but after taht how many elemnts are there we dont know.
+
+    const [a, b, ...rest] = numbers;
+    console.log(a, b, ...rest);
+</script> -->
+
+
+<!-- in this code using rest operator and destructuring together in an object -->
+<!-- <script>
+    const parent = {
+        city: "Hyderabad",
+        continent: "Asia",
+        score: 100
+    };
+
+    // but what if we dont know how many keys(properties) are there in an Object as we r sure we will get city but after that how many keys(properties) are there we dont know. so now left keys(properties) will be store in an object called rest.
+    const { city, ...rest } = parent;
+    console.log(rest);
+
+    // Rest -> arrays -> rest array
+    // Rest -> objects -> rest object
+</script> -->
+
+
+<!-- in this code using rest operator and destructuring of object in function parameter -->
+<!-- <script>
+    // function stuff(object) {                             //one way to destructure in this funciton
+    //     const { city, ...rest } = object;
+    //     console.log(rest);
+    // }
+
+    function stuff({ city, ...rest }) {                    //another way as destrucuting in the function paramter
+        console.log(rest);
+    }
+    stuff({ city: "Hyderabad", continent: "Asia", score: 100 });
+</script> -->
+
+
+
+<!-- in this code using rest operator and destructuring of array in function parameter -->
+<!-- <script>
+    // function stuff(arr) {                             //one way to destructure in this funciton
+    //     const [one, two, three] = arr;
+    //     console.log(one, two, three);
+    // }
+
+    function stuff([one, ...rest]) {                    //another way as destrucuting in the function paramter
+        console.log(rest);
+    }
+
+    stuff([100, 200, 300]);
+</script> -->

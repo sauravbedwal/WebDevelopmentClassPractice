@@ -1,0 +1,184 @@
+<!-- Object Destrucuing -->
+
+<!-- in this code we learned that there is also a way by which we can create a varaible and assign the value to it  -->
+<!-- <script>
+    const object = {
+        id: 1,
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+    };
+
+    // if we created a function and call the function on whioch we want tp print the id we can do this
+    function printId(id) {
+        console.log(id);
+    }
+    print(object.id);
+
+    //or we can create a variable named id and store value of object.id in that varaible and use that while calling out the function
+    const id = object.id;
+    print(id);
+</script> -->
+
+
+<!-- in this code we learned that we can create vairbales by using const , var and let and instead of using comple object item we can store it in an variable and use the variable which  is a standard and appropriate way-->
+<!-- <script>
+    const object = {
+        id: 1,
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+    };
+
+    // if we want to create a varaiabe called id which contains the value of object.id. (id -> object.id). we can do that by using const, var and let. as if we reassigning something(variable) then use let otherwise use const but dont use var.
+    const id = object.id;
+    const city = object.city;
+    const state = object.state;
+    const country = object.country;
+
+    //within the code we want to use object.id multiple times then we have to do this as of we doing it once then its fine otherwise its not appriariate way to do this.
+    // object.id;
+    // object.id;
+    // object.id;
+    // object.id;
+
+    // instead we can create a variable which carriesthe value of id and use that variable it will take less space too
+    id;
+    id;
+    id;
+    id;
+</script> -->
+
+
+
+<!-- in this code we learned abt how to Destructuing(syntax)  -->
+<!-- <script>
+    const object = {
+        id: 1,
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+    };
+
+    //we created variables for every porperty of object but if there are 10-20 porperties then this will not work as it wont look good and bev=comes lenghthy and not approriate also
+    // const id = object.id;
+    // const city = object.city;
+    // const state = object.state;
+    // const country = object.country;
+
+    //better/approritae way to do this in which we want a new variable called id which have value of object.id is Destructuring. 
+
+    // const id = object.id;    //this is meaning of below line code
+    const { id } = object;    //destrucutre from the object as inside this object there are the keys for which we want to create the variables. here a variable will be created which will have the value of object.id
+
+    // const city = object.city;      ////this is meaning of below line code
+    const { city } = object;         //whatever variable(name) we gave in { }, there must be a key with the same name with in the object otherwise it will be created as undefined 
+
+    const { president } = object;  //this will wont throw any error but as there is no key with the same name then it will be undefined.
+    console.log(president);
+    // behind the scenes we trying to do this which is not possible as there ois no key named as president
+    // const president = object.president;           ////this is meaning of above line code
+</script> -->
+
+
+<!-- another example of above code -->
+<!-- <script>
+    const object = {
+        id: 1,
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+    };
+
+    //destructuring all the keys together and order doesnt matter inside the { } and we can destrucuture the proertie as per our requirement whtther 1 or 2 or all
+    const { id, city, state, country } = object;
+
+
+    //before we doing this in 4 line but due to destruturing we are able to do that in 1 line.
+    // const { id } = object;
+    // const { city } = object;
+    // const { state } = object;
+    // const { country } = object;
+</script> -->
+
+
+
+<!-- in this code we learned that we can give new varaiable name to the key while destructuring it of we have already created a variable with same name of key  -->
+<!-- <script>
+    const object = {
+        id: 1,
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+    };
+
+    const id = 200;
+
+    // const { id } = object;            // we have already created a varaiable named id with the value of 200 so we can't create same variable again.
+    // // const id = object.id           //this is meaning of above line code
+
+    const { id: identity } = object;    //we can give new variable name while destrucuting it then it wont show any error  
+    // const identity = object.id       //this is meaning of above line code
+
+    // const { id: identity, city, state, country } = object;        //we can destructuring it together whike giging differnet name to id  
+</script> -->
+
+
+
+<!-- if we destrucuing and a vraiable which is not presnt in the object as key means its undefined then we can give it default value -->
+<!-- <script>
+    const object = {
+        id: 1,
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+        // president: 560,
+    };
+
+    const id = 200;
+
+    // const { id: identity, city, state, country, president = "whatever" } = object;       //we can give a default value like 250, true, null and it will same work like functon if we have president value then it will take that value and ignore the default value
+    console.log(president);
+
+    const { id: identity = 100, city, state, country, president = "whatever" } = object;  //we can also give differnet name to the key varaiable as well as a default value also at the same time so if varaibale presnt it will tae the new name and if not present then take the default value.  
+    console.log(identity);  
+</script> -->
+
+
+<!-- in thsi code comparing differnet ways to assign value if key is not prenet in the object -->
+<!-- <script>
+    const object = {
+        id: 1,
+        state: "Telangana",
+        country: "India",
+    };
+
+    // let city = object.city;                                         // first way
+    // if(!city) {
+    //     city = "Hyderabad";
+    // }
+
+    // const city = object.city ? object.city : "Hyderabad";            //second way
+
+    // const city = object.city || "Hyderabad";                           //third way
+
+    const { city = "Hyderabad" } = object;                              //fourth way is most approritae and easy to write,read and understand thats why destructuing exist.     
+</script> -->
+
+
+
+
+<!-- in thsi code we have two differnt objects but with same key -->
+<script>
+    const aditya = {
+        maths: 0,
+    };
+
+    const abhishek = {
+        maths: 100,
+    };
+
+    //if having smae key in two differnt objects and trying to create variable by destrucuing then we have to name one of them differnt or both also. 
+    const { maths: mathsAditya } = aditya;
+    const { maths: mathsAbhishek } = abhishek;
+</script>

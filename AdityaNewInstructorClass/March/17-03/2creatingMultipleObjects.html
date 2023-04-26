@@ -1,0 +1,54 @@
+<!-- in this code we created an object which have name and age property and has two methods on it -->
+<script>
+    const person = {};                             //differnet syntax to create object
+    person.name = "Levi";
+    person.age = 25;
+
+    person.work = function () {
+        // console.log(`${this} is working`);           //this keyword here is person object as it is implicent binding
+        console.log(`${this.name} is working`);
+        //Levi is working
+    };
+
+    persom.sleep = function () {
+        console.log(`${this.name} is sleeping`);
+    }
+
+    person.work();
+    person.sleep();
+</script>
+
+
+<!-- in this code we created an object which have name and age property and has two methods on it but what if tomorrow we want to create huge list of differnt persons 
+    and every person have same propertirs and methods and if there is no function js and we have to create multiple objects then we have to copy the code but its not possible/ideal as what if we have 100 people  as here we duplicating the code-->
+<script>
+    //--------------------------------------------- personOne --------------------------------------------------------
+
+    const personOne = {};                             //differnet syntax to create object
+    personOne.name = "Levi";
+    personOne.age = 25;
+
+    personOne.work = function () {
+        console.log(`${this.name} is working`);
+        //Levi is working
+    };
+
+    personOne.sleep = function () {
+        console.log(`${this.name} is sleeping`);
+    }
+
+    //--------------------------------------------- personTwo --------------------------------------------------------
+
+    const personTwo = {};                             //differnet syntax to create object
+    personTwo.name = "Levi";
+    personTwo.age = 25;
+
+    personTwo.work = function () {
+        console.log(`${this.name} is working`);
+        //Levi is working
+    };
+
+    personTwo.sleep = function () {
+        console.log(`${this.name} is sleeping`);
+    }
+</script>

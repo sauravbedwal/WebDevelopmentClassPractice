@@ -1,0 +1,19 @@
+<script>
+    const addOne = (value) => {
+        return value + 1;
+    };
+
+    const addTwo = (value) => {
+        return addOne(value + 1);
+    };
+
+    const addThree = (value) => {
+        return addTwo(value + 1);
+    };
+
+    const calculation = () => {
+        return addThree(1) + addTwo(2);
+    };
+
+    calculation();
+</script>

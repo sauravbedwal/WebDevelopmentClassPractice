@@ -1,0 +1,55 @@
+<!-- Third Rule: Lexical (arrow function) Binding to find out what is the this keyword with in a function -->
+<!-- 3. Lexical (arrow function) Binding -->
+<!-- arrow function introduced not bcoz they r very short and simple to use or read as they dont have alot of features that
+that a normal functions have means they took a function and removed the access weight and make it lean, premium and slim
+bcoz of thta it doesnt have lot of features taht normal function have and one of them is reagrding the this keyword -->
+
+
+<!-- in this code we understood abt lexical bindinng -->
+<!-- <script>
+    const object = {
+        id: 1,
+        name: "Deadpool",
+        greet: function () {                          // thats a normal function that we used in code and we can write like this also greet() { }
+            //this keyword    
+            const arrowFunction = () => {             // thats a arrow function that we used in code and arrow function dont have their own this keyword as they looked to thier immediate parent and whatever the this keyword value is that is what they borrow as arrowFunction have greet() function as thier immediate function now whatwever is the this keyword in greet function that is the this keyword in arrow function also. and its parent functon is caled lexical binding means whenever uh go out of your scope.
+                //same this keyword as above    
+                console.log(this);
+            };
+            arrowFunction();                        //id someone asked what is the this keyword value in arrow function here as furst look where the function was envoked(here only) as it is not implicit binding as there is nothing to left and no even .(dot) and not also explicit bcoz we didnt use .call, .apply or .bind as it is lexical bcoz it is borrowing the this keyword from parent scope.
+        },
+    };
+
+    object.greet();                         //we know this that the this keyword will point to object
+</script> -->
+
+
+
+
+<script>
+    const object = {
+        id: 1,
+        name: "Deadpool",
+        greet: function () {
+
+            const grandParent = () => {
+
+                const parent = () => {
+
+                    const child = () => {
+                        console.log(this);                 //if we check the value of this keyword, we go where it was envoked and there we found its not implicit or explicit as it is arrow function its lexical function and we borrow it from the parent function and parent function is also arrow function as when we encounter such case we again go the other parent i.e. grandparent function which means that the child arrow function will keep searching for a parent until it founds a normal function. as here we found greet as normal function so the this keyword value in the greet function which pointing to object.
+                    };
+
+                    child();
+                };
+
+                parent();
+
+            };
+
+            grandParent();
+        },
+    };
+
+    object.greet();         
+</script>

@@ -1,0 +1,41 @@
+<!-- Array Destructuring -->
+
+<!-- in this code at array Destructuring(syntax) -->
+<!-- <script>
+    const student = ["Aditya", 0, "Dancing"];
+    //we want to create threee variables which contain each one value of array respetively.
+    //userName, score, hobby
+
+    // const userName = student[0];
+    // const score = student[1];
+    // const hobby = student[2];
+
+    //Array Destrucuting
+    const [userName, score, hobby] = student;           //as in object we have to give the variable name same as key that is present in object but in array as there is no keys so we can give any name to the variable but here order will matter as whatever we give will match the index of an array. as we have given username firt in array then it will take the firdt vale of array and so on.
+    console.log(userName, score, hobby);   
+</script> -->
+
+
+<!-- another examlpe of above code -->
+<script>
+    const emojis = ["🔥", "😈", "🚀"];
+    // fire, devil, rocket
+
+    // OLD WAY! :(
+    // const fire = emojis[0];
+    // const devil = emojis[1];
+    // const rocket = emojis[2];
+
+    // NEW WAY!! :D
+    // const [fire, devil, rocket] = emojis;  //when we want to create variables for all the three elements of array
+    // console.log(fire, devil, rocket);
+
+    // const [, , rocket] = emojis;       //when we want to create the variable for only rocket but not fire and devil.
+    // console.log(rocket);
+
+    const [fire, , rocket] = emojis;       //when we want to create the variable for fire and rocket but not devil.
+    console.log(fire, rocket);
+
+    // const [rocket] = emojis;       //when we want to create the variable for rocket so we can do this like this also
+    // console.log(rocket);
+</script>

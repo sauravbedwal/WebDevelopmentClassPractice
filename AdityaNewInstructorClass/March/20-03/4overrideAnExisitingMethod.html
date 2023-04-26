@@ -1,0 +1,68 @@
+<!-- in this code we learned how to override the existing methods on the arrays -->
+<!-- main purpose of protoype object is to store a collection of all the methods which can be reused across multiple
+instances.
+the prototype of the array i.e. Array.prototype simply contains all the methods which can be used across all the newly
+create arrays. -->
+<!-- <script>
+    const array = [1, 2, 3];
+
+    // override the map method
+    Array.prototype.map = function () {
+        console.log("Hahahaha, overridden!");
+    };
+
+    array.map();                   //map function will no longer work as its overridden and we will get "Hahahaha, overridden!"  
+</script> -->
+
+
+
+<!-- in interview asked question to create ur own map function whih means using a custom function that we create called myMap so here
+we created the inbuilt map function for understadning  -->
+<!-- <script>
+    const array = [1, 2, 3];
+
+    actual map function
+    const newArray = array.map((element) => {
+        return element * 2;
+    });
+    console.log(newArray);
+</script> -->
+
+
+
+
+<!-- in this code just explained what if we pass a fucntion as an argument in a function as it is related to crearting own myMap function in next 5no.file -->
+<!-- <script>
+    function myMap(cb) {                        //thats a regular normal function and cb is parameter which we can sya is callback
+        console.log(cb);                          //we will get an arrow function here
+    };
+
+    // we can use arrow or nomral function both for understanding
+    const callback = () => { };                   //that an arrow function
+    // function callback() {};
+
+    myMap(callback);                           //calling myMap function and passing the callback function which means in myMap() will get callback i.e. fucntion myMap(callback). callback function is an arrow function and have a simple myMap function here and we passing the callback arrow function as an argument to myMap() 
+</script> -->
+
+
+
+<!-- same as above code as here we passed the value also as in the code just explained what if we pass a fucntion as an argument in a function as it is related to crearting own myMap function in next 5no.file-->
+<!-- <script>
+    function myMap(cb) {
+        cb(1);                                     // calling the callback function and passsing an argument of 1 whihc means this 1 will be sent as an argument to callback fucnton 
+    };
+
+    // function callback() { };                       //which means this callback() here will receive a paremeter here let say num.
+    function callback(num) {
+        console.log(num);                             //and here will get 1
+    };
+
+    myMap(callback);
+
+    // as we can also understand it that when we passed a function as an argument in the fucntion then in myMap
+    // function callback passed as an parameter and inside that function we did cb(1) here cb is callback which came
+    // when we passed it in myMap() while calling it and callback is itslef a function so we we do cb(1) actually it is
+    // callback(1) and as it is callback(1) means we passing 1 as an argument to the callback function and if we passing
+    // an argument then ther must be a pareameter in callback that we get callback(num) and now cb(1) means callback(1)
+    // passed in callback(num) and when we console num we get 1
+</script> -->

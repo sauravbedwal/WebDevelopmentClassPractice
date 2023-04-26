@@ -1,0 +1,63 @@
+<!-- in this code we understood abt prortypes what are thy what it does as main purpose of sharedMethods object is it will act like a collection of differnet methods which can be used by all 
+    the objects of a articular function but no need to use this object anyore bcox there is a concept called as 
+    prorotypes in js which is like every fucntion in js it has a property called prorotype which is basically 
+    an object. ex as we used Person.call, Person.apply or Person.bind we able to use bcx function in js can 
+    behave like objects bcoz they are first class citizens thats why functions themselves can have wahawtevr 
+    methods properties uh want. like binnd or call every function basically has a preoprety call prototype 
+    which is basicalluy an object. -->
+<!-- <script>
+    const sharedMethods = {
+        work: function () {
+            console.log(`${this.name} is working`);
+        },
+
+        sleep: function () {
+            console.log(`${this.name} is sleeping`);
+        },
+
+        eat: function () {
+            console.log(`${this.name} is eating`);
+        },
+    }
+
+    function Person(name, age) {
+        const person = Object.create(sharedMethods);
+        person.name = name;
+        person.age = age;
+
+        return person;
+    }
+
+    // console.dir(Person);                        //Person.prototype -> {} as we an see its an ocject which having a proeprty called as prototype property which itself is an object again and if function have an object to use then why we need to create an external object like sharedMethods.and whwatver we doing in sharedMethodsobjrct we can do same thing in internal object.i.e.Person.prototype
+
+    const personOne = Person("Levi", 28);
+    personOne.eat();
+</script> -->
+
+
+<!-- in thsi code we use prototypes as the code is same like above but her ewe didnt use any external object like sharedMethods instead we used prototypes sowe can also compare teh code for unerstanding -->
+<!-- A prototype is an object which is present in every function and the main purpose of a prorotype is to have a collection of all common methods which can be used by all the objects of that function. -->
+<script>
+    function Person(name, age) {
+        const person = Object.create(Person.prototype);
+        person.name = name;
+        person.age = age;
+
+        return person;
+    }
+
+    Person.prototype.work = function () {
+        console.log(`${this.name} is working`);
+    };
+
+    Person.prototype.sleep = function () {
+        console.log(`${this.name} is sleeping`);
+    };
+
+    Person.prototype.eat = function () {
+        console.log(`${this.name} is eating`);
+    };
+
+    const personOne = Person("Levi", 28);
+    personOne.eat();
+</script>

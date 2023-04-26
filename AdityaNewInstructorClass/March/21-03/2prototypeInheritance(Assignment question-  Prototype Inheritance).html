@@ -1,0 +1,99 @@
+<!-- Assignment question-  Prototype Inheritance - Post Class Assignment for Lecture 2 -->
+
+<!-- in this code we learend abt multi level inheritance and also assignment question explaination with example -->
+<!-- <script>
+    const sayMixin = {
+        say(phrase) {
+            console.log(phrase);
+        },
+    };
+
+    // sayMixin.say("Hello");                              //it will simply print hello    
+
+
+    const sayHiMixin = {                                       // we want whatever methods are avaialble in sayMixin we want them in sayHiMixin also and that we can done by making sayMixin a prototype of sayHiMixin. so whenever we try to access something on sayHiMixin object and if it does not exist then we can look on sayMixin object. we can do taht by the three ways that we learnet.
+        __proto__: sayMixin,
+        sayHi() {                                              //we want to call the methods of prototype of sayHiMixin(means we want method of sayMixin i.e. say()) in the methods of sayHiMixin (means in sayHi() and sayBye())
+            // super ->prototype of this object
+            super.say(`Hello, ${this.name}`);                  //this super will refer to the prototype object of the current object means super is sayMixin object right here. (sayMixin.say())
+        },
+
+        sayBye() {
+            super.say(`Byee ${this.name}`);
+        },
+    };
+
+    class User {
+        constructor(name) {
+            this.name = name;
+        };
+    };
+
+    const user = new User("Aditya Keri");
+
+    // user -> User.prototype                     //if we want to access certain methods, then those methods must be present in User.prototype and we want user have access to sayHi() and sayBye() methods and that is possible only if these two methods added to User.prototype.   
+
+    Object.assign(User.prototype, sayHiMixin);
+
+    user.sayHi();
+    user.sayBye();
+</script> -->
+
+<!-- doubt how this.name in sayHI and bye () -->
+
+
+
+<!-- another example of above as added multiple objects and methods as this is multi level and multiple inheritance-->
+<script>
+    const sayMixin = {
+        say(phrase) {
+            console.log(phrase);
+        },
+    };
+
+
+    const sayHiMixin = {
+        __proto__: sayMixin,
+        sayHi() {
+            // super ->prototype of this object
+            super.say(`Hello, ${this.name}`);
+        },
+
+        sayBye() {
+            super.say(`Byee ${this.name}`);
+        },
+    };
+
+    //we want work and sleep to be avaiable for user object
+    const anotherObject = {
+        work() {
+            console.log(`${this.name} is working`);
+        },
+    };
+
+    const anotherAnotherObject = {
+        sleep() {
+            console.log(`${this.name} is sleeping`);
+        },
+    };
+
+
+    class User {
+        constructor(name) {
+            this.name = name;
+        };
+        greet() {
+            console.log(`${this.name} says Welcome!`);
+        };
+    };
+
+    const user = new User("Aditya Keri");
+
+    Object.assign(User.prototype, sayHiMixin, anotherAnotherObject, anotherObject);
+
+    user.sayHi();
+    user.sayBye();
+    user.greet();
+    user.sleep();
+    user.work();
+</script>

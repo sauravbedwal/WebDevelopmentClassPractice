@@ -1,0 +1,75 @@
+<!-- in this code we learned that previous file code is works and reduce the duplicacy of code but thats no the optimal bcoz there also we doing little duplicacy as we creating the same two function of work and sleep each time for each object means one function call creates 2 new functions every single time imagine if we want to create 10 new objects then 20 differnt functions as we need a way to reuse the same fucntion across all the objects -->
+<script>
+    const sharedMethods = {
+        work: function () {                                           //we can wrtie this like work() {}  
+            console.log(`${this.name} is working`);
+        },
+
+        sleep: function () {
+            console.log(`${this.name} is sleeping`);
+        },
+    }
+
+    function Person(name, age) {                       //good standard to name the functione with capital letter 
+        const person = {};                            //an object created
+        person.name = name;
+        person.age = age;
+
+        person.work = sharedMethods.work;         //we can say that we just copyng the work function of shareMethods object here means person.work als refers to the same function 
+        // person.work = sharedMethods.work();    //differnece is if we call the function then retrun value of this function will store in person.work and taht we dont want as we dont want to call the function as we want to pass the function as the value
+
+        person.sleep = sharedMethods.sleep;
+
+        return person;
+    }
+
+
+    const personOne = Person("Levi", 28);
+    personOne.work();                           //when we do this means we looking at person.work in person object which is inside the Person() and when we call person.work means we calling sharedMethods.work function whihc means we calling work function in sharedMethods objects.  
+    console.log(personOne);
+
+    const personTwo = Person("Mikasa", 30);
+    personTwo.work();                           //when we do this means we looking at person.work in person object which is inside the Person() and when we call person.work means we calling sharedMethods.work function whihc means we calling work function in sharedMethods objects.
+
+    const personThree = Person("Armin", 25);
+    personThree.work();                           //when we do this means we looking at person.work in person object which is inside the Person() and when we call person.work means we calling sharedMethods.work function whihc means we calling work function in sharedMethods objects.
+</script>
+
+
+
+<!-- an example to inderstand above code -->
+<!-- 
+<script>
+    const sharedMethods = {
+        score: 100,
+        userName: "Something I don wish to add",
+        work: function () {
+            console.log("Hey");
+        },
+    };
+
+    console.log(sharedMethods.score);
+    console.log(sharedMethods.userName);
+    console.log(sharedMethods.work);
+</script> -->
+
+
+
+<!-- another example to understand passing the same funciton in any other key of an object or in variable -->
+<!-- <script>
+    const sharedMethods = {
+        work: function () {
+            console.log("Hey");
+        },
+    };
+
+    const person = {
+        id: 1,
+    };
+
+    person.work = sharedMethods.work;                     //we wanted person.work same as work function of sharedethofs objects so instead of creating the same fucton again we can do this.
+    person.work();
+
+    const yo = sharedMethods.work;                  //here we passing the value of sharedMethods.work that is a function that we passing as a value to the varaiable. means  sharedMethods.work is replaced by work function which meanas when we call the yo() function that work function will be called. and when we pass a function to a varaiablethe same function refernce is passed as we r not creating a value or new function here.
+    yo(); 
+</script> -->

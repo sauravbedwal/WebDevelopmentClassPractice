@@ -1,0 +1,123 @@
+<!-- Puprose of Execution Context -->
+<!-- if there is a really big program(code) as multiple lines are there and it becomes more and more complex if we add more
+and more lines into it as one way to manage the complexity is to breakdown this very big orgram into multiple smaller
+pieces and we can do that by functions and in js engine also breaks down everything into smaller pieces to manage the
+comlexity and that smaller piece called Execution Context. WE as developers breakdowm the entire big program (code) into
+smaller things called functions but js engine itself whose main duty is to walk through the code and interpreted it will
+breakdown the big problem into smaller pieces and the smaller piece here is the Execution Context.
+
+just like function help developers to manage the complexity of writing the code same way the execution context help js
+engine to manage the comlexitiy of running the code. as both have same purpose is to manage the complexity as they want
+to make it simpler. -->
+
+<!-- Everything in js it actually happens in Execution context as Execution context is made up of two components i.e. the
+Memory Component where all are variables and functions are stored and Code Component where all our code is executed. -->
+<!-- In Memory Component we have multiple Key and value means let say we creaetd a variable
+const user = 'Aditya'
+when we create a variable like this with in the Memory Component here the key called user gets added which is a variable
+name with the value of 'Aditya'.
+and if create another variable
+const score = 100;
+now we created one more key called as score which has a value of 100.
+basically within Memory Component here we store all the variables and functions which are created by us and it also
+called as Variable Environment and the code compoenent contains all the currrently executing code and also called as
+Thread of Execution. -->
+
+
+<!-- JS is Synchronous and Single-Threaded Language.
+Synchronous basically means that the js can execute whatever code we have in a specific order.
+means if we have few lines then it will first finsih the first line then go to next line and so on and execute all the
+code one aftet the other as it cant skip anythinga as it will always go one by one in the same order which means it will
+go the next line only when the previous line is completed. that is the Synchronous nature of js.
+
+const parent = {
+greet() {
+console.log("Hello");
+},
+};
+
+or
+
+const a = 1 + 1;
+const b = 20;
+console.log("hey") -->
+
+
+<!-- Single-Threaded is js can execute only one thing at a time which means that if there is something which i executed as at
+the same time we cannot execute anything else. At any given point of time it can execute only one line/thing at a time
+as it cannot do multiple thing at the same time.-->
+
+<!-- What happens when uh run a js program?
+Execution context are created based on how many functions are there.
+as if there is only one function then we create one Execution context and if there are multiple functions then we create
+multiple Execution context. -->
+
+
+<!-- <script>
+    var number = 2;
+    function square(num) {
+        var ans = num * num;
+        return ans;
+    };
+
+    var square2 = square(number);
+    var square4 = square(2);
+</script>
+
+whenever we run any program in JS in the JS engine it creates a Global Execution Context and every Execution Context is
+created in two different phases:
+1. Memory Creation Phase
+2. Code Creation Phase
+
+With the help of these two phases we ultimately create any execution context.
+
+during Memory creation phase js simly scnas through the entire file and it will alocate/reserves the Memory for all the
+variables and functions.
+so here it will see there is a variable called number so it will create the variable in Memory Execution Context then
+we have square function then that will also add and same way square2 and square4 all added.
+and the variables which are added will give a default value of undefined i.e. number, square2 and square4 and for
+functions there is no default value of undefined as the function body will be assign as the value directly.
+
+
+in the Code Execution Phase JS engine will run through the entire code line by line which means now it will excute this
+line of code right now and when it gets executed as we know that number is 2 and during Memory Execution phase number
+was undefined but now after running this line we know that what is the value of number is and it chnage it from
+undefined to 2.
+
+then we go to function square nothing tp run there then we go to square2 we calling the function again and when we call
+a function again, we creat another Execution Context for the new function which means that we create one more Execution
+Context bcoz now we have encounterd a new function, where again we will have the Memory and Code component again.
+so the first Execution Context will be created automatically BCOZ that the Global Execution Context BUT after that every
+single execution context we create will be created whenver uh call a function and it will also go withh same phases i.e.
+Memory Execution Phase and Code Ecxecution Phase.
+
+now js engine will scan the function only and when it scans the function it will look and observe there is a variable
+called as num and ans and add them in Memory and as both are variables then both get the value of undefined again.
+and this happened bcoz we r in Memory Creation phase of this Execution context and when we r in Memory Creation phase we
+scan through the fucntion and we look at the variable and then add them to the Memory compoenent and they are intialised
+with the value of undefined.
+
+now we will go to the code Execution phase we run the function line by line as num value will be 2 and ans value will be
+4. as during code execution phase we run code line by line and whtaver the values we get we update the memory compoenent
+here. and then we have retrun ans so now once we have a return keyword the execution context wil be removed (second one)
+and whatever we returned will be stored inside the square2 VALUE which means sqaure2 have the value 4.
+
+and we back in the code Execution phase of Global Context and stll at Code Execution Phase of global context and we saw
+the last line square4 and we saw one more function call/envokation and when a new function envoked we create a new
+execution COntext. and it will folllow the same path lik it follwed for square2. -->
+
+
+<!-- 
+<script>
+    const name = "Arya";
+
+    const age = 1800;
+
+    function greet(userName) {
+        const greeting = "Welcome";
+        return `${userName} says ${greeting}`;
+    }
+
+    greet(name);
+    // const result = greet(name);
+</script> -->

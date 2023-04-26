@@ -1,0 +1,10 @@
+<!-- sir revised it and gave the example of using spread and rest opeartor together -->
+<script>
+    function sum(...rest) {         //below in result3 we spread the items in sum() and here we collecting all the items usimg ...rest opeartor in an array named rest   
+        console.log(rest);
+    }
+    const numbers = [1, 2, 3, 4];
+
+    const result3 = sum(...numbers);    //want to pass all these elements individually of numbers array in sum() so we can use spread operator i.e ...numbers means we spreading out this numbers array in sum()
+    console.log(result3);
+</script>

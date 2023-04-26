@@ -1,0 +1,34 @@
+<!-- in this code we used object.create() and took the same code (1st code ) from 4file but this time did the same work by
+usig object.create() ehich male code more simpler and easy as earlier work and sleep method in person object were
+pointing to the work and sleep of sharedMethods objects and as we creating new objects and all of them pointing to the
+same things and then we removed the poreprties except shareMethods object and linked the entier object to the
+shareMethods and beneft of this is if tomoworow a new ,ethod adds in sharedMethods let say eat() and now its work, sleep
+and eat so there is no need of chanegs to do in code as it added in sharedMethods all the other objects can access that
+as they r linked to shareMethods as by previous method we have to add the person.eat = sharedMethods.eat() agaian and again and here we created the linked once as it will work smoothly -->
+<script>
+    const sharedMethods = {
+        work: function () {
+            console.log(`${this.name} is working`);
+        },
+
+        sleep: function () {
+            console.log(`${this.name} is sleeping`);
+        },
+
+        eat: function () {
+            console.log(`${this.name} is eating`);
+        },
+    }
+
+    function Person(name, age) {
+        const person = Object.create(sharedMethods);
+        person.name = name;
+        person.age = age;
+
+        return person;
+    }
+
+
+    const personOne = Person("Levi", 28);
+    personOne.eat();
+</script>

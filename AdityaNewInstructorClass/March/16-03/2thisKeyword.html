@@ -1,0 +1,29 @@
+<!-- this keyword - the purpose of this keyword is to reuse a function using differnt objects -->
+<!-- context -> object  as context keyword is an object as there is a function and we want to reuse the function using differnt context/object -->
+<!-- whenever we envoke or call a function then this keyword tells the function which is the main object for that envocation. -->
+<!-- this always refers to an object and an object can be either an array or an object also but mostly this refers to an object on the first place and this is somethjing which is mostly used with in a function definition -->
+<!-- this -> object
+this -> inside the function -->
+
+<!-- how to find out what is the value of this object during the function envocation -->
+<!-- what is the this keyword value with in a function envocation -->
+<!-- to find out what is the this keyword we have to always find out where the function is envoked not where the function is defined  -->
+
+<!-- how we find out what is the this keyword with in a function? as there are 5 rules.
+1. Implicit Binding
+2. Explicit Binding
+3. New Binding (discussed in prortype class)
+4. Lexical (arrow function) Binding
+5. Window Binding
+-->
+
+
+<!-- function definition -->
+<script>
+    function foo() {               //function definition
+        console.log(this);
+    }
+
+
+    foo();                         //function envocation
+</script>

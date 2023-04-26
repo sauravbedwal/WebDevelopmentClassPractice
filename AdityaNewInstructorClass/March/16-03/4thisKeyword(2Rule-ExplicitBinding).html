@@ -1,0 +1,163 @@
+<!-- Second Rule: Explicit Binding to find out what is the this keyword with in a function -->
+<!-- 2. Explicit Binding -->
+<!-- when we tell Expliciticly tell the this keyword what it should be binded to. as when we call the function we want to tell it that uh dont decide i will tell uh which object uh should binded to.      -->
+
+<!-- <script>
+    function greet() {
+        console.log("hello!");
+    }
+
+    // greet();         //behind the scenes, there is a method called as .call on every function which actually is used to envoked the function. as function act like any other objects which means that they can be passed to a variable, they can be passed to a function as an argument, the can be return from a funciton as well. which means just like objects have methods of them, every function also has a few methods of them and one of them is CALL METHOD.
+    greet.call();       //js converts greet() to greet.call(); behind the scenes as by bith we get the same result  
+</script> -->
+
+
+
+<!-- same code as above here we just passed an argument -->
+<!-- <script>
+    function greet(name) {
+        console.log("hello!", name);
+    }
+
+    greet("shinchan");                         //passing argument here is possible and we will get the result
+    // greet.call("shinchan");                //but here passing argument is not correct as it will print undefined
+</script>  -->
+
+
+
+
+<!-- in this code we want to call the function greet() and want that the this keyword which is within the fucntion point to user object -->
+<!-- <script>
+    function greet() {                     //this keyword is used to reuse the function with differnet object as we calling the greet() in whcih we want it to point out to user object.  
+        console.log("hello!", this);       //this keyword here is pointing to user object as we passer user object while calling the function.
+        console.log("Name", this.name);      //we can do this bcoz this is user and we have learenedd we can do user.name so same we doing by this.name
+        console.log("Age", this.age);
+    }
+
+    const user = {
+        name: "Agastha",
+        age: 27,
+    };
+
+    // greet();                         //as greet() and greet.call() both are same but we cant assign the this keyword a value but for doing that we can use the .call method we can pass anything as argument and that will become the value of the this keyword 
+    greet.call(user);                 //as .call method is exist on every function and the first argument we give to .call method is the this keyword and it can be anything like an object, array, number , string but mostly we see object as its not mandatory measns we calling the greet function and passing the user object as the this keyword value
+</script> -->
+
+
+
+
+<!--  in this code we learned if function have parameters then how it works and also another ex of above code as we want to call the function greet() and want that the this keyword which is within the fucntion point to parent object -->
+<!-- <script>
+    function greet(city, country) {
+        console.log("Name", this.name);
+        console.log("Age", this.age);
+        console.log("City", city);
+        console.log("Country", country);
+    }
+
+    const user = {
+        name: "Agastha",
+        age: 27,
+    };
+
+
+    const parent = {
+        name: "Christle",
+        age: 55
+    };
+
+    greet.call(user, 'Hyderabad', 'India');      //as first argument will always be point to this keyword and after the first argument whatevr we add here will be value of city and same if we have 2 parameters like city and country then after 2 second argument whatevr we add here will be value of country
+    greet.call(parent, 'Delhi');                //and to know what the this keyword is we have to always check where the function was envoked as here we know we calling greet function and passing parent means this keyword is pointing to parent object.
+</script> -->
+
+
+
+<!-- we have an array args and we want to pass the elements of array in .call method/greet.call funciton and also .apply method for smae purpose in case browser dont support new featurs -->
+<!-- <script>
+    function greet(city, country) {
+        console.log("Name", this.name);
+        console.log("Age", this.age);
+        console.log("City", city);
+        console.log("Country", country);
+    }
+
+    // function greet(...rest) {                //...rest -> rest operator 
+    //     console.log(rest);                 //will print the element sof args array in an new array named rest. 
+    // }
+
+    const user = {
+        name: "Agastha",
+        age: 27,
+    };
+
+
+    const parent = {
+        name: "Christle",
+        age: 55
+    };
+
+    const args = ["Hyderabad", "India"];
+
+    // greet.call(user, ...args);                //...args -> spread opearator
+    // greet.call(parent, 'Delhi');
+
+    greet.apply(user, args);                    //we want to pass the args array elemetns here but dont want to use spread operator then args[0], args[1] is not approritate bcpz what if we have 100 elements it will be lengthy as there is a better way we can use .apply here. when we use .apply we can directly pass the args array. and behind the scene whatever the elemnts we have in the args array will be replaced by it. and .apply does two things, first it is able to send waht will be the value of this keyword and also spreading out the values of args array. and why we use .apply is what if browser does not support ES6 and abive featues as it si an old browser which r not implementing new feature as it si very old method.  
+    // greet.call(user, ...args);              //this is the smae thhing like above line as if we sure that the code we writing will not be used in very old broswers then use .call but if we want to support very very old browser then use .apply but if we have only one argument to pass then always use .call only and if more than one with in an array then use .apply.
+</script> -->
+
+
+
+
+<!-- in this code as we already seen taht when we use .call pr .apply we are envoking the function immediatley but what if we have an
+option of binding the this context (user) to a function but dont want to call it immediatley a want to call it later on -->
+<!-- <script>
+    function greet(city) {
+        console.log("Name", this.name);
+        console.log("Age", this.age);
+        console.log("City", city);
+    }
+
+    const user = {
+        name: "Agastha",
+        age: 27,
+    };
+
+
+    const parent = {
+        name: "Christle",
+        age: 55
+    };
+
+    const args = ["Hyderabad", "India"];
+
+    // greet.apply(user, args);  
+    // greet.call(user, ...args);
+
+    const newGreet = greet.bind(parent);                       //we can use .bind if we dont want to call it immdetailey and call it later on but .bind will not console log bcoz .bind will not call or envoked the function right then and there. as it willl return a new function and with in this new function the this keyword will always be pointing to parent object. means in .call method we passing the .thi keyword value in the greet.call() and first argument will be the value f ths keywrd but here in the new function this keyword is alrady taking the value that w epassed in .bind method
+    const anotherGreet = greet.bind(user);
+
+    newGreet();      //this -> parent                         //newGreet() point to parent means greet.binf() and that point to greet()
+    anotherGreet();  //this -> user
+</script> -->
+
+
+
+<!-- in this code, we want to use the sing() for child object also means we want this keyword within sing() pointing to child object -->
+<script>
+    const parent = {
+        name: "Arijit Singh",
+        sing() {
+            console.log(this);
+        },
+    };
+
+
+    parent.sing();                             //it will print the parent object itself
+
+    const child = {
+        name: "Raftaar",
+    };
+
+    parent.sing.call(child);
+    // parent.sing.apply(child);                   //both will work as it doesnt matter
+</script>

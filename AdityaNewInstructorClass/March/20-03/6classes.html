@@ -1,0 +1,61 @@
+<!-- class is like a blueprint by which we can create multiple objects. as in js there are no classes like pythonor java but
+we can write classes and it is same as constructor function. as we can comapre it by the below code that we took from 2 file-->
+<!-- as here we had the actual constructor function Person and then we have the methods outside the Person fucntion but in
+class we are encapsulating EVERYTHING with in one class. in the class , we have constructor function and then whattevre
+methods we had in prototype are there. as js is built upon the idea of an object as we can have multiple objects in prototype
+and prototype is also an object as the in the core of js we have objects there and everyhting built on top of that the concept of prototype,
+classes are nothing but object and functions. as there are no actual classes in js we only have functions and objects.-->
+<!-- in interview they either give class code or the older code (that we write below this code) and ask to change it in ether ways -->
+<script>
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        };
+        work() {
+            console.log(`${this.name} is working`);
+        };
+        sleep() {
+            console.log(`${this.name} is sleeping`);
+        };
+    };
+
+    const mikasa = new Person("Mikasa", 25);
+    mikasa.sleep();
+</script>
+
+
+
+<!-- thats a firt code of 2 file as we wrote it here to compare and understand that classes are nothing but constructor
+function which can be created differently (syntax). -->
+<!-- <script>
+    function Person(name, age) {
+        // this = Object.create(Person.prototype);                  //BTS bcoz of the new keyword and as we know prorotype is a property on the fucntion which itself is an object and Prototype object stores a collection of multiple methods which can be avaibale for all the instances of the function Person. and erin here is one instance for this Person function and we can creaeat multiple instances also like erin, mikasa, jjoe and etc.               
+        this.name = name;
+        this.age = age;
+        // return this;
+    }
+
+    Person.prototype.work = function () {                        //instead creating a different object like sharedMethods for creating differnet methods inside it we can now add all the methods on the prorotype proeprty of the Person function. 
+        console.log(`${this.name} is working`);
+    };
+
+    Person.prototype.sleep = function () {                    //we didnt createa an explicit connection between the erin object and these methods (woerk, sleep) but bcox we are using new keyword here whichc basically does this thing BTS (this = Object.create(Person.prototype);) WHICH means erin object it has a connection to the Person.prototype object of the Person function. ehich means whatever methods are there on the prorotype proeprty of Person function is all of them will be avaialble to this erin object right here.    
+        console.log(`${this.name} is sleeping`);
+    };
+
+    const erin = new Person("Erin", 25);          //each of these are instance of the Person function as inastance is an object taht is created out of the constructor function i.e. Perosn. and we call this as constructor function bcoz it constructs an object and return us default BTS i.e. 
+    const mikasa = new Person("Mikasa", 25);
+    const joe = new Person("Joe", 25);
+</script> -->
+
+
+
+<!-- syntatic sugar is when something look complex but we make (code)it simpler and cleaner to use.
+function sum() {}
+sum();
+sum.call();
+
+now here bts sum() is sum.call but we make it simpler so here sum() is syntatic sugar over sum.call()
+
+and similarlry classes are syntatic sygar over cnstructor function and prototype which includes the method -->

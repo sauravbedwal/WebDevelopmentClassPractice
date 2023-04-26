@@ -1,0 +1,147 @@
+<!-- <script>
+    const one = "A";
+    let two = "B";
+    var three = "C";
+
+    function four() {
+        console.log("D");
+    };
+
+    four();
+</script> -->
+
+
+<!-- Debugging
+
+bug - some logical or synatx mistake that is causing some unexpected behaviour.
+the mechanism to find out where the bug is occuring and what it be is called debugging.
+
+and we debugg by differnt ways like console.log() and others as well. -->
+
+<!-- if we do a breakpoint on var three = "C" then memory creation phase will happend which will reserve the memoery for all
+teh fvariables and functions but while executing it it will execute only the above lines before var three = "C" and if
+we bdo the breakpoint on first line then also Mmoery creation phase will happen as all ofthe funcitons and varibles will
+be scanned and will be added to the memory of the js engine after that when code execution phase will start it will
+pause on the first line itself and won't go further. -->
+
+
+
+<!-- in this code we can see- console.log(three); before var three = "C" ideally it shoudnt work bcoz we r accesing a
+varuable which is not created till point as it should give errror but when
+we console we get undefined bcoz during memory creating phase already reserved a space for three, it is already hoisted.
+As bcoz of hoisting variable three was already put in the memory with a default value of undefined but then during code
+execution phase undefined replaced by C and if we talk abt function as we calling it before then there it will work and
+give us output D bcz in memory creation phase the value stored for function was the entire function body and js engine
+knows there is a funciton called four() and it also knows the funciton body so it will run perfectly. and bcoz of
+hoisting we are able to access the funciton before it has been defined.
+<script>
+    const one = "A";
+    let two = "B";
+
+    console.log(three);
+
+    var three = "C";
+
+    console.log(three);
+
+    four();
+
+    function four() {
+        console.log("D");
+    };
+
+    four();
+</script> -->
+
+
+<!-- here we will get error bcoz js developers want some thing very strict and there let and const came so if we try to
+access them before define it will throw an error but that doesnt mean that let and const are not hoisted as they are
+hoisted already as they r presnt in the memory and have the default value as well which is undefined but that doesnt
+mean if they are hoisted the can be accesible before they intialised.
+<script>
+    console.log(one, two);
+
+    const one = "A";
+    let two = "B";
+
+    var three = "C";
+
+    function four() {
+        console.log("D");
+    };
+</script> -->
+
+
+
+
+<!-- when we call the function befoer function created it will run and we have see this in above codes as well but when we
+convert this function (function four() {}) into function expression (const four = function () {}) it will give an error
+bcoz firstly, it a const variable so we can't access this before its intialised as it will stored in memory as it is
+hoisted but when we replace var with const then it says four is not a function bcoz four is already in memory and the
+default value of four is undefiend which mena when we doing four() we r calling undefined() as four is replaced by
+undefined and we cannot call undefined value and if we console the four it will undefiend and thasts why we get this
+error.
+<script>
+    const one = "A";
+
+    let two = "B";
+
+    var three = "C";
+
+    four();
+    // console.log(four);
+
+    const four = function () {
+        console.log("D");
+    };
+</script> -->
+
+
+<!-- if its object or array it will be same for them as they will be avaialble in Memory with the default value of undefined
+and when code execute phase will start then we will get the actual value.
+<script>
+    const user = {
+        id: 1,
+        locality: "Moosapet",
+    };
+
+    const numbers = [1, 2, 3];
+</script> -->
+
+
+
+<!-- here in global context will have user varible witht he value of udefiend and superhero function with the value of
+function body will reserve the space during memory creation phase then when we go to the line superhero() user value
+will be update to Captain America bcoz it is excueted and it will go inside the function and as we did the fucntion call
+a new function execution context will create which will have user variable with the defined value of undefined which
+means when we call the funciton befoer function run the mempoery creation phase will happen and value of
+console.log(user) will be undefined bcoz that the default value and if we have const user then it will throw error bcoz
+wr cannot access it before =we define it.
+<script>
+    var user = "Captain America";
+
+    function superHero() {
+        console.log(user);
+        var user = "Iron Man";
+        // const user = "Iron Man";
+    };
+
+    superHero();
+</script> -->
+
+
+
+<!-- if there is no var user = "Iron Man" inside funciton then the user will try to find the variable called user outside the
+scope and outside we have captain America so it will have the value Captain America and it happend bcoz of the scope
+chain. as first it try to find the variable user wiht in the fucntion (current function scope) and if we dont have hte
+variable then we will go one level up and try to find the variable.
+<script>
+    var user = "Captain America";
+
+    function superHero() {
+        console.log(user);
+    };
+
+    //scope chain
+    superHero();
+</script> --> -->

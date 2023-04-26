@@ -1,0 +1,20 @@
+<!-- as there is no inbuld method of printAll so we making printAll method which prints out all the elments of the array  -->
+<script>
+    Array.prototype.printAll = function () {
+        // console.log(this);                                  //we can use this keyword if we want to access the array with in the Array.prototype and also it clears that the this keyword is not alwyas an object as it can be an array also. as whenever we speak abt array methods the this keyword is always one array not an object
+
+        // by using for of loop
+        // for (const element of this) {
+        //     console.log(element);
+        // }
+
+        //we can do it like this also bcoz the this keyword here is array
+        this.forEach((element) => {
+            console.log(element);
+        });
+    };
+
+    const array = [1, 2, 3];
+
+    array.printAll();
+</script>

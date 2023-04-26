@@ -1,0 +1,74 @@
+<!-- in this code understanding that the array here is basically the constructor fucntion which means that all arrays are created using the Array constructor function and similarlary all objects are cretaed using Object constructor functions and all functions are cretaed using function constructor functions -->
+<!-- <script>
+    const array = [1, 2, 3];
+    // behind the scenes
+    // const array = new Array()             
+    // const object = new Object();
+
+    // function foo() {}  -> new Function();
+</script> -->
+
+
+<!-- in this code as we discussed abt wheneevr we do array. we got so many methods map, filter  etc as we didnt create them here but still we get it we understood that in 3 code the below one -->
+<!-- <script>
+    const array = [1, 2, 3];            
+//    array.map(); 
+</script> -->
+
+
+<!-- //whenever we create array behind the scenes const array = new Array() function formed means an Array function and we know that all functions already have internal method/property called prorotypes so whenever we try to access something on the array which does not exist on the array the failed lookup will go to the prprtoype -->
+<!-- <script>
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype.work = function () {
+        console.log(`${this.name} is working`);
+    };
+
+    Person.prototype.sleep = function () {
+        console.log(`${this.name} is sleeping`);
+    };
+
+    Person.prototype.eat = function () {
+        console.log(`${this.name} is eating`);
+    };
+
+    const personOne = new Person("Levi", 28);
+    personOne.work();                          //it works bcoz behind the scenes     whatever methods (woek, sleep, eat) of Person.prorotypes they all are avaiable to this personOne object                                    
+
+    const array = [1, 2, 3];
+// const array =  new Array();                //BTS as this line and const personOne = new Person("Levi", 28); both are same as when we use new keyword in the new Person line the personOne object will be able to access all teh methods on the person.prototype which work, sleep and eat similarlary when we create an array, array will be access all the methods which are avaialble on the Array.prototype object  
+</script> -->
+
+
+
+<!-- another example -->
+<!-- <script>
+    const numbers = [1, 2, 3];
+    //BTS
+    //const numbers = new Array();
+    //numbers -> Array.prototype       //it means now numbers has a link to Array.prototype as if try to acces somthing which does not exist on numbers array, we go and check inside the Array.protoypes  
+</script> -->
+
+
+
+<!-- in this code we understanding the link createa between object and prototype by new keyword -->
+<script>
+    function Array() {                      //created a function and used objec.createe method which help to create link and that also retuned a new object newArray 
+        const newArray = Object.create();
+
+        return newArray;
+    };
+
+    Array.prototype.map = function () { };                //as we know every fucntion have internal methods/objects called prototypes. so here we created methods for Array() in prototypes. 
+    Array.prototype.push = function () { };
+    Array.prototype.pop = function () { };
+    Array.prototype.filter = function () { };
+    Array.prototype.forEach = function () { };
+
+    const array = new Array();                        //calling the function here as array is an object and we used new keyword eihc autpmaticallu creates a link between this keyword and the prototype 
+    // array.map();                                             //array.map is not in the Array() itslef but bcoz of the link Object.create we will be able to accesss it on the prototype.
+
+</script>

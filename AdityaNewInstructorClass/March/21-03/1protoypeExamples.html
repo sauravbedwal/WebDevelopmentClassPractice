@@ -1,0 +1,56 @@
+<!-- IN THE INETERVIEW, they asked to create a child object such that prototype of chikd object will be this parent object and for taht there are 3 ways -->
+<!-- we mostly use 1st and 3rd way -->
+<!-- 1st way -->
+<!-- <script>
+    const parent = {
+        id: 1,
+        name: "Dad",
+        score: 100,
+    };
+
+    const child = Object.create(parent);
+
+    console.log(child);             //an empty object as Object.create new object
+    console.log(child.score);      //parent object is called as the prototype of this child parent object will handle the failure lookups of child as if we try to access something which is not exist in child object then it will find in parent object.  
+</script> -->
+
+
+<!-- 2nd way -->
+<!-- <script>
+    const parent = {
+        id: 1,
+        name: "Dad",
+        score: 100,
+    };
+
+    const child = {
+        __proto__: parent,         //this behaves same like const child = Object.create(parent);
+    };
+
+    console.log(child);
+    console.log(child.score);
+
+</script> -->
+
+
+<!-- 3rd way -->
+<script>
+    const parent = {
+        id: 1,
+        name: "Dad",
+        score: 100,
+    };
+
+    const child = {};
+    Object.setPrototypeOf(child, parent);                    //setting prototype of child object to be the parent object
+
+    console.log(child);
+    console.log(child.score);
+
+</script>
+
+<!-- as there are two ways to look up to prototype :
+1.every function has a property called as prototype but prototype refers to an object
+2. whenever we create an object using Object.create we have a link between child and the parent and when we try to
+access something on this chhild which does not exist in it then we simply look that on parent object and parent object
+here is called as prototype of the child and the prototype will always be an object. -->

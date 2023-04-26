@@ -1,0 +1,130 @@
+<!-- int this code we called workfuction but its pointing to differnt object i.e. child object  -->
+<!-- <script>
+    const parent = {
+        name: "Chrisitina",
+        age: 100,
+        work: function () {
+            console.log(`${this.name} is working. Age id ${this.age}.`);    //this keyword here is pointing to parent object as its Implicit binding
+        },
+    };
+
+    parent.work();
+
+    const child = {
+        name: "Persona",
+        age: 50,
+    };
+
+    parent.work.call(child);                      //here work function will be called but we want object should be child object we used Explicit binding by using .call method
+</script> -->
+
+
+
+
+<!-- when we try to access some property from child object if it exist (child.name, child.age) it should pick that property but if doesn't (child.work) then we want to go one level up and check in parent object. -->
+<!-- <script>
+    const parent = {
+        name: "Chrisitina",
+        age: 100,
+        work: function () {
+            console.log(`${this.name} is working. Age id ${this.age}.`);    //this keyword here is pointing to parent object as its Implicit binding
+        },
+    };
+
+    const child = Object.create(parent);
+    // Object.create -> two things
+    // 1. Creates a new object
+    // 2.Delegates failed lookups to parent
+
+    // console.log(child);                          //new object is created which is empty
+    console.log(child.name);                     //as becoz of Object.create we created a link between child and parent and now of we tried to access anything within the child object and we will not able to find out there then it will delicate the failed lookups to the parent as now it will check the property in parent and it weill orit Christina.
+
+    child.name = "Persona";                  //but if we have already child.name porperty then it will print Persona bcoz it is not a failed lookup as it will go to the parent only if it was not able to find taht property as it is not avaialble. 
+    console.log(child.name);
+
+
+//this foo object is to make us understand delegates failled lookups to parent
+    // const foo = {             
+    //     id: 1,
+    // };
+
+    // foo.name;            //it will not give us anything as it doeesn't contain any values as whenever we try to look up somehting in an object and the look up is failed as name and age is not there in foo object is called failed lookups and Delegates is as if uh r not able to do it uh will ask somebody else to do it.
+    // foo.age;
+</script> -->
+
+
+
+<!-- another ex of Object.create method  -->
+<!-- <script>
+    const grandParent = {
+        name: "Sirgun",
+        age: 1500,
+        work() {                              //using work() {} or work: function() {} is the same thing
+            console.log(`${this.name}`);
+        },
+    };
+
+    const parent = Object.create(grandParent);
+    // console.log(parent.name);                        //it will print Sirgun as its a failed lookup
+
+    // parent.name = 'Thor';
+    console.log(parent.name);                      //if we comment off parent.name then it will print Thor bcox parent already have parent.name property with the value of Thor
+
+    const child = Object.create(parent);
+    // console.log(child.name);                    //it will print Sirgun as its a failed lookup it wll check in parent and there also there is no poreprty eans failed lookup again then it will check in grandParent and there it will frnd the proerty and delegate it. and if we comment off parent.name = 'Thor' then it will print Thor.
+
+    // child.name = 'Loki';
+    console.log(child.name);                     //if we comment off child.name then it will print Loki bcox child already have child.name property with the value of Loki.
+</script> -->
+
+
+
+
+<!-- in this code we learend atb object.create methd and binding also  -->
+<!-- <script>
+    const grandParent = {
+        name: "Odin",
+        age: 1500,
+        work() {
+            console.log(`${this.name}`);
+        },
+    };
+
+    const parent = Object.create(grandParent);
+    // parent.name = 'Thor';
+    console.log(parent.name);                      //it will print Sirgun as its a failed lookup but if we comment off parent.name then it will print Thor bcox parent already have parent.name property with the value of Thor
+
+    const child = Object.create(parent);
+    // child.name = 'Loki';
+    console.log(child.name);                     //it will print Sirgun as its a failed lookup it wll check in parent and there also there is no poreprty means failed lookup again then it will check in grandParent and there it will find the proerty and delegate it. but  if we comment off parent.name = 'Thor' then it will print Thor. if we comment off child.name then it will print Loki bcox child already have child.name property with the value of Loki.
+
+
+    child.work();                              //as work() is doing this.name and we have called child.work() function which is Implicit binding means this keyword will point to child object and child.name is avaialble if child.name = "Loki" is not commented so the this keyword will point to child and print Loki but if we comment child.name then it will look in child first as there is no property it will look in parent and there we have parent.name = 'Thor' so it willl print Thor btu if we comment parent.name = "Thor" then its failed lookup again so itn will check in grandparent and there it will find the name property which have value "Odin" so it will print Odin.  
+</script> -->
+
+
+
+<!-- in this code we comparede the 3 tech of a function which is avaialble in diffent oject anc want to callout by differnt object -->
+<script>
+    const sharedMethods = {
+        work: function () {
+            console.log(`${this.name} is working`);
+        },
+    };
+
+    // const person = {
+    //     name: "Aditya Keri",
+    // };
+
+    // if we want to call person.work() then there are three techiques for that:
+
+    // sharedMethods.work.call(person);       //first one, but its not right all the time bcox we simple want to call person.work() and that should be call automatically
+
+    // person.work = sharedMethods.work;      //second one, it will call the work function which is in sharedMethods object and diffenrce betwewen this techniuqu and object.creata() tech is when we do this tech. we adding a new property called work to the person object but if we go to the object.create() tech. it will notn ccreate any extra property to an object as it just linked between two objects and we saving som memroy also  
+    // person.work()
+
+    const person = Object.create(sharedMethods);   //third one, as there is no work method in person object as it only have one prperty that is name porperty means its failed lookup so it will check in sharedMethods that the work porerty/method exist there and as it is avaialble there which prints this.name and person.work() is Implicit binding menas this keyword pointing to person object and person object have name property so it will print Aditya Keri.
+    person.name = "Aditya Keri";
+
+    person.work();                                  
+</script>

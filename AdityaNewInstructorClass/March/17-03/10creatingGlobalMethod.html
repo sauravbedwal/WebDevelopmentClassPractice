@@ -1,0 +1,60 @@
+<!-- in this code we want to use printAllElements method in array like .map or .filter but there is no suh method exists in Array.prortype(inbuilt) so we added that method in Array.prototype which just prints all the elements of array and now evrey new array can access that method also like .map/.filter -->
+<script>
+    const array = [1, 2, 3];
+
+    Array.prototype.printAllElements = function () {
+        for (const element of this) {
+            console.log(element);
+        }
+    };
+
+    array.printAllElements();
+
+    const anotherArray = ["A", "B", "C"];
+    anotherArray.printAllElements();
+</script>
+
+
+
+
+
+<!-- 
+const personOne = new Person("Levi", 28);
+personOne -> Person.prototype //personeOne object now has link with Person.prototype and this link is created bcoz fo
+the new
+keyword which means if we try to accesss something on the personeOne object let say:
+personOne.sleep(); and if doesnt exist in the personOne object then we will go and look inside Person.prototype
+
+
+smae when we do
+
+const array = [1, 2, 3];
+//BTS we doing
+//const array = new Array();
+array -> Array.prototype //array object now has link with Array.prototype and this link is created bcoz fo the new
+keyword which means if we try to accesss something on the array object ley say
+arary.push(); and if doesnt exist in the array object then we will go and look inside Array.prototype
+
+and just like person have
+
+Person.prototype.work = function () {
+console.log(`${this.name} is working`);
+};
+
+Person.prototype.sleep = function () {
+console.log(`${this.name} is sleeping`);
+};
+
+same it is there in Array.Prototype
+
+Array.prototype.map = function() {
+
+};
+
+Array.prototype.forEach = function() {
+
+}
+
+AND AS personOne has access to all these methods like work, sleep smae every array we create have access to these
+methods also as .push does not exist on the array itself it exist on the Array.prototype but due to thw link all
+the arrays can access all the methods on the protoype of the Array. -->

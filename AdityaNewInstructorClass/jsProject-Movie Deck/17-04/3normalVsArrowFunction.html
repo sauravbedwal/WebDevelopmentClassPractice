@@ -1,0 +1,62 @@
+<!-- what is the differnece between regular function that we wrtiet by using function keyword and an arrow function -->
+<!-- Arrow function does not have any binding of this keyword. -->
+
+<!-- <script>
+    var x = "a";                            // if we use let and const these identifiers/variables do nont get connected to window object. as now in window object x property doesn exist that why it print undefined.
+    const obj = {
+        x: 10,
+        y: 20,
+        // f: function () {                 //in this case output is x=10 bcoz normal function have binding of this keyword means this keyword refers to obj object and we got x=10. 
+        //     console.log(this.x);
+        // }
+        f: () => {                         //in this case output is x=a bcoz arrow function doesnt have any binding of this keyword means this keyword doesnt refers to obj object and it will go one layer above and this.x here refers to window.x and we got x=a. 
+            console.log(this.x);
+        }
+    }
+
+    obj.f();
+</script> -->
+
+
+
+<script>
+    var x = "a";
+    const obj1 = {
+        x: true,
+        obj: {
+            x: 10,
+            f: () => {
+                console.log(this.x);
+            }
+        }
+    }
+
+    obj1.obj.f();                                 //want to accesss x = a
+</script>
+
+
+<!-- differnece between a function and method? -->
+<!-- a function that is a property of an object is known as a method. 
+and function that we write in open space which is not connected to an object is called a function.
+but technically everything is a part of an object as there is global object like window object. -->
+
+<!-- Event listerner- whenver a user interacts with the web Application its an event and whwnevwe a user does an event and
+     we want to perfrom certain logic/code to run then an event happens. there should be some code in our web application 
+     that is waiting to such evenet to happen and if the event happens we have an event listener which will listen to the event and perform the task that we wanted to be. -->
+
+<!-- API - Application Programming Interface, there exist an application that we can program/interact with and for that an interface is provided to us -->
+
+<!-- aynchronous Programming - which doesnt run in a synchronise manner. let we try to access some data/info from backend
+from some server..we cant preddict the time it will take bcoz we r not aware of size of the data, server very far of
+geographical location, possibility that our internet connect might break in between or our internet slow, may be server
+is connected to slow connection or servef connection is down.
+
+if we try to get our data in synchronise manner, we made an api call in which we trying get some data from a backend
+server and make it synchronous since we making it synchronous untill or unless we get a response we will not proceed
+further in processing any peice of code. and user cant interact with website as js is single threaded means it will do
+one job at a time and rightnow waiting for the response. thats a bad approaach and that is a blocking approach as that
+will block us to do something further.
+
+
+so we use asynchronise in which we make a request but we dont wait for the response and we continue with whatever we
+wanted to do and whenever we receive the response we process it. -->

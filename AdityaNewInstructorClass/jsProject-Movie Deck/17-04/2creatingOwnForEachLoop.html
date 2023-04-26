@@ -1,0 +1,19 @@
+<script>
+    Array.prototype.myForEach = function (cb) {
+
+        for (var i = 0; i < this.length; i++) {
+
+            cb(this[i], i, this)
+
+        }
+
+    }
+
+    const arr = ([1, 2, 3]);
+
+    arr.myForEach((elem, index, arr) => {
+
+        console.log(elem)
+
+    })
+</script>

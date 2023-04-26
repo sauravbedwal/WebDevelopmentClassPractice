@@ -1,0 +1,43 @@
+<!-- in this code we learend abt shorthand properties -->
+<script>
+    function greet() {
+        console.log("Hello!");
+    }
+
+    function chill(number) {                        //added this function by,yself to understood we can pass the argument also
+        console.log("holaa!", number)
+    }
+
+    const pm = "modi";
+
+    const score = 160;
+
+    const object = {
+        // greet: greet,                  //left greet is a key of a object and right greet is the function above, that is passing as a value to the key
+        greet,                  //if the key and the value is the same thing means key is pointing to a variable which also has the same name thne in this case we can simply use greet like this.and thats called shortHand properties. as we r assigning a function as a value to the key greet.
+        // chill: chill,
+        chill,
+        // pm: pm,                 //here also left side pm is key and right side pm is variable
+        pm,
+        // score: score,
+        score,
+        // smile: function () {            //its an inline function and anonymous also as it doesnt have any name.
+        //     console.log("hehe");
+        // },
+        smile() {                          //we can write it in this way also in a shorter way
+            console.log("hehe");
+        },
+    };
+
+
+    // console.log(object.greet === greet);           //will get true
+
+    //calling greet function normally 
+    greet();
+    //but as object.greet === greet so we can calling it this way
+    object.greet();
+
+    object.chill(10);
+
+    object.smile();           //callng the smile function
+</script>

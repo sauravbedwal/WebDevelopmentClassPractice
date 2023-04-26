@@ -1,0 +1,76 @@
+<!-- Fourth Rule: Window Binding to find out what is the this keyword with in a function -->
+<!-- 3. Window Binding  -->
+<!-- Dom is a tree structure which has multiples nodes where every node represents one html element and top most element is document node 
+and document node is top most bcoz document object has multiple methods on it like querySelector, getElement etc.
+with in document we habe html element and html have head and body and so on. but there is another node at the top of the document
+i.e. the window object basically everyhting else falls below it as window is the global object of DOM.
+Within every app that we use this window is the global object. Like document object we have Window object in whcih whatever is 
+there that is avaiable throguhout the all the js files.   -->
+
+
+<!-- here we learned abt window object -->
+<!-- <script>
+    var shouldIContinueaTheClass = 'Yes';           //when we create a variable with var in the global scope, the variable i.e. shouldIContinueaTheClass along wiht the value will be added to the window object. as anywhere with in the file we can access window.shouldIContinueaTheClass. but we dont use it bcoz it consider that we polluting the global name sapce. and if we use const or let it will not be added in window object. as setTimeout and setInterval are aprt of window object. as we can also access them window.setTimeout(() =>{}); or setTimeout(() =>{}); 
+    console.log(window);                           //we get huge object which has lot of methods and also the variable with its value. if we create the same variable in the function it wont be added to the window object.
+</script> -->
+
+
+<!-- //in this code we learned abt window ovject -->
+<!-- <script>
+    var age = 50;
+    function sayAge() {
+        console.log(this);                        //this keyword here is pointing to global/window object
+        //window.age === this.age
+        console.log("The age is", this.age);      //this.age will print 50 bcoz when we say var age = 100 then var creates this variable and adds it to the window object and this is the window object. 
+    }
+
+    const user = {
+        name: "Ayushmaan",
+        age: 100,
+    };
+
+    sayAge();                                     //to check the this keyword value we check where function envoked/called and check whether it is implicit binding as its not bcoz there is no .(dot) and nothing on left then not also explicit binding  bcoz no .call, .apply and .bind used, not also new binding bcoz no new keyword and not also lexical bcozx it is not arrow function when none of them are true then it means that the this keyword is pointing to the global object i.e. the window object.    
+</script> -->
+
+
+
+<!-- in this code this keyword pointint to string -->
+<!-- <script>
+    var age = 50;
+    function sayAge() {
+        console.log("The age is", this);        //this keyword is pointing to the string below but we dont use it like this as .call and .apply is used mostly with an array or an object
+    }
+
+    sayAge.call('Aditya Keri');    
+</script> -->
+
+
+<!-- here we learend abt pollyfills -->
+<!-- <script>
+    //pollyfills - if there is any modern function/feature like .map, .filter, EA6 methods, const, let, spread or rest all are new featuers BUT if we want them work in older browsers we cant use it as it is as we havw to create an replcaement for that an alteranative for those functions/featuers.                     
+    const maxNumberArray = [1, 2, 3, 4];
+    // const result = Math.max(...maxNumberArray);    //....maxNumberArray is spread operator which is a mdoern feature that cant be use in old browsers
+    const result = Math.max.apply(this, maxNumberArray);    //it will work in every browser whter new or old
+
+    console.log(result);
+</script> -->
+
+
+
+<!-- dicussed in next class as this code is incomplete so can ignore it  -->
+<!-- <script>
+    // const array = [1, 2, 3, 4];
+    //     const newArray = array.map((number) => {
+    //         return number * 2;
+    //     });
+
+    //creating our own map function (map pollyfill) and why to create as its already there bcz if we want to use it in old broseres we can use it
+
+    const array = [1, 2, 3, 4];
+
+    function myMap() {
+
+    }
+    console.log(newArray);
+
+</script> -->
