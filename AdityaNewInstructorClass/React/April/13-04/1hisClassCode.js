@@ -51,7 +51,8 @@ root.render(<App />);x
 
 //can use this just change name -  npm create vite@latest newton-react-app -- --template react-swc
 
-//if we do it by other method then only - npm i library name or if want just the linraries on which react app depend npm i
+//if we do it by other method then only - npm i library name or if want just the linraries on which
+// react app depend npm i
 
 // node modules carry libraries
 //if we import something and dont use any ./ then it means we importing something from node modules folder.

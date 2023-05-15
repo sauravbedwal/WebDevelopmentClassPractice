@@ -1,0 +1,15 @@
+<!-- as there are two ways to access properties -->
+<script>
+    const object = {
+        id: 1,
+        city: "Hyderabad",
+        state: "Telangana",
+    };
+
+    const property = "city";
+
+    object.city;
+    object["city"]; //everything in the object is considered as string the left side id,city,state also like "city" and we can provide string directly but this and above are almost similar and no sense to use [] with string but bybthis we can make it dynamic and pass any dynamic value/expression whoch will return a string ultimately tath we did below 
+
+    object[property]; //object.city  as the benifit is use dyna,ic proeprties
+</script>

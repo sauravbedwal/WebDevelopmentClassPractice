@@ -1,7 +1,7 @@
 //as sir created only one App.jsx file in which first he told abt rules of jsx and then erase it all and 
 // started making website using multiple Components in same App.jsx file as it is not written anywhere OR RESTRICTED
 // that we can't have multiple files like App.jsx so for better understandng and clean code i have created one more file
-// like App.jsx by the name of 2App.jsx in which we will do website making code and in App.jsx rule of jsx code 
+// like App.jsx by the name of 2Apptwo.jsx in which we will do website making code and in App.jsx rule of jsx code 
 //will be there.
 
 

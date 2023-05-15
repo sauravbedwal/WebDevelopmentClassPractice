@@ -1,0 +1,54 @@
+<!-- destruturing nirmally the was it needs to done and passing right arguments with same keys -->
+<!-- <script>
+    function greet(props) {
+        const { id, country } = props;                   
+        console.log(id, country);
+    }
+
+    greet({ id: 1, country: "USA" });
+    greet({ id: 2, country: "India" });
+</script> -->
+
+
+<!-- this code will give undefined bcoz we passed differnt keys like country and location as if we dont destructue 
+location then it won't show location value but if we do then also it will show undefined bcoz in first argument 
+we dont have location and in second argument we dont have country thats why keep siimilar keys and same goes for props -->
+<!-- <script>
+    function greet(props) {
+        const { id, country, location } = props;                   //destruturing
+        console.log(id, country, location);
+    }
+
+    greet({ id: 1, country: "USA" });
+    greet({ id: 2, location: "India" });
+</script> -->
+
+
+<!-- if we want to give differnet name we can do by this -->
+<!-- <script>
+    function greet(props) {
+        const { id, country: location } = props;                   //destruturing
+        console.log(id, location);
+    }
+
+    greet({ id: 1, country: "USA" });
+    greet({ id: 2, location: "India" });
+</script> -->
+
+
+
+
+<!-- we can either destructure with in the function body or within the function parameter  -->
+<script>
+    // function greet(props) {
+    //     const { id, country } = props;                   
+    //     console.log(id, country);
+    // }
+
+    function greet({ id, country }) {                   
+        console.log(id, country);
+    }
+
+    greet({ id: 1, country: "USA" });
+    greet({ id: 2, country: "India" });
+</script>

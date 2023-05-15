@@ -1,3 +1,4 @@
+// App.Jsx file
 
 import "./App.css";
 // Props
@@ -92,9 +93,10 @@ props will be passed as an argument to the ProductCard component
 // different props
 
 
+//  ----------------------------------------------------------------------------------------------
 
 
-// App.css
+// App.css file
 
 // body {
 //   margin: 0;
@@ -127,7 +129,7 @@ props will be passed as an argument to the ProductCard component
 // }
 
 
-
+// ---------------------------------------------------------------------------------------------
 
 
 
