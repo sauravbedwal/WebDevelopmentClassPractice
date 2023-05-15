@@ -308,23 +308,23 @@ props will be passed as an argument to the ProductCard component
 
 /* --------------------- Conditional rendering via props -------------------- */
 
-// const UserChatCard = ({ user, isOnline }) => {
-//   // Based on the requirement of the UI, you can choose the conditional rendering
-//   // strategy
-//   if (!isOnline) {
-//     return <p>{user} Not online!</p>;
-//   }
+const UserChatCard = ({ user, isOnline }) => {
+  // Based on the requirement of the UI, you can choose the conditional rendering
+  // strategy
+  if (!isOnline) {
+    return <p>{user} Not online!</p>;
+  }
 
-//   return (
-//     <div className="user-chat-card-container">
-//       <h3>{user}</h3>
+  return (
+    <div className="user-chat-card-container">
+      <h3>{user}</h3>
 
-//       {/* Circle Online Indicator */}
-//       {/* {isOnline && <span className="green-dot" />} */}
-//       <span className="green-dot" />
-//     </div>
-//   );
-// };
+      {/* Circle Online Indicator */}
+      {/* {isOnline && <span className="green-dot" />} */}
+      <span className="green-dot" />
+    </div>
+  );
+};
 
 // export const App = () => {
 //   return (
