@@ -1,0 +1,37 @@
+<!-- here we understood by js logic abt mapping solution (sol 3) of useState-->
+
+<!-- <script>
+    const MAPPING = {
+        sing : () => {
+            console.log("LAlala");
+        },
+    };
+
+    // if we want to call sing method we can do that by .(dot) operator or by passing string name respectively.
+    // as MAPPING.sing; and MAPPING["sing"]; returns us the function itself (function definiton).  
+
+    //calling a function
+    // MAPPING.sing();             
+    // MAPPING["sing"]();
+</script> -->
+
+<!-- ----------------------------------------------------------------------------------------------- -->
+
+<!-- Advantage of using MAPPING[] is as it can be dynamic -->
+
+<script>
+    const MAPPING = {
+        sing : () => {
+            console.log("singing!!");
+        },
+
+        dance() {                                 //write the function like this also
+            console.log("dancing!!!");
+        },
+    };
+
+    //so if field is sing it will call sing funciton but if it dance then it will call dance function.
+    const field = "sing";
+
+    MAPPING[field]();       //MAPPING['dance']();
+</script> -->

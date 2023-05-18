@@ -1,0 +1,54 @@
+<!-- here we understanding useState by an example of fucntions use in JS and the dispatch function, or initnal 
+    value or vvalue no need to think abt it that what value it  is or what dispatch functoin does  -->
+<!-- we have a function called useState in whihc there isa funciton dispatch and it returns us an array -->
+<script>
+    function useState(initialValue) {
+        function dispatch() {}
+
+        return [value, dispatch];
+    }
+
+//we dont care abt how the above part works that react will see we care abt the below part.
+const [count, setCount] = useState(0);             //DESTRUCTED AND GAVE DIFFERNET NAME TO VALUE AND DISPATCH
+
+// useState is a function
+//  useState accepts ONE argument, which is initialValue
+// useState returns an array. This array's first value is a simple value
+// and the second value of this array is always a function
+// useState returns an array which can be destructed
+</script>
+
+
+// ------
+import "./App.css";
+import { useState } from "react";
+
+// render
+
+// <App />
+// React -> App()
+
+// Whenever a state of a component changes, React will
+// re-render the component
+
+// Re-render -> App()
+
+const App = () => {
+  // const [status, setStatus] = useState("off");
+  const [isStatusOn, setIsStatusOn] = useState(false);
+
+  const handleStatusChange = () => {
+    // setStatus("on");
+    setIsStatusOn(!isStatusOn);
+  };
+
+  return (
+    <main>
+      <h1>Status : {isStatusOn ? "on" : "off"}</h1>
+      <button onClick={handleStatusChange}>Toggle Status</button>
+    </main>
+  );
+};
+
+// Named Export
+export { App };
