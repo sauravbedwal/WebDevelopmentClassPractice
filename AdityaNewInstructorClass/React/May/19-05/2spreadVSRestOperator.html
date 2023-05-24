@@ -1,0 +1,34 @@
+<!-- right side of equals to(=) is always spread operator and left side of it is rest operator -->
+
+<!-- spread operator -->
+<!-- <script>
+    const parent = {
+        id: 1,
+        city: "Hyderabad",
+    };
+
+    const child = {
+        ...parent
+    };
+
+    console.log(child);
+</script> -->
+
+
+<!-- rest operator -->
+<script>
+    const parent = {
+        id: 1,
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+    };
+
+    const { id, city, ...rest} = parent;           //destructuring the object i.e. parent object as we 
+                                                 //destructured id and city but we don't know how many prop. are there so we collection/gather rest of them and stored them in a variable called rest. 
+
+    console.log(child);
+</script>
+
+
+

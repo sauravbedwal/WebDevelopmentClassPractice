@@ -605,9 +605,3 @@ const App = () => {
 
 // Named Export
 export { App };
-
-
-
-//Another example of using multiple useState as here we adding one more useState i.e. designation as well as 
-// as they all belong to one specific collection which is user details so we can use only one state value 
-// that is an object.

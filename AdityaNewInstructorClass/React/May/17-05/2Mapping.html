@@ -1,0 +1,30 @@
+<script>
+    function setName() {
+        console.log("Setting name...");
+    }
+
+    
+    function setAge() {
+        console.log("Setting age...");
+    }
+
+    
+    function setEmail() {
+        console.log("Setting email...");
+    }
+
+    const MAPPING = {
+        name: setName,
+        age: setAge,
+        email: setEmail,
+    };
+
+    //field can be name | age | email
+    const field = "name";
+
+    
+    // const set = MAPPING.email;
+    // set -> setEmail
+    const set = MAPPING[field];
+    //set -> setName
+</script>

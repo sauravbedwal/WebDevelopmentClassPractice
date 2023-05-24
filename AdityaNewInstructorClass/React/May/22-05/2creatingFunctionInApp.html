@@ -1,0 +1,33 @@
+<!-- here if we call App() first it will follow the code line by line and create getInitialState funciton call it 
+and console it but when we call it again then again it follow the code line by line and create getInitialState
+function again whihc is not needed here -->
+
+<!-- <script>
+    function App() {
+        function getInitialState() {
+            return 2;
+        }
+
+        const result = getInitialState();
+        console.log(`Result is ${result}`);
+    }
+
+    App();
+</script> -->
+
+
+<!-- This is the better approach as we created te getInitialState function outside of App() so now it wont create
+again and again. -->
+<script> 
+    function getInitialState(number) {
+        // return 2;    
+            return number;
+        };
+
+    function App() {
+        const result = getInitialState(197);
+        console.log(`Result is ${result}`);
+    };
+
+    App();
+</script>

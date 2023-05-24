@@ -1,0 +1,31 @@
+<!-- <script>
+    const formDetails = {
+        firstName : "",
+        secondName : "",
+        email : "",
+    };
+
+    const field = "firstName";
+    const value = "Aditya";
+
+    const newFormDetails = {
+        ...formDetails,
+        //we want firstname: "Aditya"
+        [field] : value,                    //if we write field : value then it will be field : 'Aditya' so usage of [] is mandatory.
+        //[field] -> firstName 
+    };
+
+    console.log(newFormDetails);
+</script> -->
+
+<script>
+    const value = "Newton";
+    const id = "identity";
+    
+    const object = {
+        [id] : value,
+        // "identity" : value,
+    };
+
+    console.log(object);
+</script>
