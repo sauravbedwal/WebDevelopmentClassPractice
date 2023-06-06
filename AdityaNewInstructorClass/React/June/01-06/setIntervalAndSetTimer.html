@@ -1,0 +1,67 @@
+<!-- <script>
+    //in every 1 sec it will be called  
+    setInterval(() => {
+        console.log("I am called");
+    }, 1000)
+
+    //after 5 sec it iwll be called
+    setTimeout(() => {
+        console.log("I am called");
+    }, 5000)
+</script> -->
+
+
+
+<!-- <script>
+//  if we want to stop the intervalid that will be done by clearInterval() but clearInterval will need the id as
+//  setInterval returns an ID to us so we cna stoer it in intervalId variable and use that variable in clearInterval
+//  to stop the setInterval as there can be multiple setInterval so we need to tell whioch one we want to Stop by
+//  the help of id we will do that.  and here we doing the smae as we running setInterval for 5 seconds and then 
+//  stopping it by using clearInterval() inside setTimeout
+
+const intervalId = setInterval(() => {
+        console.log("I am called");
+    }, 1000);    
+
+//after 5 seconds, stop the interval
+    setTimeout(() => {
+        clearInterval(intervalId);
+    }, 5000);
+    
+</script> -->
+
+
+
+<!-- <script>
+    // just like clearInterval we also have clearTimeout its just it does not used much like clearInterval bcoz
+    // whatever time we gave to setTimeout aftet that it only run once but we can also use this in an ex like
+    // let say we gave a time to setTimeout i.e. 3 sec and when it will reach to 3 sec setTimeout will be triggered
+    // but befoer it reaches 3 sec in between we want to stop it then we can use clearTimeout now here setTimeout
+    // will not run bcoz before it runs when reached to 3 sec we stopped it  
+
+    const timeoutId = setTimeout(() => {
+        console.log("I am called");
+    }, 3000);
+
+    setTimeout(() => {
+        clearTimeout(timeoutId);
+    }, 2000);
+
+</script> -->
+
+
+<script>
+    // herer we created two different setTimeout and as we learened thta setTimeout returns an unique id so if we console
+    // it we will see that timerId1 has id 6 and timerId2 has id 7 given by browser
+        
+    const timerId1 = setInterval(() => {
+        console.log("Timer ongoing");
+    }, 1000);
+
+    const timerId2 = setInterval(() => {
+        console.log("Timer ongoing");
+    }, 2000);
+
+    console.log(timerId1);
+    console.log(timerId2);
+</script>
