@@ -1,0 +1,47 @@
+<!-- this js example is related to memo as in <OptimizedChild /> if we passing same props then it won't re-render
+again but if we passing an object with id: 1 then it will re-render again and again bcoz each time it has different 
+reference. -->
+
+<!-- <script>
+    function greet(user) {
+        console.log(user.name);
+    }
+
+    greet({ name: "Aditya" });   //object literal as three of them contain the same property and value but all the three of them are diff. values doe to diff. reference.
+    greet({ name: "Aditya" });
+    greet({ name: "Aditya" });
+</script> -->
+
+
+
+<!-- here it wont re-render again bcoz this time it is the same object bcoz the reference is the same  -->
+
+<!-- <script>
+    function greet(user) {
+        console.log(user.name);
+    }
+
+    const user_details = {
+        name: "Aditya",
+    };
+
+    greet(user_details);   //object literal
+    greet(user_details);
+    greet(user_details);
+</script> -->
+
+
+
+<script>
+    function greet(user) {
+        user.name = "Abhishek";
+    };
+
+    const user_details = {
+        name: "Aditya",
+    };
+
+    greet(user_details);
+    console.log(user_details.name);
+  
+</script>

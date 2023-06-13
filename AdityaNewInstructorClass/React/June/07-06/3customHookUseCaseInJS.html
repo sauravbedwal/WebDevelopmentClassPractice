@@ -1,0 +1,14 @@
+<!-- we want the dynamic letter/character for each name as it can be differnt like for nameOne can be 1 and
+ for nameTwo can be 2 -->
+
+<script>
+    function transform(string, index) {
+        return string.split('')[index].toUpperCase();
+    };
+    
+    const nameOne = 'Aditya';
+    transform(nameOne, 1);
+
+    const nameTwo = 'Abhishek';
+    transform(nameTwo, 2);
+</script>
