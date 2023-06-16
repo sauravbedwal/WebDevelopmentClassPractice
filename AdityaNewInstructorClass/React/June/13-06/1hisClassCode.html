@@ -1,0 +1,103 @@
+<!-- import { combineReducers, createStore } from "redux";
+
+console.clear();
+
+// When you drop off a form
+// CREATE POLICY
+// Action Creator -> function
+const createPolicy = (name, amount) => {
+  return {
+    // Action (a form) -> an object and Type property is mandatory and payload property is optional
+    type: "CREATE_POLICY",
+    payload: {
+      name: name,
+      amount: amount
+    }
+  };
+};
+
+// DELETE POLICY
+const deletePolicy = (name) => {
+  return {
+    type: "DELETE_POLICY",
+    payload: {
+      name: name
+    }
+  };
+};
+
+// CREATE CLAIM
+const createClaim = (name, amountOfMoneyToCollect) => {
+  return {
+    type: "CREATE_CLAIM",
+    payload: {
+      name: name,
+      amountOfMoneyToCollect: amountOfMoneyToCollect
+    }
+  };
+};
+//once we have the action then it will be dispatch (dispatch is a function) to the all the Reducers 
+
+
+// Reducers (Departments) 
+const claimsHistory = (oldListOfClaims = [], action) => {
+  if (action.type === "CREATE_CLAIM") {
+    const newClaim = action.payload;
+    return [...oldListOfClaims, newClaim];
+  }
+
+  // This department doesn't care about this form type
+  return oldListOfClaims;
+};
+
+const accounting = (bagOfMoney = 100, action) => {
+  if (action.type === "CREATE_CLAIM") {
+    return bagOfMoney - action.payload.amountOfMoneyToCollect;
+  }
+
+  if (action.type === "CREATE_POLICY") {
+    return bagOfMoney + action.payload.amount;
+  }
+
+  return bagOfMoney;
+};
+
+const policies = (listOfPolicies = [], action) => {
+  if (action.type === "CREATE_POLICY") {
+    return [...listOfPolicies, action.payload.name];
+  }
+
+  if (action.type === "DELETE_POLICY") {
+    return listOfPolicies.filter(
+      (policyHolderName) => policyHolderName !== action.payload.name
+    );
+  }
+
+  return listOfPolicies;
+};
+
+// Once reducers are created
+// 1. Combine them
+// 2. Create a store from them
+
+// Combine all reducers -> will give us the final state
+
+const ourDepartments = combineReducers({
+  accounting: accounting,
+  policies: policies,
+  claimsHistory: claimsHistory
+});
+
+const store = createStore(ourDepartments);
+
+store.dispatch(createPolicy("Alex", 20));
+store.dispatch(createPolicy("Jim", 50));
+store.dispatch(createPolicy("Pam", 150));
+// 320
+
+store.dispatch(createClaim("Alex", 100));
+// 320 - 100 = 220
+
+store.dispatch(deletePolicy("Alex"));
+
+console.log(store.getState());  -->
