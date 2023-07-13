@@ -1,0 +1,2 @@
+CPU Intensive work (Complex calculation, Graphics processing etc) => Java, Python, C#
+IO Intensive (Reading of file, promises, async action, network communication) => JavaScript (Rapid Development)

@@ -1,0 +1,35 @@
+<script>
+    import { useState } from "react";
+    import Header from "./components/Header";
+    import ProductListing from "./components/ProductListing";
+    import "./styles.css";
+
+    console.clear();
+
+    export default function App() {
+        const [selectedItems, setSelectedItems] = useState([]);
+
+        const onSelectItem = (item) => {
+            // Adding the item from ProductListing to selectedItems
+            setSelectedItems((prevItems) => [...prevItems, item]);
+        };
+
+        const onRemoveItem = (id) => {
+            // Remove the item with the given id from selectedItems state
+            setSelectedItems((prevItems) => {
+                return prevItems.filter((item) => item.id !== id);
+            });
+        };
+
+        return (
+            <div>
+                <Header cartCount={selectedItems.length} />
+                <ProductListing onSelectItem={onSelectItem} selectedItems={selectedItems} onRemoveItem={onRemoveItem} />
+            </div>
+        );
+    }
+</script>
+
+https://codesandbox.io/s/react-portal-aditya-keri-newton-1v77ii
+
+https://codesandbox.io/s/delicate-sun-4fz4jk

@@ -1,0 +1,8 @@
+*Learned abt OS Core Modules and FS Modules.*
+
+Steps to setup a backend application based on NodeJS
+1. create a folder
+2. run npm init in the folder
+3. answer basic quetsions asked by npm
+4. create a index.js file and write your code
+5. run the file by running command node <filename> e.g node index.js

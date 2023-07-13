@@ -1,0 +1,152 @@
+<!-- reduce method as we can use this when we want to group together an array of items based on a certain value
+or if we have an array of numbers so we can get sum of all the numbers -->
+<!-- <script>
+//Without 2nd argument
+const array = [1, 2, 3, 4, 5];
+
+//reduce
+array.reduce((accumulator, currentElement) => {
+    return accumulator + currentElement;                //accumulator = 1 and currentElement = 2
+});
+
+//1st iteration
+//accumulator -> 1, currentElement -> 2
+//return 3
+
+
+//2nd iteration
+//accumulator -> 3, currentElement -> 3
+//return 6
+
+
+//3rd iteration
+//accumulator -> 6, currentElement -> 4
+//return 10
+
+
+//4th iteration
+//accumulator -> 10, currentElement -> 5
+//return 15
+</script> -->
+
+
+<!-- //-------------------------------------------------------------------------------------------------- -->
+
+
+<!-- <script>
+//With 2nd argument
+const array = [1, 2, 3, 4, 5];
+
+array.reduce((accumulator, currentElement) => {
+    return accumulator + currentElement;                //accumulator will begin with value = 0 and currentElement will be first element = 1
+}, 0);
+
+// this time we will have 5 iterations
+
+//1st iteration
+//accumulator -> 0, currentElement -> 1
+//return 1
+
+
+//2nd iteration
+//accumulator -> 1, currentElement -> 2
+//return 3
+
+
+//3rd iteration
+//accumulator -> 3, currentElement -> 3
+//return 6
+
+
+//4th iteration
+//accumulator -> 6, currentElement -> 4
+//return 10
+
+
+//5th iteration
+//accumulator -> 10, currentElement -> 5
+//return 15
+</script> -->
+
+
+<!-- //-------------------------------------------------------------------------------------------------- -->
+
+
+<!-- we want to reduce this users array in one object like 
+
+Group users by "skill"
+{
+    JavaScript: [{ id: 1, skill: "JavaScript" }, { id: 3, skill: "JavaScript" }],
+    Python: [{ id: 2, skill: "Python" }, { id: 4, skill: "Python" }],
+} -->
+<script>
+const users = [
+{ id: 1, skill: "JavaScript" },
+{ id: 2, skill: "Python" },
+{ id: 3, skill: "JavaScript" },
+{ id: 4, skill: "Python" },
+];
+
+// we can do that by this also but if we got 10 more skills here then we have to write it again so weuse redcue here
+// const pythonUsers = users.filter((user) => user.skill === "Python");
+// pythonUsers;
+
+//if in array we already have skill then we will simply push it {
+//     JavaScript: [{ id: 1, skill: "JavaScript" }];
+// }
+
+const groupBy = () => {
+    users.reduce((accumulator, currentElement) => {
+        // const skill = currentElement.skill;
+        const { skill } = currentElement;                      //destructured skill as above line it is normal
+        if (skill in accumulator) {
+        //Room is present
+            accumulator[skill].push(currentElement);
+        } else {
+        //Room not present
+            accumulator[skill] = [currentElement];
+        }
+        //NEVER FORGOT THIS!!!!! ALWAYS RETURN ACCUMULATOR!
+        return accumulator;
+    }, {});
+};
+
+groupBy();
+
+
+//1st iteration
+//accumulator -> {}, currentElement -> { id: 1, skill: "JavaScript" }, 
+
+//accumulator -> { JavaScript: [{ id: 1, skill: "JavaScript" }] }
+// return accumulator
+
+//2nd iteration
+//accumulator -> { JavaScript: [{ id: 1, skill: "JavaScript" }] }, currentElement -> { id: 2, skill: "Python" },
+
+//accumulator -> { 
+//     JavaScript: [{ id: 1, skill: "JavaScript" }],
+//     Python: [{ id: 2, skill: "Python" }]
+// }
+// return accumulator
+</script>
+
+
+
+
+
+
+
+<!-- gaane p gaana bna denge hum
+jab jab ye dil dujhega sanam
+pyaar ye keemti iski na koi rakam
+jha tune choda tha vhi h hum
+hein khaate kasam 
+jo deti tu sath nibahte har ek rasam
+rkha ye dil saaf rkhe h nek karam
+alwasy touch to the reality na koi bharm
+ankhon m dekho tph aati sharam
+hum gaaye dil-e-haal hota bharham
+uss raat dekha jo chaand aai tum yaad 
+bechaini seene m aur jalta sa mein 
+krta faryaad or likhta nazam -->
+

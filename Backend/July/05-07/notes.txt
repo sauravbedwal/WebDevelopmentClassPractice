@@ -1,0 +1,16 @@
+*Learned abt FS Core Modules*
+
+Core Modules : 
+1. os
+2. fs
+3. events
+4. http
+
+
+HTTP Server
+1. http module import
+2. http.createServer()
+3. listne(portNo)
+
+
+in synchronus format is same its just we wont give the callback function.

@@ -1,0 +1,165 @@
+
+<!-- ******************************************** Virtual DOM ******************************************* -->
+
+
+<!-- let say in App comp. we returning  
+
+<div id="root">Hello World</div>
+
+as when we write html in react comp. browsers don't really undderstand and there is a tool which used to
+convert jsx to something that browser can undderstand and the tool is Babel. 
+and BTS react will convert that entire jsx into React.createElement() wiht some argument i.e. 1. waht is the 
+type of the element, and second is whatever he props we passing to the element, and third one is Children
+menas whatever is in b/w the openeing and the closing tag thats the CHildren.   
+
+
+we can pass the children by two ways:
+React.createElement('div', {id: "root"}, 'Hello World')
+React.createElement('div', {id: "root", children: 'Hello World'})
+
+
+as we can return this also in react comp and we will get the same result.
+and before jsx was popular people used to write it like that only.
+
+as we can imagine that in react file createElement will be a function which have 3 parameters i.e. elementType, props, and 
+...children props.
+
+function createElement(elementType, props, ...children) {
+} -->
+
+
+<!-- ----------------------------------------------------------------------------------------------------- -->
+
+
+<!-- 
+another example
+
+<span className="active">Newton</span>
+
+React.createElement('span', {className: "active", children: "Newton"}) -->
+
+
+<!-- ----------------------------------------------------------------------------------------------------- -->
+
+
+<!-- as previously we had only one children but now as we have more than one children i.e. two children in b/w 
+<div></div> tag so we can use an array and now if we take first span so it is same as we doing for above text
+in b/w a tag so react will convert this to React.createElement and as there is no prop so we used null in
+argument 
+ 
+<div>
+    <span>Hello</span>
+    <span>World</span>
+</div>
+
+
+//<span>Hello</span>
+//<span>World</span>
+
+React.createElement('div', {
+    children: [
+    React.createElement('span', null, 'Hello'),
+    React.createElement('span', null, 'World')
+    ] 
+}) -->
+
+
+<!-- ----------------------------------------------------------------------------------------------------- -->
+
+
+<!-- <div id="root">Hello World</div>
+
+React.createElement('div', {id: "root"}, 'Hello World')
+
+and as its a function call means react is calling a function so it must return somthing and in this case
+funciton will return one object 
+
+and object is something like this not exactly but somthing lik this
+
+/*
+React Element :
+{
+    type: "div",
+    key: null,
+    ref: null,
+    props: { id: "root", children: "Hello World" },
+    _owner: null,
+    _store: {}
+}
+
+
+Whenever we do console.log we get a very big object as it has so many thing in it and that is what we called
+html element and DOM is made up of all of such html elements. 
+and React Element is equavivalent to html element as with in the real DOM we have html elements but react uses
+something called Virtual DOM and virtual DOM consists of all react elements which is a smaller object compared
+to html element as it is much more light weight and that is what Virtual DOM is made up of.   
+
+*/ -->
+
+
+<!-- ----------------------------------------------------------------------------------------------------- -->
+
+
+<!-- 
+in the frist render when react will come across a comp like
+<div id="root">Hello World</div>
+
+now react will take this and react will construct a Virtual DOM with this as Virtual DOM is similar to real DOM
+just that in real DOM it consists of html elements but Virtual DOM here is constructed using React Elements i.e
+the object. so react will come across div tag and then convert this into an object and then create a node with
+the object and that node will contain the react element object. 
+
+and if div tag contains <span></span> tag inside it or have other components also then it will create Virtual
+DOM from all of those nodes where every node is a react element and thats the differnce b/w real and Virtual
+DOM.
+
+As, in real DOM every single node consists of html element which is a really big object but Virutal DOM
+ consists of react elements bcoz of which the Virtual DOM entirely is much more light weight than real DOM.
+ 
+A Virtual DOM is a light weight representation of the real DOM. 
+
+AND once react construct Virtual DOM with react elements and then react will take the Virtual DOM and added to
+the actual DOM.
+SO react will take the Virtual DOM and it will construct the real DOM out of the Virtual DOM in the first 
+render. -->
+
+
+<!-- ----------------------------------------------------------------------------------------------------- -->
+
+
+<!-- Whenever there is a re-render let say
+<h1>Count: {count}</h1>
+<h3>Hello World</h3>
+and between both of them h1 tag will change bcoz it has count value. so now react will remember the Virtual DOM
+that we had in initial render and react will construct a new Virtual DOM from scractch looking at the new update
+so whatever changed in re-render will be formed with rest element will be same and now when react will update the real DOM
+it will check that which element is actually changed and in real DOM it will change only that part.   -->
+
+
+<!-- ----------------------------------------------------------------------------------------------------- -->
+
+
+<!-- ********************************************** Portals ********************************************* -->
+
+<!-- 
+
+with in body we have div with id of root whihc is presnet is index.html file and in body we dont have other
+ elements as we have only div and script here and in main.jsx whwatever element  we render ultimately <App />
+ will be render isnide div tag in index.html 
+ ultimately react will construct the virtual dom looking at this <App /> inmain.jsx file and by going isnide
+ <App /> and whatever is inside App will be construct huge virtual DOM and it finally insert everything with in 
+ our div tag in index.html file.
+
+ but what if we don't want to render our content inside div tag with id of root as every comp we make with in
+ our APP comp come inside the App comp as its the top level comp and app is renderng insid ethe div tag wth id root
+ menas every single element will basically be render inside div tag with id of root.
+ but what if we want to render something not inside the div we want to create an element after div and we want to 
+ render there and that is basically possible using Portals.
+ 
+
+ LET SAY WE CREATED A new div with id of portal just below the div tag with id of root in index.html file
+
+<div id="root"></div>
+<div id="portal"></div>
+
+ so we can create a component and we can basically rend it in this div tag with id of portal. -->
