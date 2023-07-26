@@ -1,0 +1,13 @@
+
+
+API 
+React -> Backend (Node)
+Client => Server
+
+Server => Server
+
+Environment Variables
+Set : Manual process done by a different way in different OS
+Get : process.env.VARIABLE_NAME
+
+Middleware : 

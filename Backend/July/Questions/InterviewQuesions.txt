@@ -1,0 +1,3 @@
+11-07
+1. explain the working of node.js or js in genreal?  --> taught in 10-07 class
+2. Architecture of node js is comletely event driven as eveyrhting is based on event?  --> taught in 11-07

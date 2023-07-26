@@ -112,7 +112,9 @@ const folderExists = () => {
 //-----------------------------------------------------------------------------------------------------------
 
 
-// Example of events as here we sa the use case of it regarding of traffic signal
+// Example of events as here we sa the use case of it regarding of traffic signal and that is CUSTOM EVENT as
+// we genrearted the event ourself as EVENT emited and captured manually
+
 
 // const myEmitter = new events.EventEmitter();
 // const SIGNAL_CHANGE = "SIGNAL_CHANGE";
