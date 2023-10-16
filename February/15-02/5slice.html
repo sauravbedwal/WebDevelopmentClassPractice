@@ -1,12 +1,39 @@
 <script>
     var list = [45, 55, 11, 12, 44, 31];
     //slice will remove the element at any position
-    //it will not change the original array
+    //extract a portion of an array and it will not change the original array as create a new array from it. 
     //we have two argument
-    //first one is index start from zero
-    //second is element name that will start from one.
+    //first one is index (start from zero) from where we want to remove the element.
+    //second is index till the element we want to remove but does not include this index.
+
+    //The two arguments you provide to slice are the start index & the end index.The end index is exclusive,
+    // meaning the element at that index is not included in the slice.
     console.log(list);
-    var result = list.slice(1, 2);
+    var result = list.slice(0, 3);
     console.log(result);
     console.log(list);
 </script>
+<!-- In this case, slice(0, 3) starts at index 0 and goes up to, but does not include, index 3. So, it includes elements at
+indices 0, 1, and 2, which are 45, 55, and 11 respectively. -->
+
+
+
+<script>
+    var result1 = list.slice(1, 3);
+    console.log(result1); // [55, 11]
+
+    var result2 = list.slice(2, 3);
+    console.log(result2); // [11]
+
+    var result3 = list.slice(3, 3);
+    console.log(result3); // []
+</script>
+
+<!-- slice(1, 3) starts at index 1 and goes up to, but does not include, index 3. So, it includes elements at indices 1 and
+2, which are 55 and 11 respectively.
+
+slice(2, 3) starts at index 2 and goes up to, but does not include, index 3. So, it includes only the element at index
+2, which is 11.
+
+slice(3, 3) starts at index 3 and goes up to, but does not include, index 3. Since the start and end indices are the
+same, an empty array [] is returned. -->

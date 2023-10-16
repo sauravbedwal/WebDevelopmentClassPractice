@@ -1,0 +1,13 @@
+Store: A plain object whihc contains all the data of an App (THERE CAN ONLY BE 1 STORE IN AN APPLICATION)
+Reducer: It is a function which updates the data in store of a particular module (THERE CAN BE MULTIPLE REDUCERS DEPENDING ON THE NO. OF MODULES)
+Action:  It is a plain object with 2 key value pairs, which are type and payload.
+
+
+Configuring Redux
+
+1.Install required packages redux, react-redux, @reduxjs/toolkit 
+2. Create a store (Centarlized state of the app)
+3. Connect store with all components of the app 
+4. Create reducer for all modules
+5. Create actions for all variables ig every reducer 
+6. Update the state data by dispatching actions

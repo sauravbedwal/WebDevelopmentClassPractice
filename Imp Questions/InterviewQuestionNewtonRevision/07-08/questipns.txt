@@ -1,0 +1,36 @@
+React JS Lifecycle?
+
+Class Based
+Functional Components - more effecient, less code, performance optimization.
+
+Redux? 
+
+
+https://bytescare.lol/
+
+import React from "react";
+
+class Demo extends React.Component { 
+    // Inheriting Component Class
+ constructor() {
+    super(); // Initializes React's component class console.log("Hello from Constructor");
+    console.log("Hello from Constructor");
+    this.state = {
+        count: 0,
+    };
+ } 
+
+componentDidMount() {
+    console.log("Hello from ComponentDidMount");
+    // Call an API
+}
+
+componentDidupdate() {
+    console.log("Hello from ComponentDidUpdate"); // ??
+}
+
+render() {
+    console.log("Hello from Render");
+    return <h1>React Revision</h1>;
+    }
+}
