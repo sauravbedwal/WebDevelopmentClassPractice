@@ -50,7 +50,6 @@ function App() {
   //   </div>
   // );
 
-
   /******************************************************************************************************/
 
   //Stopwatch different method
@@ -100,11 +99,10 @@ function App() {
   //   </div>
   // );
 
-
   /******************************************************************************************************/
-  
+
   //Countdown
-  
+
   // const [count, setCount] = useState(10);
   // const [click, setClick] = useState(false);
   // let id;
@@ -138,12 +136,11 @@ function App() {
   //     )}
   //   </div>
   // );
-  
-  
+
   /******************************************************************************************************/
-  
+
   //output the no. of abcd
-  
+
   // const [input, setInput] = useState("");
   // const inputHandler = (e) => {
   //   console.log(e.target.value);
@@ -164,6 +161,47 @@ function App() {
   //     <div>{input}</div>
   //   </div>
   // );
+
+
+  /******************************************************************************************************/
+
+//Make a pagination of 5 pages and show 10 items in each page
+
+  const itemsPerPage = 10;
+  const itemArray = Array.from(
+    { length: 50 },
+    (_, index) => `Item${index + 1}`
+  );
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = itemArray.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(itemArray.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  return (
+    <div className="App">
+      <div>
+        {currentItems.map((item) => (
+          <p key={item}>{item}</p>
+        ))}
+      </div>
+
+      <div>
+        {Array.from({ length: totalPages }).map((_, index) => (
+          <button key={index} onClick={() => handlePageChange(index + 1)}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default App;
