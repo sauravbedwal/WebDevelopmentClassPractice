@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namaste React</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1>header</h1>
+    <div id="root"></div>
+    <div id="root2">Not Rendered</div>
+    <h2>footer</h2>
+
+    <!-- using plain js to print hello Everyone -->
+    <script>
+        const heading1 = document.createElement('h1');
+        heading1.innerHTML = "Hi Everyone by Javascript";
+
+        const attach = document.getElementById("root");
+
+        attach.appendChild(heading1);
+    </script>
+
+
+    <!-- Here we are injecting react in web page using CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <!-- react@18 means latest version of react -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
