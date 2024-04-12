@@ -1,0 +1,109 @@
+in package.json file :
+start:  starting the project in dev mode
+build: build our project in production mode
+
+for instaliing we used npm i parcel and if we want it to be in dev dependencies then npm i -D parcel
+for executing it we use npx parcel index.html for dev mode and for production mode it is 
+npx parcel build index.html
+
+for shortcut we cna also use npm start directy but it will only for dev mode for build we have to use
+npm run build
+npm start =  npm run start
+
+React.createElement => Object => (WHEN RENDERING THIS OBJECT ON TO THE DOM IT BECOMES) =>  HTML Element
+
+// React.createElement => ReactElement (JS Object) =>  HTML Element(render)
+
+// creating element using core React
+const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
+console.log(heading); //object
+
+
+react creates the element but rendering it to the DOM and display on browser we use reactDom
+
+JSX is not a part of react as they both are very different. we can make a big application wuthoyt using 
+JSX also but JSX make develoer life easy as ts syntax is easy compared to react.
+
+JSX - Its a convention where we merge js and html together.
+
+JSX is not HTLM inside JS. It looks like HTML. JSX is HTML like syntax. 
+
+JSX is not pure js as js engine/browser doesnt understand JSX. JS is a code that js engine understand. 
+JS engine understand ecma script language. so now the code (JSX) is transpiled before it goes to the
+js engine AND then js engine recives the code that brower can understand. and transpilig of code is done 
+by PARCEL and Parcel is also not doing itself as Parcel is like a manager and it done by a package called
+BABEL.
+
+BABEL is a JS compiler and transpiler as it takes the code and converts it to the code that browser/js 
+engine understand.
+
+// JSX - HTML-like or XML-like syntax
+// JSX - (transpiled before it reaches the JS Engine) - PARCEL - BABEL
+// JSX => Babel transpiles it to React.createElement => ReactElement (JS Object) =>  HTML Element(render)
+
+
+BABEL coverts JSX code into React.createElement and now react understands the code. 
+
+--------------      
+// React.createElement => ReactElement (JS Object) =>  HTML Element(render)
+
+// creating element using core React
+// const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
+
+// console.log(heading); //object
+
+
+// JSX - HTML-like or XML-like syntax
+// JSX - (transpiled before it reaches the JS Engine) - PARCEL - BABEL
+// JSX => Babel transpiles it to React.createElement => ReactElement (JS Object) =>  HTML Element(render)
+
+// creating element using JSX
+//React Element
+const jsxHeading = <h1 id="heading">Namaste React using JSX</h1>;
+console.log(jsxHeading);
+-------------
+//React Component
+Class Based Component - OLD
+Functional Component - NEW 
+
+Functional Component is a normal js Function which returns some piece of JSX or some JSX element.
+
+JSX is a React element.
+
+A js Function which returns a react element(JSX) is Functional Component.
+
+
+const HeadingComponent = () => {
+    return <h1 className="heading">Namaste React Functional Component</h1>;
+}
+
+const HeadingComponent2 = () => <h1 className="heading">Namaste React Functional Component</h1>;
+
+Both are same thing as we have only one statement so we can avoid using return and curly braces.
+
+    if more than one statement then enclosed either in div or react fragments <></>.
+
+what is component composition?
+-composing two components into one another.
+
+
+//Component Composition
+const HeadingComponent = () => <div className="container">
+    <Title />
+    <h1 className="heading">Namaste React Functional Component</h1>
+</div>
+
+
+as i can also render a react element instead of react component means heading instead of HeadingComponent.
+as we can put a React component inside another react component and a react element inside another react
+element also react element inside a react component and react component inside a react element its just 
+for react element we should use {} and for react component < />
+
+JSX sanitise the data before executing it as if we call an API and if somebody truy to do malacious data
+they cant do it bcoz of JSX.
+
+<Title /> = <Title></Title>  
+same thing  
+
+also we can call thr react component like {Title()} a Function bcoz at the end of the day react is JS only
+and we can call js inside {}.
