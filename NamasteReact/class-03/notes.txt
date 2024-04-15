@@ -21,6 +21,8 @@ console.log(heading); //object
 
 react creates the element but rendering it to the DOM and display on browser we use reactDom
 
+JSX is a JavaScript syntax which is easier to create react elements.
+
 JSX is not a part of react as they both are very different. we can make a big application wuthoyt using 
 JSX also but JSX make develoer life easy as ts syntax is easy compared to react.
 
