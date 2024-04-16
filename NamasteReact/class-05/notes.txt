@@ -1,0 +1,104 @@
+- utils like utilities that we will use all across our app so we created utils folder & kept the common data there
+
+- Two types of Export and Import i.e Default and Named export/import.
+
+- Default Export/Import
+
+export default Component;
+import Component from "path";
+
+- Named Export/Import
+
+export const Component;
+import {Component} from "path";
+
+as for default export we cannot export more than one thing from the same file.
+so if we want to export more than one thing from the same file we do named export.
+
+- Functional Component end of the day is a normal JS function.
+- React element end of the day is a plain JS object.
+- React Hook is a normal JS function which is given to us by React.
+
+- React Hooks
+(Normal JS utility functions)
+- useState() - Superpowerful State Variables in react
+- useEffect()
+
+- useState used to create local state variable inside functional components bcoz it maintains the state of
+ the Component - never use outside component
+useState returns an array - first element is a local state variable - second is function to modify that 
+state variable.
+		
+        - in html onchange - in react onChange
+		- for ui change use state variables
+		- Never create useState inside if else or loops, always on top. 
+
+-  This is the smae thing as in both the cases we creating a variable.
+
+    //Normal JS Variable - it doesn't update the UI
+    let listOfRestaurants = [];
+
+    //State Variable - Super Powerful Variable
+    const [listOfRestaurants] = useState([]);
+
+
+we can pass any default/initial value to useState like here we passed an empty array, we can pass anything
+like null, 0, "" or some value.
+
+if we use useState it will keep the UI in sync with the variable. as soon as our listOfRestaurants changes
+it will automatically refresh/update our Component and this is known as render.
+Whenever a state variable updates react re-render the Component.
+
+- Reconciliation Algorithm - In React 16, this new Algorithm to update the DOM came out i.e Reconciliation.
+Whenever something changes on the UI is known as Reconciliation. Now, this new Algorithm came in React 16.
+after React 16 this Algorithm is known as React Fiber. This React Fiber is a new way of finding the div 
+and updating the DOM.    
+
+- if we do console.log(<Body />) means console any component so it will print an object and that is 
+Virtual DOM. Virtual DOM is a representation of Actual DOM.
+
+ACTUAL DOM is like nested tags like :
+
+        <div>
+            <div>
+                <h1>
+                    <img />
+                </h1>
+            </div>
+        </div>
+
+Virtal DOM will be like representation of this Actual DOM but it will be in a form of Object.
+ 
+    React.createElement("h1", {},"") => React Element(Object)
+    This React.createElement returns a React Element and this React Element is an Object.        
+
+- Diff Algorithm : It finds out the differnece between two Vritual DOM i.e. the updated Virtual DOM and 
+the previous Virtual DOM. So it calculate the differnece and it will then actually update the DOM on every
+render cycle.
+
+- Virtual DOM is a object representation of Actual DOM. So when we do any changes like filtered the data
+then a new object is formed means a updated Virtual DOM and as react finds out the differnce between these
+two objects then it actually updates the DOM.
+
+- Why react is fast?
+bcoz react do the effeicient DOM manipulation bcoz it has a Virtual DOM.
+
+- Virtual DOM is a software engeinerring concept as it became famous after react as react took that and 
+built its code Algorithm over that Virtual DOM.
+
+React can effeiciently find out the differnce between Virtual DOM's and update the UI. This is the core of
+React's Algorithm.
+
+- for this useState behind the scenes its just destructuring.
+
+    const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+
+// this is pure JS and here its destructuring behind the scenes
+
+    const arr = useState(resList);
+    const [listOfRestaurants, setListOfRestaurants] = arr;
+
+also it will work like that and if it break it more then its like
+
+const listOfRestaurants = arr[0];
+const setListOfRestaurants = arr[1];
