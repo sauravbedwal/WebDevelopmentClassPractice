@@ -1,0 +1,72 @@
+1. Monolith Architecture : Traditonally, web apps were develop using Monolith Architecture. 
+   - Huge Big project as it has code of API, UI, AUTHENTENTICATION, DATABASE, SMS insise the same project.
+   - Single change like changing color of a button, built and deploy the whole project.
+   -  In Monolith Architecture, if we have one big project a JAVA application then we have to do everything
+    in JAVA.
+  
+
+2. Microservice Architecture : Different services for Different jobs like Backend service, UI service, 
+AUTHENTENTICATION service, DATABASE service, SMS service, Email Notification service.
+   - All  micro services combined together forms a big app.
+   - This is known as Seperation of Concerns and Single Responsiblity principle.
+   - Each and every service has its own job as nobody interfering with it.
+   - All these services talk to each other like UI talks to Backend, Backend talks to DATABASE, Backend talks 
+   to AUTHENTENTICATION etc.
+   - In Microservice, we can have Different tech stack for Different things like UI is written in React,
+   Backend written in JAVA, DATABASE written in PYTHON, SMS service written in Go lang etc. 
+   - All services run on their own specific ports like on port 1234 : UI, on port 1000: Backend, 
+   on Port 3000: SMS.
+   - At the end, all these ports can be map to domain name. For ex: domain name - Namastereact.com,
+   Namastereact.com/api (for api service), Namastereact.com/sms or we can deploy the UI on just / also. 
+
+3. Two ways how web apps fetch the data from Backend
+   
+   - Page load ==> API call(wait for data to come) ==> Render
+   - Page load ==> Render UI(skeleton) ==> API call(wait for data to come) ==> Re-Render  
+   
+   - we prefer second approach always as its give us better UX till the Data come we render whatever we can
+   like the skeleton as user can see something on website and then slowly website loads.
+
+4. useEffect() : It takes two arguments, callback function and array of depenedencies.
+
+useEffect(() => {
+    console.log("useEffect Called");
+}, []);
+
+   - useEffect runs after the Component is rendered. 
+   - When Component will render it will render it as soon as the render cycle is finished it will just 
+   quickly called the callback function of useEffect.
+   - If we have useEffect in a Component and below that console.log then it will print console first and 
+   then useEffect.
+
+    for ex: 
+        useEffect(() => {
+        console.log("useEffect Called")
+    }, [])
+
+    console.log("Body rendered");
+
+   console "Body rendered" will be rendered first then useEffect bcoz as Body component rendered line by 
+   line as soon as it sees useEffect it will save this callback function to call it after render then it
+   moved ahead then it logs "Body rendered" then it renders the JSX under return and then it calls the 
+   useEffect.
+
+5. We fetch the data by using fetch. fetch is given by browsers as its a superporwer which a js engine have.
+
+6. Can't call swiggy's api or any other api as calling swiggy's api from local host has been blocked due to
+CORS policy. Our browsers is not allowing us to call swiggy's api from local host from one origin to 
+another origin. So if there is a origin mismatch the browser blocks that api call that is a CORS policy.
+
+7. Why we use useState in react why not normal variable?
+   
+   - Bcoz normal JS variable do not re-render but useState does re-render when state changes.
+   - For ex: if we have a button login and we want to change it to logout when clicked so here by JS 
+   variable if we do so, we will see that by onClick in console it shows that click happened but on UI it
+   is still login not updated as logout.
+   - If we want our component to be dynamic as we want to change something in our component, we use local
+   state variable as whenever state changes, it re-render the component.
+   - When re-redner it see the Difference between old and updated DOM and as it sees only login button 
+   changes so it updates that in DOM.  
+
+
+render means calling/triggered the component once again.
