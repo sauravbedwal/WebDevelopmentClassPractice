@@ -1,0 +1,32 @@
+1. useEffect : - if no dependency array => useEffect is called on every render (component render).
+   - if dependency array is empty = [] => useEffect is called on initial/first render(just once).
+   - if dependency array is [btnNameReact] => called everytime btnNameReact is updated.
+
+2. useState : - Never use useState/create state variable outside of the component.
+   - Always create the useState hook on the top in the component.
+   - Never create useState variable inside if else, loop or function. 
+
+3. Never use anchor tag <a></a> for routing bcoz it reloads the page and that we dont want.
+
+4. Single Page Application(SPA) : It doesn't reload the page as it just refresh the components that's why
+react Application known as Sinle Page Application. Just Components interchanging themselves.
+
+5. 2 types of Routing in web apps
+   - Client Side Routing : Making No network call because all the components are already loading into our
+    app. As we have all the Components/pages already, and not fetching any page, just need to load them and
+    it used in SPA. 
+   
+   - Server Side Routing : Have Different html pages like index.html, about.html, contact.html and if click
+   on anchor tag /about.html it reloads the whole page as it sends the network call to about.html, fetches
+   that html and renders it to the UI/web page. (old way)
+   
+   Making a network call and the pages coming from Server and it reloads tha page is Server Side Routing. 
+
+6. Dynamic Routing : For dynamic routing pass the new object in children just the difference is /:variable 
+here like /:resId.
+   - import useParams where we want to access the variable/id passed.
+   - by useParams we can read/access the dynamic url as useParams gives us an object with dynamic id that 
+   we can destructure and use the id.
+   - as in the main page where all cards available when we click any card it will take to that particular
+   item page as we using Link there and routing it with dynamic id and now as url have the dynamic id so 
+   by useParams we can access/get that id and use it while fetching API. 
