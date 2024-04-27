@@ -1,8 +1,64 @@
+// Asked to create a promise with setTimeout of 5 seconds
+
+// const promise = new Promise((resolve, reject) => {
+//     let foodAvailable = true;
+
+//     setTimeout(() => {
+//         if (foodAvailable) {
+//             resolve(console.log("Yes!!..We have food."));
+//         }
+//         else {
+//             reject(console.log("No...M hungry."))
+//         }
+//     }, 5000);
+// })
+
+
+// Asked to create an array of string and pass the elements by props in different component
+
+// import './App.css';
+// import Test from './Test';
+
+// function App() {
+//     const arr = ['Messi', 'Ronaldo', 'Mbappe'];
+
+//     return (
+//         <>
+//             <div>
+//                 <Test array={arr} />
+//             </div>
+//         </>
+//     );
+// }
+
+// export default App;
+
+// const Test = (props) => {
+//     const { array } = props;
+
+//     return (
+//         <div>
+//             <ul>
+//                 {array.map((item) => (
+//                     <li>{item}</li>
+//                 ))}
+//             </ul>
+//         </div>
+//     );
+// };
+
+// export default Test;
+
+
+// How to fetch api by Promise
+
 // const promise = fetch('').then((response) => {
 //     return response.json();
 // }).then((data) => {
 //     console.log(data);
 // })
+
+// How to fetch api by async await
 
 // async function getApi() {
 //     const response = await fetch("");
@@ -131,7 +187,7 @@
 
 /****************************************************************************/
 
-// NJ1 - 7
+// NJ1 - 8
 
 
 // console.log(a);
