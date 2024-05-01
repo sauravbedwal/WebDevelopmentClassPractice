@@ -1,0 +1,155 @@
+1. Funcional Based Component is a function that returns some piece of jsx and at the end of the day is a 
+normal JS Function.
+
+2. Class Based Component is a Class which extends React.Component and it has a render method which returns 
+some piece of jsx and at the end of the day is a normal JS Class.
+
+The major difference between Class and Funcional Based Component is that Class Based Component has a render 
+method which returns some piece of jsx and that jsx will be converted into HTML and rednered on to the web 
+page.
+
+   - for accessing props we use this.props.name or this.props.location or we can only use name or location
+   by destructuring it like const { name, location } = this.props.
+
+3. Rendering a Funcional Component means it loads that Component or mounting that functional Component or 
+calling or invoking that functional Component.
+
+   - Loading a Class Based Component on web page that means we Creating an instance of that Class and whenever 
+   we create an instance of a Class, the constructor is called and this is the best place to recieve props and
+   create state variables and entire State is a big object & inside that we can create multiple state variable.
+   
+4. NEVER UPDATE STATE VARIABLES DIRECTLY.
+
+   - Like this.state.count = this.state.count + 1; 
+
+   - as for changing the state react gives us an important function i.e. this.setState() and we can use it 
+   anywhere inside the class.
+   
+   - inside this.setState() we pass an object and updates the state like this.setState({}).
+
+   - if we want to change states of 2 state variables we will do it in the same this.setState({}) object and
+   also if we have let say 10 count variable and we just updating 2 count in this.setState then it will only
+   update these two and react won't touch the values of other variables. 
+
+5. LifeCycle
+   
+   - Mounting means Loading
+
+   - When class based Component loads a New instance of the class is created.
+
+   - Firstly, then constructor is called and then render is called.
+
+   - while creating class based component 
+      - write keyword class 
+      - write component name
+      - write extends Component instead of React.Component but if we do so we have to destructure React while
+      importing it like import {component} from "react"
+
+   - If we have Class Based Component and inside that we rendering one more Class Based Component
+   then it will call constructor and render method of Parent Component first then it will load that component
+   and call constructor and render method of child Component.
+
+   - Once the constructor and render method is called and it mounted on the DOM then componentDidMount() 
+   is called.
+
+   - But if there was componentDidMount() in parent Class Based Component and Child Class based component then
+   as componentDidMount() called after rendering constructor and render method so it will render 
+   Parent constructor then Parent render method then as render method have child class based component so it
+   will render Child constructor then Child render method then Child componentDidMount() and then 
+   Parent componentDidMount().
+
+   - componentDidMount used to make API call.
+
+   - Why we call an API inside componentDidMount?
+   As, we don't want to wait for the data to return from api call instead we want component get rendered
+   then make an api call and fills the data in the component thats the reason we use componentDidMount bcoz
+   it called after rendering constructor and render method.
+
+6. If we have multiple children component let say 2 children component then it won't render like
+   
+   - Parent constructor
+   - Parent render
+   
+   - First constructor
+   - First render
+   - First componentDidMount
+
+   - Second constructor
+   - Second render
+   - Second componentDidMount
+
+   -Parent componentDidMount
+   
+
+As, it will run like this
+
+   - Parent constructor
+   - Parent render
+   
+   - First constructor
+   - First render
+
+   - Second constructor
+   - Second render
+
+<DOM UPDATED - IN SINGLE BATCH>
+
+   - First componentDidMount
+   - Second componentDidMount
+
+   -Parent componentDidMount
+
+as react will batch the render phase(constructor and render method) of both children component and then 
+commit phase(componentDidMount) will happen together to optimize.
+
+React batching up the render phase for multiple children bcoz once the commit phase starts React tries to 
+update the DOM and DOM manipulation is the most expensive thing when we are updating/loading a component.
+
+7. As Mounting cycle finish when the component render once with some dummy data very quickly as we didn't 
+wait for API call to be finished and When we do the this.setState, the Updating phase/cycle starts.
+
+   - as setState updates the state variable (state got updated) so, react triggers the render method once 
+   again and now when render happens this time the state variable has been changed with the updated value so
+   react now will updated the DOM with the new value and then react will call componentDidUpdate.  
+
+   - MOUNTING : Constructor and render is called with the Dummy data & when render happened then the web page
+    is loaded now the (Component)HTML has Dummy data for few seconds on the web page then componentDidMount is
+    called & we make an API call & after that we do a this.setState and that finishes our MOUNTING lifecycle.
+     (The moment we do this.setState UPDATING cycle starts).
+
+   ------ MOUNTING ----------
+ * 
+ * Constructor (dummy data)
+ * Render (dummy data)
+ *            <HTML Dummy>
+ * Component Did Mount
+ *            <API Call>
+ *            <this.setState>
+
+   - UPDATING : Now as setState was called and it triggers the reconcilliation process in the update cycle so,
+   render method will call once again bcoz State variable is updated but this time render method will happen
+   with API/new data now react updates the DOM AND (Component)HTML is loaded with new API data and after this
+   it will call componentDidUpdate.
+
+   - UNMOUNTING : this function is called just before our Component is UNMOUNTING means Unmount means when 
+   the component will disappear from this HTML/Web Page.
+   Mounting means showing on to the UI and Unmounting means removing from the UI and then componentWillUnmount
+   will be called as it will be called when the component will be gone from the page.       
+
+
+Earlier we used to write the code like this but now we use useEffect.
+
+8. Never ever compare react lifecycle method to Funcional Component.
+
+9. As react is SPA as we are just changing the component, so When we leave one page and go to another page,
+there are lot of things that we need to clear like if we have setInterval of 1 sec. inside componentDidMount 
+in about page and we going now to contact us page then it will still go on and on and if we go to same page
+then it will increase it by 2 sec then 3 sec and so on bcoz a new setInterval will be created by itself and 
+we have to clear this interval by using clearInterval() method and same we have to follow in Funcional 
+Component by returning a function from useEffect.
+
+
+
+
+
+// React 6 19 14 BE 28 JS 14

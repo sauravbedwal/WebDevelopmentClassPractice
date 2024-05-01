@@ -27,6 +27,7 @@ here like /:resId.
    - import useParams where we want to access the variable/id passed.
    - by useParams we can read/access the dynamic url as useParams gives us an object with dynamic id that 
    we can destructure and use the id.
-   - as in the main page where all cards available when we click any card it will take to that particular
-   item page as we using Link there and routing it with dynamic id and now as url have the dynamic id so 
-   by useParams we can access/get that id and use it while fetching API. 
+   - as in the main page(Body) where all cards available when we click any card it will take to that 
+   particular item page as we using Link there and routing it with dynamic id and now as url have the 
+   dynamic id so by useParams we can access/get that id and use it while fetching API which gives us 
+   info ofthat particular item only. 
