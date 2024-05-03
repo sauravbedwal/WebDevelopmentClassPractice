@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from 'react'
 import Shimmer from './Shimmer';
 import { useParams } from "react-router-dom";
-import { MENU_API } from '../../../class-09/src/utils/constants';
+import useRestaurantMenu from '../utils/useRestaurantMenu';
 
 const RestaurantMenu = () => {
-    const [resInfo, setResInfo] = useState(null);
+    const { resId } = useParams();     //destrured it from the params object
+    // console.log(resId);
 
-    useEffect(() => {
-        fetchMenu();
-    }, []);
-
-    //const {resId} we can directly destructure it also from params object
-    const params = useParams();
-    console.log(params);
-
-    const fetchMenu = async () => {
-        const data = await fetch(MENU_API + params.resId);
-
-        const json = await data.json();
-        console.log(json);
-        setResInfo(json?.data)
-    }
+    const resInfo = useRestaurantMenu(resId);
 
     if (resInfo === null) {
         return <Shimmer />

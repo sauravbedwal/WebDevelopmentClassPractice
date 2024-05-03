@@ -1,0 +1,63 @@
+1. Single Responsibiliy Principle : IF we have a function, class or any single identity of code that should 
+have a single responisibility. 
+   - Like Body Component are at the end of the day are functions as each component is a differnet function so 
+   according to that Principle each component has a single responisibility like RestaurantMenu component
+   responisibility is to display Restaurant Menu.
+
+   - We should give single responisibility to each component and we should not do lot of things in single 
+   component as we can break it down into differnet component (that we did by creating multiple components). 
+
+2. Why we use custom hooks or function?
+   - modularity (break down the code in different small-small modules), code becomes reuseable, mentainable,
+   testable.
+   - Like if we have diferent components/single unit of Restaurant card so we can write test cases just for 
+   this Restaurant card and if we got any bug inside this component then that test will catch it unlike
+   in Big application where all these component interlinked one inside the another then if there a bug comes
+   we have to check and find in whole big component to see from where the bug coming from.  
+   - As, we made a custom hook useRestaurantMenu for RestaurantMenu component, now it became more testable, 
+   bcoz if we have to test or find a bug fetchingMenu logic we can test in useRestaurantMenu hook bcoz we know 
+   where we have to make changes and if there is some issue with displaying the data we have to check 
+   RestaurantMenu component.
+
+3. What are hooks?
+   - Hooks are basically normal Js function but these are special Js function with some superpower which are
+   given to us by react. As Hooks are like Utility functions.   
+
+4. Lazy loading : Parcel is a bundler and parcel do lot of things like Dev build, Minification ,Bundling,
+Compress, Hot Module Replacement (HMR) etc.
+   - Basic important job of a bundler is to bundle our application means it take all our files and make it 
+   into one file(one js file).
+   - But bundling is good to an extent bcoz if 1000's of js file bundled together then size of that js file
+   will increase alot which will make our app slow. 
+   - So, we neither want to upload 1000's files on browser nor we want to bundled 1000's file togtether in 
+   one js file, instead we will do smaller bundles of these files.
+   - This Process is known as chunking or code splitting or dynamic bundling or lazy loading or 
+   on demand loading or dynamic import.
+   - Logical seperation of bundles has to be there means a bundle should have enough code for a major feature.
+   For Ex- in MMT if flights have 100 component then we can form one bundle for flights, one bundle for hotels,
+   one bundle for trains, one bundle for homestays etc. and we can say that these are small application within
+   a big application.
+
+   - Use lazy loading bcoz of that when app will load intitially it will not load the code of grocery as when
+   we go to grocery then only grocery code will come up and that is known as lazy loading, where we will not
+   load everything directly but we will do a lazy loading when required and it is also known as on demand 
+   loading.  
+
+   - Whatever we want to lazy load
+   - Where we importing the Component
+   - use lazy() coming from react library 
+   - lazy takes a callback function with import in it and in import we have to put the path of the component
+   and by that a different bundler will be created for 100's component means a new js file will be created.
+
+   const Grocery = lazy(() => import("./components/Grocery"));
+
+   - Our main bundle doesn't have code for grocery component Grocery has its own bundle and main bundle is
+   seperate. 
+
+   - When we click on grocery then the grocery code takes 12 ms to come to the browser and as react is very 
+   fast so react try to load the Grocery Component but the code was not there so react suspended the rendering.
+   that time/state causes that error.
+
+   - For resolving this, we use Suspense component from react and wrap the lazy load component.
+   - and also pass fallback prop, whatever we want to show until grocery code or component is loaded.
+   - we can pass JSX or any component. 
