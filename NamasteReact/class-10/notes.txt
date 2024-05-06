@@ -1,0 +1,14 @@
+npm install -g npm@10.7.0
+
+1. Css 
+   - Normal CSS
+   - SCSS and SASS
+   - Styled Component
+   - Libraries like Bootstrap, Material UI, Chakra UI, Ant design.
+   - Talwind CSS 
+
+2. postcssrc : we have to tell postcssrc that we are using tailwind over here. As, Parcel need to use 
+postcssrc to understand/read tailwind.
+
+3. It will only include the CSS which is required on our web page not all thousands of CSS classes from 
+tailwind library.
