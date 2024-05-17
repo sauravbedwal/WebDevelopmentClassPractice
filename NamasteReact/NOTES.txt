@@ -391,7 +391,7 @@ use id root in html elements
 		- export it
 		- import useContext in whatever file we want to use context store
 		- pass in the exported context name to useContext and store it in a variable and use 
-		- in class components we don't have hooks we use UserContext as a component and use it by UserContext consumer
+		- in class components we don't have hooks we use UserContext as a component and use it by UserContext.Consumer
 		- to use dynamic states when we want the state to change throughout app, we use UserContext.Provider and wrap all the components we want to use it in inside it. 
 		- the static value we gave to UserContext is default, .Provider just overrides it
 		- can give the context a display name so react dev tools can also track it

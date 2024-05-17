@@ -14,6 +14,29 @@
 // })
 
 
+
+// const promise = new Promise((resolve, reject) => {
+//     let foodAvailable = true;
+
+//     if (foodAvailable) {
+//         resolve(foodAvailable);
+//     }
+//     else {
+//         const error = new Error("false")
+//         reject(error)
+//     }
+
+// })
+
+// promise.then((response) => {
+//     console.log(response);
+// }).catch((err) => {
+//     console.log(err);
+// })
+
+
+/****************************************************************************/
+
 // Asked to create an array of string and pass the elements by props in different component
 
 // import './App.css';
@@ -50,6 +73,21 @@
 // export default Test;
 
 
+/****************************************************************************/
+
+// An array is given with key value pairs now you have to sepearete keys and values in an array.
+
+// const arr = [a = "hello", b = "namaste"];
+
+// const key = Object.keys(arr);
+// const value = Object.values(arr);
+
+// console.log(key);
+// console.log(value);
+
+
+/****************************************************************************/
+
 // How to fetch api by Promise
 
 // const promise = fetch('').then((response) => {
@@ -58,6 +96,9 @@
 //     console.log(data);
 // })
 
+
+/****************************************************************************/
+
 // How to fetch api by async await
 
 // async function getApi() {
@@ -65,6 +106,9 @@
 //     const data = await response.json();
 //     console.log(data);
 // }
+
+
+/****************************************************************************/
 
 // fetch always return a promise that can be resolve or rejected.
 
@@ -170,25 +214,10 @@
 
 // a();
 
-// function a() {
-
-//     var b = 10;
-
-//     function c() {
-
-//         console.log(b);
-
-//     }
-//     c();
-// }
-
-// a();
-
 
 /****************************************************************************/
 
 // NJ1 - 8
-
 
 // console.log(a);
 
@@ -197,7 +226,7 @@
 
 // console.log(a);
 
-//function scope
+// function scope
 // function a() {
 //     var x = 10;
 //     if (x) {
@@ -205,6 +234,38 @@
 //     }
 // }
 // a();
+
+// let a = 10;
+// let a = 25;             //errors
+// var a = 80;
+
+// const a = 100;
+// a = 600;                 //erros
+// const a = 90;
+// var a = 50;
+
+// console.log(a);
+
+
+/****************************************************************************/
+
+// NJ1 - 9
+
+// let b = 100;
+// {
+//     let b = 20;
+//     console.log(b);
+// }
+// console.log(b);
+
+// var a = 10;
+
+// function x() {
+//     var a = 50;
+//     console.log(a);
+// }
+// x();
+// console.log(a);
 
 
 /****************************************************************************/
@@ -216,13 +277,39 @@
 //     function y() {
 //         console.log(a);
 //     }
+//     y();
+// }
+
+// x();
+
+// function x() {
+//     var a = 10;
+//     function y() {
+//         console.log(a);
+//     }
 //     a = 100;
 //     return y;
 // }
 
 // var z = x();
+// console.log(z);
 // z();
 
+// function z() {
+//     var b = 900;
+//     function x() {
+//         var a = 10;
+//         function y() {
+//             console.log(a, b);
+//         }
+//         y();
+//     }
+//     x();
+// }
+// z();
+
+
+/****************************************************************************/
 
 // var count = 5;
 // function sum() {
@@ -237,24 +324,122 @@
 /****************************************************************************/
 
 // NJ1 - 11
+
 // function x() {
 //     var i = 10;
-
 //     setTimeout(() => {
 //         console.log(i);
 //     }, 3000);
 //     console.log("Damn!")
 // }
 
-
 // x();
+
+// function x() {
+//     for (var i = 1; i <= 5; i++) {
+//         setTimeout(() => {
+//             console.log(i);
+//         }, i * 1000);
+//     }
+//     console.log("Namaste JavaScript");
+// }
+// x(); //6 6 6 6 6 6
+
+// function x() {
+//     for (let i = 1; i <= 5; i++) {
+//         setTimeout(() => {
+//             console.log(i);
+//         }, i * 1000);
+//     }
+//     console.log("Namaste JavaScript");
+// }
+// x(); // 1 2 3 4 5
+
+// function x() {
+//     for (var i = 1; i <= 5; i++) {
+//         function close(x) {
+//             setTimeout(() => {
+//                 console.log(x);
+//             }, x * 1000)
+//         }
+//         close(i);
+//     }
+// }
+// x(); // 1 2 3 4 5
+
 
 /****************************************************************************/
 
 
+// NJ1 - 12 Closure Interview
+
+/****************************************************************************/
 
 // NJ1 - 13
 
+// Function Statement aka Function Declaration
+
+// function greet(name) {
+//     console.log("Hello", name);
+// }
+// greet("Saurav");
+
+
+// Function Expression
+
+// let greet = function (name) {
+//     console.log(name);
+// }
+// greet("Sameer");
+
+
+// let person = (name) => {
+//     console.log(name);
+// }
+// person("Raftaar");
+
+
+// Anonymuous Function
+
+// let fn = function(){
+//     console.log("hello");
+// }
+// fn();
+
+
+// Named Function
+
+// let fn = function xyz() {
+//     console.log("ABCD");
+// }
+// fn();
+
+
+// First Class Functions
+
+//Example 1
+// const greet = (param1) => {
+//     console.log(param1);
+//     param1();
+// }
+
+// function xyz() {
+//     console.log("Helllo");
+// }
+// greet(xyz);
+
+
+// const greet = () => {
+//     function xyz() {
+//         console.log("heyyy wssup");
+//     }
+//     return xyz;
+// }
+
+// const abc = greet();
+// abc();
+
+// Example 2
 // const greet = (param1, param2) => {
 //     param1();
 //     console.log(param2);
@@ -263,9 +448,7 @@
 // const wish = () => {
 //     console.log("Saurav");
 // }
-
 // greet(wish, "chilll");
-
 
 // function greet() {
 //     return function () {
@@ -274,13 +457,62 @@
 // }
 
 // let a = greet();
-
 // a();
 
 
 /****************************************************************************/
 
 // NJ1 - 14
+
+// inside setTimeout is callback funciton and y is also a callback
+// setTimeout(() => {
+//     console.log("timer");
+// }, 5000);
+
+// function x(y) {
+//     console.log("x");
+//     y();
+// }
+
+// x(function y() {
+//     console.log("y");
+// });
+
+
+// setTimeout(() => {
+//     console.log("log after 5 seconds");
+// }, 5000);
+
+// function alpha() {
+//     console.log("alpha");
+// }
+
+// alpha();
+
+
+/****************************************************************************/
+
+// NJ1 - 18
+
+
+// function x() {
+//     console.log("hiii");
+// };
+
+// function y(param1) {
+//     param1();
+// };
+// y(x);
+
+// function abc() {
+//     console.log("let see");
+//     return function xyz() {
+//         console.log("what happens");
+//     }
+// }
+
+// const a = abc();
+// a();
 
 // const radius = [3, 5, 8, 22];
 
@@ -307,7 +539,13 @@
 // console.log(calculate(radius, diameter));
 
 
-// map
+/****************************************************************************/
+
+// NJ1 - 19
+
+// MAP
+
+// Example 1
 // const arr = [5, 2, 3, 4, 7, 1, 9];
 
 // const double = (input) => {
@@ -321,11 +559,11 @@
 //     return input * 3;
 // }
 // console.log(arr.map(double));
+// console.log(arr)
 // console.log(arr.map(tripple));
 // // console.log(ans);
 
-
-
+// Example 2
 // const arr = [
 //     { firstName: "Roronoa", lastName: "Zoro" },
 //     { firstName: "Nico", lastName: "Robin" },
@@ -341,6 +579,7 @@
 // console.log(ans);
 
 
+// FILTER
 
 // const arr = [5, 2, 3, 4, 7, 1, 9];
 
@@ -379,7 +618,9 @@
 //     });
 
 // console.log(ans);
+// console.log(arr);
 
+// REDUCE
 
 // const arr = [5, 2, 3, 4, 7, 1, 9];
 
@@ -396,18 +637,15 @@
 //     };
 //     return acc;
 // }, 0)
-
-
 // console.log(ans);
 
 
-
-// const arr = [
 //     { firstName: "Roronoa", lastName: "Zoro", age: 19 },
 //     { firstName: "Nico", lastName: "Robin", age: 22 },
 //     { firstName: "Vinsmoke", lastName: "Sanji", age: 19 },
 //     { firstName: "Tony", lastName: "Chopper", age: 10 },
 // ];
+
 
 // const ans = arr.reduce((acc, curr) => {
 //     if (acc[curr.age]) {
@@ -421,6 +659,12 @@
 
 // console.log(ans);
 
+
+/****************************************************************************/
+
+// CALL, APPLY, BIND
+
+// CALL
 // const obj = {
 //     name: "Saurav",
 //     age: 20,
@@ -431,15 +675,15 @@
 //     age: 35,
 // }
 
-
 // function details(city, a, b) {
 //     console.log(this.name, this.age, city, "", (a + b));
 // };
 
-
 // // obj.details.call(obj2);
 // details.call(obj2, "delhi", 5, 10);
 
+
+// APPLY
 // const obj = {
 //     name: "SAURAV",
 //     age: 23,
@@ -456,7 +700,7 @@
 
 // details.apply(obj2, ["delhi", "India"])
 
-
+// BIND
 // const obj = {
 //     name: "SAURAV",
 //     age: 23,
@@ -474,6 +718,7 @@
 // const info = details.bind(obj2, "punjab");
 // info();
 
+/****************************************************************************/
 
 // let a = [1, 2, 3];
 // let b = [...a];
@@ -617,7 +862,7 @@
 // let a = [1, 2, 3, 4];
 // let b = [...a];
 
-// b.push(6);
+// a.push(6);
 // console.log(a);
 // console.log(b);
 
@@ -736,6 +981,7 @@
 // console.log(memoizeFunction(20));
 
 
+/****************************************************************************/
 
 //implicit binding
 // let obj = {
@@ -788,6 +1034,8 @@
 
 // greet();
 
+
+/****************************************************************************/
 
 // function a() {
 //     // var b = 10
@@ -1007,3 +1255,121 @@
 //JavaScript Object Notation(JSON) is a standard text - based format for representing structured data
 // based on JavaScript object syntax.It is commonly used for transmitting data in web applications(e.g.,
 //  sending some data from the server to the client, so it can be displayed on a web page, or vice versa).
+
+// When a variable is inside a function then its memory space will be in Local.
+
+
+/****************************************************************************/
+//  JavaScript Interview
+
+// const arr = [10, 20, 30, 40, 50];
+// const result = [];
+// for(let i=0; i<arr.length; i++) {
+//   const ans = arr[i] * 5;
+//   result.push(ans);
+// }
+// console.log(result);
+
+// const obj = {
+//   name : "Saurav",
+//   id: 22,
+// }
+
+// const input1 = document.getElementbyId("#input1");
+
+// const input2 = document.getElementbyId("#input2");
+
+// input1.innerText = obj.name;
+
+// const increment = document.getElementbyId("#input1");
+
+// const increment = ()=>{
+//   onClick(()=>{
+//     value++;
+//   });
+// };
+
+// const onClick = ()=>{0
+// }
+
+
+// const promise = new Promise((resolve, reject) => {
+//   let foodAvailable = true;
+
+//   if(foodAvailable){
+//     resolve(foodAvailable);
+//   }
+//   else {
+//     const err = new Error("error");
+//     reject(err);
+//   }
+// });
+
+// promise.then((resolve) => {
+//   console.log(resolve);
+// }).catch((reject) => {
+//   console.log(reject);
+// })
+
+// <form>
+//   <div>
+//     <input type=text id="#input1" value="10" />
+//     <input type=tex id="#input2" />
+//     <button id="increment">Click Me</button>
+//   </div>
+// </form>
+
+// difference between class datatypes and id datatypes
+
+// differnece between classes and id
+
+// what is the differnece between local storage and cookies
+
+// diiference between https:get and https:post?
+
+
+
+//     < form >
+//     <div>
+//         <input type=text id="#input1" value="10" />
+//         <input type=tex id="#input2" />
+//         <button id="increment">Click Me</button>
+//     </div>0
+// </form >
+
+// in input 1 and 2 show // const obj = {
+// //   name : "Saurav",
+// //   id: 22,
+// // }
+
+
+//     < form >
+//     <div>
+//         <input type=text id="#input1" value="10" />
+//         <input type=tex id="#input2" />
+//         <button id="increment">Click Me</button>
+//     </div>
+// </form >
+
+
+// while clcking on button vaue of input 1 should increase
+
+// React and JavaScript Interview
+
+// what is JSX ?
+// what is virtual DOM?
+// Why we use Key ?
+// What is hooks?
+// What is props?
+// What is difference b/w state and props?
+// what is the differnece b/w let var const?
+// what is hoisitng?
+// Reconcilliation
+// What are differnet type of compoenents?
+// what is event loop? How it works ? Is event loop important?
+// what are pure function/compoenent?
+// what are asnhronous operation?
+// waht is promises?
+
+// promsie create and given an array pass the props fro this compoenent to another and show the array item in
+// a list

@@ -1,0 +1,50 @@
+Higher Order Component : Higher Order Component is a function that takes a Component and returns a Component.
+
+   - HOC takes a component as an input and it enhances that component it adds some extra features to that
+   component and returns it back.
+   - A function that takes a component as an argument and returns a new component that wraps the original
+    component.
+
+2. An important part of a React Application is to manage its data. UI is static as it doesn't have logic
+of its own. If we give some jsx it will be on the page and data is differnet part in React Application.
+All the React Application has two important layers 1. UI layer and 2. Data layer.
+and UI layer is powered by Data layer as Data layer consists of state, props, local variable etc. like 
+whatever data we have in our Application is Data layer.
+
+3. We made a accordion and there when we click on any category lke recommended or newly added it shows the 
+information and when we click again it hides it. but now we want the fucntionality when we click on 
+recommended it shows the info but if we click on needed it should close the recommended and show information
+of only newly added whereas right now it show information of both recommended and newly added and we have to
+close each one of them manually.
+   - And to build this feature when we click recommended it should collapse everything else as we want this 
+   state to be lifted up. As, we want to give the power of show and collapse to the parent(Restaurant Menu) 
+   of the child(RestaurantCategory).  
+
+   - As, right now RestaurantCategory has the power of show and collapse the ItemList.  
+
+4. Controlled and Uncontrolled Component : If a component is Controlling itself then it is an Uncontrolled 
+component and if we take away this power as this power is let say now has to its parent then it is a 
+Controlled component bcoz it is relying upon its parent to tell it what to do.
+Earlier each category or accordion was controlling themselves now we have given the power to the parent.
+
+5. Prop Drilling : As, react has one way data flow and data passes from parent to children then children to 
+their children and so on. Like RestaurantMenu passes data to RestaurantCategory and RestaurantCategory passes
+data to ItemList. So, passing data from A component to B component and from B component to C and C component
+to D component where B and C component worked just as itermediate or medium to trasnfer the data to D, as 
+B and C don't need or use the data this is known as prop Drilling. 
+
+6. If we wrap whole App with UserContext.provider so whatever the value we passing go to all the apps inside 
+it but if we wrap header with different UserContext.Provider value so header will have that vlaue and component
+outside of UserContext.Provider will have the default value.
+
+         //Default
+        <UserContext.Provider value={{ loggedInUser: userName }}>
+            {/* Saurav Bedwal */}
+            <div className="app">
+                <UserContext.Provider value={{ loggedInUser: "Elon Musk" }}>
+                    {/* Elon Musk */}
+                    <Header />
+                </UserContext.Provider>
+                <Outlet />
+            </div>
+        </UserContext.Provider>
