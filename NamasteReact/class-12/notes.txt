@@ -1,0 +1,131 @@
+1. Redux : Redux is not mendatory as we should use it only when its required like in big applications. 
+Although all big applications can be made without Redux also by using createContext but Redux is prefferable
+in big applications bcoz it gives lot more options.
+   - Redux is not a part of React. As, Redux and React both are different Libraries.
+   - Redux is a state management Library.
+   - Redux is not only library for managing state as there is a library known as Zustand.
+   - Redux offers handling state and data, managing store, easy debugging.
+   - Redux offers two libraries i.e. React-Redux and Redux Toolkit.
+      - React-Redux is like a bridge b/w React and Redux.
+      - Redux Toolkit is a newer way of writing Redux.
+
+2. How Redux Toolkit is different from vanilla Redux?
+
+- Redux has a huge initial learning curve and with vanilla redux it was even more complicated.
+- Vanilla Redux was needed lot more different packages for becoming powerful but Redux Toolkit solved this as
+now Redux Toolkit and React-Redux will make our job done.
+- Vanilla Redux requires lot more boilerplate code but Redux Toolkit don't need it.
+
+3. Redux Store : A big js object with lot of data inside it and it is kept in a global central place.
+   - all components can access the redux store inside our application.
+   - slice is the small portion of redux store and there can be multiple slices inside our redux store. 
+   - Only one store but many sections or slices.
+   - we make logical partions to keep data seperated and these logical partions are slices. Like we want to
+   add cart data into redux store then we will create a seperate slice for cart data or if we want loggedIn 
+   user info inside redux store then we will create userSlice or we can keep dark or light theme related 
+   slice.  
+
+4. To write data   
+   - Component can't directly modify the slice.
+      - need to dispatch an action.
+      - action will call a function.
+      - this function is called reducer.
+      - this function will modify our slice in store.
+
+so its like when we click on add button it will dispatch an action, then action calls a reducer function and 
+then reducer function modifies/updates the slice of our redux store.
+
+5. To read data
+   - Call Selector to read the data/information of slice from our store and modify our react Component.
+   - This phenomenon is known as Subsribing to the store.
+   - Selector is a hook.
+
+Like if Header component is Subsribed to our store means it is in sync with the store, so if the data inside 
+the slice of our store changes then the Header component will updates automagically and that's why we call 
+this as Subsribing to the store and we can Subsribe using a Selector.
+
+So, when we click on add button the cart changes from let say 3 to 4 so BTS when we click on add button, we 
+will dispatch an action that will call a reducer function and that reducer function will update the slice and
+bcoz Header component is Subsribed to the store using a Selector, so it will automatically update.
+
+6. starting redux in our app
+   - create appStore in utils.
+   - import { configureStore } from @reduxjs/toolkit.
+   - configure it (store it in a variable like appStore) - it's an object - put slices in it.
+   - export default appStore.
+
+   - use Provider wherever we want our store to be accessible
+   - import { Provider } from "react-redux";
+   - wrap entire app inside Provider and pass our created store i.e. appStore to it in store props.
+
+   - import { createSlice } from "@reduxjs/toolkit" and use in a seperate slice file
+   
+   - configure it (store it in a variable like cartSlice) - make an object inside createSlice and put in 
+   slice name then initialState (object) then reducers (object).
+   
+   - inside initialState object here we took items which is cart items that we initially giving as empty array. 
+   
+   - inside reducers we will put different actions like an action to add item in the cart or an action
+   to remove item from the cart or an action to clear the cart. So, addItem is action.
+   
+   - And corrosponding to action, there will be a reducer function and action will call the reducer function
+   that has two parameters (state, action) i.e. state is initialState and action is logic and now it will
+   modify our state based on the action. 
+   
+   - if action is not needed like in clearCart so we can avoid writing action parameter in reducer function.
+
+   - createSlice function will return an object to cartSlice and it will have actions which will have addItem,
+   removeItem and clearCart and there will be reducer.  
+{
+    actions: {
+        addItem,
+        removeItem,
+        clearCart,
+    }
+    reducer:
+}
+
+   - export reducer and actions like export default cartSlice.reducer and
+   export const { addItem, removeItem, clearCart } = cartSlice.actions;
+   
+   - in store, we will put the reducer inside the object that is inside configureStore() and in reducer object 
+   there will be all small reducers.
+
+   const appStore = configureStore({
+    reducer: {
+        cart: cartReducer,
+    }
+});
+
+   - now to read from store, we will use Selector and as Selector is a hook so we will write 
+   useSelector() that will take store in the callback function and we can select the portion of the store that
+   we want in that file like we want cart items as we are not concerned about store.user or store.theme.
+
+   const cartItems = useSelector((store) => store.cart.items);
+
+   - Now, we will put the logic on Add button to add items in cart & for that in ItemList we will use onClick
+    on Add button and also dispatch an action using useDispatch() hook.
+
+    const dispatch = useDispatch();
+
+    - Now, in handleAddItem function we will use dispatch function and send an action that we exported with
+    data.
+
+        const handleAddItem = () => {
+        // dispatch an action
+        dispatch(addItem("pizza"));
+    };
+
+    - And as we wrote in cartSlice addItem action.payload that is because BTS redux will create an object and 
+    it will create a payload inside this object and it will add whatever data we added to this object and it
+    will take this object and pass it as the second argument to the cartSlice addItem action and then when we
+    do action.payload we get the data ie. "Pizza".
+
+    {
+        payload : "Pizza"
+    }
+
+    addItem: (state, action) => {
+            // mutating the state here
+            state.items.push(action.payload);
+        },

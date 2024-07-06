@@ -1,5 +1,5 @@
 1. Monolith Architecture : Traditonally, web apps were develop using Monolith Architecture. 
-   - Huge Big project as it has code of API, UI, AUTHENTENTICATION, DATABASE, SMS insise the same project.
+   - Huge Big project as it has code of API, UI, AUTHENTENTICATION, DATABASE, SMS inside the same project.
    - Single change like changing color of a button, built and deploy the whole project.
    -  In Monolith Architecture, if we have one big project a JAVA application then we have to do everything
     in JAVA.
