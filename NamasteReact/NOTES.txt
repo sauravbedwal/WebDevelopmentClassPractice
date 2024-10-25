@@ -443,6 +443,3 @@ use id root in html elements
 				- so we export it like that slice.reducer
 			- export actions as well
 			- put it in store
-
-
-			Hello hellow
