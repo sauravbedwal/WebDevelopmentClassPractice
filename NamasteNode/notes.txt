@@ -1,0 +1,137 @@
+********************************** Class 3 *************************************
+
+================================== Class 3 =====================================
+
+
+    1. node REPL - READ, EVALUATE, PRINT, LOOP 
+    2. we can see that in terminal like cmd it is very similar to console in browsers but the differnce is instead of Node JS we have browser which is also running 
+         V8 engine behind the scenes.
+    3. Node JS is JS runtime environment.
+    4. Inside Node JS we have V8 JS engine and some super powers and whenever we wrote any piece of JS code, Node JS gave/passed that code to V8 engine and then V8 engine 
+         actually executed that code (as V8 engine written in C++ so it converts that code into machine level code so the computer can understand it).
+
+-----------first code of node js------------ 
+    5. we can just create a file with the name let say app.js write the code and run it by the command node (file name) in the terminal.
+    6. in browser, window is the global object and this also points to the global object and it is given to us by browsers and over here in Node JS we have the global object
+         and it is known as global.
+    7. setTimeout, setInterval, setImmediate all are given to us by the global object.
+    8. so global is not a part of V8 engine as global is outside and it is one of the super powers given by Node JS.
+    9. and if we print this in node then it prints an Empty Object and it is not equal to the global object of browsers bcoz there window which is a global object and 
+         this we pointing to the same object.
+    10. Even if we write window(came when browsers created), this(started to pointing window object in the browsers), self(concept of web workers started self), frames all
+          these differnet keywords refer to the same object.  as when node js came in they use the word global and there was a decripisensy as we using js so there has to
+           be a common object.
+    11. So then open js foundation, decided to make a standard global object in all the runtime environment and globalThis came which refer to all the js runtime environment
+         (in all browsers).
+
+
+================================== Class 4 =====================================
+
+
+    1. In Node JS application, there is one entry point in the application.
+    2. In real life projects, we have multiple files and we want them to execute like here we got app.js which is the entry point of application and another file xyz.js in 
+         which there is js code that we want to execute and both the files are not related as they are sepearted files.
+    3. xyz is a sepearte module.
+    4. Two modules can work together by the require function and it will first print the file which is imported through require function and then the rest of the code.
+    5. By default, Modules protects their variables and functions from leaking.
+    6. So if we want to use variables or functions of one module to another we have to Explicitly export them.
+    7. Whatever we will export through module.exports will be return from require function.
+    8. The new file we create is known as a module, and if we run require, we can access the code of different modules. However, we can't access the variables and functions
+        directly because modules don't leak them. If we want to use them, we have to export them, and require will return the variable, function, or object that we export.
+    9. If we export one variable or function we can write: 
+         
+         - for exports (best practice to wrap everything in {} whether exporting one or multiple varible or function)
+         module.exports = calculateSum; or module.exports = { calculateSum };   
+         
+         - for imports directly put the name of that varibale or function while importing it.
+         const calculateSum =  require("./sum.js");
+
+
+     10. If we export more than one variable or function we can write: 
+         module.exports = {
+          x: x,
+          calculateSum: calculateSum};  or  module.exports = { x, calculateSum }; (best practice short hand in js)
+
+     11. Other Modules have their own private space is a super power bcoz it protects the variable, as we can use same variable name in different modules unless we importing 
+            them there like x in sum.js can do whatever they want to done but as app.js don't need to done anything with x we won't import it and can use the same varibale 
+            x also.
+
+     12. Two types of modules (IMPORT/EXPORT) :
+     
+          - Common JS Modules (CJS)
+               - module.exports and require() 
+               - by default used in Node JS
+               - older way   
+               - Synchronous     
+               - non strict mode (can declare a variable without using var, let and const)
+          
+          - ES Modules (MJS / ESM / ES6 Modules)
+               - import and export statements
+               - by default used in React, Angular
+               - newer way (better/standard way of export and import modules)
+               - Asynchronous
+               - strict mode (compulsory to declare a variable with var, let and const)
+
+     13. Grouping together the same kind of files/ modules and making a single module (index.js) which helps in import and export of modules (FOLDER STRUCTURE).
+
+
+================================== Class 5 =====================================
+
+     1. Inside Node JS, there is V8 engine and Node JS gives our code to V8 JS engine and it executes our code.
+     2. The whole module is wrapped inside a function and then executed and thats the reason why module keep variables and functions private and only way to access them
+           outside by module.exports.
+     3. Whenever we create a new module and call require function for the file then Node JS takes the code from the file, wraps it into a function and then execute it and 
+         if there are any variables and functions which are there inside this function, we cannot directly access it outside as we can only access if module.exports 
+         exported it outside.           
+     4. When we call require("./path"), All the code of the nodule is wrapped inside a function, which is a special function which is known as IIFE.    
+     5. IIFE - setImmediately Invoked Function Expression
+
+          (function () {
+               
+               All code of the module runs inside here
+
+          })()
+     6. When we call require(), Node JS will take all the code and wrap inside an IIFE function and then it will give it to V8 JS engine.     
+     7. Why need IIFE?
+           - Immediately envokes the code
+           - Privacy as it keeps variable and function safe/private
+           - It won't interfare the code as it is independent now
+
+           (function () {
+               var a = 1000;
+           })();t
+
+           var a = 10;
+     8. How are variable and function private in different module?
+           - bcoz of IIFE and require(statement) as require statement is wrapping the code inside IIFE.
+
+     9. How do you get access to module.exports?
+           - When our code is wrapped inside a function, the function has parameters module and require given by Node JS.
+           - Node JS passes module as a parameter to the IIFE in which the code is wrapped.
+     10. Like there is a module xyz.js now Node JS will create a IIFE and our code will be passed inside IIFE and also Node JS pass module and require as prarameter and then
+            it passed to V8 engine and V8 engine executes it and all the variables and function inside the module will not interfere with rest of the other code.
+
+     11. 5 Step Mechanism of require("./PATH")
+           - Resolving the Module
+                  - It checks whether the module is a local path("./xyz.js") or JSON("./data.json") path or node internal module("node:util").
+                  - It checks what type of data is coming whether it is coming from node module, json file or local path and accordingly it resolves the module.
+           - Loading the module
+                  - File content is loaded according to file type as it can be local, json or node module.
+           - Wraps inside an IIFE (Compile)
+           - Code Evaluation
+                  - In this step, module.exports returns means when we require, it returns the exported variables or functions Whatever we exported. 
+                  - Example:-  const {calculateMultiply, calculateSum } = require("./calculate");   
+           - Caching (V.V.IMP)
+                  - Then the module is cached.
+                  - Multiple files requiring multiple modules
+                  - xyz.js module require in different modules like multiple.js, sum.js and app.js now, Node caches the require, means the code of the require will only run once.
+                  - As, it will not follow all 4 steps after executing once bcoz it is already cached and it will return from the cache.
+     12. Libuv library most amazing super power node js has. Eventloop is inside libuv, multi-threading happens with libuv.
+
+
+
+
+================================== Class 6 =====================================
+
+     1. Node JS has an event-driven architecture capable of Asynchronous I/O.
+     2. JS is a Synchronous single threaded language.
