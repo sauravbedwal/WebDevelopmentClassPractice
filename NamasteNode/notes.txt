@@ -135,3 +135,146 @@
 
      1. Node JS has an event-driven architecture capable of Asynchronous I/O.
      2. JS is a Synchronous single threaded language.
+
+
+
+********************************** SEASON - 02 *************************************
+
+================================== Class 01  =====================================
+
+     1. Waterfall Model (SDLC)
+           - REQUIREMENTS                                  
+           => by PM - Product/Project Manager - What is Dev Tinder? What features, adueince, differnet scenario, how, tech stack. - PM with Designers
+                
+                - DESIGN                                   
+                => Scenior Engineers/ EM - deciding the tech stack -  Monolith or MicroService architecture - System Design - High Level Design (HLD) - Low Level Design (LLD)
+                     
+                     - DEVELOPMENT                         
+                     => SDE1 / SDE2 - writing Unit Test Cases
+                          
+                          - TESTING                        
+                          =>  SDET - Software Development Engineer Testing - Automation, Manual Testing 
+                               
+                               - DEPLOYMENT                
+                               => Devops Engineer - manages server, deploy - sometimes testers - mainly developers do deployment 
+                                    
+                                    - MAINTAINANCE         
+                                    => Repeat Cycle - some new features or changes
+     2. Monolith vs MicroServices
+           - Monolith
+                - One Big single project which does everything.
+                - It has Backend, DB connection, Frontend, code to Authenticate, code to send Emails, code to analytics, Notification.
+                - All code written in a single code repository or in a single project deployed on a single way.
+           - MicroServices
+                - There are multiple small services (Service/project/application ).
+                - There can be a micro services only for Frontend or Backend or Authentication or Notification or Analytics or Admin or Creating Dashboard.
+                - In large company, there are small small projects handled by different teams and communicating with each other.
+                - For example: In uber, when we book a ride there are so many micro services which get active like a micro service which just calculate the fare, other micro
+                  service just for Fraud Detection, other team handling just Notifications and other team handling just Invoices/Billings.                                                       
+     3. Monolith vs MicroServices Comparison
+          -----------------------------
+           i. Dev Speed and Code Repo 
+           -----------------------------
+           In Monolith, there is a single code repository where all the developers are working like 20-30 developers. As, Single Code Repo so Dev Speed is slow bcoz lot of
+           developers working on the same code repository, code reviews become slower, it becomes tough for execution also, developmemt Speed becomes slow as when we want 
+           to run the application we have to compile the whole project. So, Dev speed comprised a little in Monolith.
+
+           In MicroServices, some developers are working on one service, some other developers on another service. Multiple code repo are there. We can built parallel also as
+           in Monolith we can do same but in MicroServices it becomes very easier as frontend team managing their own project and Backend team managing their own backend and 
+           they are building things parallely.
+
+           -----------------------------                      
+           ii. Scalability 
+           ----------------------------- 
+           In Monolith, in small company or Small project, Scalability is not a challenge in Monolith but as soon as big company or big project then it becomes very tough to 
+           scale Monolith architecture bcoz code repositories growing day by day and maintaing that is a mess.
+
+           In MicroServices, there are small small micro services and its easy to manage and scale those services independently.Like having analytics engine and want to scale
+           it we can do it independently. Or having frontend micro service or backend micro service so solving the challenges in that small project and scaling it is easier.  
+
+           -----------------------------
+           iii. Deployment 
+           -----------------------------
+
+           In Monolith, just need to do a single deployment and whole application is deployed. One small change only in Frontend but need to deploy the whole code on to the 
+           server and it is time consuming as it takes lot of process and need to go through testing and it becomes tough in Monolith. 
+
+           In MicroServices, need to deploy each and every application seperately. So if any change in Frontend, we can just directly deploy our frontend application and all 
+           other micro services work in the same way. But there can be a mismatch in frontend and backend also if they talking to differnet versions.
+
+           -----------------------------
+           iv. Tech Stack 
+           -----------------------------
+
+           In Monolith, we are restricted with the tech stack coz of one code base, like there is only one tech stack that decided initially like for frontend if it was made
+           in React the whole frontend will be in React only. But if backend is in Java stack, then it will be in Java for all services like sending emails, analytics 
+           Dashboard, etc.
+
+           In MicroServices, we can built admin Dashboard with React and student Dashboard on Next js. Analytics can be built on GO, backend in Java for sending emails, but 
+           backend can be on Node also for a different micro service like Notification. 
+
+           -----------------------------
+           v. Infra Cost 
+           -----------------------------
+
+           In Monolith, infra is lower as single project is deployed on a server.
+
+           In MicroServices, it is higher as more the services more the infra required. Multiple servers for frontend and backend. seperate micro services need a seperate 
+           server. 
+
+           -----------------------------
+           vi. Complexity
+           -----------------------------
+
+           In Monolith, if Project is large then Complexity is hard to maintain bcoz of single code base, files etc.
+
+           In MicroServices, if Project is small then Complexity is tough bcoz for small project also we managing multiple services for it but if project is large then
+           Complexity is easy.
+
+           -----------------------------
+           vii. Fault Isolation
+           -----------------------------
+
+           In Monolith, if one line of code is faulty or some piece of code breaks in backend then whole project breaks/crashes.
+
+           In MicroServices, it just crashes only that micro service not the whole project. Like issue in analytics then analytics service will go down not whole project. 
+
+           -----------------------------
+           viii. Testing
+           -----------------------------
+
+           In Monolith, writing end to end test cases will be easier.
+
+           In MicroServices, we can test the services independently and all the services will have their own test cases but writing end to end test cases is tough.
+
+           -----------------------------
+           ix. OwnerShip
+           -----------------------------
+
+           In Monolith, there is a central ownership and few people decides how deployment and work will be done.
+
+           In MicroServices, differnt teams take the ownership of different MicroServices.
+
+           -----------------------------
+           x. Maintainance and Rewamps
+           -----------------------------
+
+           In Monolith, it is tough to do that.
+
+           In MicroServices, its easy to maintain like if want to change whole frontend its easier to do that in MicroServices.
+
+           -----------------------------
+           xi. Debugging
+           -----------------------------
+
+           It can be tough in both bcoz if something breaks then we have to check the fault.
+
+           In  Monolith, its slightly easier bcoz there is one code base and easy to debugg which file or code etc. 
+
+           In MicroServices, there is blame game also as one mico service team blames other. 
+           
+           -----------------------------
+           xiii. Dev Expierence
+           -----------------------------
+
+           MicroServices, as i can break my services to smaller services so they cna be independently updated, scale and deployment cycle.
