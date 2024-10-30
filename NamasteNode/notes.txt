@@ -278,3 +278,52 @@
            -----------------------------
 
            MicroServices, as i can break my services to smaller services so they cna be independently updated, scale and deployment cycle.
+
+
+================================== Class 02  =====================================
+
+     1. Features in DevTinder
+           i. Create an account
+           ii. Login
+           iii. Update your profile
+           iv. Feed page - explorer
+           v. Send connection request
+           vi. See our matches
+           vii. See the request we've sent/received
+           viii. Update your profile
+     2. Product requirements given by PM. PM collabarats with Design team to Design the UI mock.
+     3. HIGH LEVEL DESIGN (HLD)
+           A. Tech Lead/Engineering Manager will read these requirements and will figure out HLD of the product like what micro services will be built, security practices 
+           use(JWT token), how to store the password, how to encrypted and decrypted, how to check for validation, how will user Authenticate, how will be the database be,
+           what database will be used, how we will Design the database, how we will Design the api etc.
+           B. Tech Planning
+               - 2 MiccroServices 
+                   - Frontend(React) and Backend (Node js and MongoDB)
+     5. LOW LEVEL DESIGN (LLD)
+           A. In DB design, we decides collection of documents like what kind of collection will be there.
+               - Collection
+                    i. User => firstname, lastname, email id, password, age, gender etc
+                         - We also discuss in the DB design that if it is a first name it should be a string, with min and max length.
+                         - We discuss and decide the datatype of the fields in the document like age should be a number.
+                         - How will uh store the password or what should be the values in gender.
+                         - When we have such type of model where one user can send connection requeet to lot of other user then we have to store that relationship information
+                          also means need one more collection.
+                          - Will not store in user collection bcoz it is used to store user data not the data of their connections/relationships.
+                    ii. ConnectionRequest => From user id, To user id, status (pending/accepted/rejected).
+                         - Now if we think, here we decided that there can be 3 status that A can send request to B and it can be in pending status then either it will be
+                          accepted or rejected but there can be more than 3 status as well. Like pending status when A will be right swipe but what if A will left swipe it,
+                           that can be a 4 status named as Ignored, even there can be a one more status i.e. 5 status named Blocked if A blocks.
+           B. In API Design, there are HTTP method that we use for RESTful API i.e. GET, POST, PUT, PATCH and DELETE.
+               - In some comapnaies they create api's like /getProfile, /updadeProfile etc. but in companies where they follow good nomenclature they use it like Get/profile 
+               to get the data of the profile, Post/profile to send the data to the profile.
+               - In DevTinder, we making CRUD Operations like 
+                 - Post/signup
+                 - Post/login
+                 - Get/profile
+                 - Post/profile
+                 - Patch/profile
+                 - Delete/profile
+                 - Post/sendRequest => Ignore or Interested
+                 - Post/reviewRequest => Accept or Reject
+                 - Get/requests 
+                 - Get/connections                  
