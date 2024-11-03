@@ -280,6 +280,87 @@
            MicroServices, as i can break my services to smaller services so they cna be independently updated, scale and deployment cycle.
 
 
+************ my notes refined By ChatGpt ****************
+
+
+1. Waterfall Model (SDLC)
+     - Requirements
+          - Managed by the Product/Project Manager (PM), who defines the product scope, target audience, features, and scenarios. PMs often collaborate with designers to 
+          refine the tech stack and outline project goals.
+     
+     - Design
+          - Led by Senior Engineers or Engineering Managers (EM), who decide on the tech stack, architecture type (Monolith or Microservices), and perform System Design.
+          Design phases include High-Level Design (HLD) and Low-Level Design (LLD) to clarify the architecture.
+
+     - Development
+          - Primarily handled by SDE1 / SDE2 (Software Development Engineers) who write unit test cases and develop the core codebase.
+
+     - Testing
+          - Performed by Software Development Engineers in Test (SDET), responsible for automation and manual testing to ensure software quality.
+
+     - Deployment
+          - Managed by DevOps Engineers who handle server management, deployment, and infrastructure. Deployment may involve testers but is often primarily done by developers.
+
+     - Maintenance
+          - This is an ongoing cycle where new features or updates are introduced, requiring repeated steps from requirement gathering to deployment.
+
+2. Monolith vs. Microservices
+
+     - Monolith
+          - A single, unified project containing everything (backend, frontend, database connections, authentication, emails, notifications, analytics) within a single code 
+     repository.
+          - All code is deployed together, which simplifies deployment but can limit flexibility.
+     
+     - Microservices
+          - A collection of smaller, independent services (e.g., Frontend, Backend, Authentication, Notifications, Analytics).
+          - Each microservice operates as a separate project with independent teams, making scaling easier in large organizations.
+
+3. Monolith vs. Microservices: Comparison
+     
+     - i. Development Speed and Code Repository
+          - Monolith: Single code repo for all developers, which can slow down development due to merge conflicts and longer build times.
+          - Microservices: Multiple code repos allow teams to work independently, speeding up development as frontend and backend teams can build and deploy in parallel.
+     
+     - ii. Scalability
+          - Monolith: Suits small companies/projects but becomes hard to scale as the project grows.
+          - Microservices: Allows independent scaling of services, making it ideal for large projects needing flexible resource management.
+     
+     iii. Deployment
+          - Monolith: Single deployment, but even minor changes require redeploying the entire application.
+          - Microservices: Independent deployments mean changes in one service (e.g., frontend) don’t impact others, although version mismatches can cause issues.
+     
+     iv. Tech Stack Flexibility
+          - Monolith: Limited to a single tech stack across the application (e.g., React for frontend, Java for backend).
+          - Microservices: Allows diverse tech stacks across services, such as React for one dashboard, Next.js for another, and separate backend languages for different microservices.
+     
+     v. Infrastructure Cost
+          - Monolith: Lower infra costs as only one server is typically needed.
+          - Microservices: Higher costs due to separate servers for each service.
+     
+     vi. Complexity
+          - Monolith: Complexity rises in large projects due to a single, monolithic codebase.
+          - Microservices: Easier for large projects but overkill for small projects, where managing multiple services adds unnecessary complexity.
+     
+     vii. Fault Isolation
+          - Monolith: Failure in one area can impact the entire application.
+          - Microservices: Issues are isolated to the specific service, minimizing overall impact.
+     
+     viii. Testing
+          - Monolith: Easier to write end-to-end tests as there’s a single codebase.
+          - Microservices: Independent tests for each service simplify testing but make full integration testing more complex.
+     
+     ix. Ownership
+          - Monolith: Centralized ownership, with few decision-makers overseeing the project.
+          - Microservices: Different teams own different services, allowing for distributed responsibility.
+     x. Maintenance and Revisions
+          - Monolith: Harder to manage large-scale updates and rewrites.
+          - Microservices: Easier to modify specific parts, like a frontend revamp, without impacting other services.
+     xi. Debugging
+          - Monolith: Easier, as there’s one codebase to check for issues.
+          - Microservices: Complex, with potential inter-team “blame game” as faults can cross service boundaries.
+     xii. Developer Experience
+          - Microservices: Greater flexibility, as services can be broken into smaller parts, making it easier to update, scale, and deploy independently.
+
 ================================== Class 02  =====================================
 
      1. Features in DevTinder
@@ -327,3 +408,5 @@
                  - Post/reviewRequest => Accept or Reject
                  - Get/requests 
                  - Get/connections                  
+
+================================== Class 03  =====================================
