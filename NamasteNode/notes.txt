@@ -407,6 +407,102 @@
                  - Post/sendRequest => Ignore or Interested
                  - Post/reviewRequest => Accept or Reject
                  - Get/requests 
-                 - Get/connections                  
+                 - Get/connections
+
+************** HOME WORK **************
+
+1. WHAT IS REST API?
+
+A REST API (Representational State Transfer Application Programming Interface) is a set of rules and conventions that allows software applications to communicate
+with each other over the web. REST is an architectural style used primarily for building web services, and it defines how resources, such as data or functions, can be 
+requested or modified by other applications.
+
+Here's an overview of how REST APIs work:
+
+1. Resources and Endpoints
+In REST, everything is considered a resource. A resource could be anything you want to expose via the API, like a user, product, or article. Each resource is identified by a
+URL (Uniform Resource Locator), called an endpoint.
+For example, an API endpoint like /users could be used to interact with user data.
+
+2. HTTP Methods
+REST APIs commonly use HTTP methods to define the type of action requested on a resource. The primary methods are:
+GET: Retrieve data (e.g., get a user’s information)
+POST: Create new data (e.g., add a new user)
+PUT or PATCH: Update existing data (e.g., modify user information)
+DELETE: Remove data (e.g., delete a user)
+These methods help keep the API simple and intuitive by using standard web protocol actions.
+
+3. Statelessness
+REST APIs are stateless, meaning that each request from a client to the server must contain all the necessary information for the server to fulfill the request. No client 
+context is stored on the server between requests, which simplifies server design and allows it to scale more easily.
+
+4. Data Formats (Usually JSON)
+REST APIs commonly use JSON (JavaScript Object Notation) to send and receive data because it’s lightweight and easily readable by humans and machines. However, other formats 
+like XML can also be used.
+When a client requests data, the server responds with the resource in JSON format, making it easy to integrate with frontend applications.
+
+5. Standard HTTP Responses
+REST APIs use standard HTTP status codes to indicate the result of a request:
+200 OK: Successful request
+201 Created: Successful creation of a resource
+400 Bad Request: Incorrect request format
+401 Unauthorized: Authentication required
+404 Not Found: Resource not found
+500 Internal Server Error: A general server error
+
+Example
+Imagine a REST API for a library system where you want to manage book records:
+
+GET /books – Retrieves a list of all books.
+GET /books/1 – Retrieves information about a specific book with ID 1.
+POST /books – Adds a new book to the library.
+PUT /books/1 – Updates the information for the book with ID 1.
+DELETE /books/1 – Deletes the book with ID 1.
+Each endpoint and method works consistently, allowing different applications to communicate seamlessly with the library system.
+
+In essence, a REST API is a way of building APIs that are intuitive, reliable, and easy to interact with, especially suited for web-based applications and services.
+
+
+2. Differnce between put and patch api?
+
+The difference between PUT and PATCH in REST APIs lies in the way they update resources:
+
+i. PUT:
+
+Full Update: The PUT method replaces the entire resource with the data provided in the request. If fields are omitted in the request, they may be set to default or empty 
+values.
+
+Idempotent: Multiple identical PUT requests have the same effect as a single request.
+
+Example: If you have a user resource with fields like name, email, and age, and you send a PUT request to update just name, you must still include email and age in the 
+request; otherwise, those fields might be reset.
+
+PUT /users/1
+{
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "age": 25
+}
+
+ii. PATCH:
+
+Partial Update: The PATCH method applies a partial update to a resource, modifying only the fields specified in the request without affecting other fields.
+
+Idempotent: Like PUT, PATCH is also idempotent; sending the same PATCH request multiple times produces the same result.
+
+Example: With PATCH, you can send only the name field if that's the only thing you want to update, leaving other fields like email and age unchanged.
+
+PATCH /users/1
+{
+    "name": "John Doe"
+}
+
+Feature	      |   PUT	                            |     PATCH
+Update Type	 |   Full (replaces entire resource)  |     Partial (updates specified fields)
+Idempotent	 |   Yes	                            |     Yes
+Usage Scenario	 |   Replace an entire resource	   |     Update a specific field(s) of a resource
+
+In short: Use PUT when you want to replace an entire resource and PATCH when you want to modify specific fields.
 
 ================================== Class 03  =====================================
+
