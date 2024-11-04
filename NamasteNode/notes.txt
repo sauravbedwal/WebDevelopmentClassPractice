@@ -504,5 +504,130 @@ Usage Scenario	 |   Replace an entire resource	   |     Update a specific field(
 
 In short: Use PUT when you want to replace an entire resource and PATCH when you want to modify specific fields.
 
+
 ================================== Class 03  =====================================
 
+    1. For Creating a project, create a folder, open it in vs code and in terminal do npm init to initliase it and package.json file will be created then create src folder
+    and inside that app.js file. Now, npm i express to install express in the project and then node modules folder and package-lock.json file will be created.
+    2. Node modules folder contains all the code of install packages like here we installed express so it took all the code of express and put it in node modules folder.
+    3. Also, in package.json npm added express as the dependency of our project.
+    4. Other folders than express are there in nod modules bcoz express also have package.json file and some dependencies so it installed them also and if those dependencies
+    of express have some dependencies then it will also be installed in node modules.
+    5. As, we have express version as ^4.21.1 which is equals to (major.minor.patch) so as express js is a library and it is constantly updated as lot of devlopers working 
+    on it. As we using express as 4.21.1 so now will see how it updates.
+         - patch => It is for small change or small bug fix and push it. version will be 4.21.2
+         - minor => It is for minor change like pushing some features inside express and those features are backward compatible means any older version users won't face any 
+         issues due to minor change in version. version will be 4.22.2
+         - major => It is for major change like express changing something internally which will effect any people who using 4.x.x as it is breaking change and it is not 
+         backward compatible as updated version will be 5.20.3   
+     6. When we use carat ^ like ^4.21.1 it means our project will automatically be updated if any of the new version comes in 4.x.x series means if there is any patch or 
+     minor change then it automatically update our project.
+     7. If we don't use carat or tilde then it means it will be on the version in which it was initially created. Like 4.21.1
+     8.Using ~4.21.1 means that your project can automatically update to any new patch version within the specified minor version. This means it will only allow updates that
+     are bug fixes and do not introduce new features. Like, it would allow updates to 4.21.2, 4.21.3, etc., but it would not allow updates to 4.22.0 or any higher major 
+     version like 5.0.0.
+     9. package-lock.json will tell the exact version of the package and in package.json it tells the version that we allowed not the exact version.
+
+
+
+************** HOME WORK **************
+
+    1. What are Dependencies?
+    Dependencies are external libraries or modules that a project needs to function. When a project relies on certain packages, we declare them as dependencies so that 
+    they’re automatically installed and included when setting up the project. In Node.js projects, dependencies are listed in the `package.json` file under `"dependencies"`
+    or `"devDependencies"` sections.
+    
+    - Dependencies: Listed in the `"dependencies"` section, these are packages required for the project to run in production.
+    - DevDependencies: Listed in the `"devDependencies"` section, these are only needed during development, such as testing frameworks or build tools, and not necessary
+    in production.
+
+    2. What is the Use of `-g` in `npm install`?
+    The `-g` (global) flag in `npm install -g <package-name>` installs the package globally, meaning it’s available system-wide rather than just in the current project 
+    directory. 
+
+    - Global Installation (`-g`): The package can be used anywhere on the system, typically for command-line tools like `nodemon` or `create-react-app`.
+    - Local Installation (without `-g`): The package is installed only for the specific project and will be found in the project’s `node_modules` folder.
+
+    3. Difference Between Caret (`^`) and Tilde (`~`)
+    The caret (`^`) and tilde (`~`) symbols are version specifiers for dependencies in the `package.json` file. They define the range of versions that 
+    npm will install, controlling which updates are allowed.
+
+    - Caret (`^`):
+       - Allows updates to the **minor** and **patch** versions, but locks the major version.
+       - Example: `^4.2.1` allows updates to `4.3.0`, `4.9.5`, etc., but not `5.0.0`.
+       - It is commonly used to provide some flexibility for newer features and bug fixes while avoiding potential breaking changes.
+
+    - Tilde (`~`):
+       - Allows updates only to the **patch** version, locking both the major and minor versions.
+       - Example: `~4.2.1` allows updates to `4.2.2`, `4.2.5`, etc., but not `4.3.0`.
+       - Useful when you want the smallest range of updates, generally just bug fixes.
+       
+       In summary:
+       - `^` (caret)**: More flexible; allows updates within the same major version.
+       - `~` (tilde)**: More restrictive; allows updates within the same minor version only.
+
+
+
+================================== Class 04  =====================================
+
+    1. We can delete node modules as whenever we do npm i it will install the node module again as per the dependencies in package.json. Hence, we don't push node mpdules to
+    the git.
+    2. To ignore certain folders or files, like node modules we can create a file called gitignore and inside that we can give path/name of the files that we want it to 
+    ignore.
+    3. Also, whenever we use routes like we did /hello then it matches the exact path /hello so even if we do /hello/1 or /hello/test it will show the same output of hello
+    only unless we specifically define routes for /hello/1 or /hello/test and thats why when we used / it showed same output even after changing the link to /hello or /test.
+    4. In other words, /hello will match additional segments (like /hello/1) unless we restrict it, so that’s why /hello, /hello/test, and /hello/1 might return the same 
+    response unless specifically defined otherwise.
+    5. / is the root route, handling requests to the very base URL. /hello is a specific route, and /hello/anything would still match /hello if the router is set to allow
+    path matching with additional segments.
+    6. The order of writing routes in the code is very very important. 
+    7. As, now if we shift / route at last after /hello and /test then all three works fine. Same if we
+    created a route /hello/2 and if it is after /hello then it will show same output in both /hello and /hello/2 but if it is befoer /hello then both will show their 
+    resprective output.    
+    8. in Postman, just made a new workspace for new project and inside that we can create new collection (collection here is just collection of api) while click on new we
+     can choose methods like http and then test API calls.
+    9. When we use app.use("/hello), then if we do GET or POST request in postman to test api it will show the same output for both as it matches all the HTTP method to api
+    call. 
+    10. Use http methods with app seperately like app.get("/user") so now this method will only match the get api calls to the route /user as it will only handle GET call to
+    /user means it will only show the data of get method or if we do app.post("/user") so it will only  handle POST call to /user.
+    11. If we using HTTP methods with app seperately like app.get("/user") or app.post("/user") but above all of them if we use app.use("/user") then it will again show same
+     result/output for all the methods bcoz all the routes will handled over "/user" whether it is a GET or a POST method bcoz order matters as dicsused earlier.
+
+
+
+
+************** HOME WORK **************
+
+
+
+    1. Difference Between package.json and package-lock.json?
+         - package.json
+              - This file contains a general list of the project’s dependencies along with their versions (often using version ranges).
+              - It specifies information like project name, version, author, scripts, and dependencies (dependencies and devDependencies).
+              - The versions listed in package.json allow some flexibility. For example, "express": "^4.17.1" means that npm can install any compatible version like 4.17.2 
+              or 4.18.0.
+          
+         - package-lock.json
+              - This file locks the specific versions of all installed dependencies, including sub-dependencies (dependencies of dependencies).
+              - It captures the exact version numbers that were installed during the last npm install command, providing a detailed "snapshot" of the dependency tree.
+              - Ensures that the project will install the same dependency versions each time, providing consistency across different environments (development, staging, 
+              production).
+     2. Should You Push package-lock.json to GitHub?
+     Yes, you should push package-lock.json to GitHub.
+     Here’s why:
+          - Consistency: package-lock.json ensures that all collaborators and environments use the exact same versions of dependencies. Without it, npm install could install 
+          slightly different versions due to the version ranges in package.json, potentially causing bugs and inconsistencies.
+          - Faster Installations: When package-lock.json is present, npm can skip steps in dependency resolution, making installations faster and more efficient.
+          - Security: Since it locks dependencies to specific versions, package-lock.json can help prevent unintentional updates that might introduce vulnerabilities.
+          
+          In short, package-lock.json is essential for reliable, consistent dependency management, which is why it should be included in version control.
+
+
+          For git repo, if i made the repo first then either i can come to pc and create folder inside that open cmd and git clone link of repo and clone it and open that 
+          folder in vs code or i can directly come to vs code and click on clone the repository and it will then ask me the folder where i want to clone it and i can choose 
+          that folder and clone it.
+          but if i started the code and haven't created the repository then i can do git init to iniitalise it then git add . then git commit -m "commit files" and now push it to 
+          the github so will go on github and create a new repo and map it to the repository by adding 3 commands which wil be mentioned there only when we creatae the repository.
+          git remote add origin
+          git branch -M main
+          git push -u origin main
