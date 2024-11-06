@@ -4,12 +4,12 @@ const express = require("express");
 
 const app = express();
 
-// this is for understanding that order matters as if it will be uncommented all the requests of http method will be handled by this only
-// app.use("/user", (req, res) => {
-//   res.send("HAHAHAHAHAHA");
-// });
+// this is for understanding that order matters as if we uncomment it all the requests of http method will be handled by this only bcoz app.use handles all http requests
+app.use("/user", (req, res) => {
+  res.send("HAHAHAHAHAHA");
+});
 
-// This will only handle GET call to /user
+//This will only handle GET call to /user
 app.get("/user", (req, res) => {
   res.send({ firstName: "Saurav", lastName: "Bedwal" });
 });
@@ -49,6 +49,55 @@ app.use("/test", (req, res) => {
 
 app.use("/", (req, res) => {
   res.send("Hello from the dashboard");
+});
+
+/*----------------------------------------*/
+
+// advanced routing
+app.get("/ab?c", (req, res) => {
+  res.send({ firstName: "Saurav", lastName: "Bedwal" });
+});
+
+app.get("/ab+c", (req, res) => {
+  res.send({ firstName: "Saurav", lastName: "Bedwal" });
+});
+
+app.get("/ab*cd", (req, res) => {
+  res.send({ firstName: "Saurav", lastName: "Bedwal" });
+});
+
+app.get("/a(bc)?d", (req, res) => {
+  res.send({ firstName: "Saurav", lastName: "Bedwal" });
+});
+
+app.get("/a(bc)+d", (req, res) => {
+  res.send({ firstName: "Saurav", lastName: "Bedwal" });
+});
+
+// regex
+app.get(/a/, (req, res) => {
+  res.send({ firstName: "Saurav", lastName: "Bedwal" });
+});
+
+app.get(/.*fly$/, (req, res) => {
+  res.send({ firstName: "Saurav", lastName: "Bedwal" });
+});
+
+// how to get query parameter/params => /user?userId=101 or /user?userId=101&password=testing
+app.get("/user", (req, res) => {
+  console.log(req.query);
+  res.send({ firstName: "Saurav", lastName: "Bedwal" });
+});
+
+//  how to make routes dynamic or dynamic api's => /user?user/707
+app.get("", (req, res) => {
+  console.log(req.params);
+  res.send({ firstName: "Saurav", lastName: "Bedwal" });
+});
+
+app.get("/user/:userId/:name/:password", (req, res) => {
+  console.log(req.params);
+  res.send({ firstName: "Saurav", lastName: "Bedwal" });
 });
 
 app.listen(7777, () => {

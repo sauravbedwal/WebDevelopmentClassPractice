@@ -588,12 +588,43 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
      can choose methods like http and then test API calls.
     9. When we use app.use("/hello), then if we do GET or POST request in postman to test api it will show the same output for both as it matches all the HTTP method to api
     call. 
-    10. Use http methods with app seperately like app.get("/user") so now this method will only match the get api calls to the route /user as it will only handle GET call to
-    /user means it will only show the data of get method or if we do app.post("/user") so it will only  handle POST call to /user.
+    10. Use http methods with app seperately like app.get("/user") so now this method will only match the get api calls to the route "/user" as it will only handle GET call to
+    "/user" means it will only show the data of get method or if we do app.post("/user") so it will only handle POST call to "/user".
     11. If we using HTTP methods with app seperately like app.get("/user") or app.post("/user") but above all of them if we use app.use("/user") then it will again show same
      result/output for all the methods bcoz all the routes will handled over "/user" whether it is a GET or a POST method bcoz order matters as dicsused earlier.
-
-
+    12. Advance Routing
+          i. if we put ? after a letter then that letter above ? will be optional.
+               - app.get("/ab?c")
+               - here it will be work for /abc and /ac also as b is optional.
+          ii. if we put + after a letter then that letter above ? can be used multiple times.
+               - app.get("/ab+c")
+               - here it will be work for /abc and /abbc or /abbbbbbbbbbbbbbbbbbbc.
+               - but won't work for /abbbbbbbcc as pattern needs to be follow i.e. a and c has to be in last and we can add as many as b we want to add.
+          iii. if we put * between two letters then we can add anything in between those two letters.
+               - app.get("/ab*cd")
+               - here it will be work for /abcd and /abAnythingYouCanADDcd. 
+          iv. a. if we group things together like keeping two letters in a bracket () and then using ? then those letters above ? in bracket will be optional.
+               - app.get("/a(bc)?d")
+               - here it will be work for /abcd and /ad as bc become optional.
+              b. if we group things together like keeping two letters in a bracket () and then using + then those letters above + in bracket can be used multiple times.
+               - app.get("/a(bc)+d")
+               - here it will be work for /abcd and /abcbcbcbcbcd as bc become optional.
+          v. we can also use regex instead of a string like /a/
+               - app.get(/a/, (req, res) => {})
+               - if a comes anywhere it will work like /a or /cab or /can
+               - it won't work for /b or /cid
+          vi. if we use /.*fly$/ then anything can be in starting and it ends with a fly it will work.
+               - app.get(/.*fly$/, (req, res) => {})
+               - here it will work for /butterfly or /fly or /dragonfly or /seeWhatUhSeefly.
+               - it won't work for /dragonfly1 or /butterflyInSky
+     13. How to get Query parameters/params in route handler like /user?userId=101 or /user?userId=101&password=testing
+          - We can get it by req.query 
+          - output will be {userId: '101', password: 'testing'}
+     14. How to make routes dynamic or dynamic api's like  /user/100 or /user/100/Saurav/testing
+          - colon : means dynamic routes just add : after / like /user/:userId or  /user/:userId/:name/:password
+          - We can get it by req.params
+          - output will be {userId: '101'}        
+                
 
 
 ************** HOME WORK **************
@@ -613,8 +644,8 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
               - Ensures that the project will install the same dependency versions each time, providing consistency across different environments (development, staging, 
               production).
      2. Should You Push package-lock.json to GitHub?
-     Yes, you should push package-lock.json to GitHub.
-     Here’s why:
+          - Yes, you should push package-lock.json to GitHub.
+          Here’s why:
           - Consistency: package-lock.json ensures that all collaborators and environments use the exact same versions of dependencies. Without it, npm install could install 
           slightly different versions due to the version ranges in package.json, potentially causing bugs and inconsistencies.
           - Faster Installations: When package-lock.json is present, npm can skip steps in dependency resolution, making installations faster and more efficient.
@@ -622,14 +653,85 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
           
           In short, package-lock.json is essential for reliable, consistent dependency management, which is why it should be included in version control.
 
+     3. differnce between query and params?
+          - In web development, both query and params (also called route parameters) are used to send data in URLs, but they are used in different ways and have different 
+          formats:
+
+          I. Query Parameters
+               - Format: Key-value pairs appended to the URL after a question mark (?).
+               - Example URL: https://example.com/search?category=books&sort=asc
+               - Access in Express.js: Using req.query.
+               - Use Case: Query parameters are generally used for optional data or filters. They allow passing multiple values without changing the URL structure and are often used
+                for searches, filters, pagination, sorting, etc.
+
+               // Example in Express.js
+               app.get('/search', (req, res) => {
+                    const category = req.query.category;  // 'books'
+                    const sort = req.query.sort;          // 'asc'
+                    res.send(`Category: ${category}, Sort: ${sort}`);
+                    });
+
+          II. Route Parameters (Path Parameters)
+               - Format: Part of the URL path itself, defined with a : followed by the parameter name in the route.
+               - Example URL: https://example.com/products/12345
+               - Access in Express.js: Using req.params.
+               - Use Case: Route parameters are used for required values that identify specific resources or entities, like an item ID, user ID, or product category. 
+               They make the URL cleaner and more readable when pointing to specific items or resources.
+
+               // Example in Express.js
+               app.get('/products/:id', (req, res) => {
+                    const productId = req.params.id;  // '12345'
+                    res.send(`Product ID: ${productId}`);
+                    });
+
+          Key Differences
+               - URL Structure: Query parameters are added at the end of the URL with ?, while route parameters are part of the URL path itself.
+               - Use: Query parameters are usually optional and used for filtering or sorting data. Route parameters are typically required and represent specific entities or
+                resources.
+               - Data Access: Query parameters are accessed with req.query and route parameters with req.params in Express.js.          
+
+
+
+================================== Class 04  =====================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+************** Cloning a repo **************
 
           For git repo, if i made the repo first then either i can come to pc and create folder inside that open cmd and git clone link of repo and clone it and open that 
           folder in vs code or i can directly come to vs code and click on clone the repository and it will then ask me the folder where i want to clone it and i can choose 
           that folder and clone it.
-          but if i started the code and haven't created the repository then i can do git init to iniitalise it then git add . then git commit -m "commit files" and now push it to 
-          the github so will go on github and create a new repo and map it to the repository by adding 3 commands which wil be mentioned there only when we creatae the repository.
+          but if i started the code and haven't created the repository then i can do git init to iniitalise it then git add . then git commit -m "commit files" and now push 
+          it to the github so will go on github and create a new repo and map it to the repository by adding 3 commands which wil be mentioned there only when we create the 
+          repository.
           git remote add origin
           git branch -M main
           git push -u origin main
-
-          kidhr h
