@@ -751,7 +751,89 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
 
      17. We can also wrap all the route handlers in an array or some of the route handlers in an array.
           - app.use("/user", [rH , rH2, rH3, rH4, rH5]); OR app.use("/user", [rH , rH2] rH3, rH4, rH5); OR app.use("/user", rH , rH2, [rH3, rH4] rH5);
-          - all of them work in the same way      
+          - all of them work in the same way
+     18. We can write the multiple routes like this also it is exactly the same thing
+          - app.use("/user", (req, res, next) => {
+               console.log("Handling the route user!!");
+               next();
+               });
+               
+          app.use("/user", (req, res, next) => {
+               console.log("Handling the route user 2!!");
+               res.send("2nd Route Handler");
+               });
+     19.  We can write the multiple routes like this also but order matters alot as here it went to the 1st route handler print the console log and send the response back 
+     and didn't even go the 2nd route.
+          - app.use("/user", (req, res, next) => {
+               console.log("Handling the route user 2!!");
+               res.send("2nd Route Handler");
+               });
+               
+          app.use("/user", (req, res, next) => {
+               console.log("Handling the route user!!");
+               next();
+               });
+     20. It also expects the response in last route handler and if there is next() then it expects the another route handler.
+     21. route handlers is the function that actually handling the route and sending the response back but these function that we put in the middle are called as Middlewares.
+     22. A GET request comes in to "/users" as soon as it comes to express it goes and check for whether we have this method and route matching somewhere and it will go 
+     through the chain of Middlewares and then it will handle the response.
+     23.  How Exprees js works? 
+          - GET /users => It checks all the app.xxx ("matching routes") functions, and try to execute them one by one till it gets the response back to the server.
+          - Whenever a request comes to express js server, the job of express js server is to go one by one from top to bottom to all the route handlers and try to send the
+          response back and if does not find the matching URL and unable to send the response back it will just hangs up.
+          - It checks all the functions and send the response back and if any of them sending the response back and it will go no further.
+          - Sending a request to the express server it will try to go one by one to these Middlewares till it reaches a function which actually sends the response back and 
+          that function is known as request/route handler and all of the functions that goes through in b/w are knows as Middlewares.
+          - Middlewares are normal functions only as we call them Middlewares bcoz these are been called one after the other in the middle of the request/method chain.
+     24. What is Middlewares and Why we use them or Why do we need it? 
+          - as we have let say 2 admin api's before sending the response we need to validate them so authentication is needed as check if the request is Authenticated as it 
+          is actually made by admin, as we need to validate the token and if token is invalid we will not send the data back.
+          - But if we check the token for authorization in each api then we have to write the logic again and again and it will be very lengthy.
+          - For making all the admin api's authorization, we can make a middleware. 
+          - Generally, Middlewares are written using app.use bcoz we want our middleware to be used for GET, POST, PUT, PATCH and DELETE requests.
+          - But we can write middlewares specifically for all the GET or POST requests also.
+          - now if we wrote the middleware for all the requests coming to "/admin" and put that on top of all the middlewares/route handlers so all my requests like 
+          "/admin/getAllData" or "/admin/deleteUser" or any request start with "/admin" will go through the top middleware i.e. "/admin" but not for other routes like "/user" 
+          and here we can write the code for authentication.
+          - It will make our code clean and readable and there will be no repeated code also. 
+          - For more cleaner code we can make a differnt folder middlewares and inside that make auth file in which we can write authentication code for admin and export that 
+          from there so it will make our code more cleaner and readable.
+          - Instead of writing
+          app.use("/user", userAuth);
+          we can directly write it 
+          app.get("/user", userAuth, (req, res) => {
+               res.send("User Data Sent");
+               });
+          as there is only one route handler for "/user" so we can directly also write the middleware as it will go to the middlware in auth.js and check the autorization 
+          and once autorized then only reach here to this route handler.
+          - We also made an api for User login where we don't need any authentication so we can just simply write the code and no need to add the middleware. So by 
+          middlewares we can customize lot of things.
+     25. We should write all our code using try and catch so we can catch the erros too.
+     26. When we get error due to wrong js code or DB unable to fetch the data and we try to write all of our code inside try and catch but if we don't use it and there is error
+     so it throws some random error and expose alot of details also and thats not a good way to handle it. 
+     27. To handle all our application Erros we can create another route handler as we should write all our code means everything inside try and catch as its a best way of 
+     doing it but still if there are some unhandled errors, some code which is still throwing some error so we can handle it gracefully is by creating another route hander
+     with error parameter.
+          - app.use("/", (err,req, res, next) =>{})
+          - it matches all our routes 
+          - error(err) should be the first prarameter as order of parameter is important
+          - as we don't want to expose our code with random msgs like user is not defined, variable is not defined going to the client
+          - thats also a middleware  
+
+
+     Theory question 
+     how express works 
+     how middleware works
+     what is a middleware        
+
+
+
+
+     
+************** HOME WORK **************
+
+
+
  
 
 
