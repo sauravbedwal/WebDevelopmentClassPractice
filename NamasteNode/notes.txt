@@ -692,10 +692,67 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
 
 
 
-================================== Class 04  =====================================
+================================== Class 05  =====================================
 
+     1. If we use app.use then it can handle any type of method whether it is GET, POST, PUT, PATCH, DELETE.
+     2. But if we use app.get we can handle the GET request or if we do app.post then it can handle the POST request.
+     3. If we don't send any response means we don't use res.send then it will go in an infinite loop of sending request bcoz we are not sending any response from the server.   
+     4. Route handler is the callback function (req, res) => {} after route ("/user") in app.use or app.get or app.post etc. 
+     5. Now, if we write console.log in Route Handler then it will print console log but still it will go in an infinite loop of sending request bcoz we are not sending any
+     response from the server as the request from postman came to the server and it went inside the Route Handler and printed the log on the console and didn't do anything
+     just hanging around there so we have to send the response back.
+     6. One route can have multiple route handler.
+          - route => "/user", route handler => (req, res) => {}
+          - app.use("/user", (req, res) => {
+                    console.log("Handling the route user 1!!");
+                    res.send("Response 1");
+                    },
+                    (req, res) => {
+                         console.log("Handling the route user 2!!");
+                         res.send("Response 2");
+                         });
+     7. If we now hit the get request it will send the response "Response 1" but if there is no res.send("Response 1") then it will again go in an infinite loop of sending 
+     request as it won't get further and print "Response 2" coz node js or express won't work like that automatically.
+     
+     8. But there is one more parameter that is next and if we use that prarameter and call the next() then it will go to the second Route Handler and print "Response 2".
+     
+     9. So, the request goes to the server and server checks it is the request fo "/user" and it goes to the first route handler and prints the console log and no response 
+     is sent back and we just called the next() function given by Express js so now it will go the next route handler and print console log and response was send back.
+     
+     10. If response is sending from first route handler but also we calling the next() function then request will go to the first route handler and print console log and 
+     response will be sent back and the remaining code also execute as the route handler function is executed in Call Stack and JS waits for none so it will also execute 
+     next() function also called and when we call next function it will go to the second route handler and print console log but when it try to send the response back from 
+     the same URL it throws an error bcoz we have already sent the response back to client and We cannot change the request as a TCP connection was made b/w client and 
+     server and it opens up the socket connection and sends the data back and closes the connection and the connection is lost but on the server we still trying to send 
+     more response. 
+     
+     11. as per TCP, For one request one socket connection is made and once we go the response back from the server that connection is closed now here we got the response 
+     from first route handler and connection is closed but as next() got executed so it went to second route handler too and trying to send the response back to the 
+     coonection but there is no connection. NEVER WRITE CODE LIKE THIS AS IT THROWS ERROR.
+     
+     12.When there are 2 route handler and in both 1st and 2nd route handler there is res but using next() before res of 1st route handler so it executes 1st route handler 
+     and prints console log then goes to 2nd route handler and prints console log & res of 2nd route handler and then try to execute res of 1st route handler and throws error
+     bcoz connection is lost and on the server we still trying to send more response to the client when request is already fullfilled.     
+     
+     13. When there are multiple (4) route handlers and 1st route handler doesn't have res but using next() and rest route handler has res but are not using next() it will
+     print console log of 1st and 2nd route handler and res of 2nd route handler and there will be no ERROR bcoz as 1st route handler doesn't have res like previous example
+     as it just have the console and it prints it but as there is next() so it went to 2nd route handler and prints the console and send the res back also and now in 2nd 
+     route handler there is no next() so it won't go further down hence no ERROR.    
+     
+     14. When there are multiple (4) route handlers & none of them have res but using next() in every route handler & it will print console log of every route handler but
+     throws an ERROR as in last route handler (4th) there is next() so express exprect another route handler but there is no route handler.
+     
+     15. When there are multiple (4) route handlers & none of them have res but using next() in every route handler except last route handler (4) & it will print console log 
+     of every route handler as it is not throwing any ERROR but its Hanging BCOZ not handling route handler as it keep sending request to the server and not getting any 
+     response.
+     
+     16. CORRECT WAY => When there are multiple (5) route handlers & none of them have res and using next() except last one (5) &it will print console log of every route 
+     handler and res of last route handler(5) as express says make as many as route handlers but at the end the response should be send.
 
-
+     17. We can also wrap all the route handlers in an array or some of the route handlers in an array.
+          - app.use("/user", [rH , rH2, rH3, rH4, rH5]); OR app.use("/user", [rH , rH2] rH3, rH4, rH5); OR app.use("/user", rH , rH2, [rH3, rH4] rH5);
+          - all of them work in the same way      
+ 
 
 
 

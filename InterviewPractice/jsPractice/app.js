@@ -13,8 +13,6 @@
 //     }, 5000);
 // })
 
-
-
 // const promise = new Promise((resolve, reject) => {
 //     let foodAvailable = true;
 
@@ -33,7 +31,6 @@
 // }).catch((err) => {
 //     console.log(err);
 // })
-
 
 /****************************************************************************/
 
@@ -72,7 +69,6 @@
 
 // export default Test;
 
-
 /****************************************************************************/
 
 // An array is given with key value pairs now you have to sepearete keys and values in an array.
@@ -85,7 +81,6 @@
 // console.log(key);
 // console.log(value);
 
-
 /****************************************************************************/
 
 // How to fetch api by Promise
@@ -96,7 +91,6 @@
 //     console.log(data);
 // })
 
-
 /****************************************************************************/
 
 // How to fetch api by async await
@@ -106,7 +100,6 @@
 //     const data = await response.json();
 //     console.log(data);
 // }
-
 
 /****************************************************************************/
 
@@ -138,7 +131,6 @@
 
 // getData();
 
-
 /****************************************************************************/
 
 // NJ1 - 1,2
@@ -152,7 +144,6 @@
 // var one = square(4);
 // console.log(one);
 
-
 /****************************************************************************/
 
 // NJ1 - 3
@@ -163,7 +154,6 @@
 // function getName() {
 //     console.log("Saurav");
 // };
-
 
 /****************************************************************************/
 
@@ -183,12 +173,10 @@
 //     console.log(x);
 // }
 
-
 /****************************************************************************/
 
 // NJ1 - 5
 // console.log(window)
-
 
 /****************************************************************************/
 
@@ -198,7 +186,6 @@
 // let b;
 // console.log(typeof a); //object
 // console.log(b); // undefined
-
 
 /****************************************************************************/
 
@@ -213,7 +200,6 @@
 // };
 
 // a();
-
 
 /****************************************************************************/
 
@@ -246,7 +232,6 @@
 
 // console.log(a);
 
-
 /****************************************************************************/
 
 // NJ1 - 9
@@ -266,7 +251,6 @@
 // }
 // x();
 // console.log(a);
-
 
 /****************************************************************************/
 
@@ -308,7 +292,6 @@
 // }
 // z();
 
-
 /****************************************************************************/
 
 // var count = 5;
@@ -319,7 +302,6 @@
 
 // sum();
 // console.log(count);
-
 
 /****************************************************************************/
 
@@ -367,9 +349,7 @@
 // }
 // x(); // 1 2 3 4 5
 
-
 /****************************************************************************/
-
 
 // NJ1 - 12 Closure Interview
 
@@ -384,7 +364,6 @@
 // }
 // greet("Saurav");
 
-
 // Function Expression
 
 // let greet = function (name) {
@@ -392,12 +371,10 @@
 // }
 // greet("Sameer");
 
-
 // let person = (name) => {
 //     console.log(name);
 // }
 // person("Raftaar");
-
 
 // Anonymuous Function
 
@@ -406,14 +383,12 @@
 // }
 // fn();
 
-
 // Named Function
 
 // let fn = function xyz() {
 //     console.log("ABCD");
 // }
 // fn();
-
 
 // First Class Functions
 
@@ -427,7 +402,6 @@
 //     console.log("Helllo");
 // }
 // greet(xyz);
-
 
 // const greet = () => {
 //     function xyz() {
@@ -459,7 +433,6 @@
 // let a = greet();
 // a();
 
-
 /****************************************************************************/
 
 // NJ1 - 14
@@ -478,7 +451,6 @@
 //     console.log("y");
 // });
 
-
 // setTimeout(() => {
 //     console.log("log after 5 seconds");
 // }, 5000);
@@ -489,11 +461,9 @@
 
 // alpha();
 
-
 /****************************************************************************/
 
 // NJ1 - 18
-
 
 // function x() {
 //     console.log("hiii");
@@ -538,7 +508,6 @@
 
 // console.log(calculate(radius, diameter));
 
-
 /****************************************************************************/
 
 // NJ1 - 19
@@ -571,13 +540,11 @@
 //     { firstName: "Tony", lastName: "Chopper" },
 // ];
 
-
 // const ans = arr.map((input) => {
 //     return input.firstName + input.lastName;
 // })
 
 // console.log(ans);
-
 
 // FILTER
 
@@ -609,7 +576,6 @@
 //     { firstName: "Tony", lastName: "Chopper", age: 10 },
 // ]
 
-
 // const ans = arr.filter((input) => {
 //     return input.age > 18;
 // })
@@ -630,7 +596,6 @@
 
 // console.log(ans);
 
-
 // const ans = arr.reduce((acc, curr) => {
 //     if (curr > acc) {
 //         acc = curr;
@@ -639,13 +604,11 @@
 // }, 0)
 // console.log(ans);
 
-
 //     { firstName: "Roronoa", lastName: "Zoro", age: 19 },
 //     { firstName: "Nico", lastName: "Robin", age: 22 },
 //     { firstName: "Vinsmoke", lastName: "Sanji", age: 19 },
 //     { firstName: "Tony", lastName: "Chopper", age: 10 },
 // ];
-
 
 // const ans = arr.reduce((acc, curr) => {
 //     if (acc[curr.age]) {
@@ -658,7 +621,6 @@
 // }, {})
 
 // console.log(ans);
-
 
 /****************************************************************************/
 
@@ -681,7 +643,6 @@
 
 // // obj.details.call(obj2);
 // details.call(obj2, "delhi", 5, 10);
-
 
 // APPLY
 // const obj = {
@@ -738,7 +699,6 @@
 //     }
 // });
 
-
 // https://fakestoreapi.com/products/1
 
 // const promise = fetch('https://fakestoreapi.com/productaas/1').then((response) => {
@@ -749,12 +709,10 @@
 //     console.log(err.message);
 // })
 
-
 // const promise = fetch('https://fakestoreapi.com/products/1').then((response) => {
 //     return response.json();
 // })
 // console.log(promise);
-
 
 // async function getApi() {
 //     const response = await fetch('https://fakestoreapi.com/products/1');
@@ -771,7 +729,6 @@
 // console.log(a);
 // console.log(b);
 
-
 // let a = [1, 2, 3];
 // let b = a;
 
@@ -779,7 +736,6 @@
 
 // console.log(a);
 // console.log(b);
-
 
 // let obj = {
 //     value: 10,
@@ -793,7 +749,6 @@
 // console.log(check(obj));
 // console.log(obj.value);
 
-
 // let a = 10;
 
 // function check(num) {
@@ -803,8 +758,6 @@
 
 // console.log(a);
 // console.log(check(a));
-
-
 
 // function Person(firstName, lastName) {
 //     this.firstName = firstName;
@@ -823,13 +776,11 @@
 //     }
 // }
 
-
 // obj.details();
 
 // obj.stop = function () {
 //     console.log("dtop", this);
 // }
-
 
 // obj.stop();
 
@@ -851,7 +802,6 @@
 
 // ball();
 
-
 // function Person(firstName, lastName) {
 //     this.firstName = firstName;
 //     this.lastName = lastName;
@@ -865,7 +815,6 @@
 // a.push(6);
 // console.log(a);
 // console.log(b);
-
 
 // function sum(a, b, ...rest) {
 //     console.log(a, b);
@@ -889,19 +838,16 @@
 //     console.log("IIFE")
 // })();
 
-
 // const greet = (param1, param2) => {
 //     param1();
 //     console.log(param2);
 // }
-
 
 // const wish = () => {
 //     console.log("davidB");
 // }
 
 // greet(wish, "Wssup")
-
 
 // function greet() {
 //     return function () {
@@ -920,7 +866,6 @@
 //     }
 //     incrementCounter();
 // }
-
 
 // counter();
 
@@ -941,7 +886,6 @@
 // }
 
 // callBack();
-
 
 // function callback(para1) {
 //     para1();
@@ -976,10 +920,8 @@
 //     }
 // }
 
-
 // var memoizeFunction = add256();
 // console.log(memoizeFunction(20));
-
 
 /****************************************************************************/
 
@@ -993,7 +935,6 @@
 // }
 
 // obj.details();
-
 
 //expicit binding
 // let obj = {
@@ -1009,7 +950,6 @@
 // }
 
 // obj.detail.call(obj2);
-
 
 //lexical Binding
 
@@ -1034,7 +974,6 @@
 
 // greet();
 
-
 /****************************************************************************/
 
 // function a() {
@@ -1044,7 +983,6 @@
 //     }
 //     c();
 // }
-
 
 // var b = 10
 // a();
@@ -1097,14 +1035,12 @@
 // counting.increment();
 // counting.decrement();
 
-
 // const arr = [
 //     { firstName: "Roronoa", lastName: "Zoro", age: 19 },
 //     { firstName: "Nico", lastName: "Robin", age: 22 },
 //     { firstName: "Vinsmoke", lastName: "Sanji", age: 19 },
 //     { firstName: "Tony", lastName: "Chopper", age: 10 },
 // ]
-
 
 // const ans = arr.reduce((acc, curr) => {
 //     if (acc[curr.age]) {
@@ -1116,7 +1052,6 @@
 // }, {})
 
 // console.log(ans);
-
 
 // function Music(title) {
 //     this.title = title;
@@ -1131,7 +1066,6 @@
 
 // sum(1, 2, 3, 4);
 
-
 // how to make site responsive media queries
 // how to center element, position properties
 // includes indexof let var const
@@ -1141,7 +1075,6 @@
 // object methods
 // large binary object
 // based on key how to define particular
-
 
 // split method
 // output based question 10
@@ -1184,7 +1117,6 @@
 //"i am trinay".split("").reverse().join("")
 //trim method
 
-
 // const root = document.getElementById("green");
 
 // const heading = document.createElement("h1");
@@ -1193,9 +1125,7 @@
 
 // root.appendChild(heading);
 
-
 // console.log(heading.inner)
-
 
 // var a = "3" + true;
 // console.log(a)
@@ -1250,14 +1180,12 @@
 //     y();
 // }
 
-
 // What is JSON and why it is used ?
 //JavaScript Object Notation(JSON) is a standard text - based format for representing structured data
 // based on JavaScript object syntax.It is commonly used for transmitting data in web applications(e.g.,
 //  sending some data from the server to the client, so it can be displayed on a web page, or vice versa).
 
 // When a variable is inside a function then its memory space will be in Local.
-
 
 /****************************************************************************/
 //  JavaScript Interview
@@ -1291,7 +1219,6 @@
 
 // const onClick = ()=>{0
 // }
-
 
 // const promise = new Promise((resolve, reject) => {
 //   let foodAvailable = true;
@@ -1327,8 +1254,6 @@
 
 // diiference between https:get and https:post?
 
-
-
 //     < form >
 //     <div>
 //         <input type=text id="#input1" value="10" />
@@ -1342,7 +1267,6 @@
 // //   id: 22,
 // // }
 
-
 //     < form >
 //     <div>
 //         <input type=text id="#input1" value="10" />
@@ -1350,7 +1274,6 @@
 //         <button id="increment">Click Me</button>
 //     </div>
 // </form >
-
 
 // while clcking on button vaue of input 1 should increase
 
