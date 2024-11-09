@@ -826,41 +826,166 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
      how middleware works
      what is a middleware        
 
-
-
-
      
 ************** HOME WORK **************
+
+     1. differnece between app.use and app.all in express?
+          - In Express.js, app.use and app.all are both methods to handle requests, but they have different purposes and behavior:
+
+1. app.use
+Purpose: app.use is primarily used to set up middleware functions, which are executed every time a request is received, regardless of the HTTP method (GET, POST, PUT, etc.) or specific path.
+Usage: Often used for global middleware (e.g., logging, parsing JSON, or handling CORS).
+Path Matching: If a path is provided, app.use will match any path that starts with the specified path.
+For example, app.use('/api', ...) will match requests to /api, /api/users, /api/products, etc.
+
+app.use('/api', (req, res, next) => {
+  console.log('API request received');
+  next();
+});
+
+In this case, every request to a path starting with /api will execute this middleware.
+
+2. app.all
+Purpose: app.all is used to handle all HTTP methods (GET, POST, PUT, DELETE, etc.) for a specific route. It's mainly used for defining route-specific middleware that applies to all request methods.
+Usage: Typically used for applying some action on all methods for a specific route.
+Path Matching: app.all only matches the exact specified route and does not include subpaths.
+Example
+app.all('/api/users', (req, res) => {
+  res.send('This handles any HTTP method for /api/users');
+});
+In this case, any request to /api/users with any HTTP method will be handled by this route.
+
+Summary of Differences
+Feature	app.use	app.all
+Purpose	Middleware for requests across paths	Route handling for all HTTP methods
+Path Matching	Matches paths that start with the path	Matches only the exact specified route
+HTTP Methods	Handles all methods by default	Applies to all HTTP methods explicitly
+Typical Use Cases	Logging, authentication, parsing requests	Defining route-wide behavior
+
+
+================================== Class 06  =====================================
+
+     1. Cluster =>  We create cluster for every single project.
+          - Inside the cluster, there can be multiple database.
+          - Inisde the database we can create differnt collections like User which will have all user data, admin which will have all admin data etc.
+          - Collection is group of documents(objects) and in documents we have fields(key value pair).
+     --------------  SETTING UP DATABASE --------------------
+     2. install mongoose - npm i mongoose     
+     3. Create a config folder where will keep every config files there. Now create database.js file and inside that import mongoose.
+          - const mongoose =  require('mongoose');
+     4. Now, connect mongoose to the Cluster (database).
+          -  mongoose.connect("Database Connection URL");
+     5. But doing it like this is not the good way as the good way is to wrap this in an async function and call an await as mongoose.connect returns a Promise and tells that
+     whether the connection was successfull or not.
+          - const connectDB = async () => {
+               await mongoose.connect("Database Connection URL");
+          };
+     6. Now, we can call this function and use .then() for happy case and .catch() for catching errors.
+          - connectDB().then(() => {
+               console.log("Database connection estabilished..");
+          }).catch((err) => {
+               console.log("Database cannot be connected!!");
+          });
+     7. the whole code For Now in database.js looks like this:
+          
+          - const mongoose = require("mongoose");
+          
+          const connectDB = async () => {
+               await mongoose.connect(
+                    "mongodb+srv://sauravbedwal1234:LAxU7xXSS9gO09WJ@namastenodesauravbedwal.vwabz.mongodb.net/"
+                    );
+               };
+               
+               connectDB()
+               .then(() => {
+                    console.log("Database connection estabilished..");
+                    }).catch((err) => {
+                         console.log("Database cannot be connected!!");
+                         });
+     8. Now as we want to connect the app to the database, we have to import database file into app.js  bcoz we running app.js file.
+          - require("./config/daatabase);
+          - path only give o=when transferring the files otherwise if its a node or npm package have to do require("PACKAGE NAME).
+     9. Also, through mongo.connect we connected to the cluster not the database as inside cluster there can be multiple daatabase and to connect to a specific database,
+     we can put the database name at the last of the URL.
+          - mongoose.connect("URL/devTinder");
+    10. But there is a PROBLEM as THIS IS NOT THE BEST WAY TO CONNECT TO THE DATABASE as Server is built first and started listening/accepting the requests and yet database
+    is not connected as application connected to the database later on.
+         - console log :  Server is successfully listening on port 7777...
+                          Database connection estabilished..
+         - user hitting our api but database is not connected.
+         - CORRECT WAY => First connection to the database and then listen to the server.
+     11. How to connect to the mongoose DATABASE?
+          -Now, the CORRECT AND FINAL WAY is to export connectDB function and import it to the app.js file and in .then() function after the database connection is 
+          established we can listen the server.
+          
+          - database.js
+          
+          const mongoose = require("mongoose");
+          const connectDB = async () => {
+               await mongoose.connect(
+                    "mongodb+srv://sauravbedwal1234:LAxU7xXSS9gO09WJ@namastenodesauravbedwal.vwabz.mongodb.net/"
+                    );
+                    };
+                    
+                    module.exports = connectDB;
+
+
+          - app.js
+
+          const express = require("express");
+          const app = express();
+          
+          const connectDB = require("./config/database");
+          
+          connectDB()
+          .then(() => {
+               console.log("Database connection estabilished..");
+               app.listen(7777, () => {
+               console.log("Server is successfully listening on port 7777...");
+          });
+          }
+          ).catch((err) => {
+               console.log("Database cannot be connected!!");
+               });
+          - Things can work perfectly fine with the old style also when in database.js only we were calling the connectDB() function and doing .then() and .catch() there in
+          happy cased but right way is not this bcoz if database is not connected and app started listening to the api request on server.
+     12. In DB design, there will be different collections and one of them is User collection means inside the database we have the collection of all the users and before
+      creating a collection a schema of user is required.
+          -  Schema => - It is an identity for that collection documents.
+                       - like if we create User Schema this basically means defining a user.
+                       - Creating a Schema means what all thing will be store in this user collection, what can an user have.
+                       - User can have firstName, lastName, email id, password etc. and all of that will be stored inside user collection and for creating that we would 
+                       need a Schema.
+                       - Schema tells what all information about the user will be stored in the dabtabase and what this user schema can store or hold and these are the 
+                       fields that can be present inside the user collection and what is the type of data these fields hold.
+          - Model => Creating a model as we modeling the database.
+     13. Create models folder and inside that user.js file to create schema.
+          - create userSchema as schema is a function on top of mongoose and pass the object over here and inside object we can pass all the parameters like firstName, 
+          lastName, emailId, password, age etc that define a user. 
+          - create model and model also a function on top of mongoose and pass name of the model and schema and export it.
+     14. When we create a mongoDB database, we create collection inside it, that collection will holds some data so this is like a User class and then we will create small
+     new instances of that class whenever the user will come in it will be a new type of instance of that model. Schema defines the model, and model is like a class which
+     will create its own instances. Like an user came in Saurav, as it is of type of user so it will go into the user collection. First we create a schema then create a 
+     model out of it and now with this schema we will create new new instances. if we want to add a new user, we will create a new instance of this model and put it into the
+     database.
+     15. Now will create api's and first api will create is POST api.
+          - We created a POST route handler and there for now put the dummy data of user i.e. an userObj and want to save this into user collection and for that we will 
+          create new instance of our model i.e. User and we will add the database to the model and save that instance.
+          - impor/require User model
+          - now we will create a new instance, define User and pass userObj or can directly write the user information to the new instance.
+          - then we will save it to the database by user.save() and it returns a promise so we should use the route handler function as an ASYNC AWAIT function.
+          - Creating a new instance of the User model and passing the data and the new instance comes inside the user variable and when we do user.save() it
+          save the data into the database.
+          - after saving the user send the response back.
+          - always write the code in try and catch so it also catch if any error occurs and handle the responses appropriately.
+     16. MongoDB itself create an unique Id and __v for each document. __V is there to maintain the version of the document. Don't play with these let MongoDB handle it.
+
+        
+
 
 
 
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ************** Cloning a repo **************
@@ -874,3 +999,26 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
           git remote add origin
           git branch -M main
           git push -u origin main
+
+          creating server in nodejs
+
+
+          const http = require("http");
+
+const server = http.createServer(function(req, res) {
+    if(req.url === "/getSecretData"){
+        res.end("There is no secret data");
+    }
+    res.end("Hello World!!!");
+});
+
+server.listen(7777);
+
+in express
+const express = require("express");
+
+const app = express();
+
+app.listen(7777, () => {
+  console.log("Server is successfully listening on port 7777...");
+});
