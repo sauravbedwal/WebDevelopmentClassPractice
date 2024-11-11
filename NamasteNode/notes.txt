@@ -694,6 +694,8 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
 
 ================================== Class 05  =====================================
 
+** Here, we learned about route/request handlers & their multiple examples how code executes, then Middlewares & authentication before sending response & Error handling.
+
      1. If we use app.use then it can handle any type of method whether it is GET, POST, PUT, PATCH, DELETE.
      2. But if we use app.get we can handle the GET request or if we do app.post then it can handle the POST request.
      3. If we don't send any response means we don't use res.send then it will go in an infinite loop of sending request bcoz we are not sending any response from the server.   
@@ -831,39 +833,44 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
 
      1. differnece between app.use and app.all in express?
           - In Express.js, app.use and app.all are both methods to handle requests, but they have different purposes and behavior:
+          
+          1. app.use
+               - Purpose: app.use is primarily used to set up middleware functions, which are executed every time a request is received, regardless of the HTTP method
+               (GET, POST, PUT, etc.) or specific path.
+               - Usage: Often used for global middleware (e.g., logging, parsing JSON, or handling CORS).
+               - Path Matching: If a path is provided, app.use will match any path that starts with the specified path.
+               For example, app.use('/api', ...) will match requests to /api, /api/users, /api/products, etc.
+               
+               app.use('/api', (req, res, next) => {
+                    console.log('API request received');
+                    next();
+                    });
+                    
+          In this case, every request to a path starting with /api will execute this middleware.
+          
+          2. app.all
+               - Purpose: app.all is used to handle all HTTP methods (GET, POST, PUT, DELETE, etc.) for a specific route. It's mainly used for defining route-specific middleware that
+                applies to all request methods.
+               - Usage: Typically used for applying some action on all methods for a specific route.
+               - Path Matching: app.all only matches the exact specified route and does not include subpaths.
+               Example
+               app.all('/api/users', (req, res) => {
+                    res.send('This handles any HTTP method for /api/users');
+                    });
+                    
+          In this case, any request to /api/users with any HTTP method will be handled by this route.
 
-1. app.use
-Purpose: app.use is primarily used to set up middleware functions, which are executed every time a request is received, regardless of the HTTP method (GET, POST, PUT, etc.) or specific path.
-Usage: Often used for global middleware (e.g., logging, parsing JSON, or handling CORS).
-Path Matching: If a path is provided, app.use will match any path that starts with the specified path.
-For example, app.use('/api', ...) will match requests to /api, /api/users, /api/products, etc.
+          Summary of Differences
 
-app.use('/api', (req, res, next) => {
-  console.log('API request received');
-  next();
-});
-
-In this case, every request to a path starting with /api will execute this middleware.
-
-2. app.all
-Purpose: app.all is used to handle all HTTP methods (GET, POST, PUT, DELETE, etc.) for a specific route. It's mainly used for defining route-specific middleware that applies to all request methods.
-Usage: Typically used for applying some action on all methods for a specific route.
-Path Matching: app.all only matches the exact specified route and does not include subpaths.
-Example
-app.all('/api/users', (req, res) => {
-  res.send('This handles any HTTP method for /api/users');
-});
-In this case, any request to /api/users with any HTTP method will be handled by this route.
-
-Summary of Differences
-Feature	app.use	app.all
-Purpose	Middleware for requests across paths	Route handling for all HTTP methods
-Path Matching	Matches paths that start with the path	Matches only the exact specified route
-HTTP Methods	Handles all methods by default	Applies to all HTTP methods explicitly
-Typical Use Cases	Logging, authentication, parsing requests	Defining route-wide behavior
-
+          Feature	           |   app.use                                    |     	app.all
+          Purpose	           |   Middleware for requests across paths       |     Route handling for all HTTP methods
+          Path Matching        |   Matches paths that start with the path     |     Matches only the exact specified route
+          HTTP Methods	      |   Handles all methods by default	        |     Applies to all HTTP methods explicitly
+          Typical Use Cases	 |   Logging, authentication, parsing requests  |     Defining route-wide behavior
 
 ================================== Class 06  =====================================
+
+** In this episode we learned about how to connect mongodb to application by using mongoose and then about how to make schemas, models and push them to DB.
 
      1. Cluster =>  We create cluster for every single project.
           - Inside the cluster, there can be multiple database.
@@ -980,12 +987,63 @@ Typical Use Cases	Logging, authentication, parsing requests	Defining route-wide 
           - always write the code in try and catch so it also catch if any error occurs and handle the responses appropriately.
      16. MongoDB itself create an unique Id and __v for each document. __V is there to maintain the version of the document. Don't play with these let MongoDB handle it.
 
+
+************** HOME WORK **************
+
+1. what is Schema and Models in mongoose?
+
+
+
+
+
+================================== Class 07  =====================================
+
+** In this episode we learned 
+
+     1. We can't hardcode the data to save in DB as we need the user to fill this data in a HTML form and send us this data in an api and we get this data & push it into DB,
+     as api should recieve the data and push it into the database.
+     2. In postman upper part is request and below is response and in Body there are different ways to send the data inside the api like form data, binary data, raw data 
+     GraphQL api's by using GraphQL quereies and something but as we want to keep our api's very simple we want to send the JSON to our server(backend) and server should
+     read the JSON data and then push it into the database.   
+     3. We will choose raw data in which we can share the data in Text, JS, JSON, HTML or XML. XML was used widely to send and recieve data befoer JSON.
+     4. JSON and JS are two different things but they can be interchange easily, that’s why JS and JSON works very well together.
+          - JS object => Value is only String on left it is Key and we can use comma after last value also.
+               {
+                    firstName: "Cristiano",
+                    lastName: "Ronaldo",
+                    emailId: "CR7@gmail.com",
+                    password: "HolaMadrid",
+                    }
+
+          - JSON object => always need key value pairs as String and after last value we can't use comma.
+               {
+                    "firstName": "Cristiano",
+                    "lastName": "Ronaldo",
+                    "emailId": "CR7@gmail.com",
+                    "password": "HolaMadrid"
+                    }
+     5. And now if we send the data and want to recieve the data in code and then save it to the UI. so for understanding, we commented the code as we are not sending any 
+     response and when we console the req and hit the api we see as there is no response so the req is going in infinite loop but in console we got lot of things.
+          - When we send the request from postman and server has received the request and express has converted this request into an object and it has given to us to use it.
+          - And the data we sent is also a part of this request but we cannot read the data directly from the object and data is present on the body of the request.
+          - But when we console req.body it give us UNDEFINED bcoz the data sent is in JSON format and our server is not able to read that JSON data.
+          - To read the JSON data, we will need a Middleware and why we saying middleware bcoz we have to use it for all the API's.
+          - That middleware can just check the incoming request, read the JSON, convert into the JS object and put it into the body and give access to the data.
+          - express.json() is the middleware.
+          - We can use it by creating app.use(express.json()) and now our middlware is active for all the routes.
+               - app.use(() => {}) this request handler will run on every request that come to our server means work for all the routes automatically.
+               - app.use("/test", () => {}) if given some route then this route handler will only work for this URL including every http method.
+               - app.get("/test", () => {}) if given some methode and route then this route handler will only work for that http method and URL. 
+          - As the JSON data will come to the server then express.json() middleware will read and convert into the JS object and add that JS object on to the request body
+          and now we can read the body and get the data and can create new instance for the User model using the data which we got from an API and then User can be saved 
+          in our database.          
         
 
 
-
-
+************** HOME WORK **************
  
+Why we not directly send js object why to send json to middleware and then it will convert it into JS objext?
+
 
 
 ************** Cloning a repo **************
@@ -1000,25 +1058,28 @@ Typical Use Cases	Logging, authentication, parsing requests	Defining route-wide 
           git branch -M main
           git push -u origin main
 
-          creating server in nodejs
 
+************** Server Create **************
 
-          const http = require("http");
+------------------ creating server in nodejs ------------------
 
-const server = http.createServer(function(req, res) {
-    if(req.url === "/getSecretData"){
-        res.end("There is no secret data");
-    }
-    res.end("Hello World!!!");
-});
+     const http = require("http");
+     
+     const server = http.createServer(function(req, res) {
+          if(req.url === "/getSecretData"){
+               res.end("There is no secret data");
+               }
+               res.end("Hello World!!!");
+               });
+               
+     server.listen(7777);
 
-server.listen(7777);
+------------------ creating server in express ------------------
 
-in express
-const express = require("express");
-
-const app = express();
-
-app.listen(7777, () => {
-  console.log("Server is successfully listening on port 7777...");
-});
+     const express = require("express");
+     
+     const app = express();
+     
+     app.listen(7777, () => {
+          console.log("Server is successfully listening on port 7777...");
+          });
