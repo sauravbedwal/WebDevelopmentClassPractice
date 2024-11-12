@@ -1022,7 +1022,8 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
                     "emailId": "CR7@gmail.com",
                     "password": "HolaMadrid"
                     }
-     5. And now if we send the data and want to recieve the data in code and then save it to the UI. so for understanding, we commented the code as we are not sending any 
+     5. POST API 
+     And now if we send the data and want to recieve the data in code and then save it to the UI. so for understanding, we commented the code as we are not sending any 
      response and when we console the req and hit the api we see as there is no response so the req is going in infinite loop but in console we got lot of things.
           - When we send the request from postman and server has received the request and express has converted this request into an object and it has given to us to use it.
           - And the data we sent is also a part of this request but we cannot read the data directly from the object and data is present on the body of the request.
@@ -1036,15 +1037,147 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
                - app.get("/test", () => {}) if given some methode and route then this route handler will only work for that http method and URL. 
           - As the JSON data will come to the server then express.json() middleware will read and convert into the JS object and add that JS object on to the request body
           and now we can read the body and get the data and can create new instance for the User model using the data which we got from an API and then User can be saved 
-          in our database.          
-        
+          in our database.
+          - We will write the req.body in the new user instance and then save the data in DB.
+               
+               - app.post("/signup", async (req, res) => {
+                    // Creating a new instance of the User model
+                    const user = new User(req.body);
+                    
+                    try {
+                         await user.save();
+                         res.send("User added successfully!");
+                         } catch (err) {
+                              console.log("Error creating" + err.message);
+                              res.status(400).send("Error saving the user:" + err.message);
+                              }
+                              });  
+     6. GET API 
+     Always if we want to GET, DELETE, UPDATE something particularly we will do req.body.xyz (xyz whatever we want to find) so we have to put exact same what we put in 
+     Schema.  
+          - we can use diff. methods of mogooose for diff. tasks like Model.find() to get all the data of a Model or Model.findById() to get all the data by Id of a Model.
+          -Like we have a Modal i.e. User so we can use it like
+               - User.find({}) to get all the data of User Model.
+               - User.find({emailId: userEmail}) to get users data of same given userEmail. emailId on left as key has to be same as Schema of Model.
+          - We have to write whatever we finding as per Schema of Model like req.body.emailId like here below we are finding all the users who have userEmail. 
+               - app.get("/user", async (req, res) => {
+                    const userEmail = req.body.emailId;
+                    console.log(userEmail);
+                    
+                    try {
+                         const users = await User.find({ emailId: userEmail });
+                         if (users.length === 0) {
+                              res.status(404).send("User not found");
+                              } else {
+                                   res.send(users);
+                                   }
+                         } catch (err) {
+                              res.status(400).send("Something went wrong");
+                              }
+               });
+          - To get all users of feed we can directly find it by using Model.find({}) as there req.body.xyz would not be needed.
+               - app.get("/feed", async (req, res) => {
+                    try {
+                         const users = await User.find({});
+                         
+                         if (users.length === 0) {
+                              res.status(404).send("No users found");
+                              } else {
+                                   res.send(users);
+                                   }
+                         } catch (err) {
+                              res.status(400).send("Something went wrong");
+                              }
+                              });
+     7. DELETE API
+     for DELETE API we can use the method findByIdAndDelete() as it will find the user by id and delete it.
+          - now we have to find the id first that we will do by req.body._id and then we call call the method findByIdAndDelete().
+          - we can use it normally or we can also use shorthand.
+               - normal => const user = await User.findByIdAndDelete({ _id: userId }); or const user = await User.findByIdAndDelete({ _id: id }); 
+               - shorthand => const user = await User.findByIdAndDelete(userId);
+          - app.delete("/user", async (req, res) => {
+                  const userId = req.body._id;
+                  console.log(userId);
+                  
+                  try {
+                    const user = await User.findByIdAndDelete(userId);
+                    if (!user) {
+                         res.status(404).send("User not found");
+                         } else {
+                              res.send("User deleted successfully");
+                              }
+                    } catch (err) {
+                         res.status(400).send("Something went wrong");
+                         }
+               });     
+     8. PATCH API (Update) 
+     - findByIdAndUpdate and findOneAndUpdate are same thing they both are equavilent to each other.
+     - the only difference is in findByIdAndUpdate we can only use ID and in findOneAndUpdate we can use other things also like ID, EMAILID, USER NAME etc.
+     - we using findByIdAndUpdate and in this first, we will get the id by req.body._id and then we can share the fields that we want to update along with id in the JSON and 
+     that we can get by req.body and then in method findByIdAndUpdate we can use both id and data that we want to update.
+     -  as in req we passed id and fields that we wanted to update and same we send as response in which it updated the fields but it didn't created a new id field bcoz 
+     internally MongoDB ignores this id field bcoz in the User schema there is nothing like id field. Like with id we added the data we want to update but also added arrray 
+     of skills in which i mentioned Javascript, NodeJs, React and in my schema there is no skills field then MongoDB will ignore this skill field.
+          - req we shared with the id and data we want to update but also added arrray of skills but skills is not there in schema 
+          {
+               "_id": "6731e0d414c4873e06596ec2",
+               "emailId": "Ishhhhhhh01@gmail.com",
+               "skills": ["JavaScript", "NodeJS", "ReactJs"]
+               }
+     - Update data of the user
+          - app.patch("/user", async (req, res) => {
+               try {
+                    const userId = req.body._id;
+                    const data = req.body;
+                    const user = await User.findByIdAndUpdate(userId, data);
+                    
+                    if (!user) {
+                         res.status(404).send("User not found");
+                         } else {
+                              res.send("User updated successfully");
+                              }
+                    } catch (err) {
+                         res.status(400).send("Something went wrong");
+                         }
+               });
+     - If we use third parameter which is Optional so in that returnDocument: "before" it will log the older version of the document and if we use returnDocument: "after" 
+     it will log the updated/recent version of the document.
+     - If not use this 3rd parameter then it takes the default value i.e. "before".   
+     - Update data of the user but also added Optional 3rd parameter
+          - app.patch("/user", async (req, res) => {
+               try {
+                    const userId = req.body._id;
+                    const data = req.body;
+                    const user = await User.findByIdAndUpdate(userId, data, { returnDocument: "before", });
+                    console.log(user);
+
+                    if (!user) {
+                         res.status(404).send("User not found");
+                         } else {
+                              res.send("User updated successfully");
+                              }
+                    } catch (err) {
+                         res.status(400).send("Something went wrong");
+                         }
+               });           
+          
 
 
 ************** HOME WORK **************
  
 Why we not directly send js object why to send json to middleware and then it will convert it into JS objext?
 
+for get api he wrote if and else why he catch block not thwoing error there ? why we have to write if ekse and throw error by it and then also write catch?
 
+i can right _id or userId which one is besta s he said fillow the schema  
+
+how he getting id by User id? req vala we can write anything no need to follow schema but methhod m schema follow hoga as req m toh jo bhjenge vhi milega body m so it upto 
+us
+
+directly krenge toh static ho jayega? const user = await User.findByIdAndUpdate(userId, { firstName: "Ishant" });
+
+    in req if m changing the key part and in code its differnt like in code its req.body._id but in req i shared req.body._aid it shows user not found but if i add weong id 
+    it shows soemethign went weong as we discus earlier catch will show the code error weong id is not code error
 
 ************** Cloning a repo **************
 
