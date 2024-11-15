@@ -1404,7 +1404,7 @@ directly krenge toh static ho jayega?
      3. before putting checks/validations in api we will add the checks in database/schema itself.
           - There should be some mandatory fields and if those fields are not there we will not create a user document.
           - It can be email, passsword, first name, last name all these are mandatory/required fields.
-     4. Schema Types
+     4. Schema Types (Validations in Database/Schema)
           - required => If we put required: true in firstName and user will definitely have to give a firstName otherwise mongoose will not allow the insertion/document 
           into the database/collection and if user miss some other field which don't have required then user will be added to the database.
           - unique => If we want there should be a unique email id for the user means one entry with one email id as two different users can't use same email id.
@@ -1429,7 +1429,14 @@ directly krenge toh static ho jayega?
                          }
                iii. It is very important to add timestamps to check when user was registerd or profile was updated to perform some tasks like filter, searching or sorts
                 the users.
-          -                  
+     5. Validations in API
+          - If user is signing up on the platform we don't need all the information of user like age, skills etc and just want 4 required fields like firstName, lastName,
+          emailId, password and it signs up for application.
+          -  If user try to update the email id from "viratkohli@gmail.com" to "rohitsharma@gmail.com" it will be done but we don't want user to be change the emailId once 
+          it has registerd bcoz emailId is very sensitive thing.
+          - We have to put a API Level validation. 
+          - To get id, we can use params like req.params.userId
+          - If in the api end point we putting "/user/:userId" then for getting userId in params need to use same end point i.e userId.                   
 
 
 

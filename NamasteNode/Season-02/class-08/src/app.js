@@ -110,10 +110,33 @@ app.delete("/user", async (req, res) => {
 // });
 
 // PATCH API - Update data of the user but also added Optional 3rd parameter
-app.patch("/user", async (req, res) => {
+app.patch("/user/:userId", async (req, res) => {
   try {
-    const userId = req.body._id;
+    const userId = req.params?.userId;
     const data = req.body;
+
+    // Request data
+    //   {
+    //     "_id": "672f3d4130b7f0f4fe37fce8",
+    //     "emailId": "bcde@gmail.com",
+    //     "gender": "male",
+    //     "skills": ["Cricket", "Acting", "JavaScript"]
+
+    // }
+
+    const ALLOWED_UPDATES = ["photoUrl", "about", "gender", "age", "skills"];
+
+    const isUpdateAllowed = Object.keys(data).every((key) =>
+      ALLOWED_UPDATES.includes(key)
+    );
+
+    if (!isUpdateAllowed) {
+      throw new Error("Update not allowed");
+    }
+
+    if (data.skills.length > 10) {
+      throw new Error("Skills cannot be more than 10");
+    }
 
     const user = await User.findByIdAndUpdate(userId, data, {
       returnDocument: "before",
