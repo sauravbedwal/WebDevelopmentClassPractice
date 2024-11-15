@@ -1399,7 +1399,50 @@ directly krenge toh static ho jayega?
 
 ** In this episode we learned, how to make validations in API's
 
-     1. 
+     1. Validations are needed in post and update api bcoz by them we insert the data in database so we want restrict checks in these api's.
+     2. If we want to add array type in schema of Model we can define it like type: [Strings].
+     3. before putting checks/validations in api we will add the checks in database/schema itself.
+          - There should be some mandatory fields and if those fields are not there we will not create a user document.
+          - It can be email, passsword, first name, last name all these are mandatory/required fields.
+     4. Schema Types
+          - required => If we put required: true in firstName and user will definitely have to give a firstName otherwise mongoose will not allow the insertion/document 
+          into the database/collection and if user miss some other field which don't have required then user will be added to the database.
+          - unique => If we want there should be a unique email id for the user means one entry with one email id as two different users can't use same email id.
+          - default => If we want whenever the user registers it should take some default value.
+          - lowercase => If we want our field to be consistent in the case like email id conssistent in lowercase, we can add lowercase flag into the emailId field.
+          - trim => If user is sending an emailId with white-spaces so mongoDB treat that to be differnet so we can trim the spaces by trim flag.  
+          - minLength => If we want firstName should be of minimum length of atleast 4 characters othwerise user will not be added to the database.
+          - maxLength => If we want firstName should be of maximum length of 50 characters if more than that user will not be added to the database.
+          - min => If we want age  should be of minimum 18 if less than that user will not be added to the database.
+          REMEMBER :- If type is string we use minLength or maxLength and If tye is number we use min and max.
+          - validate() => If we want to add some more complicated check like gender is male, female or others we can add custom validate function.
+               i. Also, this validate function will only be called when the new document is created &and for update the existing data this validate function will not run 
+               by default.
+               ii. To run on Update the existing data, we need to enable this validate function by adding another object i.e {runValidators: true}, in the findByIdAndUpdate 
+               method as 3rd optional parameter.
+          - To know when the user was regisered or update on to our platfrom, we can do that by adding another object i.e {timestamps: true} as 2nd parameter while creating
+           the schema after adding all the types of schema object.
+               i. const userSchema = new mongoose.Schema( {}, {timestamps: true} );
+               ii. We can do that by adding extra field to the schema but no need to do that.
+                    - createAt: {
+                         type: Date,
+                         }
+               iii. It is very important to add timestamps to check when user was registerd or profile was updated to perform some tasks like filter, searching or sorts
+                the users.
+          -                  
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ************** Cloning a repo **************
 
