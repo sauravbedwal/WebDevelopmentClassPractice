@@ -23,7 +23,7 @@ app.post("/signup", async (req, res) => {
 
 // // GET user by email
 app.get("/user", async (req, res) => {
-  const userEmail = req.body.emailID;
+  const userEmail = req.body.emailId;
   console.log(userEmail);
 
   try {

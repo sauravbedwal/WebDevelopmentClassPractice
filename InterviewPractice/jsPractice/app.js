@@ -1296,3 +1296,37 @@
 
 // promsie create and given an array pass the props fro this compoenent to another and show the array item in
 // a list
+
+// // Shorthand Syntax for Object Property Value in ES6
+
+// // This example displaying the details of object using shorthand Syntax for object property value in ES6.
+// // Object property shorthand
+// const name = 'Raj'
+// const age = 20
+// const location = 'India'
+
+// // User with ES6 shorthand
+// // property
+// const user = {
+//     name,
+//     age,
+//     location
+// }
+
+// console.log(user)
+
+// // This example displaying the details of the object without using shorthand Syntax for object property value.
+// // Object property shorthand
+// const name = 'Raj'
+// const age = 20
+// const location = 'India'
+
+// // User without ES6
+// // shorthand property
+// const user = {
+//     name: name,
+//     age: age,
+//     location: location
+// }
+
+// console.log(user)
