@@ -1439,7 +1439,8 @@ directly krenge toh static ho jayega?
           - If in the api end point we putting "/user/:userId" then for getting userId in params need to use same end point i.e userId.
      6. Validating email id which is little tricky and we can use a npm package for validating email id i.e. validator.
           - Now, we doing schema level validation.
-          - methods of validator package are isEmail, isStrongPassword, isURL etc.                   
+          - methods of validator package are isEmail, isStrongPassword, isURL etc.
+     7. NEVER TRUST req.body                        
 
 
 
