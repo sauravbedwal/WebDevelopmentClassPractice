@@ -1397,7 +1397,7 @@ directly krenge toh static ho jayega?
 
 ================================== Class 08  =====================================
 
-** In this episode we learned, how to make validations in API's
+** In this episode we learned, how to make validations in Database(Schema) and API's and also learned how to get id from params. 
 
      1. Validations are needed in post and update api bcoz by them we insert the data in database so we want restrict checks in these api's.
      2. If we want to add array type in schema of Model we can define it like type: [Strings].
@@ -1443,8 +1443,11 @@ directly krenge toh static ho jayega?
      7. NEVER TRUST req.body                        
 
 
+================================== Class 09  =====================================
 
+** In this episode we learned, how to 
 
+     1. 
 
 
 
