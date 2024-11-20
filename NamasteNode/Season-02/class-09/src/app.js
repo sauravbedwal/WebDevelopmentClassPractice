@@ -14,27 +14,26 @@ const validator = require("validator");
 const bcrypt = require("bcrypt");
 
 app.post("/signup", async (req, res) => {
-  console.log(req.body);
-
-  //Validation of data
-  validateSignUpData(req);
-
-  const { firstName, lastName, emailId, password } = req.body;
-
-  //Encrypt the password
-
-  const passwordHash = await bcrypt.hash(password, 10);
-  console.log(passwordHash);
-
-  // Creating a new instance of the User model
-  const user = new User({
-    firstName,
-    lastName,
-    emailId,
-    password: passwordHash,
-  });
-
   try {
+    // console.log(req.body);
+
+    //Validation of data
+    validateSignUpData(req);
+
+    const { firstName, lastName, emailId, password } = req.body;
+
+    //Encrypt the password
+    const passwordHash = await bcrypt.hash(password, 10);
+    console.log(passwordHash);
+
+    // Creating a new instance of the User model
+    const user = new User({
+      firstName,
+      lastName,
+      emailId,
+      password: passwordHash,
+    });
+
     await user.save();
     res.send("User added successfully!");
   } catch (err) {

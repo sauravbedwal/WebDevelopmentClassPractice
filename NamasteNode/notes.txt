@@ -1445,9 +1445,46 @@ directly krenge toh static ho jayega?
 
 ================================== Class 09  =====================================
 
-** In this episode we learned, how to 
+** In this episode we learned, how to put validations in API (signup) and encrypt the password in DB and make login API and confirm the password while Login.
 
-     1. 
+     1. Signup api should be very safe and before creating new instance of User Model.
+     2. When signup api hit,we should check the validation of data in req and then encrypt the password and store in the database.
+     3. We can put the validations in utils folder by creating a validation.js file and put all the validation logic there in the validateSignUpData function.
+          - We can check first that do we got all the fields which are mandatory or not and throw ERROR if mandatory not there.
+          - We can check if the Email id is correct email or not by validator package, like is there @, .com, .in etc is pressent or not.
+          - We can check if the password is strong or not and if weak then throw ERROR.
+          - We can put multipe validations in the function and then export it and import it in app.js and call it inside signup api and pass req as an argument.
+     4. Now we can encrypt the password and then save it to the DB and for that we can install a npm package called bcrypt.
+          - bcrypt.hash(myPlaintextPassword, saltRounds); example:  const passwordHash = await bcrypt.hash(password, 10);
+          - slat rounds => how many rounds of salt is required to encrypt the password. 10 is the optimal value to encrypt.
+          - Once password is encrypted it cannot be decrypted.
+          - then pass the fields that we want to store in DB in an object and passwordHash as the value of password in the object.
+     5. LOGIN API (POST)
+          - We can get email and password from req.body.
+          - We can check if the Email id is correct email or not by validator package, like is there @, .com, .in etc is present or not.
+          - We can then check if the email is present in the DB or not by findOne method bcoz somebody can try to login with random email which is not present in the DB.
+          - Then, we can compare the entered password with the stored password.
+               - bcrypt.compare(myPlaintextPassword, hash); example: const isPasswordValid = await bcrypt.compare(password, user.password);
+          - Also, don't tell the user that email is not present in the DB. Do not write explicitly write these kind of error messages. 
+          - Instead, write Invalid creddentials so it won't be disclosed that email is wrong or password.
+
+
+================================== Class 10  =====================================
+
+** In this episode we learned, how to JWT
+
+     1. Unless we login, we can't get, add, edit or delete our profile or send request to other person and all this need AUTHENTICATION means need to be login.
+     2. Whenever we hit a req from client to server it makes a socket connection and sends the response back and socket connection is closed.
+          - Like User req for GET profile and gets the response back from server then new connection for PATCH profile req and gets the response back from server.
+     3. User came to application and make a login req then server checks that email and password is correct so it sends the response back from server i.e. JWT token.
+     4. User now store the JWT, now whenever user make an api call to get profile, send request or update profile etc. this JWT token will be sent with all the requests and 
+     server will validate the JWT token each and every time.
+     5. JWT token is wrapped inside a Cookie and it is unique for every user and browser by default the Cookies.
+     6. How AUTHENTICATION flow works? 
+          - Whenever a user is login, server will create a token attach into a Cookie & send back & now that cookie will be stored by the browser any request which is coming
+          up next that cookie will be sent along & when the cookie will be sent along we will validate that once again & do anything that we want to do in the application.          
+
+           
 
 
 
@@ -1456,7 +1493,7 @@ directly krenge toh static ho jayega?
 
 
 
-
+vzlidation.js file showing the error in console how cna i show in response bcoz htat would be neceseaeey right so frontend can unusdersatand 
 
 ************** Cloning a repo **************
 
