@@ -1471,7 +1471,7 @@ directly krenge toh static ho jayega?
 
 ================================== Class 10  =====================================
 
-** In this episode we learned, how to JWT
+** In this episode we learned, how JWT
 
      1. Unless we login, we can't get, add, edit or delete our profile or send request to other person and all this need AUTHENTICATION means need to be login.
      2. Whenever we hit a req from client to server it makes a socket connection and sends the response back and socket connection is closed.
@@ -1482,13 +1482,58 @@ directly krenge toh static ho jayega?
      5. JWT token is wrapped inside a Cookie and it is unique for every user and browser by default the Cookies.
      6. How AUTHENTICATION flow works? 
           - Whenever a user is login, server will create a token attach into a Cookie & send back & now that cookie will be stored by the browser any request which is coming
-          up next that cookie will be sent along & when the cookie will be sent along we will validate that once again & do anything that we want to do in the application.          
-
-           
-
-
-
-
+          up next that cookie will be sent along & when the cookie will be sent along we will validate that once again & do anything that we want to do in the application.
+     7. In login api, we will firstly, Create a JWT token and then Add the token to cookie and send the response back to the user.
+     8. Once we login a JWT token wrapped in a cookie, will be sent back to the user and when we call any other api then that cookie will be sent with the request and 
+     validate on server then response will be sent back to the user.
+     9. Whenever we are login in as soon as we hit the login api,  we will set the token inside the cookie and will give uh the cookie and now job of browser is to read that
+     cookie and keep it safely and whenver we request any other api call send back the cookie.
+     10. We can also send an expiry date of the JWT token and cookie like cookie will expire in 1 day, 1 hour, 10 minutes or never expires and if cookie is expired and we 
+     try to request then it will fail the validation and response will be please login and user will be redirected to the Login page.
+     11. We can get the cookie by req.cookie but unable to read it without using the npm package "cookie-parser" as we need a middleware to get the cookies, like same way 
+     we wanted express.json() for reading JSON data and if we console cookies it will show an object { token: 'jafbkakdbajmfvavjavkkablablkabdkabkakakhakddadfdf' }.
+          - const cookieParser = require("cookie-parser");
+          - app.use(cookieParser());
+          - const cokkies = req.cookies;
+     12. If cookie is expired or not available then if we console cookies it will show [Object: null prototype] {}.
+     13. As, if we want to secure the API's like profile api, we will extract the token from the cookie through destructuring and validate it and if the token is valid we 
+     will send the response back otherwise we will say please login. 
+     14. JWT => JSON WEB TOKEN. It generates a unique token and it has some secret information embedded inside it.
+          - JWT token is divided into 3 things i.e HEADER, PAYLOAD and SIGNATURE.
+          - HEADER => The header of a JWT specifies the token type which is JWT and the algorithm used to create the token's signature such as HMAC SHA256 or RSA SHA256.
+          - PAYLOAD => The secret data we will hide inside this token. This section contains the data that this JWT was created to transport.
+          - SIGNATURE => JWT uses to check whether the token is validated or not. verifies that the message was not changed while being passed between two services.
+          - For JWT, we will install a npm package i.e npm i jsonwebtoken.
+     15. In jsonwebtoken package, there is method for creating a new JWT and verify JWT.
+          - jwt.sign({ foo: 'bar' }, privateKey);
+          - jwt.verify(token, privateKey);      
+     16. In jwt.sign we can hide some data inside this token and pass private key. We have to send first parameter what we want to hide like we will hide the userId inside 
+     the token and private secrety key will be the password that only I know means only server knows it, neither user knows it nor attacker.
+     17. We got the token after login and we sent that inside the cookie to the client/user and this token also have secret information about who is logged in as userId of
+     user is hidden inside this token that's why we hide the userId in the jwt.sign method.
+     18. Now we will in API's like profile api validate the token by using jwt.verify method and it will give us the decoded value i.e. the userId of the user.
+          -  { _id: '673b6399c4ab14892e2b0cfe', iat: 1732266715 }
+          - and by the id we can get to know that who the user is by using the method findById.
+     19. If we logged in using the email and password of Elon Musk so the profile data can only be access of Elon Musk only, as Elon Musk cannot access the profile data of 
+     any other user bcoz Elon Musk won't know the email, password and cookies can't be set without email and password.
+     20. We will made middlware to validate the user and that middlware will be used to secure API's. As in userAuth middleware we checking the token and if token is valid
+     so it will check the user in databse by id.
+     21. We can use the same middlware for all api's where we want it send response only when the user is logged in like we did in profile or sendConnectionRequest api's.
+     22. We can also add token and cookies expiry as third parameter in "jwt.compare" and res.cookie in login resprectively .
+          - const token = await jwt.sign({ _id: user._id }, "DEV@Tinder$786", {
+        expiresIn: "1d",
+      });
+      - res.cookie("token", token, { expires: new Date(Date.now() + 900000) });
+     23. Always expire the jwt token. Major websites use 1 - 7 days of time.
+     24. Mongoose schema methods => User schema defines the user so we can attach few methods onto this schema that is applicable for all users. These methhods are helper
+     methods that is very closely related to the user.
+          - In login, we creatin JWT token and passing the id there to secure and this method is closely related to the user and every user will have a different JWT token
+          and we can offload such things to user schema methods.
+          - Always use normal funciton don't use arrow function.
+               - userSchema.methods.getJWT = async function () {};
+          - We will write all the user schema methods inside models folder in user.js where the schema of user is written and there we can get our user as this.
+          - Whenever we create a instance of the model, all the users save in db are the instances of user model and when we use this in the userSchema.methods.getJWT it 
+          will represent that particularl instance like we did user.getJWT and user is Elon then it will get the JWT token for Elon.
 
 
 
@@ -1532,6 +1577,42 @@ vzlidation.js file showing the error in console how cna i show in response bcoz 
      app.listen(7777, () => {
           console.log("Server is successfully listening on port 7777...");
           });
+
+
+
+------------------ Api ------------------
+signup API
+
+Validation of data
+Encrypt the password
+create new isntance 
+save in DB
+send response
+
+login API
+
+validate email
+compare password(decrypt)
+create jwt token
+send it in cookie
+send response
+
+
+Profile API
+
+Get coookies
+get token from cookies
+validate token
+JWT verify
+get id from deocded msg got after JWT verify 
+FIND USER 
+if found Send user as response
+
+
+------------------ Resume ------------------
+
+
+
  user can come and login and in noida all theka will be tied up with us and we will deliver to the place
 
 RESUME

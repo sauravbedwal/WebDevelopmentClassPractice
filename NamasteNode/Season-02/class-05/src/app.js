@@ -265,7 +265,8 @@ const app = express();
 
 /***************************************************************************************************************************************************************************/
 
-// below code is right but for making it more cleaner we wrote all the code in auth.js file and imported here
+// below code is right but for making it more cleaner we wrote all the code in auth.js file and imported here that uh will see in the next example.
+
 //Handle Auth Middleware for all request handlers GET, POST, PUT, DELETE etc.
 // app.use("/admin", (req, res, next) => {
 //   console.log("Admin auth is getting checked!!");
