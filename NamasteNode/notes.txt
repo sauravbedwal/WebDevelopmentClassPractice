@@ -1471,7 +1471,7 @@ directly krenge toh static ho jayega?
 
 ================================== Class 10  =====================================
 
-** In this episode we learned, how JWT
+** In this episode we learned, how JWT token used, made User middleware so API's can be access only if user is logged in and also mongoose schema methods.
 
      1. Unless we login, we can't get, add, edit or delete our profile or send request to other person and all this need AUTHENTICATION means need to be login.
      2. Whenever we hit a req from client to server it makes a socket connection and sends the response back and socket connection is closed.
@@ -1536,9 +1536,50 @@ directly krenge toh static ho jayega?
           will represent that particularl instance like we did user.getJWT and user is Elon then it will get the JWT token for Elon.
 
 
+================================== Class 10  =====================================
+
+** In this episode we learned, how 
+
+     1. Express Router => To manage our API's effeicently and we will group our api's to different type of routers.
+          - It will make the code more readable and clean and also as per the API's we will group them and make express routers like "authRouter" for - POST /signup,
+          POST /login and - POST /logout or "profileRouter" for - GET /profile/view, - PATCH /profile/edit and - PATCH /profile/password etc.
+     2. Now, we can create routes folder in src and inside that make different routes like auth.js for authRouter and profile.js for profileRouter etc.
+          - Inside auth.js, we will require express and then call express.Router() to create express router.
+               - const express  = require('express');
+                 const authRouter = express.Router();
+          - Best practice and in companies we write router and in whatever file it will be present it will that router but as we learning we can use like this authRouter.
+          - now we will do exact same code like we did for api's just the initial name that was app.get, app.post will be changed to authRouter & it is almost the same thing.
+          - Then we require all the routes in app.js like
+               - const authRouter = require("./routes/auth");
+                 const profileRouter = require("./routes/profile");
+          - And use them like middlwares so they will go one by one to each one of them and from where it finds the response won't go further.       
+               - So if we call the api /profile so it will first check all the API's of authRouter if not found same routing end point "/profile" then it will go to the next one 
+               i.e profileRouter and if found the end point there then it will send the response.
+               - app.use("/", authRouter)
+                 app.use("/", profileRouter)
+     3. For LOGOUT API, we can directly just expire the cookie and set it to null instead of token. Here, no need to use userAuth middlware to check whether user is logged in
+     or not bcoz by hitting logout api we don't have any harm neither we need try catch but if we want we can use both the things too.
+     4. In big project where we storing  session inside the db we do cleanup activites before logout.
+     5. For PROFILE/EDIT API, we made a validation function where we checked the allowedEditFields and is there any unnecessary field or not and isEditAllowed can be done or
+     not. If not throw error and if we can so as we also using middleware "userAuth" to check whether user is LoggedIn or not we are also sending current instance of user so
+     we will just get that user by req.user and push the all the updated values to the saved user by Object.keys(req.body).forEach((key) => loggedInUser[key] = req.body[key]),
+     save the user in DB and send the response back.
+     6. For UpdatePassword API, we made a validatePasswordUpdate function where we took currentPassword and newPassword and also took the current user instance then validate
+     the currentPassword and if wrong throw error then check newPassword strong or not if not then throw error and then create a encrypte the password by bcrypt.hash().
+     7. In UpdatePassword api, we stored in a variable and invoked the function with await so validatePasswordUpdate can runs asynchronously, bcoz missing await will not 
+     wait for the asynchronous code inside the function to complete, leading to passwordHash being undefined. Then set user.password to newPasswordHash and save that in DB.
+
+     
+     jwt.sign
+     bcrypt.compare
 
 
-vzlidation.js file showing the error in console how cna i show in response bcoz htat would be neceseaeey right so frontend can unusdersatand 
+
+
+
+
+
+
 
 ************** Cloning a repo **************
 
