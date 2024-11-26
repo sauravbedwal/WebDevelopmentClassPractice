@@ -661,8 +661,8 @@ In short: Use PUT when you want to replace an entire resource and PATCH when you
                - Format: Key-value pairs appended to the URL after a question mark (?).
                - Example URL: https://example.com/search?category=books&sort=asc
                - Access in Express.js: Using req.query.
-               - Use Case: Query parameters are generally used for optional data or filters. They allow passing multiple values without changing the URL structure and are often used
-                for searches, filters, pagination, sorting, etc.
+               - Use Case: Query parameters are generally used for optional data or filters. They allow passing multiple values without changing the URL structure and are 
+               often used for searches, filters, pagination, sorting, etc.
 
                // Example in Express.js
                app.get('/search', (req, res) => {
@@ -1536,9 +1536,9 @@ directly krenge toh static ho jayega?
           will represent that particularl instance like we did user.getJWT and user is Elon then it will get the JWT token for Elon.
 
 
-================================== Class 10  =====================================
+================================== Class 11  =====================================
 
-** In this episode we learned, how 
+** In this episode we learned, how to make EXPRESS ROUTER and also make few API's with all validations i.e. POST /logout, POST /profile/edit and POST /updatePassword.
 
      1. Express Router => To manage our API's effeicently and we will group our api's to different type of routers.
           - It will make the code more readable and clean and also as per the API's we will group them and make express routers like "authRouter" for - POST /signup,
@@ -1569,7 +1569,611 @@ directly krenge toh static ho jayega?
      7. In UpdatePassword api, we stored in a variable and invoked the function with await so validatePasswordUpdate can runs asynchronously, bcoz missing await will not 
      wait for the asynchronous code inside the function to complete, leading to passwordHash being undefined. Then set user.password to newPasswordHash and save that in DB.
 
-     
+================================== Class 12  =====================================
+
+** In this episode we learned, how to 
+
+     1. We will create connectionRequest Model, as now one user will send request to another. We will not add object of connectionRequest to user model bcoz anybody can send
+     request to anyone and other person can reject it or it can be in hanging state or might not accepted so there are so many cases and best way to handle is kepep it away
+     from User collection. Bcoz User Schema defines the identity of a user and if there are two user who are making a connecton and that connection should have its own 
+     schema.
+     2. In In ConnectionRequestSchema, we can have 3 fields, fromUserId to know who send the request, toUserId to know whom sent the request, and status which type of 
+     request sent like ignore, interested, accepted or rejected.
+     3. for using the type as ID we have to use "type: mongoose.Schema.Types.ObjectId".
+     4. For status also as it can be of only 4 types we can use enum where we can give these 4 types and if it use other than that it will throw a message.
+     5. In the request/send/:status/:toUserId we have to put validations like status has to be in this API either interested or ignored but as in enum we have to other 
+     options too i.e. accepted and rejected.
+          - so if i put accepted or xyz then also api is running so i need to put validtion there with the Allowed Updates where only interested and ignored are allowed.
+          - then one more case is if A sent request to B, then A can't sent request again to B and as B got the request from A so now B can't sent request to A also.
+          - so for this case we have to check in the DB of connectionRequest by using $or in the query and will check for both the cases 
+               - {fromUserId: fromUserId, toUserId: toUserId  }  {fromUserId: toUserId, toUserId: fromUserId}
+          - another case will be we have to check the toUserId is there in our User db or not means user exists in db or not and we can do that by simply findOne or 
+          findById method and if not found throw Error.
+          - another case will be we have to check that fromUserId cannot send the request to fromUserId (himself).
+     6. Like we created schema mehtod in User model we can also create schema.pre which is like a middlware that we can use for the last case i.e sending request from
+      fromuserId to fromUserId.
+          - For schema method and pre method always write normal function. Do Not use arrow funciton.
+          - Whenever we call save method to save the data in DB so before that pre method will be called.
+          - Now as we will use pre method we can't compare fromuserId is equal to toUserId by if condition bcoz thats in object so we have to use equals method.
+          - and at last we have to use next() bcoz its a middlware so it will go further after next() only.
+          - We can write in directly in API also but best practice and in advance code we write this in schema file in this manner.
+     7. Suppose 1000 people using our app and each user is sending 100 connetion request and our connectionRequest collection will have 1 lakh documents(records) and our 
+     query i.e finding existingConnectionRequest will become slow and to solve this we need "indexes" in our DB and we can index our database on to certain fields and api
+     become faster.
+          - Suppose we have 100 people with name of Virat and if we do search query to find User woth firstName as Virat and when we do User.find our DB will take lot of 
+          time to return the request like 10sec bcoz DB has to go to each entry to check the firstName as Virat but if we keep index on the DB on the firstName then query 
+          will become very very fast.
+          - If index will be there in schema then query to find will be very fast otherwise it will be slow as the DB grows.
+          - And we have to use the index on those fields by which we are finding the data in db as in our case its emailId.
+          - If we using *unique: true* in any field ex. emailId then mongoDB will automatically creates an index for that field.
+          - If we want to create index for any field we can use *index: true*.
+          - Suppose we want to find data by firstName and don't want firstName to be unique then we can use *index: true*.
+     8. Compound Index => When in query we finding two things like we doing query together in **existingConnectionRequest**  fromUserId and toUserId so there we have to 
+     index them both and i.e Compound Index.
+          - 1 is for assending order and -1 is for descending order.
+          - Suppose we finding fromUserId in connectionRequest and also used index in **fromUserId: 1** then our query of finding fromUserId will be very fast.
+               - connectionRequest.find({fromUserId: 31313464641321354})
+               - connectionRequestSchema.index({ fromUserId: 1 });
+          - But if we also finding toUserId in connectionRequest but used index in only **fromUserId: 1** then just keeping index on fromUserId will not work and it will not
+          make the query fast and we have to keep the **compound index** i.e. adding index to toUserId also then only it will make our query/API fast even we have billion of
+          documents in the collection.
+               - connectionRequestSchema.index({ fromUserId: 1, toUserId: 1 });
+     9. Like we doing a query of find firstName and lastName, we need to use the **compound index**.
+           - User.find({firstName: "Elon", lastName: "Musk" })
+           - userSchema.index({firstName: 1, lastName: 1});
+           - As it will change the order of how the MongoDB stores the enteries in the database.
+     10. Don't create unnecessary indexes.
+     11. Logical Query 
+          - $and => Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.
+          - $not => Inverts the effect of a query predicate and returns documents that do not match the query predicate.
+          - $nor => Joins query clauses with a logical NOR returns all documents that fail to match both clauses.
+          - $or => Joins query clauses with a logical OR returns all documents that match the conditions of either clause. 
+     12. Comparison Query
+          - $eq => Matches values that are equal to a specified value.
+          - $gt => Matches values that are greater than a specified value.
+          - $gte => Matches values that are greater than or equal to a specified value.
+          - $in => Matches any of the values specified in an array.
+          - $lt => Matches values that are less than a specified value.
+          - $lte => Matches values that are less than or equal to a specified value.
+          - $ne => Matches all values that are not equal to a specified value.
+          - $nin => Matches none of the values specified in an array.                                
+
+
+
+************** HOME WORK **************
+
+(1). What is enum in mongoose?
+
+In **Mongoose**, an **`enum`** is a type of validator used to specify a set of allowed values for a field in a schema. It ensures that the value assigned to the field can 
+only be one of the predefined values. If a value outside the specified set is assigned, Mongoose will throw a validation error.
+
+---
+
+### Syntax
+The `enum` validator is added as part of the schema definition under the `enum` option for a field.
+
+### Example
+Here’s how you can use `enum` in a Mongoose schema:
+
+```javascript
+const mongoose = require("mongoose");
+
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  role: {
+    type: String,
+    enum: ["admin", "editor", "viewer"], // Allowed values for the role
+    required: true,
+  },
+});
+
+const User = mongoose.model("User", userSchema);
+```
+
+In this example:
+- The `role` field can only have values `"admin"`, `"editor"`, or `"viewer"`.
+- Any attempt to save a document with a different value for `role` will result in a validation error.
+
+---
+
+### Usage
+```javascript
+const newUser = new User({
+  name: "Alice",
+  role: "admin", // Valid value
+});
+
+newUser.save()
+  .then(() => console.log("User saved successfully!"))
+  .catch((err) => console.error("Error:", err.message));
+
+// Example with an invalid value
+const invalidUser = new User({
+  name: "Bob",
+  role: "superuser", // Invalid value
+});
+
+invalidUser.save()
+  .then(() => console.log("User saved successfully!"))
+  .catch((err) => console.error("Error:", err.message));
+```
+
+---
+
+### Error Handling
+If a value not in the `enum` list is assigned, Mongoose will throw a validation error like this:
+
+```
+Error: User validation failed: role: `superuser` is not a valid enum value for path `role`.
+```
+
+---
+
+### Benefits of Using `enum`:
+1. **Data Integrity**: Prevents invalid values from being saved to the database.
+2. **Readability**: Clearly defines the acceptable values for a field.
+3. **Easy Validation**: Simplifies validation logic by using built-in schema features.
+
+---
+
+### Custom Error Messages
+You can provide a custom error message for the `enum` validator:
+
+```javascript
+const userSchema = new mongoose.Schema({
+  role: {
+    type: String,
+    enum: {
+      values: ["admin", "editor", "viewer"],
+      message: "{VALUE} is not a valid role!", // Custom error message
+    },
+  },
+});
+```
+
+If an invalid value is provided, the error message will include the invalid value:
+```
+Error: User validation failed: role: `superuser` is not a valid role!
+```
+
+(2). What are index in mongoose so we can make our API fast like if we finding the data by User.emailId then we puttign indexes on emailId field ? 
+Tell me what is indexes? what is compound index? how to make our query faster?
+
+### **What are Indexes in Mongoose (MongoDB)?**
+
+Indexes are special data structures in MongoDB that store a small portion of the dataset in an easy-to-traverse format. They help improve the performance of query operations by allowing MongoDB to quickly locate and retrieve the requested data instead of scanning the entire collection.
+
+For example, if you frequently query by `User.emailId`, creating an index on the `emailId` field allows MongoDB to find matching documents much faster.
+
+### **What is a Compound Index?**
+
+A **compound index** is an index that includes multiple fields. It is used when queries often involve multiple fields together. For example, if you often query by both `emailId` and `status`, creating a compound index on `{ emailId: 1, status: 1 }` will optimize such queries.
+
+- **Order Matters**: In a compound index, the order of fields matters. For example, an index on `{ emailId: 1, status: 1 }` will support:
+  - Queries on `emailId`
+  - Queries on both `emailId` and `status`
+  - But **not queries on `status` alone**.
+
+### **How to Create Indexes in Mongoose**
+
+You can create indexes in two ways:
+
+#### 1. **Schema-based Indexes**
+Define indexes directly in the Mongoose schema using the `index` option:
+```javascript
+const userSchema = new mongoose.Schema({
+  emailId: { type: String, required: true, unique: true },
+  status: { type: String },
+});
+
+// Create a compound index on emailId and status
+userSchema.index({ emailId: 1, status: 1 });
+```
+
+#### 2. **Programmatically**
+You can also create indexes programmatically after defining the schema:
+```javascript
+User.createIndexes({ emailId: 1 });
+```
+
+### **How to Make Queries Faster**
+
+1. **Use Indexes**:
+   - Add indexes to fields you frequently use in filters, such as `emailId`, `username`, or `status`.
+
+2. **Optimize Query Fields**:
+   - Only retrieve the fields you need using projections. For example:
+     ```javascript
+     User.find({ emailId: 'example@example.com' }, { firstName: 1, emailId: 1 });
+     ```
+
+3. **Avoid Large `$or` or `$in` Clauses**:
+   - These can degrade performance. Try to break them into smaller queries or use indexing efficiently.
+
+4. **Analyze Queries with `explain()`**:
+   - Use the `.explain("executionStats")` method to see how MongoDB is executing your query and ensure it's using indexes effectively.
+     ```javascript
+     User.find({ emailId: 'example@example.com' }).explain("executionStats");
+     ```
+
+5. **Shard Your Database (for Large Data Sets)**:
+   - For extremely large datasets, consider sharding, which splits data across multiple servers.
+
+6. **Use Compound Indexes for Complex Queries**:
+   - If your query involves multiple fields (e.g., `{ emailId, status }`), a compound index will be faster than multiple single-field indexes.
+
+### **When to Avoid Indexes**
+- For fields with high cardinality (e.g., unique values like `emailId`), indexes work well.  
+- For low-cardinality fields (e.g., `status` with values like "active" or "inactive"), excessive indexing can slow down writes without much query performance gain.
+
+Indexes are a powerful tool in MongoDB for improving query performance, but they should be used judiciously, keeping in mind the specific use case of your application.
+
+(3). Suppose m doing a query connectionRequest.find({fromUserId: 31313464641321354})
+if i can add index by using **unique : true** or **index: true** in fields then why using connectionRequestSchema.index({ fromUserId: 1 }); 
+what is the differnece which one is better?
+
+When deciding between `unique: true`, `index: true`, or explicitly creating an index using `connectionRequestSchema.index()`, it depends on your use case. Here's the difference and when to use each:
+
+---
+
+### **1. `unique: true`**
+
+- **What it does**: 
+  - Creates a **unique index** on the field. This ensures that the field value is unique across all documents in the collection. 
+  - If you attempt to insert or update a document with a duplicate value, MongoDB will throw an error.
+
+- **Use Case**:
+  - Use `unique: true` when the field must have unique values, such as `email` in a `User` schema.
+
+- **Example**:
+  ```javascript
+  const connectionRequestSchema = new mongoose.Schema({
+    fromUserId: { type: String, unique: true },
+  });
+  ```
+
+- **Limitation**:
+  - You cannot have multiple documents with the same `fromUserId`. If this is not your requirement (e.g., `fromUserId` may appear multiple times), `unique: true` is **not appropriate**.
+
+---
+
+### **2. `index: true`**
+
+- **What it does**:
+  - Creates a **non-unique index** on the field. This improves the query performance for filters like `.find({ fromUserId: ... })`.
+  - Allows duplicate values, which is ideal for fields like `fromUserId`, where multiple requests may come from the same user.
+
+- **Use Case**:
+  - Use `index: true` when you query the field frequently and it doesn’t need to be unique.
+
+- **Example**:
+  ```javascript
+  const connectionRequestSchema = new mongoose.Schema({
+    fromUserId: { type: String, index: true },
+  });
+  ```
+
+---
+
+### **3. Explicit Index with `.index()`**
+
+- **What it does**:
+  - Allows full control over index creation. You can specify the type of index (e.g., compound index, unique index, text index) and additional options.
+
+- **Example**:
+  ```javascript
+  connectionRequestSchema.index({ fromUserId: 1 });
+  ```
+
+- **Use Case**:
+  - Use this when:
+    - You want to define a compound index (e.g., `{ fromUserId: 1, toUserId: 1 }`).
+    - You need custom options, such as a sparse index or TTL index.
+    - You want to create an index programmatically after defining the schema.
+
+---
+
+### **Which One is Better?**
+
+- **If `fromUserId` must be unique**: Use `unique: true`. This automatically creates a unique index and enforces the uniqueness constraint.
+
+- **If `fromUserId` is not unique, but frequently queried**: Use `index: true` or `connectionRequestSchema.index({ fromUserId: 1 })`. Both achieve the same result in this case, but `.index()` gives more flexibility if you plan to extend the index later.
+
+---
+
+### **Recommendation for Your Query**
+Since your query is:
+```javascript
+connectionRequest.find({ fromUserId: 31313464641321354 })
+```
+- If `fromUserId` can have duplicate values (e.g., multiple connection requests from the same user), **use**:
+  ```javascript
+  connectionRequestSchema.index({ fromUserId: 1 });
+  ```
+
+- If `fromUserId` must always be unique, **use**:
+  ```javascript
+  const connectionRequestSchema = new mongoose.Schema({
+    fromUserId: { type: String, unique: true },
+  });
+  ```
+
+(4) What are indexes in MongoDB ? Why do we need indexes in DB? What is the advantages and disadvantages of creating?
+
+### **What are Indexes in MongoDB?**
+
+Indexes in MongoDB are special data structures that store a portion of the dataset in a way that is optimized for efficient query execution. They allow MongoDB to quickly locate documents in a collection without scanning the entire dataset.
+
+For example:
+- Without an index: MongoDB scans every document in the collection (full collection scan) to find matches.
+- With an index: MongoDB uses the index to directly locate the matching documents.
+
+### **Why Do We Need Indexes in a Database?**
+
+Indexes are essential for improving query performance, especially as the size of the dataset grows. They are critical in the following scenarios:
+
+1. **Fast Query Execution**:
+   - Queries on indexed fields are significantly faster than those on non-indexed fields.
+
+2. **Sorting**:
+   - Indexes can improve the performance of queries that sort results.
+
+3. **Efficient Filtering**:
+   - Indexes enable MongoDB to quickly filter and retrieve documents based on specific conditions.
+
+4. **Supporting Unique Constraints**:
+   - Indexes can enforce uniqueness in fields (e.g., email addresses).
+
+---
+
+### **Advantages of Indexes**
+
+1. **Faster Query Performance**:
+   - Queries on indexed fields are much quicker as they avoid a full collection scan.
+
+2. **Improved Scalability**:
+   - As datasets grow larger, indexes ensure consistent query performance.
+
+3. **Efficient Sorting**:
+   - Sorting operations on indexed fields are more efficient.
+
+4. **Support for Uniqueness**:
+   - Unique indexes enforce data integrity by preventing duplicate values in a field.
+
+5. **Compound Indexes**:
+   - These allow queries on multiple fields to be optimized.
+
+---
+
+### **Disadvantages of Indexes**
+
+1. **Increased Storage Usage**:
+   - Indexes require additional disk space, which can significantly increase storage requirements, especially for large datasets.
+
+2. **Slower Write Performance**:
+   - Insert, update, and delete operations are slower because MongoDB must update all relevant indexes in addition to modifying the document.
+
+3. **Memory Overhead**:
+   - Indexes are stored in memory for fast access. If the number of indexes exceeds available memory, performance can degrade as MongoDB falls back to disk.
+
+4. **Index Management Overhead**:
+   - Maintaining and updating indexes can add complexity, especially in dynamic applications where fields and query patterns change frequently.
+
+5. **Potential Query Planner Confusion**:
+   - With too many indexes, MongoDB’s query planner may choose a less optimal index, resulting in slower queries.
+
+---
+
+### **When to Use Indexes**
+
+Indexes are beneficial when:
+- You frequently query or filter data by a specific field (e.g., `emailId`, `username`).
+- You need to sort data often by a field.
+- You enforce uniqueness constraints (e.g., `unique: true` for emails).
+- You run complex queries involving multiple fields (use **compound indexes**).
+
+---
+
+### **When Not to Use Indexes**
+
+Avoid overusing indexes when:
+- You have fields with low cardinality (e.g., boolean fields with only `true`/`false` values).
+- Your application performs frequent writes and updates. Too many indexes can slow these operations.
+- The field is rarely used in queries.
+
+---
+
+### **Key Takeaways**
+
+- **Indexes are crucial for read-heavy applications**: They improve query and sorting performance dramatically.
+- **Indexes can hurt performance in write-heavy applications**: Each write operation requires maintaining the indexes, which can slow down inserts, updates, and deletes.
+- **Proper Index Design is Key**: Analyze your query patterns to determine which fields and combinations of fields need indexing. Use tools like `explain()` in MongoDB to identify query bottlenecks and optimize index usage.
+
+(5) What is $or query and $and query in mongoose? Tell me about other quereies too ?
+
+### **`$or` Query in Mongoose**
+
+The `$or` operator is used to match documents that satisfy **at least one condition** in an array of conditions. It performs a logical OR operation.
+
+**Syntax**:
+```javascript
+Model.find({
+  $or: [
+    { field1: condition1 },
+    { field2: condition2 },
+  ],
+});
+```
+
+**Example**:
+```javascript
+User.find({
+  $or: [{ age: { $gte: 18 } }, { role: "admin" }],
+});
+```
+- This query finds users who are either 18 years or older **OR** have the role of "admin".
+
+---
+
+### **`$and` Query in Mongoose**
+
+The `$and` operator matches documents that satisfy **all the conditions** in an array of conditions. It performs a logical AND operation.
+
+**Syntax**:
+```javascript
+Model.find({
+  $and: [
+    { field1: condition1 },
+    { field2: condition2 },
+  ],
+});
+```
+
+**Example**:
+```javascript
+User.find({
+  $and: [{ age: { $gte: 18 } }, { role: "admin" }],
+});
+```
+- This query finds users who are **both** 18 years or older **AND** have the role of "admin".
+
+---
+
+### **Other Common Mongoose Queries**
+
+1. **`$in` Query**:
+   - Matches documents where the field value is in an array of specified values.
+   ```javascript
+   User.find({ role: { $in: ["admin", "editor"] } });
+   ```
+   - Finds users with roles "admin" or "editor".
+
+2. **`$nin` Query**:
+   - Matches documents where the field value is **not** in an array of specified values.
+   ```javascript
+   User.find({ role: { $nin: ["admin", "editor"] } });
+   ```
+
+3. **`$eq` and `$ne` Query**:
+   - `$eq`: Matches documents where the field value equals the specified value.
+   ```javascript
+   User.find({ age: { $eq: 25 } });
+   ```
+   - `$ne`: Matches documents where the field value is **not** equal to the specified value.
+   ```javascript
+   User.find({ age: { $ne: 25 } });
+   ```
+
+4. **`$gt`, `$gte`, `$lt`, `$lte` Queries**:
+   - Used for greater than, greater than or equal to, less than, and less than or equal to conditions.
+   ```javascript
+   User.find({ age: { $gte: 18, $lte: 30 } });
+   ```
+
+5. **`$exists` Query**:
+   - Matches documents where the field exists (or does not exist).
+   ```javascript
+   User.find({ phoneNumber: { $exists: true } });
+   ```
+
+6. **`$regex` Query**:
+   - Matches documents where the field value matches a regular expression.
+   ```javascript
+   User.find({ name: { $regex: /^J/, $options: "i" } });
+   ```
+   - Finds users whose names start with "J" (case-insensitive).
+
+7. **`$all` Query**:
+   - Matches documents where the field contains all the specified elements.
+   ```javascript
+   User.find({ tags: { $all: ["sports", "music"] } });
+   ```
+
+8. **`$size` Query**:
+   - Matches documents where an array field has a specific number of elements.
+   ```javascript
+   User.find({ skills: { $size: 3 } });
+   ```
+
+9. **`$type` Query**:
+   - Matches documents where the field is of a specified BSON type.
+   ```javascript
+   User.find({ age: { $type: "number" } });
+   ```
+
+10. **`$not` Query**:
+    - Matches documents that do **not** satisfy a specified condition.
+    ```javascript
+    User.find({ age: { $not: { $gte: 18 } } });
+    ```
+
+11. **`$elemMatch` Query**:
+    - Matches documents where at least one element of an array field satisfies all specified conditions.
+    ```javascript
+    User.find({
+      scores: { $elemMatch: { subject: "math", score: { $gte: 80 } } },
+    });
+    ```
+
+12. **`$text` Query**:
+    - Used for full-text search in text indexes.
+    ```javascript
+    User.find({ $text: { $search: "developer" } });
+    ```
+
+---
+
+### **Combining Queries**
+
+You can combine multiple operators for complex queries:
+```javascript
+User.find({
+  $and: [
+    { $or: [{ age: { $gte: 18 } }, { role: "admin" }] },
+    { active: true },
+  ],
+});
+```
+- Finds users who are either 18 or older **or** have the role "admin", and are **active**.
+
+By understanding and using these query operators effectively, you can craft powerful and efficient queries to retrieve data from MongoDB.
+
+ 
+(6). If index makes query faster then why we don't add it in every field ? Why we should not create lot of indexes into the DB?
+
+While indexes improve query performance, they come with trade-offs, which is why you shouldn’t add an index to every field. Here are the main reasons:
+
+### **1. Increased Storage Use**
+- Indexes consume additional disk space. For each index you create, MongoDB needs to maintain a copy of the indexed field(s) in a data structure optimized for quick lookups. With too many indexes, your database size can grow significantly.
+
+### **2. Slower Write Operations**
+- Every time you perform a write operation (e.g., insert, update, or delete), MongoDB must update all the relevant indexes. If you have many indexes, this overhead can slow down write performance.
+
+### **3. Diminished Returns**
+- Not all fields are queried frequently. Adding indexes to rarely-used fields doesn’t justify the overhead they introduce. Indexes should be created only on fields that are used often in filters, sorting, or joins.
+
+### **4. Memory and Performance Overhead**
+- Indexes are stored in memory for fast access. If you have too many indexes, your system may run out of memory, forcing MongoDB to read from disk, which is slower.
+
+### **5. Query Planner Complexity**
+- Having too many indexes can make it harder for MongoDB’s query planner to choose the optimal index for a query, leading to suboptimal query performance.
+
+---
+
+### **Best Practices for Indexes**
+1. **Index High-Frequency Query Fields**: Only create indexes on fields that are frequently used in queries or sorting.
+2. **Avoid Low-Cardinality Indexes**: Fields with a small number of distinct values (e.g., boolean fields like `isActive`) don’t benefit much from indexing.
+3. **Use Compound Indexes Where Relevant**: Instead of creating multiple single-field indexes, use compound indexes for queries involving multiple fields.
+4. **Monitor and Analyze**:
+   - Use tools like MongoDB’s `explain()` to determine which indexes are being used.
+   - Remove unused indexes periodically.
+
+Indexes are essential for performance optimization, but their design requires careful consideration based on the application’s query patterns and workload. Over-indexing can lead to more harm than good, especially in write-heavy applications.
+-------------------------------
+
      jwt.sign
      bcrypt.compare
 
