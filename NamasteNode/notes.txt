@@ -1571,7 +1571,8 @@ directly krenge toh static ho jayega?
 
 ================================== Class 12  =====================================
 
-** In this episode we learned, how to 
+** In this episode we learned, we made connectionRequest Schema, understood for ObjectId in schema types : mongoose.Schema.Types.ObjectId and also learned about multiple 
+corner cases in connectionRequest Schema, learned about schema.pre method, also about index and compound index to make our query/API faster.
 
      1. We will create connectionRequest Model, as now one user will send request to another. We will not add object of connectionRequest to user model bcoz anybody can send
      request to anyone and other person can reject it or it can be in hanging state or might not accepted so there are so many cases and best way to handle is kepep it away
