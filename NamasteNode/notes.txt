@@ -1582,8 +1582,8 @@ corner cases in connectionRequest Schema, learned about schema.pre method, also 
      request sent like ignore, interested, accepted or rejected.
      3. for using the type as ID we have to use "type: mongoose.Schema.Types.ObjectId".
      4. For status also as it can be of only 4 types we can use enum where we can give these 4 types and if it use other than that it will throw a message.
-     5. In the request/send/:status/:toUserId we have to put validations like status has to be in this API either interested or ignored but as in enum we have to other 
-     options too i.e. accepted and rejected.
+     5. In the **SENDING REQUEST API i.e request/send/:status/:toUserId** we have to put validations like status has to be in this API either interested or ignored but as in 
+     enum we have to other options too i.e. accepted and rejected.
           - so if i put accepted or xyz then also api is running so i need to put validtion there with the Allowed Updates where only interested and ignored are allowed.
           - then one more case is if A sent request to B, then A can't sent request again to B and as B got the request from A so now B can't sent request to A also.
           - so for this case we have to check in the DB of connectionRequest by using $or in the query and will check for both the cases 
@@ -1639,6 +1639,44 @@ corner cases in connectionRequest Schema, learned about schema.pre method, also 
           - $ne => Matches all values that are not equal to a specified value.
           - $nin => Matches none of the values specified in an array.                                
 
+================================== Class 13  =====================================
+
+** In this episode we learned, We
+
+     1. We making **REQUEST REVIEW API i.e /request/review/:status/:requestId** by this API we can accept or reject the connection request and this API can only be access 
+     to the loggedIn User whose actually the person of toUserId means who got the request i.e. reciever that only can review/see the request means reciever should be the 
+     same person who is loggedIn User.
+     2. As, it should not be like Virat send the request to Elon and Virat himself can accept the request or John can accept virat's request as request can be review by the
+     same person who's id is in toUserId and also in loggedIn User same.
+     3. So we do validation i.e. 
+          - in the API status can be either "accepted" or "rejected".
+         - requestId in api has to be presnt in the DB so we will check the requestId passed in API is same to _id in the documents of in connectionRequest collection.
+         - we will also  check that loggedInUser has to be the same as toUserId who can review the request by accepting or rejecting the request.
+         - we will also check that status has to be the "interested" in the documents of connectionRequest collection bcoz that can only be accepted or rejected unlike 
+         ignored.
+          - const connectionRequest = await ConnectionRequest.findOne({
+               _id: requestId,
+               toUserId: loggedInUser._id,
+               status: "interested",
+               });
+     4. Also, we can't get the ignored documents as we restrict the status to be interested and also once we accepted or rejected the request we can't again accept or reject
+     it bcoz after accepting or rejecting the status will be changed from interested to whatever we choosed to do and as we restrict the status to be interested so it won't 
+     be possible.
+     5. In POST API, we should check everything(data) we feeding inside the db so db can't be attacked with anything random in the db and in GET API, we should check that we 
+     sending only allowed data to the right user as as user can request the correct information which is allowed in his scope.
+     6. We making **GET API to get all the pending requests /user/requests/received** and there we will use find method to find the connectionRequest by validating 2 things 
+     i.e status should be interested and loggedInUser._id has to be same to toUserId who go the requests.
+     7. "REF and POPULATE" => Also in response we getting the fromUserId of the User who sent the request but we want to see the User details like his name to know who 
+     shared the request and for that we will add a field "ref" (refference) in connectionRequestSchema inside fromUserId field and give it a refference of "User" model
+     as it is making a connection b/w both collections.
+          - ref: "User"
+          - and also use populate("fromUserId", [firstName, lastName]) where we find all the data by find method.
+          - always the array of list that we want to populate as if we don't pass it will show all details of the user including their emailId and password and that we don't
+          want to show to some other user.
+     8. We added "ref" in toUserId and populate the data of toUserId also bcoz User can either the sent the request so user is fromUserId or can recieved the request so 
+     user is toUserId means either Elon can get request from Rohit and John means here Elon is toUserId who recieved the request or Elon can send the request to Chris means
+     here Elon is fromUserId who sent the request.           
+     
 
 
 ************** HOME WORK **************
