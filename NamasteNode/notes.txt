@@ -1639,46 +1639,6 @@ corner cases in connectionRequest Schema, learned about schema.pre method, also 
           - $ne => Matches all values that are not equal to a specified value.
           - $nin => Matches none of the values specified in an array.                                
 
-================================== Class 13  =====================================
-
-** In this episode we learned, We
-
-     1. We making **REQUEST REVIEW API i.e /request/review/:status/:requestId** by this API we can accept or reject the connection request and this API can only be access 
-     to the loggedIn User whose actually the person of toUserId means who got the request i.e. reciever that only can review/see the request means reciever should be the 
-     same person who is loggedIn User.
-     2. As, it should not be like Virat send the request to Elon and Virat himself can accept the request or John can accept virat's request as request can be review by the
-     same person who's id is in toUserId and also in loggedIn User same.
-     3. So we do validation i.e. 
-          - in the API status can be either "accepted" or "rejected".
-         - requestId in api has to be presnt in the DB so we will check the requestId passed in API is same to _id in the documents of in connectionRequest collection.
-         - we will also  check that loggedInUser has to be the same as toUserId who can review the request by accepting or rejecting the request.
-         - we will also check that status has to be the "interested" in the documents of connectionRequest collection bcoz that can only be accepted or rejected unlike 
-         ignored.
-          - const connectionRequest = await ConnectionRequest.findOne({
-               _id: requestId,
-               toUserId: loggedInUser._id,
-               status: "interested",
-               });
-     4. Also, we can't get the ignored documents as we restrict the status to be interested and also once we accepted or rejected the request we can't again accept or reject
-     it bcoz after accepting or rejecting the status will be changed from interested to whatever we choosed to do and as we restrict the status to be interested so it won't 
-     be possible.
-     5. In POST API, we should check everything(data) we feeding inside the db so db can't be attacked with anything random in the db and in GET API, we should check that we 
-     sending only allowed data to the right user as as user can request the correct information which is allowed in his scope.
-     6. We making **GET API to get all the pending requests /user/requests/received** and there we will use find method to find the connectionRequest by validating 2 things 
-     i.e status should be interested and loggedInUser._id has to be same to toUserId who go the requests.
-     7. "REF and POPULATE" => Also in response we getting the fromUserId of the User who sent the request but we want to see the User details like his name to know who 
-     shared the request and for that we will add a field "ref" (refference) in connectionRequestSchema inside fromUserId field and give it a refference of "User" model
-     as it is making a connection b/w both collections.
-          - ref: "User"
-          - and also use populate("fromUserId", [firstName, lastName]) where we find all the data by find method.
-          - always the array of list that we want to populate as if we don't pass it will show all details of the user including their emailId and password and that we don't
-          want to show to some other user.
-     8. We added "ref" in toUserId and populate the data of toUserId also bcoz User can either the sent the request so user is fromUserId or can recieved the request so 
-     user is toUserId means either Elon can get request from Rohit and John means here Elon is toUserId who recieved the request or Elon can send the request to Chris means
-     here Elon is fromUserId who sent the request.           
-     
-
-
 ************** HOME WORK **************
 
 (1). What is enum in mongoose?
@@ -1783,13 +1743,15 @@ Tell me what is indexes? what is compound index? how to make our query faster?
 
 ### **What are Indexes in Mongoose (MongoDB)?**
 
-Indexes are special data structures in MongoDB that store a small portion of the dataset in an easy-to-traverse format. They help improve the performance of query operations by allowing MongoDB to quickly locate and retrieve the requested data instead of scanning the entire collection.
+Indexes are special data structures in MongoDB that store a small portion of the dataset in an easy-to-traverse format. They help improve the performance of query 
+operations by allowing MongoDB to quickly locate and retrieve the requested data instead of scanning the entire collection.
 
 For example, if you frequently query by `User.emailId`, creating an index on the `emailId` field allows MongoDB to find matching documents much faster.
 
 ### **What is a Compound Index?**
 
-A **compound index** is an index that includes multiple fields. It is used when queries often involve multiple fields together. For example, if you often query by both `emailId` and `status`, creating a compound index on `{ emailId: 1, status: 1 }` will optimize such queries.
+A **compound index** is an index that includes multiple fields. It is used when queries often involve multiple fields together. For example, if you often query by both 
+`emailId` and `status`, creating a compound index on `{ emailId: 1, status: 1 }` will optimize such queries.
 
 - **Order Matters**: In a compound index, the order of fields matters. For example, an index on `{ emailId: 1, status: 1 }` will support:
   - Queries on `emailId`
@@ -1854,7 +1816,8 @@ Indexes are a powerful tool in MongoDB for improving query performance, but they
 if i can add index by using **unique : true** or **index: true** in fields then why using connectionRequestSchema.index({ fromUserId: 1 }); 
 what is the differnece which one is better?
 
-When deciding between `unique: true`, `index: true`, or explicitly creating an index using `connectionRequestSchema.index()`, it depends on your use case. Here's the difference and when to use each:
+When deciding between `unique: true`, `index: true`, or explicitly creating an index using `connectionRequestSchema.index()`, it depends on your use case. Here's the 
+difference and when to use each:
 
 ---
 
@@ -1875,7 +1838,8 @@ When deciding between `unique: true`, `index: true`, or explicitly creating an i
   ```
 
 - **Limitation**:
-  - You cannot have multiple documents with the same `fromUserId`. If this is not your requirement (e.g., `fromUserId` may appear multiple times), `unique: true` is **not appropriate**.
+  - You cannot have multiple documents with the same `fromUserId`. If this is not your requirement (e.g., `fromUserId` may appear multiple times), `unique: true` is 
+  **not appropriate**.
 
 ---
 
@@ -1919,7 +1883,8 @@ When deciding between `unique: true`, `index: true`, or explicitly creating an i
 
 - **If `fromUserId` must be unique**: Use `unique: true`. This automatically creates a unique index and enforces the uniqueness constraint.
 
-- **If `fromUserId` is not unique, but frequently queried**: Use `index: true` or `connectionRequestSchema.index({ fromUserId: 1 })`. Both achieve the same result in this case, but `.index()` gives more flexibility if you plan to extend the index later.
+- **If `fromUserId` is not unique, but frequently queried**: Use `index: true` or `connectionRequestSchema.index({ fromUserId: 1 })`. Both achieve the same result in this 
+case, but `.index()` gives more flexibility if you plan to extend the index later.
 
 ---
 
@@ -1944,7 +1909,8 @@ connectionRequest.find({ fromUserId: 31313464641321354 })
 
 ### **What are Indexes in MongoDB?**
 
-Indexes in MongoDB are special data structures that store a portion of the dataset in a way that is optimized for efficient query execution. They allow MongoDB to quickly locate documents in a collection without scanning the entire dataset.
+Indexes in MongoDB are special data structures that store a portion of the dataset in a way that is optimized for efficient query execution. They allow MongoDB to quickly 
+locate documents in a collection without scanning the entire dataset.
 
 For example:
 - Without an index: MongoDB scans every document in the collection (full collection scan) to find matches.
@@ -2029,7 +1995,8 @@ Avoid overusing indexes when:
 
 - **Indexes are crucial for read-heavy applications**: They improve query and sorting performance dramatically.
 - **Indexes can hurt performance in write-heavy applications**: Each write operation requires maintaining the indexes, which can slow down inserts, updates, and deletes.
-- **Proper Index Design is Key**: Analyze your query patterns to determine which fields and combinations of fields need indexing. Use tools like `explain()` in MongoDB to identify query bottlenecks and optimize index usage.
+- **Proper Index Design is Key**: Analyze your query patterns to determine which fields and combinations of fields need indexing. Use tools like `explain()` in MongoDB to 
+identify query bottlenecks and optimize index usage.
 
 (5) What is $or query and $and query in mongoose? Tell me about other quereies too ?
 
@@ -2189,10 +2156,12 @@ While indexes improve query performance, they come with trade-offs, which is why
 - Indexes consume additional disk space. For each index you create, MongoDB needs to maintain a copy of the indexed field(s) in a data structure optimized for quick lookups. With too many indexes, your database size can grow significantly.
 
 ### **2. Slower Write Operations**
-- Every time you perform a write operation (e.g., insert, update, or delete), MongoDB must update all the relevant indexes. If you have many indexes, this overhead can slow down write performance.
+- Every time you perform a write operation (e.g., insert, update, or delete), MongoDB must update all the relevant indexes. If you have many indexes, this overhead can slow
+ down write performance.
 
 ### **3. Diminished Returns**
-- Not all fields are queried frequently. Adding indexes to rarely-used fields doesn’t justify the overhead they introduce. Indexes should be created only on fields that are used often in filters, sorting, or joins.
+- Not all fields are queried frequently. Adding indexes to rarely-used fields doesn’t justify the overhead they introduce. Indexes should be created only on fields that are
+ used often in filters, sorting, or joins.
 
 ### **4. Memory and Performance Overhead**
 - Indexes are stored in memory for fast access. If you have too many indexes, your system may run out of memory, forcing MongoDB to read from disk, which is slower.
@@ -2210,7 +2179,102 @@ While indexes improve query performance, they come with trade-offs, which is why
    - Use tools like MongoDB’s `explain()` to determine which indexes are being used.
    - Remove unused indexes periodically.
 
-Indexes are essential for performance optimization, but their design requires careful consideration based on the application’s query patterns and workload. Over-indexing can lead to more harm than good, especially in write-heavy applications.
+Indexes are essential for performance optimization, but their design requires careful consideration based on the application’s query patterns and workload. Over-indexing 
+can lead to more harm than good, especially in write-heavy applications.
+
+
+================================== Class 13  =====================================
+
+** In this episode we learned, We made API's like review request that we can either accept or reject and check recieved requests with validation in both API's and also 
+learned about ref and populate.  
+
+     1. We making **REQUEST REVIEW API i.e /request/review/:status/:requestId** by this API we can accept or reject the connection request and this API can only be access 
+     to the loggedIn User whose actually the person of toUserId means who got the request i.e. reciever that only can review/see the request means reciever should be the 
+     same person who is loggedIn User.
+     2. As, it should not be like Virat send the request to Elon and Virat himself can accept the request or John can accept virat's request as request can be review by the
+     same person who's id is in toUserId and also in loggedIn User same.
+     3. So we do validation i.e. 
+          - in the API status can be either "accepted" or "rejected".
+         - requestId in api has to be presnt in the DB so we will check the requestId passed in API is same to _id in the documents of in connectionRequest collection.
+         - we will also  check that loggedInUser has to be the same as toUserId who can review the request by accepting or rejecting the request.
+         - we will also check that status has to be the "interested" in the documents of connectionRequest collection bcoz that can only be accepted or rejected unlike 
+         ignored.
+          - const connectionRequest = await ConnectionRequest.findOne({
+               _id: requestId,
+               toUserId: loggedInUser._id,
+               status: "interested",
+               });
+     4. Also, we can't get the ignored documents as we restrict the status to be interested and also once we accepted or rejected the request we can't again accept or reject
+     it bcoz after accepting or rejecting the status will be changed from interested to whatever we choosed to do and as we restrict the status to be interested so it won't 
+     be possible.
+     5. In POST API, we should check everything(data) we feeding inside the db so db can't be attacked with anything random in the db and in GET API, we should check that we 
+     sending only allowed data to the right user as as user can request the correct information which is allowed in his scope.
+     6. We making **GET API to get all the pending requests /user/requests/received** and there we will use find method to find the connectionRequest by validating 2 things 
+     i.e status should be interested and loggedInUser._id has to be same to toUserId who go the requests.
+     7. "REF and POPULATE" => Also in response we getting the fromUserId of the User who sent the request but we want to see the User details like his name to know who 
+     shared the request and for that we will add a field "ref" (refference) in connectionRequestSchema inside fromUserId field and give it a refference of "User" model
+     as it is making a connection b/w both collections.
+          - ref: "User"
+          - and also use populate("fromUserId", [firstName, lastName]) where we find all the data by find method.
+          - always the array of list that we want to populate as if we don't pass it will show all details of the user including their emailId and password and that we don't
+          want to show to some other user.
+     8. We added "ref" in toUserId and populate the data of toUserId also bcoz User can either the sent the request so user is fromUserId or can recieved the request so 
+     user is toUserId means either Elon can get request from Rohit and John means here Elon is toUserId who recieved the request or Elon can send the request to Chris means
+     here Elon is fromUserId who sent the request.           
+     
+
+================================== Class 14  =====================================
+
+** In this episode we learned, We made feed's API and also learned about set and limits
+
+     1. we making **FEED API** /user/feed and User should see all the users except 
+          - his own card
+          - his connections
+          - ignored people
+          - already sent the connection request i.e interested people
+     2. we found the connection request in which fromUserId or toUserId have same as loggedInUser._id and also used select("fromUserId toUserId"), in this we can add the 
+     fields that we want to show only as it is similar to populate like in populate we put fist the ref of field and then field we want to show like 
+     populate("fromUserId", ["firstName", "lastName"]).      
+     3. After getting the user whose id is in fromUserId or toUserId, now we will create a Data Structure i.e Set() and its like an array and duplicate element can't be 
+     stored in this as it only contains UNIQUE elements. Like we have an array [A, B, F, Z, S] now if we will again try to put A inside the array it won't be possible as it
+     will skip it bcoz A is already present.
+     4. Then we added all the id's of fromUserId and toUserId into the array i.e hideUsersFromFeed that we created by Set() and also while adding the id's into the array 
+     we converted them into string by toString() method.
+     5. Then we find users who are not in the array and not have id of loggedInUser and for that used $and query and $nin and $ne.
+     6. If database has 1000's user we don't want our feed api to send us all the 999 user except one i.e loggedInUser as API should only return 10 user at a time and for 
+     rest we can use pagination feature.
+     7. For pagination the standard good practice is to use query params.
+          - /user/feed?page=1&limit=10 => 1-10 
+          - /user/feed?page=2&limit=10 => 11-20
+          - /user/feed?page=3&limit=10 => 21-30
+     8. In MongoDB, we have to functions i.e skip() and limit().
+          - .skip() means how many documents you skip from the starting.
+          - .limit() means how many documents you want.
+     9. For these pages it should be like    
+          - /user/feed?page=1&limit=10 => 1-10 => .skip(0) & .limit(10) 
+          - /user/feed?page=2&limit=10 => 11-20 => .skip(10) & .limit(10)
+          - /user/feed?page=3&limit=10 => 21-30 => .skip(20) & .limit(10)            
+
+
+
+
+     1. As per my thinking User should see all the users except 
+          - When User is loggedIn means user is fromUserId
+               - his own card
+               - his connections i.e status: "accepted"
+               - ignored people i.e status: "ignored"
+               - already sent the connection request i.e status: "interested"
+          - When user getting a connection request means user is toUserId
+               - status: "accepted"
+               - status: "interested"
+     2. and now we can send request again to the user who's request is rejected for that in API POST to send request to User "/request/send/:status/:toUserId" we have to 
+     find existingConnectionRequest with status: "accepted" so we need to add this field also.          
+
+          Honey singh sent request means interested in Mike and Chris and ignored Trump so now in Honey feed these3 user and honey himself can't come but now Mike accepted
+          the request and Chris rejected the request now Chris can come again in Honey feed and When chris is loggedIn Honey was not in his feed as honey was in received 
+          request but as Chris rejected it Honey can also come again in his feed.                 
+
+
 -------------------------------
 
      jwt.sign
