@@ -65,7 +65,7 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
   }
 });
 
-// page and limit are optional if not given then we will give first 10 users.
+// ----- feed api and pagination implemented as page and limit are optional if not given then we will give first 10 users -----
 userRouter.get("/feed?page=1&limit=10", userAuth, async (req, res) => {
   try {
     const loggedInUser = req.user;
@@ -100,7 +100,7 @@ userRouter.get("/feed?page=1&limit=10", userAuth, async (req, res) => {
   }
 });
 
-// ----- My way as i also want to show rejected user in feed same like insta/fb -----
+// ----- My way as i also want to show rejected user in feed same like insta/fb didn't applied pagination -----
 // userRouter.get("/user/feed", userAuth, async (req, res) => {
 //   try {
 //     // user can't see his profile
@@ -155,14 +155,3 @@ userRouter.get("/feed?page=1&limit=10", userAuth, async (req, res) => {
 // });
 
 module.exports = userRouter;
-
-// trump sent request to mike as now trump is fromUserId and he has status that we want so mike is not showing in his feed
-// but as if trump interested in mike means send request then mike should not seen trump on feed and if mike accepted then also in case of ignore mike can see trump on feed
-// now in db trump is fromUSerid and mike is toUserId but when mike will loggedIn he will be fromUserId but mike id with trump will be in toUserId omly
-// fcb
-//  show ni feed Yes or no
-// (trump) interested in mike  t m
-// trump ignored mike t M
-// mike accepted trump m t
-// mike rejected trump m t
-// similar skiils, age range, oppsite gender

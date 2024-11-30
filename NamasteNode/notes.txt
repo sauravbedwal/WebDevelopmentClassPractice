@@ -2256,7 +2256,7 @@ learned about ref and populate.
           - /user/feed?page=3&limit=10 => 21-30 => .skip(20) & .limit(10)            
 
 
-
+///////////- My way as i also want to show rejected user in feed same like insta/fb didn't applied pagination -////////////////
 
      1. As per my thinking User should see all the users except 
           - When User is loggedIn means user is fromUserId
@@ -2273,6 +2273,17 @@ learned about ref and populate.
           Honey singh sent request means interested in Mike and Chris and ignored Trump so now in Honey feed these3 user and honey himself can't come but now Mike accepted
           the request and Chris rejected the request now Chris can come again in Honey feed and When chris is loggedIn Honey was not in his feed as honey was in received 
           request but as Chris rejected it Honey can also come again in his feed.                 
+
+// trump sent request to mike as now trump is fromUserId and he has status that we want so mike is not showing in his feed
+// but as if trump interested in mike means send request then mike should not seen trump on feed and if mike accepted then also in case of ignore mike can see trump on feed
+// now in db trump is fromUSerid and mike is toUserId but when mike will loggedIn he will be fromUserId but mike id with trump will be in toUserId omly
+// fcb
+//  show ni feed Yes or no
+// (trump) interested in mike  t m
+// trump ignored mike t M
+// mike accepted trump m t
+// mike rejected trump m t
+// similar skiils, age range, oppsite gender
 
 
 -------------------------------
