@@ -2288,15 +2288,8 @@ learned about ref and populate.
 
 -------------------------------
 
-     jwt.sign
-     bcrypt.compare
-
-
-
-
-
-
-
+     jwt.sign jwt verify
+     bcrypt.hash bcrypt.compare
 
 
 ************** Cloning a repo **************
@@ -2366,60 +2359,3 @@ JWT verify
 get id from deocded msg got after JWT verify 
 FIND USER 
 if found Send user as response
-
-
------------------- Resume ------------------
-
-
-
- user can come and login and in noida all theka will be tied up with us and we will deliver to the place
-
-RESUME
-
-Project#7 Client : Autopedia (Qexon)  1 year and 1 month.      (May 2018 to June 2019)
-
-Project#5 Client : Growth Ai (Muoro).  8 months.                           (April 2020 to December 2020)
-
-Project#3 Client : Suburban jungle Inc. (Muoro)  11 months.   (May 2022 to April 2023)
-
-
-in chatgpt i want to create a description for Suburban jungle Inc. project and worked in react in frontend and tell me details what company does, what project does?
-to know abt project , ye project kya krta h ,kya tech stack tha, kya folder structure ho skta tha... what uh did tell me the big services taht i did so i can tell to interviewer
-like oAuth for login autehntaction authorization.
-
-5-6 topics need to remember like AUTHENTICATION, Templates bnaye tha data aane p and work for every projevct just domain change h..
-
- timelines 1 - 1sal and 2 project together for 1 year
-
-by bro
-
-Project#3 Client : Suburban jungle Inc. => Like MMT but in MMT there are flights too but yaha p house k liye hota h florida street m jayda h rent p dena yaa 1-1 din k liye 
-dena 
-
-Growth Ai  => Hackarearth, Hackarthon for some college and genralise kr rhi thi liek making micro frontend like we have two differnet collesges and we can provide it to both easily like domain can change easily.
-
-koi bhi stuendt ayega enroll kia and 1st year btech test krvane h enroll krenge test krenge and they also include AI in backend as AI se we can get ansers shi h ya nihi asia portakl tha
-
-
-Autopedia => Vintage cars like ferrari so this comany sell or rent the cars but only vintafe and made UI 
-
-meri company p project aaye the .. har project k aage se company htado bcoz client can give the project to other service based comp. too.
-
-i dont know the insights of my company how would i know.. no one asked for hosted link as i dont hvae knowlege that internal and i didnt hosted..
-
-
-EC2 service, Lambda function, dynamoDB, S3 buckets, CI/CD pipelines, Docker, Kubannatives..
-
-Docker ki comands hoti h, kaise image bnti h, deployment aise hote h... 
-
-
-kaam kia tha?
-
-not yes not no
-
-project m use ho rha tha and we work toghether so i use to see in devops and i have an idea and then giive technical
-
-micro services so ither term handlinng aoyment thuing 
-
-
-AWS integration.
