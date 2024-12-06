@@ -1,3 +1,20 @@
+Browsers do not understand react code.
+
+react is just JS code behind the scenes.
+
+When we created an element like h1 and console it we got JS object with props and Children.
+
+render method is responsible to take react element which is an object & covert it into (HTML) tag & put it up on the DOM.
+1st is the tag, 2nd is the attribute object, 3rd is what we put inside can use array for more elements
+
+this is to show those who think that react can only be written in jsx as in real the base of react or
+core of react is this thats how it created as JSX makes it easy when we have to create tags.
+
+1st is the tag, 2nd is the attribute object, 3rd is what we put inside can use array for more elements.
+
+AS react is a library it can be used in a small portion of the app too like only on navbar or footer or particular component 
+as when we do root.render it will only effect the root div (replace/overwrite) as rest of the HTML will remain the same.
+
 ● What is Emmet?
 
 Emmet is a built-in feature of VS Code, so it doesn’t require any additional installation. By using
