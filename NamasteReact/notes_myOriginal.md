@@ -4,7 +4,7 @@ Here's the updated and formatted version of your notes, keeping your original wo
 
 ---
 
-# **Class 1: React Introduction**
+# **Class 1**
 
 ### **Browsers do not understand React code**
 
@@ -115,4 +115,56 @@ However:
 
 ---
 
-Let me know if you need further modifications!
+# **Class 2**
+
+
+## **React Notes**  
+
+When you install a package like Parcel with a caret (^2.8.4) in your `package.json`,  
+it will automatically update to newer **minor** and **patch** versions  
+that are compatible with version 2.8.4.  
+
+So, if a newer version like **2.8.8** is released, running `npm install` will  
+update `package-lock.json` to this version, reflecting the latest compatible version installed.  
+
+Your `package-lock.json` will update to reflect the current version installed, like **2.8.8**,  
+while your `package.json` will still show `^2.8.4`, indicating the version range you've specified.  
+
+This allows for **flexibility** in updating to compatible versions.  
+
+The `dist` folder keeps the bundle of all **HTML**, **CSS**, and **JS** files together  
+in both **development** and **production** (build) environments.  
+
+---
+
+Our `package.json` file contains **dependencies**, and each of these dependencies may also rely on additional dependencies, which in turn can have their own dependencies. This cascading relationship is referred to as **transitive dependencies**.
+
+**Transitive dependencies** refer to the dependencies of your project's direct dependencies. These are packages that your dependencies rely on to function correctly. In other words, if **A** depends on **B**, and **B** depends on **C**, then **C** is a transitive dependency of **A**.  
+
+**Transitive dependencies** are the dependencies of your direct dependencies. They are automatically installed and can affect your project, even though they aren’t explicitly listed in your `package.json`.
+
+---
+
+### **Parcel Features**  
+
+- **Dev Build**  
+- **Local Server**  
+- **HMR** - Hot Module Replacement  
+- **File Watching Algorithm** - written in **C++**  
+  (HMR happens because of this)  
+- **Caching** - Faster Builds (Each save takes less time due to  
+  caching in `.parcel-cache`)  
+- **Image Optimization**  
+- **Minification**  
+- **Bundling**  
+- **Compression**  
+- **Consistent Hashing**  
+- **Code Splitting**  
+- **Differential Bundling** - supports older browsers  
+- **Diagnostics**  
+- **Error Handling**  
+- **HTTPS**  
+- **Tree Shaking** - removes unused code  
+- Different **development** and **production** bundles  
+
+---

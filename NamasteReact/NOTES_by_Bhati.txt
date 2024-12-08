@@ -1,4 +1,4 @@
-===================================class 1======================================
+===================================class 1====================================== (1)
 
 React is just a piece of js code written by Meta/Facebook developers
 
@@ -15,7 +15,7 @@ use id root in html elements
 	2. attributes to be attached to the tag, can be anything, called props in React
 	3. what we want inside the tag, can be text or other html tags, pass array if we want nested elements
 
---------making production ready react app---------------
+--------making production ready react app--------------- (2)
 	1. bundlers - webpack, parcel, vite are one of the bundler(package)
 			- bundle our code - parcel produces one js file
 			babel is not bundler

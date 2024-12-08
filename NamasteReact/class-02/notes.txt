@@ -1,9 +1,21 @@
+In React, when you install a package like Parcel with a caret (^2.8.4) in your `package.json`, it will automatically update to newer minor and patch 
+versions that are compatible with version 2.8.4. So, if a newer version like 2.8.8 is released, running `npm install` will update `package-lock.json`
+ to this version, reflecting the latest compatible version installed.
+
+Your `package-lock.json` will update to reflect the current version installed, like 2.8.8, while your `package.json` will still show ^2.8.4, 
+indicating the version range you've specified. This allows for flexibility in updating to compatible versions.
+
+dist keep the bundle of all html,css and js files into one in devlopment and production (build) both environments. 
+
+**Transitive dependencies** are the dependencies of your direct dependencies. They are automatically installed and can affect your project, 
+even though they aren’t explicitly listed in your `package.json`.
+
 #Parcel
 - Dev Build
 - Local Server
 - HMR - Hot Module Replacement
-- File Watching Algorithm - written in C++
-- Caching - Faster Builds
+- File Watching Algorithm - written in C++ (HMR happening bcoz of this)
+- Caching - Faster Builds (In every save it takes less time due to caching (.parcel-cache))
 - Image Optimization
 - Minification
 - Bundling
