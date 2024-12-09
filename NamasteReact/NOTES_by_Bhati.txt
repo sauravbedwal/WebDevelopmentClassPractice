@@ -29,15 +29,15 @@ use id root in html elements
 	5. npm install -D parcel installing using -D or --save-dev means installing package as a dev dependency in dev environment
 		dependency means all the package our project needs.
 	6. without any ^ or ~ means we need to stick to this version
-		if we use ^ means it'll upgrade our versions
-		if we use ~ means it'll 
+		if we use ^ means it'll upgrade our versions (minor) 
+		if we use ~ means it'll upgrade our versions (major)
 	7. what is package-lock.js and package.json
 		package-lock locks the versions takes snapchot of the dependencies
 			never put in gitignore
 		package-lock keeps trrack of the package also keeps hash of the installed package same on machine and server
 	8. whenever we install anything it gets installed in node modules
 	9. no need to push node modules gitignore package-lock keeps track of the versions of all the package
-	10. npm install react - install react don't use cdn
+	10. npm install react and react-dom - install react don't use cdn
 	11. start app with npx parcel index.html give the entry point of app
 		creates a build and host on a server
 		if we use npx parcel build index.html it  creates a production ready app.
@@ -45,7 +45,7 @@ use id root in html elements
 			ii. parcel bundles and minified the code in dist
 	12.	// Browser scripts cannot have imports or exports.// 
 		while parsing through html and js browser don't know what import is 
-		cannot import scripts inside web, can import export modules
+		cannot import scripts inside web, can import export modules so give type="modules" to script.
 	13. You should instead import it from "react-dom/client".
 -------Parcel--------
 	14. creates server loads it. hot module replacement - parcel checks through all the changed modules and files and reloads.

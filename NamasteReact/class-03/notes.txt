@@ -32,7 +32,7 @@ JSX is not HTLM inside JS. It looks like HTML. JSX is HTML like syntax.
 
 JSX is not pure js as js engine/browser doesnt understand JSX. JS is a code that js engine understand. 
 JS engine understand ecma script language. so now the code (JSX) is transpiled before it goes to the
-js engine AND then js engine recives the code that brower can understand. and transpilig of code is done 
+     engine AND then js engine recives the code that brower can understand. and transpilig of code is done 
 by PARCEL and Parcel is also not doing itself as Parcel is like a manager and it done by a package called
 BABEL.
 

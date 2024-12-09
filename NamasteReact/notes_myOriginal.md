@@ -168,3 +168,152 @@ Our `package.json` file contains **dependencies**, and each of these dependencie
 - Different **development** and **production** bundles  
 
 ---
+
+# **Class 3**
+
+---
+
+## **Package.json Overview**  
+
+- **start**: starting the project in **dev mode**.  
+- **build**: build our project in **production mode**.  
+
+### **Installing Parcel**  
+
+For installing, we use:  
+```bash
+npm i parcel
+```  
+If we want it to be in **dev dependencies**, use:  
+```bash
+npm i -D parcel
+```  
+
+### **Execution Commands**  
+
+- **Dev mode**: `npx parcel index.html`  
+- **Production mode**: `npx parcel build index.html`  
+
+### **Shortcut Commands**  
+
+- We can also use `npm start` directly, but it will only work for **dev mode**.  
+- For build, we have to use:  
+```bash
+npm run build
+```  
+- `npm start` = `npm run start`  
+
+---
+
+## **React.createElement**  
+
+`React.createElement => Object => (WHEN RENDERING THIS OBJECT ON TO THE DOM IT BECOMES) => HTML Element`  
+
+```javascript
+// React.createElement => ReactElement (JS Object) => HTML Element (render)
+
+// Creating element using core React
+const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
+console.log(heading); // object
+```
+
+React **creates the element**, but to render it to the DOM and display it in the browser, we use **ReactDOM**.  
+
+---
+
+## **JSX (JavaScript XML)**  
+
+- **JSX** is a JavaScript syntax that makes it easier to create React elements.  
+- JSX is **not a part of React**, as they are very different.  
+- We can make a big application without JSX, but JSX makes the developer's life easier because its syntax is simpler compared to React.  
+
+### **Key Features of JSX**  
+
+- **JSX** is a **convention** where we merge **JS and HTML** together.  
+- JSX is not HTML inside JS; it looks like HTML but is actually an **HTML-like syntax**.  
+- JSX is not pure JS, as **JS engines/browsers don’t understand JSX**.  
+
+---
+
+### **How JSX Works**  
+
+- JS engines understand only **ECMAScript**, not JSX.  
+- JSX is **transpiled before it reaches the JS engine**, which then receives code the browser can understand.  
+- The **transpiling** is done by **Parcel**, and Parcel uses **Babel** (a JS compiler and transpiler) for this.  
+
+```plaintext
+JSX => Babel transpiles it to React.createElement => ReactElement (JS Object) => HTML Element (rendered)
+```
+
+#### **Example**  
+
+```javascript
+// JSX - HTML-like or XML-like syntax
+const jsxHeading = <h1 id="heading">Namaste React using JSX</h1>;
+console.log(jsxHeading); // ReactElement (JS Object)
+```
+
+---
+
+## **React Components**  
+
+### **Types of Components**  
+
+1. **Class-Based Component** - OLD  
+2. **Functional Component** - NEW  
+
+### **Functional Components**  
+
+- A **Functional Component** is a normal JS function that returns a piece of **JSX** or some JSX element.  
+
+```javascript
+const HeadingComponent = () => {
+    return <h1 className="heading">Namaste React Functional Component</h1>;
+};
+
+const HeadingComponent2 = () => <h1 className="heading">Namaste React Functional Component</h1>;
+```  
+
+Both are the same. If there is only one statement, we can avoid using `return` and curly braces.  
+
+---
+
+### **Component Composition**  
+
+**What is Component Composition?**  
+Composing one component into another.  
+
+#### **Example**  
+
+```javascript
+const HeadingComponent = () => (
+    <div className="container">
+        <Title />
+        <h1 className="heading">Namaste React Functional Component</h1>
+    </div>
+);
+```  
+
+We can render:  
+- A **React Element** inside another React Element.  
+- A **React Component** inside another React Component.  
+- A React Element inside a React Component.  
+- A React Component inside a React Element.  
+
+For React Elements, use `{}`.  
+For React Components, use `< />`.  
+
+---
+
+### **JSX Security**  
+
+JSX **sanitizes data** before executing it. If an API returns malicious data, it won’t execute because JSX ensures safe rendering.  
+
+---
+
+### **Additional Notes**  
+
+- `<Title /> = <Title></Title>` (Both are the same).  
+- React components can also be called like `{Title()}` because React is JavaScript, and we can call JS inside `{}`.  
+
+--- 

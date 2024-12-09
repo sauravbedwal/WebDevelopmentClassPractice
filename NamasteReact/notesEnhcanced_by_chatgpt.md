@@ -171,3 +171,145 @@ Our `package.json` file contains **dependencies**, and each of these dependencie
 - The `dist` folder is crucial for bundling files, ensuring your app is ready for deployment.  
 
 ---
+
+
+Here is your content formatted with **bolded** and **underlined** keywords, headings, and subheadings, while breaking long lines into shorter ones to avoid horizontal scrolling in GitHub markdown:  
+
+---
+
+## **Class 3**  
+
+### **Package.json Overview**  
+
+- **start**: Starts the project in **development mode**.  
+- **build**: Builds the project in **production mode**.  
+
+To install Parcel, use:  
+```bash
+npm i parcel
+```  
+
+To add it as a **dev dependency**, use:  
+```bash
+npm i -D parcel
+```  
+
+For **execution**, use:  
+- **Development mode**: `npx parcel index.html`  
+- **Production mode**: `npx parcel build index.html`  
+
+For a **shortcut**, you can use:  
+- **Development**: `npm start` (same as `npm run start`)  
+- **Build**: `npm run build`  
+
+---
+
+### **React.createElement**  
+
+`React.createElement` creates a **ReactElement** (JS Object),  
+which is rendered to the **DOM** as an **HTML Element**.  
+
+Example:  
+```javascript
+const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
+console.log(heading); // outputs an object
+```
+
+---
+
+### **JSX (JavaScript XML)**  
+
+- **JSX** is a **JavaScript syntax** that makes it easier to create React elements.  
+- JSX is **not a part of React**; it’s a separate convention.  
+- Applications can be built without JSX, but it simplifies development with  
+  its **HTML-like syntax**.  
+
+#### **Key Points About JSX**  
+
+- JSX merges **JS** and **HTML** together.  
+- JSX **looks like HTML** but it’s not actual HTML. As is actually a **syntax** that gets transpiled.  
+- Browsers and JS engines don’t understand JSX directly.  
+- JSX is transpiled to **React.createElement** by **Babel** (via Parcel).  
+- **Babel** is a JS compiler/transpiler that converts JSX into browser-understandable code.  
+
+**Workflow**:  
+```plaintext
+JSX => Babel transpiles it to React.createElement => ReactElement (JS Object) => HTML Element (rendered)
+```  
+
+**Example**:  
+```javascript
+// JSX
+const jsxHeading = <h1 id="heading">Namaste React using JSX</h1>;
+console.log(jsxHeading); // outputs a React element (JS object)
+```
+
+---
+
+### **React Components**  
+
+- **Class-Based Components**: Older approach.  
+- **Functional Components**: Modern and preferred approach.  
+
+A **Functional Component** is a regular JS function that returns  
+a **React Element** (JSX).  
+
+**Example Functional Component**:  
+```javascript
+const HeadingComponent = () => {
+    return <h1 className="heading">Namaste React Functional Component</h1>;
+};
+```  
+
+Or, with a single statement:  
+```javascript
+const HeadingComponent2 = () => <h1 className="heading">Namaste React Functional Component</h1>;
+```  
+
+#### **Important Note**:  
+If there are multiple statements, wrap them in a `<div>` or React Fragments (`<> </>`).  
+
+---
+
+### **Component Composition**  
+
+**Definition**:  
+Composing one component into another.  
+
+**Example**:  
+```javascript
+const HeadingComponent = () => (
+    <div className="container">
+        <Title />
+        <h1 className="heading">Namaste React Functional Component</h1>
+    </div>
+);
+```  
+
+#### **React Elements vs Components**  
+- React components can contain other **components** or **elements**.  
+- React elements can contain other **elements** or **components**.  
+- Use `{}` for **React Elements** and `< />` for **React Components**.  
+
+**Example**:  
+```javascript
+<Title /> = <Title></Title>  
+{Title()} // calling a React Component as a JS function  
+```
+
+---
+
+### **JSX Security**  
+
+- JSX **sanitizes data** before execution, preventing malicious code injection.  
+- React components and elements are protected by this mechanism.  
+
+---
+
+### **Key Notes**  
+
+- JSX is **HTML-like syntax** but **not actual HTML**.  
+- JSX is transpiled by **Babel** (via Parcel) into `React.createElement` calls.  
+- Functional Components are the modern way to build components in React.  
+
+---
