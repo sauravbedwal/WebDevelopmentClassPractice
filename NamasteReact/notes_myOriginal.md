@@ -317,3 +317,267 @@ JSX **sanitizes data** before executing it. If an API returns malicious data, it
 - React components can also be called like `{Title()}` because React is JavaScript, and we can call JS inside `{}`.  
 
 --- 
+
+# **Class 4**
+
+---
+
+## **Inline CSS in React**  
+
+- **Inline CSS** in React is written as a **JS object**, so it will be inside `{}`.  
+- In inline CSS, we use `{{}}` because:  
+  - The **outer `{}`** is for writing JS code.  
+  - The **inner `{}`** represents a JS object (similar to how `[]` is used for arrays).  
+
+```javascript
+const headingStyle = {
+    color: "blue",
+    fontSize: "24px",
+};
+
+const Heading = () => <h1 style={headingStyle}>Hello, React!</h1>;
+```
+
+---
+
+## **Props (Properties)**  
+
+- **Props** are properties that we can pass to a component.  
+- As **functional components** are like JS functions, props act like normal **arguments to a function**.  
+- When we pass a prop to a component, it is exactly like passing an argument to a function.  
+
+### **How React Handles Props**  
+
+- React takes all properties and wraps them into an **object** called `props`.  
+- This `props` object is then passed to the component.
+
+---
+
+## **Ways to Use Props**
+
+### **1. Directly without Destructuring**  
+
+```javascript
+const RestaurantCard = (props) => {
+    return (
+        <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+            <img 
+                className="res-logo" 
+                alt="res-logo" 
+                src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/e0vvulfbahjxjz6k4uwi" 
+            />
+            <h3>{props.resName}</h3>
+            <h4>{props.cuisine}</h4>
+        </div>
+    );
+};
+```
+
+### **2. Destructured in Code**  
+
+```javascript
+const RestaurantCard = (props) => {
+    const { resName, cuisine } = props;
+    return (
+        <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+            <img 
+                className="res-logo" 
+                alt="res-logo" 
+                src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/e0vvulfbahjxjz6k4uwi" 
+            />
+            <h3>{resName}</h3>
+            <h4>{cuisine}</h4>
+        </div>
+    );
+};
+```
+
+### **3. Destructured in Parameters**  
+
+```javascript
+const RestaurantCard = ({ resName, cuisine }) => {
+    return (
+        <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+            <img 
+                className="res-logo" 
+                alt="res-logo" 
+                src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/e0vvulfbahjxjz6k4uwi" 
+            />
+            <h3>{resName}</h3>
+            <h4>{cuisine}</h4>
+        </div>
+    );
+};
+```
+
+---
+
+## **Config-Driven UI**  
+
+- **Config-Driven UI** is when a website’s UI is controlled by **data or config** from the backend.  
+- Example: Swiggy shows different offers based on location (e.g., offers in Delhi but none in Mumbai).  
+- The website remains the same, but the details change according to the data/config.  
+
+### **Definition**  
+- A **Config-Driven UI** means **controlling the UI** using data or configs sent by the backend.  
+
+---
+
+## **Props and Keys**  
+
+- In props, the **left side** is the **key** and the **right side** is the **value/property**.  
+- Example:  
+    ```jsx
+    <RestaurantCard resName="Meghna Foods" /> 
+    <RestaurantCard resName="KFC" />
+    ```
+
+- If passing a single object:  
+    ```jsx
+    <RestaurantCard resData={resObj} />
+    ```
+- If passing an array of objects, use `.map`:  
+    ```jsx
+    resList.map((resObj) => (
+        <RestaurantCard key={resObj.id} resData={resObj} />
+    ));
+    ```
+
+---
+
+## **Why Use Keys in Loops?**  
+
+- **Keys** help React uniquely identify elements in a list.  
+- Without keys, React cannot efficiently determine which items changed, were added, or removed.  
+
+### **Example**  
+If a new `RestaurantCard` is added:  
+- React **renders all cards** without keys (inefficient).  
+- React **renders only the new card** if unique keys are provided.  
+
+### **Best Practices for Keys**  
+1. **Unique IDs** from the backend (**Best**).  
+2. Use **index as keys** only if no unique IDs are available (**Last Option**).  
+3. **Never skip keys** when using `.map`.
+
+### **Why Avoid Using Index as Keys?**  
+- Using **index as keys** can lead to bugs during updates.  
+- Example: Infinite scroll or reordering items can cause React to re-render incorrectly.
+
+---
+
+
+# **Class 4 Exact my words we can see later on**
+
+---
+
+## **Inline CSS**  
+
+- inline css when we give its JS object means it will be inside `{}`. and in inline we use `{{}}` like this bcoz  
+  outer `{}` are bcox we writing js code so we have to use it and inner `{}` bcoz we its an object and for object  
+  we use `{}` like we use `[]` for array.  
+- first bracket telling that there is some piece of js code inside it and second bracket is js object.  
+
+---
+
+## **Props**  
+
+### **Definition**  
+props- properties that we can pass to the component.  
+- as functional component is like a js function end of the day same like props are normal arguments to a function.  
+
+- when we say we passing a prop to a component it is exactly like saying passing argument to a function.  
+- react will take all the properties and wrap it inside an object and will pass it as props.  
+
+---
+
+### **Props use by 3 ways:**  
+
+1. **Directly without Destructuring**  
+
+```javascript
+const RestaurantCard = (props) => {
+        return (
+        <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+            <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/e0vvulfbahjxjz6k4uwi" />
+            <h3>{props.resName}</h3>
+            <h4>{props.cuisine}</h4>
+        </div>
+    )
+}
+```
+
+2. **Destructured in code**  
+
+```javascript
+const RestaurantCard = (props) => {
+ const {resName, cuisine} = props;
+        return (
+        <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+            <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/e0vvulfbahjxjz6k4uwi" />
+            <h3>{resName}</h3>
+            <h4>{cuisine}</h4>
+        </div>
+    )
+}
+```
+
+3. **Destructured in parameter already**  
+
+```javascript
+const RestaurantCard = ({resName, cuisine}) => {
+        return (
+        <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+            <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/e0vvulfbahjxjz6k4uwi" />
+            <h3>{resName}</h3>
+            <h4>{cuisine}</h4>
+        </div>
+    )
+}
+```
+
+---
+
+## **Config driven UI**  
+
+- Website driven by data/config is Config Driven UI like swiggy shows some offer at Delhi location but  
+  some different offers at pune location and may be no offer for mumbai location so that all happens due to  
+  data/config. As website is same but details changing as per data/configs. Website is driven by data this  
+  is known as Config Driven UI.  
+
+- **Configdriven UI** - Controlling our UI driven/using by a config/data coming from backend.  
+
+---
+
+### **Props Example**  
+
+in props left side one is the key that will go to different components and right side one is property.  
+for ex :  
+`resName = Meghna Foods` so resName is here the key and proeprty is Meghna Foods so now when we take it as prop in other component then we will use resName.  
+
+---
+
+Also, if we are getting one single object we can pass it like:  
+`resData={resObj}`  
+But if we are getting an **array of objects**, we have to **loop** and map each object using the `map` method.  
+
+---
+
+## **Why Use Key While Looping?**  
+
+while looping over an array or using `.map` **always give a key**, and key can be a **unique id**.  
+
+### **Reason for Keys**  
+
+- Keys help React uniquely identify elements in the DOM.  
+- Without unique keys, React will re-render all components unnecessarily.  
+
+### **Best Practice for Keys**  
+
+1. **Unique ID** (best practice).  
+2. **Index as Key** (only if no unique id is available).  
+3. **Never use no keys** (unacceptable).  
+
+--- 
+
+This formatting keeps your text unchanged but looks structured and avoids scrolling issues. Let me know if you want to refine further!

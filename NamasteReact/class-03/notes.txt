@@ -18,26 +18,21 @@ React.createElement => Object => (WHEN RENDERING THIS OBJECT ON TO THE DOM IT BE
 const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
 console.log(heading); //object
 
-
 react creates the element but rendering it to the DOM and display on browser we use reactDom
 
 JSX is a JavaScript syntax which is easier to create react elements.
-
-JSX is not a part of react as they both are very different. we can make a big application wuthoyt using 
-JSX also but JSX make develoer life easy as ts syntax is easy compared to react.
+JSX is not a part of react as they both are very different. 
+we can make a big application wuthoyt using JSX also but JSX make develoer life easy as ts syntax is easy compared to react.
 
 JSX - Its a convention where we merge js and html together.
-
 JSX is not HTLM inside JS. It looks like HTML. JSX is HTML like syntax. 
-
 JSX is not pure js as js engine/browser doesnt understand JSX. JS is a code that js engine understand. 
-JS engine understand ecma script language. so now the code (JSX) is transpiled before it goes to the
-     engine AND then js engine recives the code that brower can understand. and transpilig of code is done 
-by PARCEL and Parcel is also not doing itself as Parcel is like a manager and it done by a package called
-BABEL.
 
-BABEL is a JS compiler and transpiler as it takes the code and converts it to the code that browser/js 
-engine understand.
+JS engine understand ecma script language. 
+Now the code (JSX) is transpiled before it goes to the JS engine and then js engine recives the code that brower can understand.
+The transpilig of code is done by PARCEL and Parcel is also not doing itself as Parcel is like a manager and it done by a package called BABEL.
+
+BABEL is a JS compiler and transpiler as it takes the code and converts it to the code that browser/js engine understand.
 
 // JSX - HTML-like or XML-like syntax
 // JSX - (transpiled before it reaches the JS Engine) - PARCEL - BABEL

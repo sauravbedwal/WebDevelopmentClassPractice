@@ -313,3 +313,159 @@ const HeadingComponent = () => (
 - Functional Components are the modern way to build components in React.  
 
 ---
+
+
+## **Class 4**   
+
+---
+
+## **Inline CSS**  
+
+- Inline CSS in React is written as a **JS object**, meaning it will be enclosed inside `{}`.  
+- When using inline CSS, we write it as `{{}}`:  
+  - Outer `{}`: Indicates that we are writing **JavaScript code**.  
+  - Inner `{}`: Represents the **JS object**.  
+
+- **Example:**  
+```jsx
+<div style={{ color: "red", fontSize: "20px" }}>Hello, World!</div>
+```  
+
+---
+
+## **Props**  
+
+### **Definition**  
+- **Props** (short for properties) are used to pass data to components.  
+- Since functional components are just JS functions, **props work like arguments to a function**.  
+
+### **How React Handles Props**  
+- React takes all the properties passed to a component, wraps them in an **object**, and passes that object as `props` to the component.  
+
+### **Three Ways to Use Props**  
+
+1. **Directly without Destructuring**  
+
+```jsx
+const RestaurantCard = (props) => {
+    return (
+        <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+            <img 
+                className="res-logo" 
+                alt="res-logo" 
+                src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/e0vvulfbahjxjz6k4uwi" 
+            />
+            <h3>{props.resName}</h3>
+            <h4>{props.cuisine}</h4>
+        </div>
+    );
+};
+```
+
+2. **Destructured Inside the Function Body**  
+
+```jsx
+const RestaurantCard = (props) => {
+    const { resName, cuisine } = props;  
+    return (
+        <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+            <img 
+                className="res-logo" 
+                alt="res-logo" 
+                src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/e0vvulfbahjxjz6k4uwi" 
+            />
+            <h3>{resName}</h3>
+            <h4>{cuisine}</h4>
+        </div>
+    );
+};
+```
+
+3. **Destructured Directly in Parameters**  
+
+```jsx
+const RestaurantCard = ({ resName, cuisine }) => {
+    return (
+        <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+            <img 
+                className="res-logo" 
+                alt="res-logo" 
+                src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/e0vvulfbahjxjz6k4uwi" 
+            />
+            <h3>{resName}</h3>
+            <h4>{cuisine}</h4>
+        </div>
+    );
+};
+```
+
+---
+
+## **Config-Driven UI**  
+
+- A **Config-Driven UI** is when the UI is determined by external **data** or **configurations**.  
+- Example:  
+  - Swiggy shows different offers based on the user's location. The same app interface changes dynamically based on backend data.  
+
+### **Key Points**  
+- Config-driven UIs make the application flexible and reusable.  
+- UI updates are controlled by **backend data** instead of modifying the frontend.  
+
+---
+
+## **Using Keys in Loops**  
+
+- When rendering a list of components (e.g., using `.map`), always provide a **unique key** for each item.  
+
+### **Why Use Keys?**  
+1. Keys help React **uniquely identify** elements in the DOM.  
+2. Without unique keys, React might re-render **all elements**, leading to poor performance.  
+3. If new elements are added to the list, React can **identify changes** using the key.  
+
+### **Best Practices for Keys**  
+1. Always use a **unique ID** (best practice).  
+2. Use **index as a key** only as a last resort when no unique identifier is available.  
+3. Never skip adding keys.
+
+**Example:**  
+
+```jsx
+const restaurants = [
+    { id: 1, name: "KFC" },
+    { id: 2, name: "Meghna Foods" },
+];
+
+restaurants.map((restaurant) => (
+    <RestaurantCard key={restaurant.id} resName={restaurant.name} />
+));
+```
+
+---
+
+## **Additional Clarifications**  
+
+### **JSX vs React.createElement**  
+
+- **JSX**:  
+  - A syntax extension that looks like HTML but is not HTML.  
+  - **Transpiled** to `React.createElement` before being understood by the JS engine.  
+
+- **React.createElement**:  
+  - A function that creates **React elements** (JS objects).  
+  - These elements are then rendered into actual **HTML elements**.  
+
+**Comparison:**  
+
+```jsx
+// Using React.createElement
+const heading = React.createElement("h1", { id: "title" }, "Hello, World!");
+
+// Using JSX (easier to read and write)
+const heading = <h1 id="title">Hello, World!</h1>;
+```
+
+### **Why JSX?**  
+- JSX simplifies the syntax for creating React elements.  
+- It ensures **data sanitization**, protecting against malicious scripts.
+
+---

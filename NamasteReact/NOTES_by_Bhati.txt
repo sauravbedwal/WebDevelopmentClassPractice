@@ -79,7 +79,7 @@ use id root in html elements
 	
 	1. pollyfils - a code replacement of newer version of code
 		if old browser don't understand map filter then it's converted to lower basic code
---------------babel---------------
+--------------babel--------------- (3)
 	2. babel converts the code so it can be undersdtood by older version of browser - checks the browserlists and make our code compatible
 		babel is js node package - reads our code converts in to older js code if needed
     3. for multiple child element we pass keys as props, react keeps track of elements using keys

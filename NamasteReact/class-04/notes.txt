@@ -64,12 +64,16 @@ it as prop in other component then we will use resName.
 same like we passed an entire object resData = {resObj} so here resData is key and resObj is property and 
 now in component we will use resData.
 
-indrectly left one pointing to right side valu only i.e. property but right side value can be different for 
+indrectly left one pointing to right side value only i.e. property but right side value can be different for 
 multiple component so thats why we use left side key for all as it take differnet value depending on right 
 side.
 
 ex : <RestaurantCard resName="Meghna Foods" /> 
      <RestaurantCard resName="KFC" />
+
+
+Also when we getting one single object we can pass it resData={resObj} but if we getting an array of objects 
+then we have to run a loop and map each object like by using map method.
 
 while looping over an array or using .map always give a key and key can be an unique id.
 
