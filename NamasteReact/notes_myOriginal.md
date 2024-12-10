@@ -467,7 +467,7 @@ If a new `RestaurantCard` is added:
 ---
 
 
-# **Class 4 Exact my words we can see later on**
+# **Class 4 Exact my words we can see later on as above one i find better will check again**
 
 ---
 
@@ -580,4 +580,162 @@ while looping over an array or using `.map` **always give a key**, and key can b
 
 --- 
 
-This formatting keeps your text unchanged but looks structured and avoids scrolling issues. Let me know if you want to refine further!
+
+# **Class 5**
+
+---
+
+## **Utils**  
+
+- **Utils** stands for utilities that we use **all across the app**.  
+- To organize, we create a **`utils` folder** and store common data there.  
+
+---
+
+## **Export and Import**  
+
+### **Types of Export and Import**  
+
+1. **Default Export/Import**  
+    ```js
+    export default Component;  
+    import Component from "path";  
+    ```
+
+2. **Named Export/Import**  
+    ```js
+    export const Component;  
+    import { Component } from "path";  
+    ```  
+
+- **Key Difference**:  
+  - **Default Export**: We can export only **one thing** from a file.  
+  - **Named Export**: Used when we want to export **multiple things** from the same file.  
+
+---
+
+## **Key React Concepts**  
+
+1. **Functional Component**: End of the day, it is a **normal JS function**.  
+2. **React Element**: End of the day, it is a **plain JS object**.  
+3. **React Hook**: A **normal JS function** provided by React.  
+
+---
+
+## **React Hooks**  
+
+- **Hooks** are **normal JS utility functions** provided by React.  
+- **Common Hooks**:  
+    1. **`useState()`**: Super-powerful state variables in React.  
+    2. **`useEffect()`**: For side effects in components.  
+
+### **`useState()` Hook**  
+
+- Used to create **local state variables** inside functional components.  
+- **Never use it outside of components.**  
+
+- **Key Features:**  
+    - Returns an **array**:  
+        1. The **first element** is a local state variable.  
+        2. The **second element** is a function to modify the state variable.  
+    - **UI Changes**: Use **state variables** to reflect changes in the UI.  
+    - **Best Practice**: Always create `useState` at the top, not inside loops or conditions.  
+
+**Example:**
+
+```jsx
+// HTML-style variable (doesn't update the UI)
+let listOfRestaurants = [];
+
+// React State Variable
+const [listOfRestaurants, setListOfRestaurants] = useState([]);
+```
+
+### **Why `useState` is Powerful?**  
+- Keeps the **UI in sync** with the variable.  
+- When the state variable changes, React **automatically re-renders** the component.  
+
+---
+
+## **React Fiber and Reconciliation**  
+
+1. **Reconciliation Algorithm**:  
+   - React 16 introduced a new algorithm for DOM updates called **Reconciliation**.  
+   - React Fiber is the improved version of Reconciliation.  
+   - Helps React efficiently find changes in the UI and update the DOM.  
+
+2. **How React Handles DOM Updates**:  
+   - Changes to the **UI** are handled through the **Virtual DOM**.  
+   - React compares the **updated Virtual DOM** with the **previous Virtual DOM** to find the difference.  
+
+---
+
+## **Virtual DOM**  
+
+- The **Virtual DOM** is an **object representation** of the **Actual DOM**. 
+- **Virtual DOM** represented as an JS object and **Actual DOM** represented as Tree like structure.
+- **Example:**  
+
+  - **Actual DOM:**  
+    ```html
+    <div>
+      <h1>
+        <img />
+      </h1>
+    </div>
+    ```
+
+  - **Virtual DOM:**  
+    ```js
+    React.createElement("h1", {}, "Text");
+    ```
+
+  - The `React.createElement()` function generates a **React Element**, which is just a **JS object**.  
+
+---
+
+## **Diff Algorithm**  
+
+- React uses the **Diff Algorithm** to calculate differences between the **updated Virtual DOM** and the **previous Virtual DOM**.  
+- React then updates only the **necessary parts** of the Actual DOM.  
+
+### **Why React is Fast?**  
+- React does **efficient DOM manipulation** using the Virtual DOM.  
+- It only updates the **changed parts**, improving performance.  
+
+---
+
+- **Virtual DOM**:  
+  - Represents the **Actual DOM** as a **JavaScript object**.  
+  - It is lightweight and optimized for comparisons and updates.  
+
+- **Actual DOM**:  
+  - Represents the document as a **tree-like structure** (DOM tree).  
+  - Each element, attribute, or piece of text is a **node** in this tree.  
+
+### Why is Virtual DOM an Object?  
+- Being a **JavaScript object**, the Virtual DOM is faster to manipulate and compare than directly interacting with the 
+Actual DOM (which is slower due to browser APIs).  
+
+This separation allows React to perform efficient updates by comparing Virtual DOMs (using the **Diff Algorithm**) and 
+applying only the necessary changes to the Actual DOM.
+
+---
+
+## **Behind the Scenes: `useState`**  
+
+- The `useState` hook works through **array destructuring** in JS.  
+- **Example:**  
+
+    ```js
+    const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+
+    // Equivalent to:
+    const arr = useState(resList);
+    const listOfRestaurants = arr[0];
+    const setListOfRestaurants = arr[1];
+    ```
+
+- This is **pure JS destructuring** and shows how the `useState` hook returns its values.  
+
+---

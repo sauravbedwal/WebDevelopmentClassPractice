@@ -469,3 +469,171 @@ const heading = <h1 id="title">Hello, World!</h1>;
 - It ensures **data sanitization**, protecting against malicious scripts.
 
 ---
+
+## **Class 5**
+
+Here’s the improved and slightly redefined version of your notes to enhance clarity and add meaningful context while maintaining the structure and tone you prefer.  
+
+---
+
+## **Utils**  
+
+- **Utils** stands for **utilities**—functions or data used **across the app**.  
+- To keep code organized, a **`utils` folder** is created, where common utilities are stored for **reusability**.  
+
+---
+
+## **Export and Import**  
+
+### **Types of Export and Import**  
+
+1. **Default Export/Import**  
+    ```js
+    export default Component;  
+    import Component from "path";  
+    ```
+
+2. **Named Export/Import**  
+    ```js
+    export const Component;  
+    import { Component } from "path";  
+    ```  
+
+### **Key Differences**:  
+- **Default Export**:  
+  - Allows exporting **only one thing** per file.  
+  - Simpler syntax for importing.  
+
+- **Named Export**:  
+  - Used when we need to export **multiple things** from the same file.  
+  - Requires **curly braces** for importing specific items.  
+
+---
+
+## **Key React Concepts**  
+
+1. **Functional Component**:  
+   - Essentially a **JavaScript function** that takes props and returns JSX.  
+
+2. **React Element**:  
+   - A **plain JavaScript object** that represents a DOM node or a component.  
+
+3. **React Hook**:  
+   - **Utility functions** provided by React to add state and lifecycle methods in functional components.  
+
+---
+
+## **React Hooks**  
+
+- **Hooks** are **JavaScript utility functions** provided by React to enhance component functionality.  
+
+### **Common Hooks**:  
+
+1. **`useState()`**:  
+   - Used to create and manage **local state variables** within functional components.  
+   - React re-renders components whenever the state changes.  
+
+2. **`useEffect()`**:  
+   - Executes side effects like fetching data or interacting with the DOM.  
+
+### **How `useState` Works?**  
+
+- **Returns an Array**:  
+    - **First Element**: The current state value.  
+    - **Second Element**: A function to update the state value.  
+
+- **Best Practices**:  
+    - Always define `useState` at the **top level** of the component.  
+    - Avoid using it inside loops or conditional blocks.  
+
+**Example:**  
+
+```jsx
+// Regular JavaScript variable (doesn't update UI)
+let listOfRestaurants = [];
+
+// React State Variable (updates UI on state change)
+const [listOfRestaurants, setListOfRestaurants] = useState([]);
+```
+
+---
+
+## **React Fiber and Reconciliation**  
+
+1. **Reconciliation Algorithm**:  
+   - A **React 16 improvement** for DOM updates.  
+   - Ensures UI changes are handled efficiently by **React Fiber** (a virtual DOM diffing algorithm).  
+
+2. **How React Updates the DOM**:  
+   - Changes are applied to the **Virtual DOM** first.  
+   - React compares the **updated Virtual DOM** to the **previous Virtual DOM**.  
+   - Only the necessary changes are applied to the **Actual DOM**.  
+
+---
+
+## **Virtual DOM**  
+
+- The **Virtual DOM** is an **object-based representation** of the **Actual DOM**.  
+
+### **Example:**  
+
+- **Actual DOM:**  
+    ```html
+    <div>
+      <h1>
+        <img />
+      </h1>
+    </div>
+    ```
+
+- **Virtual DOM Representation:**  
+    ```js
+    React.createElement("div", {}, [
+        React.createElement("h1", {}, React.createElement("img", {})),
+    ]);
+    ```
+
+---
+
+## **Diff Algorithm**  
+
+- React uses the **Diff Algorithm** to calculate differences between:  
+    - The **previous Virtual DOM**.  
+    - The **updated Virtual DOM**.  
+
+- Only the **changed parts** of the Actual DOM are updated.  
+
+---
+
+## **Why is React Fast?**  
+
+- React's speed comes from **efficient DOM manipulation**:  
+    - Uses the **Virtual DOM** to track changes.  
+    - Updates only what is necessary instead of re-rendering the entire page.  
+
+---
+
+## **Behind the Scenes: `useState`**  
+
+- **How `useState` Works Internally:**  
+    - It's based on **array destructuring** in JavaScript.  
+
+**Example:**  
+
+```js
+const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+
+// Equivalent JavaScript breakdown:
+const arr = useState(resList);
+const listOfRestaurants = arr[0];
+const setListOfRestaurants = arr[1];
+```
+
+- This demonstrates how React's `useState` is built using standard JavaScript features.  
+
+---
+
+### **Added Enhancements**:  
+- **Defined Virtual DOM:** Clarified its purpose and relationship with Actual DOM.  
+- **Explained React Fiber:** Highlighted its importance in efficient DOM manipulation.  
+- **Best Practices:** Added recommendations to ensure clean code (e.g., `useState` placement).  
