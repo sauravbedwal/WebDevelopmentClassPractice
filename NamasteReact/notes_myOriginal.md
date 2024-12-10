@@ -738,4 +738,61 @@ applying only the necessary changes to the Actual DOM.
 
 - This is **pure JS destructuring** and shows how the `useState` hook returns its values.  
 
+
+## **Is Reconciliation Algorithm, React Fiber and Diff Algorithm are they same?
+
+The **Reconciliation Algorithm**, **React Fiber**, and **Diff Algorithm** are closely related but not the same. They serve different purposes in React, and here's how they differ:
+
+---
+
+### **1. Reconciliation Algorithm**  
+- **Definition**: The **Reconciliation Algorithm** is the general process React uses to compare the **current Virtual DOM** and the **updated Virtual DOM** to determine the minimal number of changes needed to update the Actual DOM efficiently.  
+- **Purpose**: Handles **how React updates the UI** when state or props change.  
+- **Key Component**: The **Diff Algorithm** is a part of the Reconciliation process.  
+
+---
+
+### **2. Diff Algorithm**  
+- **Definition**: The **Diff Algorithm** is a specific part of the Reconciliation process. It determines the **differences** between the previous and updated Virtual DOMs.  
+- **Purpose**:  
+  - Compares the two Virtual DOM  objects by traversing their hierarchical structure (conceptually like a trees node-by-node).
+  - Updates only the parts of the Actual DOM that have changed.  
+  - Uses heuristics (e.g., elements with the same type and key are treated as the same).  
+- **Scope**: Focuses only on **finding differences** and creating a list of changes.  
+- **Relation to Reconciliation**: It is the **heart** of the Reconciliation process.
+
+---
+
+### **3. React Fiber**  
+- **Definition**: **React Fiber** is a **new implementation of the Reconciliation Algorithm** introduced in React 16.  
+- **Purpose**:  
+  - Breaks rendering work into small chunks called "units of work" to make React updates **interruptible**.  
+  - Improves performance for large or complex applications by allowing **prioritization** of updates (e.g., animations vs. data updates).  
+- **Key Features**:  
+  - **Incremental Rendering**: React doesn’t block the main thread while rendering.  
+  - **Prioritized Updates**: Handles updates based on their priority.  
+  - **Concurrency**: Enables React to work with asynchronous rendering.  
+
+---
+
+### Why Call Them by Different Names?  
+- **Reconciliation Algorithm**: Refers to the **overall process** React uses to update the UI.  
+- **Diff Algorithm**: A **part of the Reconciliation Algorithm** that handles **finding differences**.  
+- **React Fiber**: A **specific implementation** of the Reconciliation Algorithm introduced in React 16 for **better performance and flexibility**.  
+
+Think of it this way:  
+- **Reconciliation** is the process.  
+- **Diff Algorithm** is a tool used in this process.  
+- **React Fiber** is the modernized way React implements Reconciliation.  
+
+---
+
+### Analogy:  
+- **Reconciliation** is like planning a trip from one city to another.  
+- **Diff Algorithm** is figuring out the shortest path for the journey.  
+- **React Fiber** is like upgrading to a faster, smarter car for the trip.  
+
+By keeping these terms separate, React documentation highlights specific aspects of the rendering process, making it easier to focus on individual components of the system when debugging or optimizing.
+
+
 ---
