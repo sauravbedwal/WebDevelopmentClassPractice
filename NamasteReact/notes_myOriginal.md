@@ -796,3 +796,141 @@ By keeping these terms separate, React documentation highlights specific aspects
 
 
 ---
+
+# **Class 6**
+
+---
+
+# Class 6 Notes
+
+## **1. Monolith Architecture**  
+- Traditionally, web apps were developed using **Monolith Architecture**.  
+  - Huge **big project** as it has code of **API, UI, AUTHENTICATION, DATABASE, SMS** inside the same project.  
+  - Single change, like changing the color of a button, requires building and deploying the whole project.  
+  - In **Monolith Architecture**, if we have one big project (e.g., a JAVA application), then we have to do everything in JAVA.
+
+---
+
+## **2. Microservice Architecture**  
+- Different services for different jobs like **Backend service, UI service, AUTHENTICATION service, DATABASE service, SMS service**, etc.  
+  - All **microservices combined together** form a big app.  
+  - This is known as **Separation of Concerns** and **Single Responsibility Principle**.  
+  - Each service has its own job with no interference from others.  
+  - All services talk to each other, e.g., **UI talks to Backend**, **Backend talks to DATABASE**.  
+  - In Microservices, we can have different tech stacks for different things:  
+    - UI in **React**  
+    - Backend in **JAVA**  
+    - DATABASE in **Python**  
+    - SMS service in **GoLang**  
+  - All services run on their own specific ports, e.g.:  
+    - Port `1234`: **UI**  
+    - Port `1000`: **Backend**  
+    - Port `3000`: **SMS**  
+  - At the end, all these ports can be mapped to a **domain name**:  
+    - Example:  
+      - `namastereact.com`  
+      - `namastereact.com/api` for API service  
+      - `namastereact.com/sms` for SMS service  
+      - UI can also be deployed directly on `/`.
+
+---
+
+## **3. Two Ways Web Apps Fetch Data from Backend**  
+1. **Page Load => API Call (wait for data) => Render**  
+2. **Page Load => Render UI (skeleton) => API Call (wait for data) => Re-Render**  
+   - **Second approach is preferred** as it provides better UX.  
+   - While waiting for data, we render a **skeleton**, so the user sees something instead of a blank screen.
+
+---
+
+## **4. useEffect()**  
+- **useEffect** takes two arguments:  
+  - A **callback function**.  
+  - An **array of dependencies**.  
+  ```javascript
+  useEffect(() => {
+      console.log("useEffect Called");
+  }, []);
+  ```
+- **Execution Flow**:  
+  - Runs after the **Component is rendered**.  
+  - As soon as the render cycle finishes, the callback function is executed.  
+  - Example:  
+    ```javascript
+    useEffect(() => {
+        console.log("useEffect Called");
+    }, []);
+    console.log("Body rendered");
+    ```
+    **Output Order**:  
+    1. Logs `"Body rendered"`.  
+    2. Executes `useEffect` callback.
+
+---
+
+## **5. Fetching Data**  
+- **fetch** is provided by browsers as a **superpower** of JavaScript engines.
+
+---
+
+## **6. CORS Policy**  
+- Cannot call Swiggy's API (or similar) from localhost due to **CORS policy**.  
+- CORS blocks API calls if there is an **origin mismatch** (e.g., localhost to another domain).  
+- **Browser blocks the API call** in such cases.
+
+---
+
+## **7. Why useState in React? Why Not Normal Variables?**  
+- **Normal JS Variables** do not cause re-rendering, while **useState** does.  
+- Example:  
+  - If a button initially shows "Login" and we want it to change to "Logout" on click:  
+    - **Using a normal variable**:  
+      - Console logs show the variable changed, but the UI stays as "Login."  
+    - **Using useState**:  
+      - Updates both the UI and the variable.  
+- **Reason**:  
+  - useState ensures the component re-renders, updating the UI dynamically.  
+  - When a component re-renders, React identifies the difference between the **old DOM** and the **updated DOM**, then updates the changed part.
+
+---
+
+### **Render Explanation**  
+- **Render** means triggering the component to re-execute.  
+- Example:  
+  ```javascript
+  const Header = () => {
+    let btnName = "Login";
+
+    return (
+      <div className="header">
+        <div className="logo-container">
+          <img src={LOGO_URL} className="logo" />
+        </div>
+        <div className="nav-items">
+          <ul>
+            <li>Home</li>
+            <li>About Us</li>
+            <li>Contact Us</li>
+            <li>Cart</li>
+            <button
+              className="login-btn"
+              onClick={() => {
+                btnName = "Logout";
+                console.log(btnName);
+              }}
+            >
+              {btnName}
+            </button>
+          </ul>
+        </div>
+      </div>
+    );
+  };
+
+  export default Header;
+  ```
+- Here:  
+  - **onClick** updates `btnName` to "Logout" but **doesn't re-render** the component.  
+  - Hence, the UI still shows "Login."
+
+---

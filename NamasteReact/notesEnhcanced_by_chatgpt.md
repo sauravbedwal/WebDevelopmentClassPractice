@@ -637,3 +637,141 @@ const setListOfRestaurants = arr[1];
 - **Defined Virtual DOM:** Clarified its purpose and relationship with Actual DOM.  
 - **Explained React Fiber:** Highlighted its importance in efficient DOM manipulation.  
 - **Best Practices:** Added recommendations to ensure clean code (e.g., `useState` placement).  
+
+---
+
+# **Class 6**
+
+## **1. Monolith Architecture**  
+- Traditionally, web apps were developed using **Monolith Architecture**:  
+  - A **huge project** containing all code for **API, UI, Authentication, Database, SMS**, etc., in the same repository.  
+  - Even a single change, like updating a button's color, requires **building and deploying** the entire project.  
+  - It enforces a single tech stack (e.g., a Java application must handle everything in Java).
+
+---
+
+## **2. Microservice Architecture**  
+- Separates applications into **independent services** for specific jobs:  
+  - Backend, UI, Authentication, Database, SMS, Email Notifications, etc.  
+- **Key Features**:  
+  - Promotes **Separation of Concerns** and **Single Responsibility Principle**.  
+  - Services communicate with each other (e.g., UI → Backend, Backend → Database).  
+  - Each service can use **different tech stacks**:  
+    - **React** for UI, **Java** for Backend, **Python** for Database, **GoLang** for SMS services, etc.  
+  - Services run on **separate ports**:  
+    - E.g., Port `1234` for UI, Port `1000` for Backend, Port `3000` for SMS.  
+  - A **domain name** maps these ports:  
+    - Example:  
+      - `namastereact.com` for UI.  
+      - `namastereact.com/api` for Backend.  
+      - `namastereact.com/sms` for SMS services.  
+
+---
+
+## **3. Data Fetching from Backend**  
+Two common approaches:  
+1. **Page Load → API Call → Render**  
+2. **Page Load → Render Skeleton → API Call → Re-Render**  
+
+- **Preferred Approach**: Render skeleton first, providing a better **User Experience (UX)**.  
+  - Users see a partially loaded page (skeleton) while waiting for data.
+
+---
+
+## **4. useEffect()**  
+- **useEffect** takes two arguments:  
+  1. A **callback function**.  
+  2. An **array of dependencies**.  
+
+Example:  
+```javascript
+useEffect(() => {
+    console.log("useEffect Called");
+}, []);
+```  
+
+- **Execution Flow**:  
+  - Called **after the component renders**.  
+  - If there's a `console.log` after `useEffect`, the logs will execute in this order:  
+    ```javascript
+    useEffect(() => {
+        console.log("useEffect Called");
+    }, []);
+    console.log("Body rendered");
+    ```  
+    **Output Order**:  
+    1. `"Body rendered"` (component render completes).  
+    2. `"useEffect Called"` (useEffect callback executes).  
+
+---
+
+## **5. Fetch API**  
+- **fetch** is provided by browsers to retrieve data.  
+- Example:  
+  ```javascript
+  fetch('https://api.example.com/data')
+      .then(response => response.json())
+      .then(data => console.log(data));
+  ```
+
+---
+
+## **6. CORS Policy**  
+- Calling APIs like Swiggy's from **localhost** is blocked due to **CORS (Cross-Origin Resource Sharing) Policy**.  
+  - **Reason**: Browsers block API calls between **different origins** for security.  
+
+---
+
+## **7. Why useState in React? Why Not Normal Variables?**  
+- **Normal Variables** do not trigger UI updates; **useState** does.  
+- Example:  
+  - A "Login" button changes to "Logout" on click.  
+    - Using a **normal variable**: The console updates, but the UI remains "Login."  
+    - Using **useState**: The button updates dynamically to "Logout."  
+
+### **Render Explanation**  
+- **Render**: Re-executing a component.  
+- React's re-render updates only the **difference between the old and new DOM**.  
+
+Example:  
+```javascript
+const Header = () => {
+  let btnName = "Login";
+
+  return (
+    <div className="header">
+      <div className="logo-container">
+        <img src={LOGO_URL} className="logo" />
+      </div>
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>Cart</li>
+          <button
+            className="login-btn"
+            onClick={() => {
+              btnName = "Logout";
+              console.log(btnName);
+            }}
+          >
+            {btnName}
+          </button>
+        </ul>
+      </div>
+    </div>
+  );
+};
+```
+
+Here:  
+- The `btnName` variable updates in the console but doesn't trigger a re-render.  
+- To update the UI dynamically, use **useState**:  
+  ```javascript
+  const [btnName, setBtnName] = useState("Login");
+
+  <button onClick={() => setBtnName("Logout")}>{btnName}</button>;
+  ```
+
+---
