@@ -775,3 +775,104 @@ Here:
   ```
 
 ---
+
+# **Class 7**
+
+---
+
+## **1. useEffect**  
+- **If no dependency array** → `useEffect` is called **on every render** (component render).  
+- **If dependency array is empty `[]`** → `useEffect` is called **only once** (on initial/first render).  
+- **If dependency array contains variables `[btnNameReact]`** → `useEffect` is triggered **every time `btnNameReact` is updated**.  
+
+---
+
+## **2. useState**  
+- **Never use** `useState` or create a state variable **outside** of the component.  
+- Always declare the `useState` hook **at the top** within the component.  
+- **Do not place** `useState` inside:  
+  - **If-else blocks**  
+  - **Loops**  
+  - **Functions**.  
+
+> React hooks must always follow the **"Rules of Hooks"**, which enforce consistent behavior.  
+
+---
+
+## **3. Avoid `<a></a>` Tag for Routing**  
+- Avoid using anchor tags (`<a></a>`) for routing because it **reloads the entire page**.  
+- Instead, use **`Link`** from libraries like **React Router** for **client-side navigation**.
+
+---
+
+## **4. Single Page Application (SPA)**  
+- **SPA** applications **do not reload the entire page**.  
+- Instead, components **refresh dynamically**.  
+- React achieves this by rendering only the relevant components without full-page reloads.  
+
+> This is why React apps are called **Single Page Applications**.  
+
+---
+
+## **5. Types of Routing in Web Apps**  
+
+### **Client-Side Routing**  
+- **No network call** is made because all the components/pages are **already loaded** into the app.  
+- Routing happens **locally**:  
+  - The app **loads the required component dynamically**.  
+  - This method is **fast** and improves user experience (UX).  
+- **Used in SPA**.
+
+---
+
+### **Server-Side Routing**  
+- **Separate HTML files** (e.g., `index.html`, `about.html`, `contact.html`) are served.  
+- Clicking an anchor tag (e.g., `/about.html`) triggers:  
+  1. A **network call** to fetch `about.html`.  
+  2. The **page reloads completely**.  
+- This method is **slower** and was used traditionally.  
+- **(Old way of routing)**.
+
+---
+
+## **6. Dynamic Routing**  
+- Dynamic Routing allows **passing dynamic parameters** in the URL.  
+- Example: `/restaurant/:resId`.  
+- **`useParams`** is used to **access the dynamic id**.  
+
+### **Steps for Dynamic Routing**  
+1. **Define dynamic routes** using `/:variable` syntax (e.g., `/restaurant/:resId`).  
+2. Import **`useParams`** in the target component where the variable/id is needed.  
+3. Use `useParams` to **extract the dynamic id** as an object.  
+4. Destructure and use the dynamic id, e.g., for **API calls** to fetch specific data.
+
+---
+
+### **How Dynamic Routing Works**  
+- On the **main page** (e.g., `Body`), multiple cards are displayed.  
+- Clicking on a specific card **navigates** to a new URL with the **dynamic id**:  
+   - Example: `/restaurant/1234`.  
+- Use **`Link`** for navigation:  
+   ```jsx
+   <Link to={`/restaurant/${resId}`}>Go to Restaurant</Link>
+   ```
+- On the new page:  
+   - Use `useParams` to access the **dynamic id**.  
+   - Example:  
+   ```jsx
+   import { useParams } from "react-router-dom";  
+   const { resId } = useParams();  
+   console.log(resId); // 1234  
+   ```
+
+- Use this dynamic id for API calls to **fetch specific details** of the restaurant/item.  
+
+---
+
+## **Additional Clarification**  
+- **Client-Side Routing** dynamically replaces components without full reloads.  
+- **Dynamic Routing** enhances this by enabling pages to load **data dynamically** based on URL parameters.  
+
+---
+
+Let me know if you'd like to add examples, diagrams, or other details to clarify further.

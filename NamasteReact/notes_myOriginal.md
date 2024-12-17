@@ -934,3 +934,71 @@ By keeping these terms separate, React documentation highlights specific aspects
   - Hence, the UI still shows "Login."
 
 ---
+
+# **Class 7**
+
+## **1. useEffect**  
+- **If no dependency array** → `useEffect` is called on **every render** (component render).  
+- **If dependency array is empty `[]`** → `useEffect` is called **on initial/first render** (just once).  
+- **If dependency array is `[btnNameReact]`** → `useEffect` is called **every time `btnNameReact` is updated**.  
+
+---
+
+## **2. useState**  
+- **Never** use `useState`/create state variable **outside** of the component.  
+- Always create the `useState` hook **at the top** inside the component.  
+- **Never** create `useState` variables **inside if-else, loops, or functions**.  
+
+---
+
+## **3. Avoid `<a></a>` Tag for Routing**  
+- **Do not use** anchor tags `<a></a>` for routing because it **reloads the page**, which is not desirable.
+
+---
+
+## **4. Single Page Application (SPA)**  
+- **SPA** does not reload the page; it **refreshes components dynamically**.  
+- That’s why React applications are called **Single Page Applications**: Components interchange dynamically instead of reloading.
+
+---
+
+## **5. Types of Routing in Web Apps**  
+
+### **Client-Side Routing**  
+- **No network call** is made because all components are **already loaded** into the app.  
+- Since all components/pages are preloaded, routing only **loads the required component** dynamically.  
+- **Used in SPA (Single Page Applications).**
+
+### **Server-Side Routing**  
+- Pages like `index.html`, `about.html`, `contact.html` exist separately on the server.  
+- When you click on an anchor tag (e.g., `/about.html`), it **reloads the entire page**:  
+  - **Network call** is sent to fetch `about.html`.  
+  - The page reloads and renders the new content.  
+- **Server-Side Routing** involves fetching pages **from the server** and reloading the UI.  
+- **(Old way)**.
+
+---
+
+## **6. Dynamic Routing**  
+- For **dynamic routing**, pass the new object in children with the difference: `/` followed by a **variable**.  
+  - Example: `/resId` → `/restaurant/:resId`.  
+
+### **Steps for Dynamic Routing**  
+1. Import **`useParams`** where you want to access the dynamic variable/id.  
+2. `useParams` returns an **object** with the dynamic id.  
+3. Destructure the object to **access the id** and use it.  
+
+### **Example**  
+- On the main page (`Body`), all **cards** are listed.  
+- When clicking a specific card, routing to a new URL with a **dynamic id** occurs:  
+  - **URL**: `/restaurant/:resId`.  
+- Use **`Link`** for navigation.  
+- Access the dynamic id in the target page with `useParams`.  
+
+### **Usage of Dynamic ID**  
+- Use the **dynamic id** while fetching an API:  
+  - The API call returns information **for that particular item** only.  
+
+---
+
+This formatting uses **bold keywords** for better emphasis and splits long lines into multiple parts for better display on GitHub. Let me know if you need further adjustments! 🚀

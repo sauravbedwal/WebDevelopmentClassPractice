@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -10,6 +11,7 @@ const Body = () => {
     const res = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
+    // https://proxy.cors.sh/
     const data = await res.json();
     console.log(data);
     // console.log(
@@ -53,6 +55,8 @@ const Body = () => {
   //   console.log("data: " + data);
   // };
 
+  // if (listOfRestaurants === null) return;
+
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -87,7 +91,12 @@ const Body = () => {
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => {
           return (
-            <RestaurantCard key={restaurant?.info?.id} resData={restaurant} />
+            <Link
+              to={`/restaurantMenu/${restaurant?.info?.id}`}
+              key={restaurant?.info?.id}
+            >
+              <RestaurantCard resData={restaurant} />
+            </Link>
           );
         })}
         {/* {filteredRestaurants.length !== 0
