@@ -1001,4 +1001,309 @@ By keeping these terms separate, React documentation highlights specific aspects
 
 ---
 
-This formatting uses **bold keywords** for better emphasis and splits long lines into multiple parts for better display on GitHub. Let me know if you need further adjustments! 🚀
+
+# **Class 8 in this my words are changed willl see later on**
+
+---
+
+## **1. Functional Based Component**  
+- A **functional-based component** is a function that **returns JSX**.  
+- At the end of the day, it is just a **normal JavaScript function**.  
+
+---
+
+## **2. Class-Based Component**  
+- A **class-based component** is a class that extends `React.Component`.  
+- It has a **`render()` method** that returns JSX.  
+- At the end of the day, it is just a **normal JavaScript class**.
+
+---
+
+### **Difference between Functional and Class-Based Components**  
+- A **class-based component** has a **`render()` method** which:  
+  - Returns JSX, and  
+  - That JSX is converted into **HTML** and rendered onto the web page.  
+
+#### **Accessing Props in Class-Based Components**  
+- **Using this.props**:  
+  - Example: `this.props.name` or `this.props.location`.  
+- **Using destructuring**:  
+  ```javascript
+  const { name, location } = this.props;
+  ```
+
+---
+
+## **3. Rendering Functional Components**  
+- Rendering a **functional component** means:  
+  - **Loading/mounting** that component, or  
+  - **Invoking/calling** the functional component.
+
+---
+
+### **Rendering Class-Based Components**  
+- Loading a **class-based component** creates an **instance** of that class.  
+- **Constructor is called** during instance creation.  
+
+#### **Why Constructor is Important**  
+- It is the best place to:  
+  - Receive **props**, and  
+  - Create **state variables**.  
+- **State** is a **big object** where you can define multiple state variables.
+
+---
+
+## **4. NEVER UPDATE STATE VARIABLES DIRECTLY**  
+
+- **Avoid this**:  
+  ```javascript
+  this.state.count = this.state.count + 1;
+  ```  
+- **Use `this.setState()` instead**:  
+  ```javascript
+  this.setState({ count: this.state.count + 1 });
+  ```
+
+### **Updating Multiple State Variables**  
+- Pass multiple updates in the **same `this.setState()` call**:  
+  ```javascript
+  this.setState({ count1: 10, count2: 20 });
+  ```  
+- React only updates the specified variables, leaving others untouched.
+
+---
+
+## **5. React Lifecycle: Mounting**  
+
+### **What is Mounting?**  
+- **Mounting** means **loading** a component onto the DOM.  
+- **Steps**:  
+  1. **Constructor is called.**  
+  2. **Render method is called.**  
+  3. **ComponentDidMount is called.**
+
+---
+
+### **Key Notes on Class-Based Components**  
+1. Use the `class` keyword to define a class-based component.  
+2. Extend `React.Component` or use `{ Component }` from `react`.  
+   ```javascript
+   import { Component } from "react";
+   class MyComponent extends Component { }
+   ```
+
+---
+
+### **Parent-Child Lifecycle**  
+- **Order of execution for Parent and Child components**:  
+  1. **Parent Constructor**  
+  2. **Parent Render**  
+  3. **Child Constructor**  
+  4. **Child Render**  
+  5. **Child ComponentDidMount**  
+  6. **Parent ComponentDidMount**
+
+---
+
+### **React Optimizations with Batching**  
+- React batches the **render phase** (constructor + render) of all children components.  
+- Once the **render phase** is complete, the **commit phase** (`componentDidMount`) begins for all children.
+
+---
+
+## **6. Updating Lifecycle**  
+
+### **Triggering Updates**  
+- Updates are triggered when `this.setState()` is called.  
+
+---
+
+### **Steps in Updating Cycle**  
+1. **Render method** is called again with the updated state.  
+2. React updates the **DOM** with new values.  
+3. **ComponentDidUpdate** is called after the DOM is updated.
+
+---
+
+## **7. Mounting, Updating, and Unmounting Cycle**  
+
+```javascript
+// MOUNTING:
+Constructor (dummy data)  
+Render (dummy data)  
+<Component with dummy data>  
+ComponentDidMount (API call)  
+
+// UPDATING:
+this.setState  
+Render (API data)  
+<Component with updated data>  
+ComponentDidUpdate  
+
+// UNMOUNTING:
+ComponentWillUnmount  
+```
+
+---
+
+### **Unmounting Lifecycle**  
+- **Unmounting** occurs when a component is **removed from the DOM**.  
+- The `componentWillUnmount` method is called for cleanup tasks (e.g., clearing intervals).
+
+---
+
+## **8. Avoid Comparing Lifecycle Methods with Functional Components**  
+- Lifecycle methods like `componentDidMount` and `componentDidUpdate` should not be directly compared to hooks in **functional components**.
+
+---
+
+## **9. Cleanup on Page Navigation**  
+- In **Single Page Applications (SPA)**, when navigating between pages:  
+  - Clear resources like `setInterval` using `clearInterval`.  
+  - In functional components, cleanup using the **return function** in `useEffect`.  
+
+---
+
+# **Class 8**
+
+---
+
+## **1. Functional Based Component**  
+- **Functional Based Component** is a function that **returns some piece of JSX** and, at the end of the day, is a **normal JS Function**.
+
+---
+
+## **2. Class Based Component**  
+- **Class Based Component** is a class that extends `React.Component` and has a **render method**, which **returns some piece of JSX**, and at the end of the day, is a **normal JS Class**.
+
+- The **major difference** between Class and Functional Based Components is that **Class Based Component** has a **render method**, which **returns some piece of JSX**, and that JSX will be converted into **HTML** and rendered onto the **web page**.
+
+  - For accessing **props**, we use:  
+    - `this.props.name` or `this.props.location`.  
+    - Or, destructure them:  
+      ```javascript
+      const { name, location } = this.props;
+      ```
+
+---
+
+## **3. Rendering a Functional Component**  
+- Rendering a **Functional Component** means it **loads that Component**, or **mounts that Functional Component**, or **calls/invokes that Functional Component**.
+
+---
+
+## **4. Rendering a Class Based Component**  
+- Loading a **Class Based Component** on the web page means we are **creating an instance** of that **Class**.  
+- Whenever we **create an instance of a Class**, the **constructor** is called.  
+- The **constructor** is the best place to **receive props** and **create state variables**, and the **entire state** is a **big object**, inside which we can create multiple state variables.
+
+---
+
+## **5. NEVER UPDATE STATE VARIABLES DIRECTLY**  
+
+- Example of what **not to do**:  
+  ```javascript
+  this.state.count = this.state.count + 1;
+  ```
+
+- Use **`this.setState()`** to update state variables:  
+  ```javascript
+  this.setState({ count: this.state.count + 1 });
+  ```
+
+- If we want to change **states of multiple state variables**, we do so in the **same `this.setState({})` object**.  
+  - For example:  
+    ```javascript
+    this.setState({ var1: value1, var2: value2 });
+    ```  
+  - React will only update these two variables and **won't touch the values of other variables**.
+
+---
+
+## **6. Lifecycle**
+
+### **Mounting means Loading**
+
+- When a **Class Based Component** loads, a **new instance of the class** is created.  
+- First, the **constructor** is called, followed by the **render method**.
+
+---
+
+### **Parent and Child Lifecycle**  
+- If we have a **Class Based Component** and inside that, we are rendering another **Class Based Component**, the lifecycle order is:  
+  - Parent **constructor** and **render method** are called first.  
+  - Then the child **constructor** and **render method** are called.  
+  - After mounting on the **DOM**, the **componentDidMount()** of the **Child Component** is called first, followed by the **Parent Component**.
+
+#### **Use of componentDidMount**
+- It is used to **make API calls** because:  
+  - We don't want to wait for data to return from the API.  
+  - Instead, we **render the component first** and then **fill data after the API call**.
+
+---
+
+### **Multiple Children Components**  
+- If there are multiple children components, React **batches the render phase** of all children.  
+- **Order of execution**:  
+  - **Parent Constructor**  
+  - **Parent Render**  
+  - **First Child Constructor and Render**  
+  - **Second Child Constructor and Render**  
+  - **DOM Updated in a Single Batch**  
+  - **First Child ComponentDidMount**  
+  - **Second Child ComponentDidMount**  
+  - **Parent ComponentDidMount**
+
+---
+
+### **Mounting Lifecycle Overview**
+```javascript
+// MOUNTING:
+Constructor (dummy data)  
+Render (dummy data)  
+<Component with dummy data>  
+ComponentDidMount (API call)  
+
+// UPDATING:
+this.setState  
+Render (API data)  
+<Component with updated data>  
+ComponentDidUpdate  
+
+// UNMOUNTING:
+ComponentWillUnmount  
+```
+
+---
+
+## **7. Updating Lifecycle**
+
+- The **updating phase** starts when `this.setState()` is called.  
+- **Steps**:  
+  - `this.setState` updates the state variable.  
+  - The **render method** is called again with updated data.  
+  - React updates the **DOM** with the new data.  
+  - After DOM updates, **componentDidUpdate** is called.
+
+---
+
+## **8. Unmounting**
+
+- **Unmounting** means the component is **removed from the DOM**.  
+- The **componentWillUnmount** method is called before unmounting.  
+
+---
+
+## **9. Avoid Comparing Lifecycle with Functional Components**  
+- React lifecycle methods should **not** be compared directly to Functional Component behavior.
+
+---
+
+## **10. Cleanup on Page Navigation**
+
+- React is a **Single Page Application (SPA)**.  
+- When navigating between pages:  
+  - Clear resources like `setInterval` using **clearInterval()**.  
+  - For Functional Components, **return a cleanup function** inside `useEffect`.  
+
+---
