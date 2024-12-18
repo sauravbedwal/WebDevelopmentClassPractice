@@ -82,3 +82,8 @@
 .search{
     margin: 0 20px 0 0;
 }
+
+.user-card{
+    padding: 10px;
+    border: 1px solid black;
+}

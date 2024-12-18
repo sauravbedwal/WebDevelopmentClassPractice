@@ -117,14 +117,30 @@ wait for API call to be finished and When we do the this.setState, the Updating 
     called & we make an API call & after that we do a this.setState and that finishes our MOUNTING lifecycle.
      (The moment we do this.setState UPDATING cycle starts).
 
-   ------ MOUNTING ----------
+/**
+ * ------ MOUNTING ----------
  * 
- * Constructor (dummy data)
- * Render (dummy data)
+ *  Constructor (dummy data)
+ *  Render (dummy data)
  *            <HTML Dummy>
- * Component Did Mount
+ *  Component Did Mount
  *            <API Call>
- *            <this.setState>
+ *            <this.setState> -> State variable is updated
+ * 
+ * ------ UPDATE ----------
+ *             
+ *            render(API data)
+ *            <HTML (new API data)>
+ *  Component Did Update  
+ *  Component Will Unmount
+ * 
+ * 
+ */
+
+   - Always Parent Constructor and render will run and Parent componentDidMount will run after executing the 
+   Children Component completely means executing Children constructor, render and componentDidMount but in 
+   console log it might show Parent componentDidMount and then Children componentDidMount due to JS asynchronous
+   behavior but BTS Children componentDidMount executed first and after that only Parent componentDidMount run.
 
    - UPDATING : Now as setState was called and it triggers the reconcilliation process in the update cycle so,
    render method will call once again bcoz State variable is updated but this time render method will happen
@@ -147,8 +163,6 @@ in about page and we going now to contact us page then it will still go on and o
 then it will increase it by 2 sec then 3 sec and so on bcoz a new setInterval will be created by itself and 
 we have to clear this interval by using clearInterval() method and same we have to follow in Funcional 
 Component by returning a function from useEffect.
-
-
 
 
 
