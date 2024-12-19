@@ -1307,3 +1307,173 @@ ComponentWillUnmount
   - For Functional Components, **return a cleanup function** inside `useEffect`.  
 
 ---
+
+# Class 9
+
+### **1. Single Responsibility Principle**
+- **IF we have a function, class, or any single identity of code, that should have a single responsibility.**  
+   - Like **Body Component** are at the end of the day functions as each component is a different function. So, according to that principle, each component has a single responsibility.  
+     For example, **RestaurantMenu Component's** responsibility is to display the restaurant menu.  
+
+   - **We should give single responsibility to each component and should not do a lot of things in a single component as we can break it down into different components** (that we did by creating multiple components).  
+
+---
+
+### **2. Why We Use Custom Hooks or Functions?**
+- **Advantages:**
+   - **Modularity:** Break down the code into different small-small modules.  
+   - **Reusability:** Code becomes reusable.  
+   - **Maintainability:** Code becomes maintainable.  
+   - **Testability:** Easier to test the code.  
+
+- **Example:**  
+   - If we have different components/single unit of **Restaurant Card**, we can write test cases just for this card.  
+   - If there is any bug inside this component, the test will catch it.  
+   - Unlike in a big application where all these components are interlinked, it becomes harder to find the bug.  
+
+   - **Custom Hook Example:**  
+      - For a **RestaurantMenu Component**, creating a custom hook like `useRestaurantMenu` makes it more testable.  
+      - If there’s a bug in the fetching logic, we can test it in the hook.  
+      - If there’s an issue with displaying the data, we can check the **RestaurantMenu Component**.
+
+---
+
+### **3. What Are Hooks?**
+- **Hooks are basically normal JS functions**, but they are special JS functions with some **superpowers** given to us by React.  
+   - **Hooks act like Utility Functions** in React.
+
+---
+
+### **4. Lazy Loading**
+- **Parcel as a Bundler:**  
+   Parcel performs several tasks such as:  
+   - **Dev Build**  
+   - **Minification**  
+   - **Bundling**  
+   - **Compression**  
+   - **Hot Module Replacement (HMR)**  
+
+- **Why Bundling Is Important:**  
+   - The bundler takes all files and makes them into **one JS file**.  
+   - If 1000s of JS files are bundled together, the file size increases a lot, slowing down the app.  
+
+- **Solution:**  
+   - Instead of bundling all files into one, we create **smaller bundles**.  
+   - This process is called **Chunking**, **Code Splitting**, **Dynamic Bundling**, or **Lazy Loading**.  
+
+- **Example:**  
+   Logical separation of bundles:  
+   - A bundle for flights, one for hotels, one for trains, etc.  
+   - Each bundle contains the necessary code for its respective feature.  
+
+- **Advantages of Lazy Loading:**  
+   - On app load, code for unnecessary features (e.g., Grocery) is **not loaded**.  
+   - The Grocery code is loaded **only when required**.  
+   - This is called **on-demand loading**.  
+
+- **How to Implement Lazy Loading:**  
+   - Use `lazy()` from React to dynamically import components:  
+     ```javascript
+     const Grocery = lazy(() => import("./components/Grocery"));
+     ```  
+   - This creates a **separate bundle** for the Grocery Component.  
+   - The **main bundle** will remain separate and smaller.  
+
+- **React Suspense:**  
+   - Lazy loading can cause **rendering suspension** when the required component code is not yet loaded.  
+   - To handle this, use the **Suspense Component**:  
+     ```javascript
+     <Suspense fallback={<div>Loading...</div>}>
+        <Grocery />
+     </Suspense>
+     ```  
+   - **Fallback Prop:** Pass a fallback to display content (e.g., spinner, loading text) while the component loads.  
+
+---
+
+Here's your content formatted into markdown with proper headings, bold keywords, and wrapped lines for better readability on GitHub. 
+
+---
+
+# Class 9 (my words are changed a=but amlost simmilar can review later)
+
+### 1. **Single Responsibility Principle**
+- **Definition:** If we have a function, class, or any single identity of code, it should have a single responsibility.  
+   - Example: The **Body Component** is a function. Each component has a single responsibility. For instance, the **RestaurantMenu** component's responsibility is to display the restaurant menu.  
+   - **Best Practice:**  
+     Each component should have a **single responsibility**. Avoid doing too many things in a single component; instead, break it down into smaller components.  
+
+---
+
+### 2. **Why Use Custom Hooks or Functions?**
+- **Advantages:**
+  - **Modularity:** Break down the code into small modules.
+  - **Reusability:** Code becomes reusable.  
+  - **Maintainability:** Easier to maintain the code.  
+  - **Testability:** Individual components or hooks can be tested in isolation.  
+
+- **Example:**  
+  - If we have different components (e.g., a **Restaurant Card**) as single units, we can write test cases specifically for this card.  
+  - If a bug exists in this component, the test will catch it.  
+  - Without modularity, debugging in large interlinked components becomes harder.  
+  - **Custom Hook Example:**  
+    - For a **RestaurantMenu** component, creating a custom hook `useRestaurantMenu` makes it more testable.  
+    - Bugs in fetching menu logic can be tested in the hook, and issues with displaying data can be tested in the **RestaurantMenu** component.
+
+---
+
+### 3. **What Are Hooks?**
+- **Definition:**  
+  Hooks are **normal JS functions** with special **superpowers** provided by React.  
+  They act like **utility functions** in React.
+
+---
+
+### 4. **Lazy Loading**
+- **Parcel's Role:**  
+  Parcel is a **bundler** that performs tasks like:  
+  - **Dev Build**  
+  - **Minification**  
+  - **Bundling**  
+  - **Compression**  
+  - **Hot Module Replacement (HMR)**  
+
+- **Why Bundling Matters:**  
+  - Bundlers take all files and merge them into **one JS file**.  
+  - However, bundling everything into one file can make the app slow if the file size is too large.  
+
+- **Solution:**  
+  - Instead of bundling everything together, we create **smaller bundles**.  
+  - This process is called **chunking**, **code splitting**, **dynamic bundling**, or **lazy loading**.  
+
+- **Example:**  
+  Logical separation of bundles:  
+  - A bundle for flights, one for hotels, one for trains, and so on.  
+  - Each bundle contains the necessary code for its respective feature.  
+
+- **Advantages of Lazy Loading:**  
+  - When the app loads, it doesn't load **all code**.  
+  - Code for features (like grocery) is loaded **only when required**.  
+  - This improves performance and is called **on-demand loading**.  
+
+- **Steps to Implement Lazy Loading:**  
+  - Use `lazy()` from the React library:  
+    ```javascript
+    const Grocery = lazy(() => import("./components/Grocery"));
+    ```  
+  - This creates a **separate bundle** for the Grocery component.  
+  - **Main bundle** does not contain code for Grocery.  
+
+- **React Suspense:**  
+  - Lazy loading may cause rendering suspension if the required component code is not available.  
+  - To handle this, use the **Suspense** component:  
+    ```javascript
+    <Suspense fallback={<div>Loading...</div>}>
+      <Grocery />
+    </Suspense>
+    ```  
+  - **Fallback Prop:** Use `fallback` to display content (e.g., loading spinner) until the lazy-loaded component is ready.  
+
+---
+
+Let me know if any further modifications are required! 😊

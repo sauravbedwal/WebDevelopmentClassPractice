@@ -44,6 +44,10 @@
     /* background-color: aqua; */
 }
 
+.res-card > h3 {
+    display: inline-block
+}
+
 .res-card:hover {
     border: 1px solid black;
     cursor: pointer;
