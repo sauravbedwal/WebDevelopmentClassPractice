@@ -5,7 +5,6 @@ import "./App.css";
 
 function App() {
   //stopwatch code
-
   // const [min, setMin] = useState(0);
   // const [sec, setSec] = useState(0);
   // const [button, setButton] = useState(false);
@@ -49,11 +48,8 @@ function App() {
   //     )}
   //   </div>
   // );
-
   /******************************************************************************************************/
-
   //Stopwatch different method
-
   // const [min, setMin] = useState(0);
   // const [sec, setSec] = useState(0);
   // const [button, setButton] = useState(false);
@@ -98,11 +94,8 @@ function App() {
   //     )}
   //   </div>
   // );
-
   /******************************************************************************************************/
-
   //Countdown
-
   // const [count, setCount] = useState(10);
   // const [click, setClick] = useState(false);
   // let id;
@@ -136,11 +129,8 @@ function App() {
   //     )}
   //   </div>
   // );
-
   /******************************************************************************************************/
-
   //output the no. of abcd
-
   // const [input, setInput] = useState("");
   // const inputHandler = (e) => {
   //   console.log(e.target.value);
@@ -161,45 +151,111 @@ function App() {
   //     <div>{input}</div>
   //   </div>
   // );
-
-
   /******************************************************************************************************/
+  //Make a pagination of 5 pages and show 10 items in each page
+  // const itemsPerPage = 10;
+  // const itemArray = Array.from(
+  //   { length: 50 },
+  //   (_, index) => `Item${index + 1}`
+  // );
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const currentItems = itemArray.slice(startIndex, endIndex);
+  // const totalPages = Math.ceil(itemArray.length / itemsPerPage);
+  // const handlePageChange = (pageNumber) => {
+  //   setCurrentPage(pageNumber);
+  // };
+  // return (
+  //   <div className="App">
+  //     <div>
+  //       {currentItems.map((item) => (
+  //         <p key={item}>{item}</p>
+  //       ))}
+  //     </div>
+  //     <div>
+  //       {Array.from({ length: totalPages }).map((_, index) => (
+  //         <button key={index} onClick={() => handlePageChange(index + 1)}>
+  //           {index + 1}
+  //         </button>
+  //       ))}
+  //     </div>
+  //   </div>
+  // );
+  /******************************************************************************************************/
+  //  Build a simple Todo App where users can: 1. Add a new todo. 2. Mark a todo as completed. 3. Delete a todo. 4. View a list of todos (both completed and pending).
+  // 5. also saved the data in local Storage
 
-//Make a pagination of 5 pages and show 10 items in each page
+  const [todoText, setTodoText] = useState("");
 
-  const itemsPerPage = 10;
-  const itemArray = Array.from(
-    { length: 50 },
-    (_, index) => `Item${index + 1}`
-  );
+  let newTodoSavedData = JSON.parse(localStorage.getItem("newTodo"));
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [newTodo, setNewTodo] = useState(newTodoSavedData);
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = itemArray.slice(startIndex, endIndex);
+  const handleAddMe = () => {
+    if (todoText === "") {
+      return;
+    }
+    setNewTodo([...newTodo, todoText]);
+    setTodoText("");
+  };
+  // console.log("newTodo", newTodo);
 
-  const totalPages = Math.ceil(itemArray.length / itemsPerPage);
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const handleDelete = (index) => {
+    // console.log("delete", index);
+    const filterNewToDo = newTodo.filter((todo, indexes) => {
+      // console.log("todo", index);
+      return indexes != index;
+    });
+    // console.log("filterNewToDo", filterNewToDo);
+    setNewTodo(filterNewToDo);
   };
 
-  return (
-    <div className="App">
-      <div>
-        {currentItems.map((item) => (
-          <p key={item}>{item}</p>
-        ))}
-      </div>
+  useEffect(() => {
+    localStorage.setItem("newTodo", JSON.stringify(newTodo));
+  }, [newTodo]);
 
-      <div>
-        {Array.from({ length: totalPages }).map((_, index) => (
-          <button key={index} onClick={() => handlePageChange(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
+  return (
+    <div className="container">
+      <h1>Todo App</h1>
+      <div className="todo-inputButton">
+        <input
+          type="text"
+          value={todoText}
+          onChange={(e) => {
+            setTodoText(e.target.value);
+            // console.log("Todo", todoText);
+          }}
+        />
+        <button onClick={handleAddMe}>Add Me</button>
       </div>
+      {newTodo.length > 0 && (
+        <div className="todo-deleteButton">
+          <ul>
+            {newTodo.map((todo, index) => {
+              return (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "10px",
+                  }}
+                  key={index}
+                >
+                  <li>{todo}</li>
+                  <button
+                    onClick={() => handleDelete(index)}
+                    className="delete-btn"
+                  >
+                    Delete
+                  </button>
+                </div>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
