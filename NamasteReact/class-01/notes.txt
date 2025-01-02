@@ -2,7 +2,7 @@ Browsers do not understand react code.
 
 react is just JS code behind the scenes.
 
-When we created an element like h1 and console it we got JS object with props and Children.
+When we created an react element like h1 and console it we got JS object with props and Children.
 
 render method is responsible to take react element which is an object & covert it into (HTML) tag & put it up on the DOM.
 1st is the tag, 2nd is the attribute object, 3rd is what we put inside can use array for more elements

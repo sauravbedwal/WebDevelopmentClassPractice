@@ -1,36 +1,35 @@
 // Asked to create a promise with setTimeout of 5 seconds
 
 // const promise = new Promise((resolve, reject) => {
-//     let foodAvailable = true;
+//   let foodAvailable = true;
 
-//     setTimeout(() => {
-//         if (foodAvailable) {
-//             resolve(console.log("Yes!!..We have food."));
-//         }
-//         else {
-//             reject(console.log("No...M hungry."))
-//         }
-//     }, 5000);
-// })
+//   setTimeout(() => {
+//     if (foodAvailable) {
+//       resolve(console.log("Yes!!..We have food."));
+//     } else {
+//       reject(console.log("No...M hungry."));
+//     }
+//   }, 5000);
+// });
 
 // const promise = new Promise((resolve, reject) => {
-//     let foodAvailable = true;
+//   let foodAvailable = true;
 
-//     if (foodAvailable) {
-//         resolve(foodAvailable);
-//     }
-//     else {
-//         const error = new Error("false")
-//         reject(error)
-//     }
+//   if (foodAvailable) {
+//     resolve("Food is available");
+//   } else {
+//     const error = new Error("Food is not available");
+//     reject(error);
+//   }
+// });
 
-// })
-
-// promise.then((response) => {
+// promise
+//   .then((response) => {
 //     console.log(response);
-// }).catch((err) => {
+//   })
+//   .catch((err) => {
 //     console.log(err);
-// })
+//   });
 
 /****************************************************************************/
 
@@ -106,27 +105,27 @@
 // fetch always return a promise that can be resolve or rejected.
 
 // const p1 = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve("Promise Resolved Value!!!")
-//     }, 20000)
+//   setTimeout(() => {
+//     resolve("Promise Resolved Value!!!");
+//   }, 2000);
 // });
 
 // const p2 = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve("Promise Resolved Value!!!")
-//     }, 10000)
+//   setTimeout(() => {
+//     resolve("Promise Resolved Value!!!");
+//   }, 1000);
 // });
 
 // async function getData() {
-//     console.log("hello");
+//   console.log("hello");
 
-//     const val = await p1;
-//     console.log("NJ 1");
-//     console.log(val);
+//   const val = await p1;
+//   console.log("NJ 1");
+//   console.log(val);
 
-//     const val2 = await p2;
-//     console.log("NJ 2");
-//     console.log(val2);
+//   const val2 = await p2;
+//   console.log("NJ 2");
+//   console.log(val2);
 // }
 
 // getData();
@@ -701,13 +700,16 @@
 
 // https://fakestoreapi.com/products/1
 
-// const promise = fetch('https://fakestoreapi.com/productaas/1').then((response) => {
+// const promise = fetch("https://fakestoreapi.com/products")
+//   .then((response) => {
 //     return response.json();
-// }).then((data) => {
+//   })
+//   .then((data) => {
 //     console.log(data);
-// }).catch((err) => {
+//   })
+//   .catch((err) => {
 //     console.log(err.message);
-// })
+//   });
 
 // const promise = fetch('https://fakestoreapi.com/products/1').then((response) => {
 //     return response.json();
@@ -826,13 +828,12 @@
 // const a = [1, 2, 3, 4, 5];
 
 // function sum(a, b, c, ...rest) {
-//     let ans = a + b + c;
-//     console.log(ans);
-//     console.log(rest);
+//   let ans = a + b + c;
+//   console.log(ans);
+//   console.log(rest);
 // }
 
 // const trial = sum(...a);
-// trial();
 
 // (function () {
 //     console.log("IIFE")
@@ -1330,3 +1331,574 @@
 // }
 
 // console.log(user)
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// this keyword by akshay saini
+
+// "use strict";
+
+// function x() {
+//   console.log(this);
+// }
+
+// x();
+// window.x();
+
+// const obj = {
+//   a: 10,
+//   x: function () {
+//     console.log(this);
+//     console.log(this.a);
+//   },
+// };
+
+// obj.x();
+
+// const student = {
+//   name: "Saurav",
+//   printName: function () {
+//     console.log(this.name);
+//   },
+// };
+
+// student.printName();
+
+// const student2 = {
+//   name: "Deepika",
+// };
+
+// student.printName.call(student2);
+
+// const obj = {
+//   a: 10,
+//   x: () => {
+//     console.log(this);
+//   },
+// };
+
+// obj.x();
+
+// const obj = {
+//   a: 20,
+//   x: function () {
+//     const y = () => {
+//       console.log(this);
+//     };
+//     y();
+//   },
+// };
+
+// obj.x();
+
+// function a() {
+//   var a = 10;
+//   let b = 20;
+//   const c = 30;
+// }
+
+// a();
+
+// {
+//   var a = 10;
+//   let b = 20;
+//   const c = 30;
+// }
+
+// function x() {
+//   if (true) {
+//     var a = 10;
+//     let b = 20;
+//     const c = 30;
+//   }
+// }
+// x();
+
+// var a = 10;
+
+// let b = 20;
+
+// const c = 30;
+
+// function x() {
+//   var a = 10;
+
+//   function y() {
+//     console.log(a);
+//   }
+//   return y;
+// }
+
+// var z = x();
+// z();
+
+// function x() {
+//   var i = 1;
+//   setTimeout(function () {
+//     console.log(i);
+//   }, 3000);
+//   console.log("Namaste JavaScript");
+// }
+
+// x();
+
+// function x() {
+//   for (var i = 0; i <= 5; i++) {
+//     setTimeout(function () {
+//       console.log(i);
+//     }, i * 1000);
+//   }
+//   console.log("sup");
+// }
+// x();
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+// first class function and High order functions
+// first class function can be passsed as an argument in another function and can be return from a function. So i can give the same example for high order functions also
+//  as the function that taking another function as an argument and returning a function from it is high prder function.
+
+// // -------- function passed as an argument ----------
+// const greet = (param1, param2) => {
+//   param1();
+//   console.log(param2);
+// };
+
+// const wish = () => {
+//   console.log("Good Morning");
+// };
+// greet(wish, "Saurav");
+
+//// -------- retrun from a function --------------
+// const greet = () => {
+//   return function (name) {
+//     console.log("Good Morning " + name);
+//   };
+// };
+
+// const check = greet();
+// check("Saurav");
+
+////----- high order component ----------
+// const radius = [3, 5, 8, 22];
+
+// const diameter = (radius) => {
+//   return 2 * radius;
+// };
+
+// const circumference = (radius) => {
+//   return 2 * Math.PI * radius;
+// };
+
+// const area = (radius) => {
+//   return Math.PI * radius * radius;
+// };
+
+// const calculate = (radius, logic) => {
+//   const result = [];
+//   for (let i = 0; i < radius.length; i++) {
+//     result.push(logic(radius[i]));
+//   }
+//   return result;
+// };
+
+// console.log(calculate(radius, diameter));
+// console.log(calculate(radius, circumference));
+// console.log(calculate(radius, area));
+
+// function x() {
+//   var a = 10;
+//   function y() {
+//     console.log(a);
+//   }
+//   y();
+// }
+
+// x();
+
+// function x() {
+//   var a = 10;
+//   return function y() {
+//     console.log(a);
+//   };
+// }
+
+// const z = x();
+// z();
+
+// const arr = [5, 2, 3, 4, 7, 1, 9];
+
+// const result = arr.reduce((acc, curr) => {
+//   acc = curr + acc;
+//   return acc;
+// }, 0);
+
+// console.log(result);
+
+// const arr = [5, 2, 3, 4, 7, 1, 9];
+
+// const result = arr.reduce((acc, curr) => {
+//   if (curr > acc) {
+//     acc = curr;
+//   }
+//   return acc;
+// }, 0);
+
+// console.log(result);
+
+// const arr = [
+//   { firstName: "Roronoa", lastName: "Zoro", age: 19 },
+//   { firstName: "Nico", lastName: "Robin", age: 22 },
+//   { firstName: "Vinsmoke", lastName: "Sanji", age: 19 },
+//   { firstName: "Tony", lastName: "Chopper", age: 10 },
+// ];
+
+// const result = arr.reduce((acc, curr) => {
+
+// }, {});
+
+// promises
+// const promise = fetch("https://api.github.com/users/sauravbedwal");
+
+// console.log(promise);
+
+// promise
+//   .then((response) => {
+//     return response.json();
+//   })
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+// promise chaining only 1 promise
+// const cart = ["shoes", "pants", "kurta"];
+
+// // createOrder , proceedToPayment, showOrderSummary, updateWallet
+// const promise = createOrder(cart);
+// // console.log(promise);
+
+// promise
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.log(err.message);
+//   });
+
+// function createOrder(cart) {
+//   const promise = new Promise((resolve, reject) => {
+//     if (!validateCart(cart)) {
+//       const error = new Error("cart is not valid");
+//       reject(error);
+//     }
+
+//     const orderId = "12345";
+
+//     if (orderId) {
+//       resolve(orderId);
+//     }
+//   });
+//   return promise;
+// }
+
+// function validateCart(cart) {
+//   return true;
+// }
+
+//// ----------- promise chaining multiple  promise -----------
+// const cart = ["shoes", "pants", "kurta"];
+
+// // createOrder , proceedToPayment, showOrderSummary, updateWallet
+// const promise = createOrder(cart);
+// // console.log(promise);
+
+// promise
+//   .then((orderId) => {
+//     console.log(orderId);
+//     return orderId;
+//   })
+//   .then((orderId) => {
+//     return proceedToPayment(orderId);
+//   })
+//   .then((paymentDetails) => {
+//     return showOrderSummary(paymentDetails);
+//   })
+//   .then((orderSummary) => {
+//     return updateWallet(orderSummary);
+//   })
+//   .then((cartDetails) => {
+//     console.log(cartDetails);
+//   })
+//   .catch((err) => {
+//     console.log(err.message);
+//   });
+
+// function createOrder(cart) {
+//   const promise = new Promise((resolve, reject) => {
+//     if (!validateCart(cart)) {
+//       const error = new Error("cart is not valid");
+//       reject(error);
+//     }
+
+//     const orderId = "12345";
+
+//     if (orderId) {
+//       resolve(orderId);
+//     }
+//   });
+//   return promise;
+// }
+
+// function proceedToPayment(orderId) {
+//   return new Promise((resolve, reject) => {
+//     resolve("payment successfully done!");
+//   });
+// }
+
+// function showOrderSummary(paymentDetails) {
+//   return new Promise((resolve, reject) => {
+//     resolve("Order summary is shown!");
+//   });
+// }
+
+// function updateWallet(orderSummary) {
+//   return new Promise((resolve, reject) => {
+//     resolve("Wallet is updated!");
+//   });
+// }
+
+// function validateCart(cart) {
+//   return true;
+// }
+
+// -------------- async await --------------
+
+// const promise = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve("Promise run successfully");
+//   }, 5000);
+// });
+
+// const getPromise = async () => {
+//   const data = await promise;
+
+//   console.log("Namaste JS");
+//   console.log(data);
+// };
+
+// getPromise();
+
+// function getData() {
+//   promise.then((data) => {
+//     console.log(data);
+//   });
+//   console.log("Namaste JS");
+// }
+
+// getData();
+
+// function findPairs(arr, target) {
+//   // console.log(arr, target);
+//   const pairs = [];
+//   for(let i=0; i<arr.length; i++) {
+//     for(let j=i+1; j<arr.length; j++) {
+//           if(arr[i] + arr[j] === target){
+//           pairs.push([arr[i], arr[i+1]]);
+//       }
+//     }
+//   }
+//   return pairs;
+// }
+// console.log(findPairs([1, 2, 3, 4, 5], 6));
+
+// function removeDuplicates(arr) {
+//   let uniqueArr = [];
+//   for(let i=0; i<arr.length; i++) {
+//       if(!uniqueArr.includes(arr[i])){
+//           uniqueArr.push(arr[i]);
+//       }
+//   }
+//   return uniqueArr;
+// }
+
+// console.log(removeDuplicates([1, 2, 3, 1, 4, 2]));
+
+// const fetchData = () => {
+//   return (dispatch) => {
+//     dispatch({ type: "FETCH_START" });
+//     fetch("/api/")
+//       .then((response) => response.json())
+//       .then((data) => dispatch({ type: "FETCH_SUCEES", payload: data }))
+//       .catch((err) => dispatch({ type: "FETCH_ERROR", payload: err }));
+//   };
+// };
+
+// call
+// const obj = {
+//   name: "saurav",
+//   print: function () {
+//     console.log(this.name);
+//   },
+// };
+
+// obj.print();
+
+// const obj2 = {
+//   name: "Shakshi",
+// };
+
+// obj.print.call(obj2);
+
+// const obj = {
+//   name: "saurav",
+// };
+
+// const obj2 = {
+//   name: "kohli",
+// };
+
+// function print(gender) {
+//   console.log(this.name + " is " + gender);
+// }
+
+// print.call(obj, "male");
+//apply
+
+// const obj = {
+//   name: "saurav",
+// };
+
+// const p = {
+//   age: 24,
+// };
+
+// obj.__proto__ = p;
+
+// console.log(obj.age);
+
+// Event Bubbling and Event Capturing
+
+// {
+//   /* <div id="grandparent">
+//   <div id="parent">
+//     <div id="child"></div>
+//   </div>
+// </div>;
+
+// document.getElementById("grandparent").addEventListener(
+//   "click",
+//   (e) => {
+//     console.log("GrandParent Clicked");
+//     // e.stopPropagation();
+//   },
+//   false
+// );
+
+// document.getElementById("parent").addEventListener(
+//   "click",
+//   () => {
+//     console.log("Parent Clicked");
+//   },
+//   false
+// );
+
+// document.getElementById("child").addEventListener(
+//   "click",
+//   () => {
+//     console.log("Child Clicked");
+//   },
+//   true
+// ); */
+// }
+// let arr = ["saurav", "anant"];
+
+// Function.prototype.check = function () {
+//   console.log("check called");
+// };
+// function fun() {}
+
+// const obj = {
+//   name: "Hajin",
+//   age: "20",
+//   details: function () {
+//     console.log(this.name);
+//   },
+// };
+// const obj2 = {
+//   name: "Nayun",
+//   age: "21",
+// };
+// // const details = function (gender) {
+// //   console.log(this.name + " is " + this.age + " yrs old is " + gender);
+// // };
+// // details.call(obj, "male"); //Hajin is 20 yrs old is male
+// // details.call(obj2, "female"); //Nayun is 21 yrs old is female
+
+// const detail = obj.details.bind(obj2, "female");
+// detail; // ƒ bound details() copied function
+// detail(); // Nayun is 21 yrs old is female
+
+// function bigFunc() {
+//   let newArray = new Array(700).fill("♥");
+//   return (element) => newArray[element];
+// }
+
+// const getFunction = bigFunc();
+
+// getFunction(500);
+
+// const nums = [1, 2, 3, 4, 5, 6, 7];
+
+// const a = function () {
+//   console.log(this);
+
+//   const b = {
+//     func1: function () {
+//       console.log(this);
+//     },
+//   };
+
+//   const c = {
+//     func2: () => {
+//       console.log(this);
+//     },
+//   };
+
+//   b.func1();
+//   c.func2();
+// };
+
+// a();
+
+// console.log(x);
+// x = 100;
+
+// var x;
+
+console.log("Hello, World!");
+
+// nums = [1,2,4,7,2];
+
+// target = 4
+// Output: [1,4]
+
+// Find the indeces that sum to target
+// function getNumber(arr, target) {
+//   let indecesArr = [];
+//   // console.log(arr, target);
+
+//   for(let i=0; i<arr.length; i++) {
+//     for(let j=i+1; j<arr.length; j++){
+//       if(arr[i] + arr[j] == target) {
+//         console.log(i, j);
+//         indecesArr.push(i, j);
+//       }
+//     }
+//   }
+//   return indecesArr;
+// }
+
+// console.log(getNumber([1,2,4,7,2], 4));

@@ -185,79 +185,111 @@ function App() {
   /******************************************************************************************************/
   //  Build a simple Todo App where users can: 1. Add a new todo. 2. Mark a todo as completed. 3. Delete a todo. 4. View a list of todos (both completed and pending).
   // 5. also saved the data in local Storage
-
-  const [todoText, setTodoText] = useState("");
-
-  let newTodoSavedData = JSON.parse(localStorage.getItem("newTodo"));
-
-  const [newTodo, setNewTodo] = useState(newTodoSavedData);
-
-  const handleAddMe = () => {
-    if (todoText === "") {
-      return;
-    }
-    setNewTodo([...newTodo, todoText]);
-    setTodoText("");
-  };
-  // console.log("newTodo", newTodo);
-
-  const handleDelete = (index) => {
-    // console.log("delete", index);
-    const filterNewToDo = newTodo.filter((todo, indexes) => {
-      // console.log("todo", index);
-      return indexes != index;
-    });
-    // console.log("filterNewToDo", filterNewToDo);
-    setNewTodo(filterNewToDo);
-  };
-
-  useEffect(() => {
-    localStorage.setItem("newTodo", JSON.stringify(newTodo));
-  }, [newTodo]);
-
-  return (
-    <div className="container">
-      <h1>Todo App</h1>
-      <div className="todo-inputButton">
-        <input
-          type="text"
-          value={todoText}
-          onChange={(e) => {
-            setTodoText(e.target.value);
-            // console.log("Todo", todoText);
-          }}
-        />
-        <button onClick={handleAddMe}>Add Me</button>
-      </div>
-      {newTodo.length > 0 && (
-        <div className="todo-deleteButton">
-          <ul>
-            {newTodo.map((todo, index) => {
-              return (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "10px",
-                  }}
-                  key={index}
-                >
-                  <li>{todo}</li>
-                  <button
-                    onClick={() => handleDelete(index)}
-                    className="delete-btn"
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            })}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
+  // const [todoText, setTodoText] = useState("");
+  // let newTodoSavedData = JSON.parse(localStorage.getItem("newTodo"));
+  // const [newTodo, setNewTodo] = useState(newTodoSavedData);
+  // const handleAddMe = () => {
+  //   if (todoText === "") {
+  //     return;
+  //   }
+  //   setNewTodo([...newTodo, todoText]);
+  //   setTodoText("");
+  // };
+  // // console.log("newTodo", newTodo);
+  // const handleDelete = (index) => {
+  //   // console.log("delete", index);
+  //   const filterNewToDo = newTodo.filter((todo, indexes) => {
+  //     // console.log("todo", index);
+  //     return indexes != index;
+  //   });
+  //   // console.log("filterNewToDo", filterNewToDo);
+  //   setNewTodo(filterNewToDo);
+  // };
+  // useEffect(() => {
+  //   localStorage.setItem("newTodo", JSON.stringify(newTodo));
+  // }, [newTodo]);
+  // return (
+  //   <div className="container">
+  //     <h1>Todo App</h1>
+  //     <div className="todo-inputButton">
+  //       <input
+  //         type="text"
+  //         value={todoText}
+  //         onChange={(e) => {
+  //           setTodoText(e.target.value);
+  //           // console.log("Todo", todoText);
+  //         }}
+  //       />
+  //       <button onClick={handleAddMe}>Add Me</button>
+  //     </div>
+  //     {newTodo.length > 0 && (
+  //       <div className="todo-deleteButton">
+  //         <ul>
+  //           {newTodo.map((todo, index) => {
+  //             return (
+  //               <div
+  //                 style={{
+  //                   display: "flex",
+  //                   justifyContent: "space-between",
+  //                   alignItems: "center",
+  //                   padding: "10px",
+  //                 }}
+  //                 key={index}
+  //               >
+  //                 <li>{todo}</li>
+  //                 <button
+  //                   onClick={() => handleDelete(index)}
+  //                   className="delete-btn"
+  //                 >
+  //                   Delete
+  //                 </button>
+  //               </div>
+  //             );
+  //           })}
+  //         </ul>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
+  /******************************************************************************************************/
+  // Implement a Search Filter
+  // const [items, setItems] = useState([
+  //   "Apple",
+  //   "Banana",
+  //   "Cherry",
+  //   "Date",
+  //   "Elderberry",
+  //   "Fig",
+  //   "Grape",
+  // ]);
+  // const [search, setSearch] = useState("");
+  // const [filterItems, setFilterItems] = useState(items);
+  // useEffect(() => {
+  //   const filtered = items.filter((item) =>
+  //     item.toLowerCase().includes(search.toLowerCase())
+  //   );
+  //   console.log("ffiltered", filtered);
+  //   setFilterItems(filtered);
+  // }, [search]);
+  // return (
+  //   <div className="App">
+  //     <input
+  //       type="text"
+  //       value={search}
+  //       onChange={(e) => {
+  //         setSearch(e.target.value);
+  //       }}
+  //     />
+  //     <div>
+  //       <ul style={{ listStyle: "none" }}>
+  //         {filterItems.map((item) => {
+  //           return <li style={{ padding: "10px" }}>{item}</li>;
+  //         })}
+  //       </ul>
+  //     </div>
+  //     {/* <SearchFilter /> */}
+  //   </div>
+  // );
 }
 
 export default App;
