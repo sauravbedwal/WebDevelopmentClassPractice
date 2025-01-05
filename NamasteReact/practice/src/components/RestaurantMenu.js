@@ -17,25 +17,28 @@ const RestaurantMenu = () => {
   const { itemCards } =
     resInfo.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
       ?.card;
+  // console.log("itemCards", itemCards);
+
+  const { cards } = resInfo.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR;
+  // console.log("Cards", cards);
+
+  const categories = cards.filter((category) => {
+    return (
+      category?.card?.card?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  });
+
+  console.log("categories", categories);
   return (
-    <div className="menu">
-      <h1>{name}</h1>
-      <p>
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <p className="text-lg font-bold">
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
 
       <h2>Menu</h2>
-      <ul>
-        {itemCards.map((item) => {
-          const { name, price, defaultPrice, id } = item?.card?.info;
-
-          return (
-            <li key={id}>
-              {name} - ₹{price / 100 || defaultPrice / 100}
-            </li>
-          );
-        })}
-      </ul>
+      <ul></ul>
     </div>
   );
 };
