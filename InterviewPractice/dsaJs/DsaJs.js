@@ -852,3 +852,38 @@ console.log("Hello, World!");
 // console.log(charFrequency("banana"));
 
 //--------------------------------------------------------------------------------------
+
+// // Find the number of words in a string
+
+// function countWordsManual(str) {
+//   let count = 0;
+//   let inWord = false;
+
+//   for(let i=0; i<str.length; i++) {
+//     if(str[i] !== " " && !inWord) {
+//       count++;
+//       inWord = true;
+//     } else if(str[i] === " ") {
+//       inWord = false;
+//     }
+//   }
+//   return count;
+// }
+
+// console.log(countWordsManual("Hello world!")); // Output: 2
+// console.log(countWordsManual("  This is a   test  ")); // Output: 4
+
+//--------------------------------------------------------------------------------------
+
+// function removeDuplicatesManual(str) {
+//   let unique = "";
+
+//   for(let i=0; i<str.length; i++) {
+//     if(!unique.includes(str[i])){
+//       unique += (str[i]);
+//     }
+//   }
+//   return unique;
+// }
+
+// console.log(removeDuplicatesManual("banana")); // Output: "ban"
