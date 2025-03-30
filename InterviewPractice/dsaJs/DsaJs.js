@@ -887,3 +887,50 @@ console.log("Hello, World!");
 // }
 
 // console.log(removeDuplicatesManual("banana")); // Output: "ban"
+
+// ----------------------------------------------------------------------------------------------
+
+// Asked in Muoro dsa round
+
+// Example 1:
+// Input: chars = ["a","a","b","b","c","c","c"]
+// Output: Return 6, and the first 6 characters of the input array should be: ["a","2","b","2","c","3"]
+// Explanation: The groups are "aa", "bb", and "ccc". This compresses to "a2b2c3".
+
+// Example 2:
+// Input: chars = ["a","b","b","b","b","b","b","b","b","b","b","b","b"]
+// Output: Return 4, and the first 4 characters of the input array should be: ["a","b","1","2"].
+// Explanation: The groups are "a" and "bbbbbbbbbbbb". This compresses to "ab12".
+
+// function charNumber(chars) {
+//   let index = 0;
+//   let i = 0;
+
+//   while(i<chars.length) {
+//     let char = chars[i];
+//     let count = 0;
+
+// while(i<chars.length && chars[i] === char){
+//   count++;
+//   i++;
+// }
+
+// chars[index++] = char;
+
+// if(count > 1) {
+//   for(let num of count.toString()) {
+//     chars[index++] = num;
+//   }
+// }
+//   }
+
+//   const compress = chars.slice(0, index).join("");
+//   // console.log(chars.slice(0, index));
+
+//   console.log(compress);
+
+//   return index;
+// }
+
+// let chars = ["a","a","b","b","c","c","c"];
+// console.log(charNumber(chars));
