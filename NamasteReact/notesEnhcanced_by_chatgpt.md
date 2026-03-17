@@ -1123,3 +1123,601 @@ Here's your content formatted into markdown with proper headings, bold keywords,
 ---
 
 Let me know if any further modifications are required! 😊
+
+---
+
+# **Class 10**
+
+---
+
+## **1. CSS in React**
+
+React supports multiple ways of styling components.
+
+### **Common Styling Methods**
+
+1. **Normal CSS**
+
+   * Traditional `.css` files
+   * Imported inside components.
+
+2. **SCSS / SASS**
+
+   * CSS preprocessors
+   * Provide features like:
+
+     * variables
+     * nesting
+     * mixins.
+
+3. **Styled Components**
+
+   * A **CSS-in-JS library**.
+   * Styles are written **inside JavaScript**.
+
+4. **Component Libraries**
+
+Popular UI libraries include:
+
+* **Bootstrap**
+* **Material UI**
+* **Chakra UI**
+* **Ant Design**
+
+These provide **ready-made components** like:
+
+* Buttons
+* Forms
+* Modals
+* Tables
+
+5. **Tailwind CSS**
+
+Tailwind is a **utility-first CSS framework**.
+
+Example:
+
+```html
+<div class="bg-red-500 text-white p-4">
+  Hello
+</div>
+```
+
+Instead of writing CSS files, we directly use **utility classes**.
+
+---
+
+## **2. PostCSS Configuration**
+
+When using **Tailwind with Parcel**, we need to configure **PostCSS**.
+
+### **Why PostCSS is Needed**
+
+Tailwind works using **PostCSS plugins**.
+
+So we create a configuration file:
+
+```
+.postcssrc
+```
+
+Example:
+
+```json
+{
+  "plugins": {
+    "tailwindcss": {},
+    "autoprefixer": {}
+  }
+}
+```
+
+This tells **Parcel**:
+
+* Use **TailwindCSS**
+* Process CSS using **PostCSS**
+
+---
+
+## **3. Tailwind Optimization**
+
+Tailwind contains **thousands of utility classes**.
+
+If all of them were included in production builds, the CSS file would become **very large**.
+
+### **How Tailwind Solves This**
+
+Tailwind performs **Tree Shaking**.
+
+Meaning:
+
+* It scans your **project files**
+* Finds **only the classes you used**
+* Generates CSS **only for those classes**
+
+Example:
+
+If you only use:
+
+```
+bg-red-500
+text-white
+p-4
+```
+
+Then **only these styles are included in the final CSS bundle**.
+
+### **Benefits**
+
+* Smaller bundle size
+* Faster loading
+* Better performance
+
+---
+
+# **Class 11**
+
+---
+
+# **1. Higher Order Component (HOC)**
+
+### **Definition**
+
+A **Higher Order Component** is a **function that takes a component and returns a new enhanced component**.
+
+```
+HOC = Function(Component) → Enhanced Component
+```
+
+### **Purpose**
+
+HOCs are used to:
+
+* **Reuse component logic**
+* **Add extra functionality**
+* **Avoid code duplication**
+
+---
+
+### **Example**
+
+```javascript
+const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label>Promoted</label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+```
+
+Now the component will render with a **Promoted label**.
+
+---
+
+# **2. React Application Layers**
+
+A React application mainly consists of **two layers**.
+
+### **1. UI Layer**
+
+Responsible for:
+
+* Rendering **JSX**
+* Displaying **data**
+
+The UI layer is **static by itself**.
+
+---
+
+### **2. Data Layer**
+
+Responsible for managing **application data**.
+
+It includes:
+
+* **State**
+* **Props**
+* **Local variables**
+* **API data**
+
+---
+
+### **Important Concept**
+
+The **UI Layer is powered by the Data Layer**.
+
+Meaning:
+
+```
+Data changes → UI automatically updates
+```
+
+---
+
+# **3. Accordion Functionality**
+
+We created an **Accordion UI**.
+
+Example categories:
+
+* Recommended
+* Newly Added
+
+Clicking a category **shows items**.
+
+Clicking again **hides items**.
+
+---
+
+### **Problem**
+
+Initially:
+
+* If we open **Recommended**
+* Then open **Newly Added**
+
+Both stay open.
+
+But we want:
+
+```
+Only ONE accordion open at a time
+```
+
+---
+
+### **Solution: Lift State Up**
+
+Earlier:
+
+```
+RestaurantCategory → controls its own state
+```
+
+Now:
+
+```
+RestaurantMenu (Parent)
+controls
+RestaurantCategory (Child)
+```
+
+So the **parent decides which accordion is open**.
+
+---
+
+# **4. Controlled vs Uncontrolled Components**
+
+### **Uncontrolled Component**
+
+When a component **manages its own state**.
+
+Example:
+
+```
+RestaurantCategory controls show/hide
+```
+
+---
+
+### **Controlled Component**
+
+When the **parent controls the state**.
+
+Example:
+
+```
+RestaurantMenu decides
+which category should open
+```
+
+---
+
+### **Key Idea**
+
+```
+Parent controls child behaviour
+```
+
+This makes **state management predictable**.
+
+---
+
+# **5. Prop Drilling**
+
+React follows **One-Way Data Flow**.
+
+```
+Parent → Child → GrandChild
+```
+
+Example:
+
+```
+RestaurantMenu
+   ↓
+RestaurantCategory
+   ↓
+ItemList
+```
+
+---
+
+### **Problem**
+
+Sometimes data is passed through **many components** even though they don't need it.
+
+Example:
+
+```
+Component A → B → C → D
+```
+
+But only **D uses the data**.
+
+Components **B and C just pass it**.
+
+This is called **Prop Drilling**.
+
+---
+
+### **Solution**
+
+React provides:
+
+* **Context API**
+* **Redux**
+* **Zustand**
+
+To avoid prop drilling.
+
+---
+
+# **6. Context Provider**
+
+Context allows us to **share data globally** without prop drilling.
+
+---
+
+### **Example**
+
+```javascript
+<UserContext.Provider value={{ loggedInUser: userName }}>
+  <App />
+</UserContext.Provider>
+```
+
+Now **all components inside App** can access this value.
+
+---
+
+### **Nested Providers**
+
+Example:
+
+```javascript
+<UserContext.Provider value={{ loggedInUser: userName }}>
+  <UserContext.Provider value={{ loggedInUser: "Elon Musk" }}>
+    <Header />
+  </UserContext.Provider>
+</UserContext.Provider>
+```
+
+Result:
+
+```
+Header → Elon Musk
+Other components → userName
+```
+
+---
+
+# **Class 12**
+
+---
+
+# **1. Redux**
+
+Redux is a **state management library**.
+
+It is used in **large-scale applications** to manage **global state**.
+
+Important:
+
+```
+Redux is NOT part of React
+```
+
+They are **separate libraries**.
+
+---
+
+### **Alternative State Libraries**
+
+Examples:
+
+* **Zustand**
+* **Recoil**
+* **MobX**
+
+But **Redux is the most popular**.
+
+---
+
+# **2. Redux Libraries**
+
+Redux uses two main libraries:
+
+### **React-Redux**
+
+Acts as a **bridge between React and Redux**.
+
+Provides hooks like:
+
+```
+useSelector()
+useDispatch()
+```
+
+---
+
+### **Redux Toolkit**
+
+Modern way of writing Redux.
+
+Benefits:
+
+* Less boilerplate
+* Simpler setup
+* Built-in best practices
+
+---
+
+# **3. Redux Store**
+
+The **Redux Store** is a **central JavaScript object**.
+
+It stores the **entire application state**.
+
+```
+Single Store
+Multiple Slices
+```
+
+---
+
+### **Slices**
+
+Slices divide the store into **logical parts**.
+
+Examples:
+
+```
+cartSlice
+userSlice
+themeSlice
+```
+
+Example:
+
+```
+cartSlice → cart items
+userSlice → logged-in user
+themeSlice → dark/light mode
+```
+
+---
+
+# **4. Writing Data to Redux Store**
+
+Components **cannot directly modify the store**.
+
+Instead, we follow this flow:
+
+```
+Component
+   ↓
+Dispatch Action
+   ↓
+Reducer
+   ↓
+Redux Store Updated
+```
+
+---
+
+### **Example Flow**
+
+```
+User clicks "Add Item"
+↓
+dispatch(addItem())
+↓
+Reducer updates cartSlice
+↓
+Store updates
+```
+
+---
+
+# **5. Reading Data from Redux Store**
+
+To read data from the store, we use **Selectors**.
+
+Example:
+
+```javascript
+const cartItems = useSelector((store) => store.cart.items);
+```
+
+This **subscribes the component to the store**.
+
+Meaning:
+
+```
+Store updates → Component re-renders
+```
+
+---
+
+# **6. Setting Up Redux**
+
+### **Step 1: Create Store**
+
+```javascript
+import { configureStore } from "@reduxjs/toolkit";
+
+const appStore = configureStore({
+  reducer: {},
+});
+
+export default appStore;
+```
+
+---
+
+### **Step 2: Provide Store**
+
+```javascript
+import { Provider } from "react-redux";
+
+<Provider store={appStore}>
+  <App />
+</Provider>;
+```
+
+---
+
+### **Step 3: Create Slice**
+
+```javascript
+import { createSlice } from "@reduxjs/toolkit";
+
+const cartSlice = createSlice({
+  name: "cart",
+  initialState: {
+    items: [],
+  },
+  reducers: {},
+});
+```
+
+---
+
+### **Step 4: Add Reducers**
+
+Reducers contain **actions**.
+
+Example:
+
+```javascript
+reducers: {
+  addItem: (state, action) => {},
+  removeItem: (state, action) => {},
+  clearCart: (state) => {}
+}
+```

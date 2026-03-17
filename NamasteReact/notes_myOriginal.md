@@ -1477,3 +1477,456 @@ Here's your content formatted into markdown with proper headings, bold keywords,
 ---
 
 Let me know if any further modifications are required! 😊
+
+# **Class 10**
+
+---
+
+## **1. CSS**
+
+* **Normal CSS**
+* **SCSS and SASS**
+* **Styled Component**
+* **Libraries** like **Bootstrap, Material UI, Chakra UI, Ant Design**
+* **Tailwind CSS**
+
+---
+
+## **2. postcssrc**
+
+* We have to tell **postcssrc** that we are using **Tailwind** over here.
+* As **Parcel** needs to use **postcssrc** to **understand/read Tailwind**.
+
+---
+
+## **3. Tailwind Optimization**
+
+* It will **only include the CSS which is required on our web page**,
+  not all thousands of CSS classes from the **Tailwind library**.
+
+---
+
+# **Class 11**
+
+---
+
+## **1. Higher Order Component (HOC)**
+
+**Higher Order Component**:
+A **Higher Order Component** is a **function that takes a Component and returns a Component**.
+
+* **HOC** takes a **component as an input** and **enhances that component**.
+* It **adds some extra features** to that component and **returns it back**.
+* A **function that takes a component as an argument and returns a new component**
+  that **wraps the original component**.
+
+---
+
+## **2. React Application Layers**
+
+An important part of a **React Application** is to **manage its data**.
+
+* **UI** is **static** as it **doesn't have logic of its own**.
+* If we give some **JSX**, it will be on the page.
+
+Data is a **different part** in a React Application.
+
+All React Applications have **two important layers**:
+
+1. **UI Layer**
+2. **Data Layer**
+
+* **UI layer is powered by the Data layer**.
+* **Data layer consists of:**
+
+  * **State**
+  * **Props**
+  * **Local variables**
+  * Whatever **data we have in our Application**.
+
+---
+
+## **3. Accordion Functionality**
+
+We made an **accordion**.
+
+* When we click on any category like **Recommended** or **Newly Added**, it **shows the information**.
+* When we click again, it **hides it**.
+
+But now we want this functionality:
+
+* When we click **Recommended**, it shows the info.
+* If we click **Newly Added**, it should:
+
+  * **Close Recommended**
+  * **Show only Newly Added**
+
+Right now it shows **information of both Recommended and Newly Added**, and we have to **close each manually**.
+
+### **Solution**
+
+To build this feature:
+
+* When we click **Recommended**, it should **collapse everything else**.
+* We want this **state to be lifted up**.
+
+Because:
+
+* We want to give the power of **show and collapse** to the **Parent (RestaurantMenu)**
+* Instead of the **Child (RestaurantCategory)**.
+
+Currently:
+
+* **RestaurantCategory** has the power to **show and collapse the ItemList**.
+
+---
+
+## **4. Controlled and Uncontrolled Component**
+
+* If a component is **controlling itself**, then it is an **Uncontrolled Component**.
+
+* If we **take away this power** and give it to its **parent**, then it becomes a
+  **Controlled Component** because it **relies on its parent** to tell it what to do.
+
+Earlier:
+
+* Each **category/accordion was controlling itself**.
+
+Now:
+
+* We have **given the power to the parent**.
+
+---
+
+## **5. Prop Drilling**
+
+React has **one-way data flow**.
+
+Data flows like this:
+
+```
+Parent → Child → Child's Child → and so on
+```
+
+Example:
+
+```
+RestaurantMenu → RestaurantCategory → ItemList
+```
+
+* **RestaurantMenu passes data to RestaurantCategory**
+* **RestaurantCategory passes data to ItemList**
+
+Prop Drilling happens when:
+
+* Data is passed from **Component A → B → C → D**
+* But **B and C do not use the data**
+* They are just **intermediate components**
+
+This process is known as **Prop Drilling**.
+
+---
+
+## **6. Context Provider Example**
+
+If we **wrap the whole App with `UserContext.Provider`**, then whatever **value we pass** will go to **all components inside it**.
+
+But if we **wrap Header with a different `UserContext.Provider` value**, then:
+
+* **Header will have that value**
+* Components **outside** of that provider will have the **default value**.
+
+Example:
+
+```jsx
+// Default
+<UserContext.Provider value={{ loggedInUser: userName }}>
+    {/* Saurav Bedwal */}
+    <div className="app">
+        <UserContext.Provider value={{ loggedInUser: "Elon Musk" }}>
+            {/* Elon Musk */}
+            <Header />
+        </UserContext.Provider>
+        <Outlet />
+    </div>
+</UserContext.Provider>
+```
+
+---
+
+# **Class 12**
+
+---
+
+## **1. Redux**
+
+Redux is **not mandatory**.
+
+* We should **use it only when required**, especially in **big applications**.
+* Big applications **can be built without Redux** using **createContext**,
+  but Redux is **preferable** because it provides **more options**.
+
+### **Key Points**
+
+* **Redux is not part of React**.
+* **Redux and React are different libraries**.
+* **Redux is a state management library**.
+
+Redux is **not the only state management library**.
+
+Example:
+
+* **Zustand**
+
+Redux provides:
+
+* **Handling state and data**
+* **Managing store**
+* **Easy debugging**
+
+Redux offers **two libraries**:
+
+1. **React-Redux**
+2. **Redux Toolkit**
+
+* **React-Redux** → acts like a **bridge between React and Redux**
+* **Redux Toolkit** → **modern way of writing Redux**
+
+---
+
+## **2. Redux Toolkit vs Vanilla Redux**
+
+### **Problems with Vanilla Redux**
+
+* Huge **learning curve**
+* Required **many different packages**
+* Required **a lot of boilerplate code**
+
+### **Redux Toolkit Advantages**
+
+* Simpler setup
+* Fewer packages required
+* Less boilerplate code
+
+Now:
+
+```
+Redux Toolkit + React-Redux
+```
+
+is enough.
+
+---
+
+## **3. Redux Store**
+
+Redux Store is:
+
+* A **big JavaScript object**
+* Contains **a lot of data**
+* Stored in a **global central place**
+
+### **Key Points**
+
+* All **components can access the Redux store**.
+* A **slice** is a **small portion of the Redux store**.
+
+So:
+
+```
+One Store
+Multiple Slices
+```
+
+### **Examples of slices**
+
+* **cartSlice**
+* **userSlice**
+* **themeSlice**
+
+Example:
+
+* Cart data → **cartSlice**
+* Logged-in user → **userSlice**
+* Dark/Light theme → **themeSlice**
+
+These are **logical partitions** used to keep **data separated**.
+
+---
+
+## **4. Writing Data to Redux Store**
+
+A component **cannot directly modify the slice**.
+
+Steps:
+
+1. **Dispatch an Action**
+2. **Action calls a function**
+3. That function is called a **Reducer**
+4. **Reducer modifies the slice inside the store**
+
+Flow:
+
+```
+User clicks "Add Item"
+        ↓
+Dispatch Action
+        ↓
+Action calls Reducer
+        ↓
+Reducer updates Slice in Store
+```
+
+---
+
+## **5. Reading Data from Redux Store**
+
+To read data:
+
+* Use a **Selector**
+
+Selector:
+
+* Reads data from the **Redux Store**
+* Updates the **React Component**
+
+This process is called:
+
+### **Subscribing to the Store**
+
+Selector is a **Hook**.
+
+Example:
+
+If **Header component is subscribed to the store**:
+
+* It stays **in sync with the store**.
+* If **store data changes**, the **Header updates automatically**.
+
+Example Flow:
+
+```
+Cart count = 3
+User clicks "Add Item"
+        ↓
+Dispatch Action
+        ↓
+Reducer updates Cart Slice
+        ↓
+Header is subscribed using Selector
+        ↓
+Header updates automatically
+```
+
+---
+
+## **6. Starting Redux in Our App**
+
+### **Step 1 — Create Store**
+
+* Create **appStore** inside **utils**
+* Import:
+
+```javascript
+import { configureStore } from "@reduxjs/toolkit";
+```
+
+* Configure store and **put slices inside it**
+
+```javascript
+const appStore = configureStore({
+  reducer: {}
+});
+```
+
+* Export it
+
+```javascript
+export default appStore;
+```
+
+---
+
+### **Step 2 — Provide Store to App**
+
+Import **Provider**
+
+```javascript
+import { Provider } from "react-redux";
+```
+
+Wrap the **entire app inside Provider**.
+
+Pass the store:
+
+```jsx
+<Provider store={appStore}>
+   <App />
+</Provider>
+```
+
+---
+
+### **Step 3 — Create Slice**
+
+Import:
+
+```javascript
+import { createSlice } from "@reduxjs/toolkit";
+```
+
+Create a slice:
+
+```javascript
+const cartSlice = createSlice({
+   name: "cart",
+   initialState: {},
+   reducers: {}
+});
+```
+
+Inside **initialState**
+
+* We define default values.
+
+Example:
+
+```javascript
+initialState: {
+   items: []
+}
+```
+
+---
+
+### **Step 4 — Reducers**
+
+Reducers contain **actions**.
+
+Example actions:
+
+* **addItem**
+* **removeItem**
+* **clearCart**
+
+Example:
+
+```javascript
+reducers: {
+   addItem: (state, action) => {},
+   removeItem: (state, action) => {},
+   clearCart: (state) => {}
+}
+```
+
+---
+
+If you want, I can also help you **make this entire React notes (Class 1–12) into a professional GitHub README** like:
+
+* 📚 **Namaste React Notes**
+* Clean **Table of Contents**
+* Clickable **Class navigation**
+* Better **Markdown formatting**
+* Looks **very professional on GitHub**
+
+Many developers actually use this format to **show learning publicly**.

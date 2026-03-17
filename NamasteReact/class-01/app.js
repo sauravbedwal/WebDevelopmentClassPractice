@@ -10,7 +10,7 @@ const heading2 = React.createElement(
   },
   "Hi Everyone by React"
 );
-console.log(heading); // shows object made by react
+console.log(heading2); // shows object made by react
 
 const heading3 = React.createElement(
   "h2",

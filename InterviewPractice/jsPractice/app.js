@@ -1878,7 +1878,7 @@
 
 // var x;
 
-console.log("Hello, World!");
+// ---------------------------------------------------------
 
 // nums = [1,2,4,7,2];
 
@@ -1902,3 +1902,86 @@ console.log("Hello, World!");
 // }
 
 // console.log(getNumber([1,2,4,7,2], 4));
+
+// var a = 100;
+
+// function x() {
+//   console.log(a);
+//   var a = 10;
+//   console.log(a);
+//   let b = 50;
+//   console.log(b);
+// }
+// x();
+// console.log(a);
+// console.log(b);
+
+// function testScope() {
+//   var a = 10;
+//   let b = 20;
+//   const c = 30;
+
+//   if (true) {
+//     var d = 40; // var is function-scoped, accessible outside this block
+//     let e = 50; // let is block-scoped, exists only in this block
+//     const f = 60; // const is block-scoped, exists only in this block
+//     console.log(e, f); // ✅ Accessible here
+//   }
+
+//   console.log(a, b, c); // ✅ Accessible here
+//   console.log(d); // ✅ Accessible here (since var is function-scoped)
+//   console.log(e, f); // ❌ Error: e and f are not defined outside the block
+// }
+
+// testScope();
+// // console.log(a, b, c, d); // ❌ Error: Function-scoped variables are not accessible outside
+
+// const c = 100;
+// function x() {
+//   const c = 30;
+//   console.log(c); // 30
+// }
+// x();
+// console.log(c); // 100
+
+// function x() {
+//   var a = 7;
+//   function y() {
+//     console.log(a);
+//   }
+//   a = 100;
+//   return y;
+// }
+
+// var z = x();
+// console.log("as", z); //100
+
+// //.............
+// z();
+
+// function x() {
+//   var i = 1;
+//   setTimeout(function () {
+//     console.log(i);
+//   }, 3000);
+//   console.log("Namaste JavaScript");
+// }
+
+// x();
+
+// function greed() {
+//   return function (name) {
+//     console.log("bruh! " + name);
+//   };
+// }
+// const fn = greed();
+// fn("Trinay");
+
+function x(y) {
+  console.log("x");
+  y();
+}
+
+x(function y() {
+  console.log("y");
+});
