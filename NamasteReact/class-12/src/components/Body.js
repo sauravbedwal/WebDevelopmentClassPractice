@@ -43,7 +43,7 @@ const Body = () => {
 
     const { setUserName, loggedInUser } = useContext(UserContext);
 
-    return listOfRestaurants.length === 0 ? (
+    return listOfRestaurants?.length === 0 ? (
         <Shimmer />
     ) : (
         <div className="body">
@@ -93,7 +93,7 @@ const Body = () => {
                 </div>
             </div>
             <div className="flex flex-wrap mx-11">
-                {filteredRestaurant.map((restaurant) => (
+                {filteredRestaurant?.map((restaurant) => (
                     <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
                         {/* if the restaurant is promoted then add a promoted label to it */}
                         {restaurant.info.promoted ? (

@@ -191,11 +191,11 @@
 // NJ1 - 7
 
 // function a() {
-//     var b = 10;
-//     function c() {
-//         console.log(b);
-//     };
-//     c();
+//   var b = 10;
+//   function c() {
+//     console.log(b);
+//   };
+//   c();
 // };
 
 // a();
@@ -629,6 +629,9 @@
 // const obj = {
 //     name: "Saurav",
 //     age: 20,
+//     // details: function () {
+//     //     console.log(this.name)
+//     // }
 // }
 
 // const obj2 = {
@@ -1768,16 +1771,224 @@
 //apply
 
 // const obj = {
-//   name: "saurav",
+//     name: "saurav",
 // };
 
 // const p = {
-//   age: 24,
+//     age: 24,
 // };
 
 // obj.__proto__ = p;
 
-// console.log(obj.age);
+// let q = {
+//     run() {
+//         alert("run")
+//     }
+// }
+
+// p.__proto__ = q;
+
+// console.log(obj.run());
+
+// -----------------------------------------------------------------------------------
+
+// Classes and Objects in JavaScript | JavaScript Tutorial in Hindi #76 -  Code with harry
+// class RailwayForm {
+//     submit() {
+//         alert(this.name + ": Your form is Submitted for train no " + this.trainno)
+//     }
+//     cancel() {
+//         alert(this.name + ": This form is cancelled for train no " + this.trainno)
+//     }
+//     fill(givenname, trainno) {
+//         this.name = givenname
+//         this.trainno = trainno
+//     }
+// }
+
+// // create a form for Harry
+// let harryForm = new RailwayForm();
+// // Fill the form with Harry's details
+// harryForm.fill("Harry", 123456)
+
+// // create a form for Rohan
+// let rohanForm = new RailwayForm();
+// // Fill the form with Rohan's details
+// rohanForm.fill("Rohan", 222420)
+
+
+// harryForm.submit()
+// harryForm.cancel()
+
+// rohanForm.submit()
+// rohanForm.cancel()
+
+// ---------------------------------------------------------------------------------------
+
+// Constructors in JavaScript | JavaScript Tutorial in Hindi #77  -  Code with harry
+// class RailwayForm {
+//     constructor(givenname, trainno, address) {
+//         console.log("CONSTRUCTOR CALLED..." + givenname + " " + trainno)
+//         this.name = givenname
+//         this.trainno = trainno
+//         this.address = address
+//     }
+
+//     preview() {
+//         alert(this.name + ": Your form is Submitted for train no " + this.trainno
+//             + " and Your address is " + this.address)
+//     }
+//     submit() {
+//         alert(this.name + ": Your form is Submitted for train no " + this.trainno)
+//     }
+//     cancel() {
+//         alert(this.name + ": This form is cancelled for train no " + this.trainno)
+//     }
+// }
+
+// let harryForm = new RailwayForm("Harry", 12345, "Delhi");
+// harryForm.preview()
+// harryForm.submit()
+
+// ---------------------------------------------------------------------------------------
+
+// Inheritance & extends Keyword in JavaScript | JavaScript Tutorial in Hindi #78  -  Code with harry
+// class Animal {
+//     constructor(name, color) {
+//         this.name = name
+//         this.color = color
+//     }
+
+//     run() {
+//         console.log(`${this.name} is running!`)
+//     }
+
+//     shout() {
+//         console.log(`${this.name} is barking!!!`)
+//     }
+// }
+
+// class Monkey extends Animal {
+//     eatbanana() {
+//         console.log(`${this.name} is eating banana!!!`)
+
+//     }
+//     hide() {
+//         console.log(`${this.name} is hiding!!!`)
+//     }
+// }
+
+// let ani = new Animal("Bruno", "white")
+// let m = new Monkey("Chimpu", "orange")
+
+// ani.shout();
+// m.eatbanana()
+// m.hide()
+// // ani.hide() // error
+
+// ---------------------------------------------------------------------------------------
+
+// // Constructors in JavaScript | JavaScript Tutorial in Hindi #79  -  Code with harry
+
+// class Employee {
+//     login() {
+//         console.log(`Employee is logged in`)
+//     }
+
+//     logout() {
+//         console.log(`Employee has logged out`)
+
+//     }
+
+//     requestLeaves(leaves) {
+//         console.log(`Employee has requested ${leaves} leaves - Auto approved`)
+//     }
+// }
+
+// class Programmer extends Employee {
+//     requestCoffee(x) {
+//         console.log(`Employee has requested ${x} coffees`)
+//     }
+//     requestLeaves(leaves) {
+//         super.requestLeaves(4)
+//         console.log(`One extra is granted!`)
+//     }
+// }
+
+// let e = new Programmer();
+// e.login()
+// e.requestLeaves(3)
+
+// ---------------------------------------------------------------------------------------
+
+// Constructors in JavaScript | JavaScript Tutorial in Hindi #80  -  Code with harry
+
+// class Employee {
+//     constructor(name) {
+//         console.log(`${name} -  Employee's constructor is here`)
+//         this.name = name
+//     }
+//     login() {
+//         console.log(`Employee is logged in`)
+//     }
+
+//     logout() {
+//         console.log(`Employee has logged out`)
+
+//     }
+
+//     requestLeaves(leaves) {
+//         console.log(`Employee has requested ${leaves} leaves - Auto approved`)
+//     }
+// }
+
+// class Programmer extends Employee {
+//     constructor(name) {
+//         super(name)  // ---> super is mandatory to used and also before this else get error
+//         console.log(`Programmer Constructor - This is a newly written constructor`)
+//     }
+//     // constructor(...args) { ---> If there is no constructor in child class, this is created automatically
+//     //     super(...args)
+//     // }
+//     requestCoffee(x) {
+//         console.log(`Employee has requested ${x} coffees`)
+//     }
+//     requestLeaves(leaves) {
+//         super.requestLeaves(4)
+//         console.log(`One extra is granted!`)
+//     }
+// }
+
+// let e = new Programmer("Harry");
+// e.login()
+// e.requestLeaves(3)
+
+
+// ---------------------------------------------------------------------------------------
+
+// Static Method in JavaScript | JavaScript Tutorial in Hindi #81  -  Code with harry
+
+// class Animal {
+//     constructor(name) {
+//         console.log(`${name} -  Employee's constructor is here`)
+//         this.name = Animal.capatialize(name)
+//     }
+//     walk() {
+//         alert(`Animal ${this.name} is walking`)
+//     }
+//     static capatialize(name) {
+//         return name.charAt(0).toUpperCase() + name.substr(1, name.length)
+//     }
+
+// }
+
+// // let j = new Animal(Animal.capatialize("jack")); ---> it can be worked like this also
+// let j = new Animal("jack");
+// j.walk()
+// j.capatialize("rahul") ---> this doesn't work
+
+// ---------------------------------------------------------------------------------------
+
 
 // Event Bubbling and Event Capturing
 
@@ -1977,11 +2188,149 @@
 // const fn = greed();
 // fn("Trinay");
 
-function x(y) {
-  console.log("x");
-  y();
-}
+// -------------------------------------------------
 
-x(function y() {
-  console.log("y");
-});
+//-- currying --
+
+// function sum(a) {
+//   return function(b) {
+//     return function(c){
+//       return a+b+c;
+//     }
+//   }
+// }
+
+// console.log(sum(2)(3)(4));
+
+
+// function x(y) {
+//   console.log("x");
+//   y();
+// }
+
+// x(function y() {
+//   console.log("y");
+// });
+
+// // copy by value and reference
+
+// // copy by value
+// let a = 10;
+// let b = a;
+// console.log(a, b);
+// a = 20;
+// console.log(a, b);
+
+// // copy by reference
+// let arr1 = [1, 2, 3];
+// let arr2 = arr1;
+// console.log(arr1, arr2);
+// arr1.push(4);
+// console.log(arr1, arr2);
+
+
+
+
+// const URL = "https://api.github.com/users/trinaybhati"
+
+// const user = fetch(URL).then((res) => {
+//     return res.json();
+// }).then((data) => {
+//     console.log(data);
+// })
+
+// console.log("user", user);
+
+
+// const p = new Promise((resolve, reject) => {
+//     resolve("Promise Rejected!!!");
+// })
+
+// async function getData() {
+//     return p;
+// }
+
+// const dataPromise = getData();
+
+// dataPromise.then((res) => {
+//     console.log(res);
+// }).catch((err) => {
+//     console.log(err)
+// })
+// console.log("dataPromise", dataPromise);
+
+
+// FACTORY FUNCTION
+// function createCircle() {
+//     return {
+//         radius: 1,
+//         location: {
+//             x: 5,
+//             y: 5,
+//         },
+//         isVisible: true,
+//         draw: function () {
+//             console.log('Draw');
+//         },
+//     };
+// }
+
+// console.log(createCircle())
+
+
+// function createCircle(radius, isVisible) {
+//     return {
+//         radius,
+//         isVisible: isVisible, // same as doing isVisible
+//         draw() { // same as doing   draw : function(){}
+//             console.log(`Draw circle with radius ${radius}`);
+//         },
+//     };
+// }
+
+// const circle1 = createCircle(5, false);
+// const circle2 = createCircle(9, false);
+
+// console.log(circle1);
+// console.log(circle2);
+
+// circle1.draw(); // Draw circle with radius 5
+// console.log(circle2.radius); // 9
+
+
+// function Music(note) {
+//     this.note = note;
+//     console.log(this)
+// }
+
+// const scale = new Music("a");
+// console.log(scale)
+
+
+// --- Event Bubbling ---
+// document.getElementById("parent").addEventListener("click", function () {
+//     console.log("Parent Clicked");
+// });
+
+// document.getElementById("child").addEventListener("click", function () {
+//     console.log("Child Clicked");
+// });
+
+
+// --- Event Capturing ---
+// document.getElementById("parent").addEventListener("click", function () {
+//     console.log("Parent Clicked");
+// }, true);
+
+// document.getElementById("child").addEventListener("click", function () {
+//     console.log("Child Clicked");
+// }, true);
+
+
+// --- Event Delegation ---
+// document.getElementById("list").addEventListener("click", function (e) {
+//     console.log(e.target.textContent);
+//     if (e.target.tagName === "LI") {
+//         e.target.style.backgroundColor = "red";
+//     }
+// })
