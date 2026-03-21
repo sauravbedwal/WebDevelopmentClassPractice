@@ -10,7 +10,9 @@
     4. Inside Node JS we have V8 JS engine and some super powers and whenever we wrote any piece of JS code, Node JS gave/passed that code to V8 engine and then V8 engine 
          actually executed that code (as V8 engine written in C++ so it converts that code into machine level code so the computer can understand it).
 
------------first code of node js------------ 
+----------------------
+first code of node js
+---------------------- 
     5. we can just create a file with the name let say app.js write the code and run it by the command node (file name) in the terminal.
     6. in browser, window is the global object and this also points to the global object and it is given to us by browsers and over here in Node JS we have the global object
          and it is known as global.
