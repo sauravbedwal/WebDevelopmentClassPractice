@@ -20,36 +20,36 @@ console.log("very important js code");
 // if we access a different module like multiply then require will take the code wrap it in an IIFE and then execute and also we can access module.exports or require bcoz
 //  IIFE have thr parameters module and require given by Node JS.
 
-(function x(module, require) {
+// (function x(module, require) {
 
-    require("./path")
+//     require("./path")
 
-    // All code of the module runs inside here
+//     // All code of the module runs inside here
 
-    function calculateMultiply(a,b){
-        const result = a * b;
-        
-        console.log(result);
-    }
-     
-    module.exports = { calculateMultiply };
-})();
+//     function calculateMultiply(a,b){
+//         const result = a * b;
+
+//         console.log(result);
+//     }
+
+//     module.exports = { calculateMultiply };
+// })();
 
 
 
 
 // Code from node js repository
 
-let wrap = function(script) { // eslint-disable-line func-style
-    return Module.wrapper[0] + script + Module.wrapper[1];
-  };
+let wrap = function (script) { // eslint-disable-line func-style
+  return Module.wrapper[0] + script + Module.wrapper[1];
+};
 
-  const wrapper = [
-    '(function (exports, require, module, __filename, __dirname) { ',
-    '\n});',
-  ];
-  
+const wrapper = [
+  '(function (exports, require, module, __filename, __dirname) { ',
+  '\n});',
+];
+
 (function (exports, require, module, __filename, __dirname) {
 
-       // ALL THE CODE OF YOUR MODULE 
+  // ALL THE CODE OF YOUR MODULE 
 });
