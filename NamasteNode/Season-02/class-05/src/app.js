@@ -320,6 +320,10 @@ const app = express();
 /***************************************************************************************************************************************************************************/
 
 // ERROR in the code and we are not using try and catch and for some unsolved error we used another middleware for ERROR handling
+// Must be defined after all routes and normal middleware.
+// Error middleware → always at the bottom, catches errors from routes or middleware.
+// If error middleware comes before routes, it won’t catch errors from those routes.
+
 // app.get("/getUserData", (req, res) => {
 //   //Logic of DB call and get user data
 //   throw new Error("asdasda");
@@ -336,6 +340,10 @@ const app = express();
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // ERROR in the code and we used try and catch but still for some unsolved error we used another middleware for ERROR handling
+// When you call throw new Error() inside a route handler, Express catches that error automatically.
+// Express skips all normal middleware and routes and looks for an error-handling middleware.
+// Notice the 4 parameters (err, req, res, next). This is how Express identifies it as an error handler.
+
 // app.get("/getUserData", (req, res) => {
 //      try {
 ////  Logic of DB call and get user data
@@ -400,12 +408,16 @@ const app = express();
 // 2nd error middleware bcoz route handled one by one as order is very important and for 1st error middleware there is no error there but we throw the error in /getUserData
 // middlware but not handling there but 2nd error middleware is there to handle the error
 
-app.use("/", (err, req, res, next) => {
-  if (err) {
-    // log your error
-    res.status(500).send("something went wrong");
-  }
-});
+// Must be defined after all routes and normal middleware.
+// Error middleware → always at the bottom, catches errors from routes or middleware.
+// If error middleware comes before routes, it won’t catch errors from those routes.
+
+// app.use("/", (err, req, res, next) => {
+//   if (err) {
+//     // log your error
+//     res.status(500).send("something went wrong");
+//   }
+// });
 
 app.get("/getUserData", (req, res) => {
   //Logic of DB call and get user data
