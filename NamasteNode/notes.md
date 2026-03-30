@@ -1624,8 +1624,14 @@ directly krenge toh static ho jayega?
      4. Now we can encrypt the password and then save it to the DB and for that we can install a npm package called bcrypt.
           - bcrypt.hash(myPlaintextPassword, saltRounds); example:  const passwordHash = await bcrypt.hash(password, 10);
           - slat rounds => how many rounds of salt is required to encrypt the password. 10 is the optimal value to encrypt.
-          - Once password is encrypted it cannot be decrypted.
+          - Once password is hashed it cannot be decrypted.
           - then pass the fields that we want to store in DB in an object and passwordHash as the value of password in the object.
+          - 👉 bcrypt does NOT decrypt the password.
+          - 👉 In fact, it cannot decrypt it at all.
+          - 👉 This is one-way hashing, not encryption.
+          - Encryption = reversible (can decrypt)
+          - Hashing = ❌ irreversible (cannot get original password back)
+          - So even bcrypt itself cannot recover the original password.
      5. LOGIN API (POST)
           - We can get email and password from req.body.
           - We can check if the Email id is correct email or not by validator package, like is there @, .com, .in etc is present or not.
@@ -1634,7 +1640,9 @@ directly krenge toh static ho jayega?
                - bcrypt.compare(myPlaintextPassword, hash); example: const isPasswordValid = await bcrypt.compare(password, user.password);
           - Also, don't tell the user that email is not present in the DB. Do not write explicitly write these kind of error messages. 
           - Instead, write Invalid creddentials so it won't be disclosed that email is wrong or password.
-
+          - bcrypt takes your plain password (what user just typed)
+          - It uses the same salt & algorithm stored inside the hash
+          - It hashes the plain password again Then compares: newHash === storedHash
 
 ================================== Class 10  =====================================
 
