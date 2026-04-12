@@ -2350,138 +2350,279 @@ While indexes improve query performance, they come with trade-offs, which is why
 Indexes are essential for performance optimization, but their design requires careful consideration based on the application’s query patterns and workload. Over-indexing can lead to more harm than good, especially in write-heavy applications.
 -------------------------------
 
-     jwt.sign
-     bcrypt.compare
+================================== Class 13 =====================================
 
+**In this episode we learned, We made API's like review request that we can either accept or reject and check recieved requests with validation in both API's and also learned about ref and populate.**
 
+1. We making **REQUEST REVIEW API i.e /request/review/:status/:requestId**
 
+   - By this API we can accept or reject the connection request.
+   - This API can only be accessed by the loggedIn User who is actually the person of `toUserId`.
+   - Means only the **receiver** can review/see the request.
+   - LoggedIn user must be the same as `toUserId`.
 
+2. It should NOT be like:
 
+   - Virat sends request to Elon and Virat himself accepts it ❌
+   - John accepts Virat's request ❌
 
+   ✔ Request can ONLY be reviewed by the same person whose id is in `toUserId`.
 
+3. Validations we applied:
 
+   - `status` can only be:
+     - "accepted"
+     - "rejected"
 
-************** Cloning a repo **************
+   - `requestId` must exist in DB.
 
-          For git repo, if i made the repo first then either i can come to pc and create folder inside that open cmd and git clone link of repo and clone it and open that 
-          folder in vs code or i can directly come to vs code and click on clone the repository and it will then ask me the folder where i want to clone it and i can choose 
-          that folder and clone it.
-          but if i started the code and haven't created the repository then i can do git init to iniitalise it then git add . then git commit -m "commit files" and now push 
-          it to the github so will go on github and create a new repo and map it to the repository by adding 3 commands which wil be mentioned there only when we create the 
-          repository.
-          git remote add origin
-          git branch -M main
-          git push -u origin main
+   - LoggedIn user must match `toUserId`.
 
+   - Status in DB must be `"interested"` (only those can be reviewed).
 
-************** Server Create **************
+```
 
------------------- creating server in nodejs ------------------
+const connectionRequest = await ConnectionRequest.findOne({
+_id: requestId,
+toUserId: loggedInUser._id,
+status: "interested",
+});
 
-     const http = require("http");
-     
-     const server = http.createServer(function(req, res) {
-          if(req.url === "/getSecretData"){
-               res.end("There is no secret data");
-               }
-               res.end("Hello World!!!");
-               });
-               
-     server.listen(7777);
+```
 
------------------- creating server in express ------------------
+4. Important logic:
 
-     const express = require("express");
-     
-     const app = express();
-     
-     app.listen(7777, () => {
-          console.log("Server is successfully listening on port 7777...");
-          });
+- Ignored requests won't come (filtered out).
+- Once accepted/rejected → can't do it again.
+- Because status changes from `"interested"`.
 
+5. API Security Best Practices:
 
+- **POST API** → Validate all incoming data (prevent attacks).
+- **GET API** → Send only allowed data to correct user.
 
------------------- Api ------------------
-signup API
+6. We created **GET API → /user/requests/received**
 
-Validation of data
-Encrypt the password
-create new isntance 
-save in DB
-send response
+- Fetch all pending requests.
+- Conditions:
+  - status = "interested"
+  - toUserId = loggedInUser._id
 
-login API
+7. **REF & POPULATE**
 
-validate email
-compare password(decrypt)
-create jwt token
-send it in cookie
-send response
+Problem:
+- We only get `fromUserId`, not user details.
 
+Solution:
+- Add `ref` in schema:
 
-Profile API
+```
 
-Get coookies
-get token from cookies
-validate token
-JWT verify
-get id from deocded msg got after JWT verify 
-FIND USER 
-if found Send user as response
+ref: "User"
 
+```
 
------------------- Resume ------------------
+- Use populate:
 
+```
 
+populate("fromUserId", ["firstName", "lastName"])
 
- user can come and login and in noida all theka will be tied up with us and we will deliver to the place
+```
 
-RESUME
+- Always pass specific fields.
+- Otherwise it exposes sensitive data (email, password ❌).
 
-Project#7 Client : Autopedia (Qexon)  1 year and 1 month.      (May 2018 to June 2019)
+8. Also added:
 
-Project#5 Client : Growth Ai (Muoro).  8 months.                           (April 2020 to December 2020)
+- `ref` in `toUserId`
+- Populated both sender & receiver data
 
-Project#3 Client : Suburban jungle Inc. (Muoro)  11 months.   (May 2022 to April 2023)
+Example:
 
+- Elon receives request → Elon = `toUserId`
+- Elon sends request → Elon = `fromUserId`
 
-in chatgpt i want to create a description for Suburban jungle Inc. project and worked in react in frontend and tell me details what company does, what project does?
-to know abt project , ye project kya krta h ,kya tech stack tha, kya folder structure ho skta tha... what uh did tell me the big services taht i did so i can tell to interviewer
-like oAuth for login autehntaction authorization.
+✔ So user can be in both roles.
 
-5-6 topics need to remember like AUTHENTICATION, Templates bnaye tha data aane p and work for every projevct just domain change h..
+--------------------------------------------------------------------------------
 
- timelines 1 - 1sal and 2 project together for 1 year
+================================== Class 14 =====================================
 
-by bro
+**In this episode we learned, We made feed's API and also learned about set and limits**
 
-Project#3 Client : Suburban jungle Inc. => Like MMT but in MMT there are flights too but yaha p house k liye hota h florida street m jayda h rent p dena yaa 1-1 din k liye 
-dena 
+1. We created **FEED API → /user/feed**
 
-Growth Ai  => Hackarearth, Hackarthon for some college and genralise kr rhi thi liek making micro frontend like we have two differnet collesges and we can provide it to both easily like domain can change easily.
+User should see all users EXCEPT:
 
-koi bhi stuendt ayega enroll kia and 1st year btech test krvane h enroll krenge test krenge and they also include AI in backend as AI se we can get ansers shi h ya nihi asia portakl tha
+- His own card
+- His connections
+- Ignored users
+- Already sent requests (interested)
 
+2. We fetched connection requests where:
 
-Autopedia => Vintage cars like ferrari so this comany sell or rent the cars but only vintafe and made UI 
+- `fromUserId` OR `toUserId` = loggedInUser._id
 
-meri company p project aaye the .. har project k aage se company htado bcoz client can give the project to other service based comp. too.
+Used:
 
-i dont know the insights of my company how would i know.. no one asked for hosted link as i dont hvae knowlege that internal and i didnt hosted..
+```
 
+select("fromUserId toUserId")
 
-EC2 service, Lambda function, dynamoDB, S3 buckets, CI/CD pipelines, Docker, Kubannatives..
+```
 
-Docker ki comands hoti h, kaise image bnti h, deployment aise hote h... 
+✔ Similar to populate (but only selects fields)
 
+3. **Set Data Structure**
 
-kaam kia tha?
+- Used `Set()` to store IDs.
+- Works like array but:
+  - Only **UNIQUE values**
+  - No duplicates allowed
 
-not yes not no
+Example:
 
-project m use ho rha tha and we work toghether so i use to see in devops and i have an idea and then giive technical
+```
 
-micro services so ither term handlinng aoyment thuing 
+[A, B, F, Z, S]
+Add A again → ignored
 
+```
 
-AWS integration.
+4. Created:
+
+```
+
+hideUsersFromFeed = new Set()
+
+```
+
+- Added all `fromUserId` & `toUserId`
+- Converted IDs to string:
+
+```
+
+id.toString()
+
+```
+
+5. Query to fetch feed users:
+
+- Exclude:
+  - Users in Set
+  - LoggedIn user
+
+Used:
+
+- `$and`
+- `$nin`
+- `$ne`
+
+6. Performance Issue:
+
+- If DB has 1000 users → don't send all
+- Only send limited users (like 10)
+
+7. **Pagination (Best Practice)**
+
+Query Params:
+
+```
+
+/user/feed?page=1&limit=10 → 1-10
+/user/feed?page=2&limit=10 → 11-20
+/user/feed?page=3&limit=10 → 21-30
+
+```
+
+8. MongoDB Functions:
+
+- `.skip()` → how many records to skip
+- `.limit()` → how many to fetch
+
+Example:
+
+```
+
+page=1 → skip(0)  limit(10)
+page=2 → skip(10) limit(10)
+page=3 → skip(20) limit(10)
+
+```
+
+--------------------------------------------------------------------------------
+
+/////////// My way (Custom Logic without pagination) ///////////
+
+1. My Logic:
+
+When user is **fromUserId (logged in)**:
+
+- Hide:
+  - Own profile
+  - accepted (connections)
+  - ignored
+  - interested (already sent)
+
+When user is **toUserId (receiving requests)**:
+
+- Hide:
+  - accepted
+  - interested
+
+2. Allow rejected users to reappear in feed ✔
+
+3. Modify send request API:
+
+```
+
+POST /request/send/:status/:toUserId
+
+```
+
+- Check existing connection with:
+  - status: "accepted"
+
+4. Example Flow:
+
+- Honey sends request:
+  - Mike → interested
+  - Chris → interested
+  - Trump → ignored
+
+Feed:
+- These 3 + Honey won't appear
+
+Then:
+- Mike → accepted
+- Chris → rejected
+
+Result:
+- Chris appears again in feed ✔
+
+5. Reverse Case:
+
+- Chris logs in
+- Honey was hidden earlier
+- After rejection → Honey appears again ✔
+
+--------------------------------------------------------------------------------
+
+Notes / Raw Thoughts:
+
+- trump → mike (interested) → hide in feed
+- trump → mike (ignored) → show in feed
+- mike → trump (accepted) → hide
+- mike → trump (rejected) → show again
+
+- DB relations tricky:
+- fromUserId vs toUserId swap based on login user
+
+- Real apps logic:
+- similar skills
+- age range
+- opposite gender
+
+--------------------------------------------------------------------------------
+```
