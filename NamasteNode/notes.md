@@ -4,8 +4,8 @@
 
 
     1. node REPL - READ, EVALUATE, PRINT, LOOP 
-    2. we can see that in terminal like cmd it is very similar to console in browsers but the differnce is instead of Node JS
-    we have browser which is also running V8 engine behind the scenes.
+    2. we can see that in terminal like cmd it is very similar to console in browsers but the differnce is instead of 
+    Node JS we have browser which is also running V8 engine behind the scenes.
     3. Node JS is JS runtime environment.
     4. Inside Node JS we have V8 JS engine and some super powers and whenever we wrote any piece of JS code, Node JS
     gave/passed that code to V8 engine and then V8 engine actually executed that code (as V8 engine written in C++ 
