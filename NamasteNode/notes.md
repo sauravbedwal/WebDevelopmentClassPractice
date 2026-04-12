@@ -4,11 +4,11 @@
 
 
     1. node REPL - READ, EVALUATE, PRINT, LOOP 
-    2. we can see that in terminal like cmd it is very similar to console in browsers but the differnce is instead of Node JS we have browser which is also running 
-         V8 engine behind the scenes.
+    2. we can see that in terminal like cmd it is very similar to console in browsers but the differnce is instead of Node JS
+    we have browser which is also running V8 engine behind the scenes.
     3. Node JS is JS runtime environment.
-    4. Inside Node JS we have V8 JS engine and some super powers and whenever we wrote any piece of JS code, Node JS gave/passed that code to V8 engine and then V8 engine 
-         actually executed that code (as V8 engine written in C++ so it converts that code into machine level code so the computer can understand it).
+    4. Inside Node JS we have V8 JS engine and some super powers and whenever we wrote any piece of JS code, Node JS
+    gave/passed that code to V8 engine and then V8 engine actually executed that code (as V8 engine written in C++ so it converts that code into machine level code so the computer can understand it).
 
 ----------------------
 first code of node js
@@ -2349,6 +2349,8 @@ While indexes improve query performance, they come with trade-offs, which is why
 
 Indexes are essential for performance optimization, but their design requires careful consideration based on the application’s query patterns and workload. Over-indexing can lead to more harm than good, especially in write-heavy applications.
 -------------------------------
+
+--------------------------------------------------------------------------------
 
 ================================== Class 13 =====================================
 
